@@ -1,0 +1,94 @@
+import type { ChatMessage } from '../types'
+
+const N8N_BASE = import.meta.env.VITE_N8N_BASE_URL as string
+
+export interface WineCollection {
+  id: string
+  nombre: string
+  bodega: string | null
+  anada: number | null
+  region: string | null
+  uva: string | null
+  denominacion: string | null
+}
+
+async function post<T>(path: string, body: unknown): Promise<T> {
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), 30_000)
+
+  try {
+    const res = await fetch(`${N8N_BASE}/webhook/${path}`, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(body),
+      signal:  controller.signal,
+    })
+
+    if (!res.ok) {
+      const text = await res.text().catch(() => res.statusText)
+      throw new Error(`n8n ${path} → ${res.status}: ${text}`)
+    }
+
+    return res.json() as Promise<T>
+  } catch (err) {
+    if (err instanceof Error && err.name === 'AbortError') {
+      throw new Error(`Timeout en n8n/${path} (30s)`)
+    }
+    throw err
+  } finally {
+    clearTimeout(timer)
+  }
+}
+
+export async function callSommelierChat(
+  messages: ChatMessage[],
+  wineCollection: WineCollection[],
+  userMessage: string
+): Promise<string> {
+  const data = await post<{ reply: string }>('vinoteca/sommelier/chat', {
+    messages,
+    wineCollection,
+    userMessage,
+  })
+  return data.reply
+}
+
+export async function callMaridaje(
+  plato: string,
+  wineCollection: WineCollection[],
+  ocasion?: string
+): Promise<{ recomendacion: string; wineId?: string }> {
+  return post<{ recomendacion: string; wineId?: string }>('vinoteca/sommelier/maridaje', {
+    plato,
+    wineCollection,
+    ocasion,
+  })
+}
+
+export async function callEnriquecimiento(
+  denominacion: string,
+  region?: string,
+  uva?: string
+): Promise<{ info: string; fuente?: string }> {
+  return post<{ info: string; fuente?: string }>('vinoteca/sommelier/enriquecimiento', {
+    denominacion,
+    region,
+    uva,
+  })
+}
+
+export interface StatsPayload {
+  totalVinos: number
+  totalCatas: number
+  puntuacionMedia: number
+  topRegiones: { region: string; count: number }[]
+  distribucionTipos: { tipo: string; count: number }[]
+  anadas: { decada: string; count: number }[]
+  mejorVino: { nombre: string; puntuacion: number } | null
+}
+
+export async function callStatsInsight(
+  stats: StatsPayload
+): Promise<{ insight: string }> {
+  return post<{ insight: string }>('vinoteca/stats/insight', stats)
+}

@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #722F37;
+  --color-gold:    #C9A84C;
+  --color-cream:   #F5F0E8;
+  --color-dark:    #1A0A0E;
+  --color-surface: #2A1A1E;
+  --color-muted:   #9A8A8E;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: #1A0A0E;
+  color: #F5F0E8;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+a {
+  text-decoration: none;
+}
+
+button, input {
+  font-family: inherit;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #3A2A2E;
+  border-top-color: #722F37;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
