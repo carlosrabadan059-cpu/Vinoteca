@@ -35,7 +35,7 @@ export default function Register() {
     return (
       <div
         className="flex min-h-dvh items-center justify-center px-6 flex-col gap-4 text-center"
-        style={{ background: theme.colors.dark }}
+        style={{ background: 'radial-gradient(ellipse at 50% 0%, #3D1A0F 0%, #1A0A06 40%, #0D0608 75%)' }}
       >
         <h2 className="text-2xl font-bold" style={{ color: theme.colors.primary }}>¡Cuenta creada!</h2>
         <p style={{ color: theme.colors.cream }}>Revisa tu email para confirmar tu cuenta.</p>
@@ -47,7 +47,7 @@ export default function Register() {
   return (
     <div
       className="flex min-h-dvh items-center justify-center px-6"
-      style={{ background: theme.colors.dark }}
+      style={{ background: 'radial-gradient(ellipse at 50% 0%, #3D1A0F 0%, #1A0A06 40%, #0D0608 75%)' }}
     >
       <form onSubmit={handleSubmit} className="w-full max-w-sm flex flex-col gap-4">
         <div className="text-center mb-2">

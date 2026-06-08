@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Layout from '../components/ui/Layout'
 import TastingCard from '../components/wine/TastingCard'
-import Button from '../components/ui/Button'
 import { useTastings } from '../hooks/useTastings'
 import { useWines } from '../hooks/useWines'
 import { theme } from '../constants/theme'
@@ -35,10 +34,27 @@ function applyFilter(tastings: Tasting[], filter: Filter): Tasting[] {
   return tastings
 }
 
+function WineGlassSVG() {
+  return (
+    <svg
+      width="64" height="64"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={theme.colors.primary}
+      strokeWidth="1"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      style={{ opacity: 0.6 }}
+    >
+      <path d="M8 22h8M12 11v11M5 3h14l-2 7a5 5 0 0 1-10 0L5 3z"/>
+    </svg>
+  )
+}
+
 export default function Catas() {
   const navigate = useNavigate()
-  const [filter,    setFilter]    = useState<Filter>('all')
-  const [wineMap,   setWineMap]   = useState<Record<string, Wine>>({})
+  const [filter,  setFilter]  = useState<Filter>('all')
+  const [wineMap, setWineMap] = useState<Record<string, Wine>>({})
 
   const { tastings, loading, listTastings } = useTastings()
   const { getWine } = useWines()
@@ -47,11 +63,9 @@ export default function Catas() {
     listTastings().catch(() => null)
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Cargar nombres de vinos para las cards
   useEffect(() => {
     const missing = tastings.filter(t => !wineMap[t.wine_id])
     if (!missing.length) return
-
     const uniqueIds = [...new Set(missing.map(t => t.wine_id))]
     uniqueIds.forEach(id => {
       getWine(id).then(w => {
@@ -64,41 +78,83 @@ export default function Catas() {
 
   return (
     <Layout>
-      {/* Header */}
-      <div className="flex items-center justify-between px-4 pt-5 pb-3">
-        <div className="flex items-center gap-2">
-          <h1 className="font-bold" style={{ color: theme.colors.gold, fontSize: theme.font['2xl'] }}>
-            Mis Catas
-          </h1>
-          {tastings.length > 0 && (
-            <span
-              className="px-2 py-0.5 rounded-full text-xs font-bold"
-              style={{ background: theme.colors.surface, color: theme.colors.muted }}
+      {/* ── Header editorial ──────────────────────────────────── */}
+      <div className="px-5 pt-6 pb-4">
+        <div className="flex items-start justify-between">
+          <div>
+            <p
+              style={{
+                fontSize: '0.65rem',
+                letterSpacing: '0.16em',
+                textTransform: 'uppercase',
+                color: theme.colors.muted,
+                marginBottom: 4,
+              }}
             >
-              {tastings.length}
-            </span>
-          )}
+              Diario de cata
+            </p>
+            <h1
+              className="text-editorial"
+              style={{ fontSize: theme.font['2xl'], fontWeight: 700, color: theme.colors.cream, lineHeight: 1.1 }}
+            >
+              Mis Catas
+              {tastings.length > 0 && (
+                <span
+                  className="ml-2"
+                  style={{
+                    fontSize: '0.75rem',
+                    fontWeight: 500,
+                    color: theme.colors.muted,
+                    verticalAlign: 'middle',
+                  }}
+                >
+                  {tastings.length}
+                </span>
+              )}
+            </h1>
+          </div>
+
+          {/* Nueva cata FAB */}
+          <button
+            onClick={() => navigate('/catas/nueva')}
+            className="flex items-center justify-center rounded-full shrink-0"
+            style={{
+              width: 42,
+              height: 42,
+              background: theme.colors.primary,
+              boxShadow: `0 4px 20px ${theme.colors.primary}50`,
+            }}
+            aria-label="Nueva cata"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={theme.colors.cream} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </button>
         </div>
-        <button
-          onClick={() => navigate('/catas/nueva')}
-          className="w-9 h-9 rounded-full flex items-center justify-center text-xl"
-          style={{ background: theme.colors.primary }}
-        >
-          <span style={{ color: theme.colors.cream, fontSize: '1.25rem', lineHeight: 1 }}>+</span>
-        </button>
+
+        {/* Divisor dorado */}
+        <div
+          style={{
+            height: 1,
+            marginTop: 16,
+            background: `linear-gradient(to right, ${theme.colors.gold}40, transparent)`,
+          }}
+        />
       </div>
 
-      {/* Filtros */}
-      <div className="flex gap-2 px-4 pb-3 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
+      {/* ── Filtros ───────────────────────────────────────────── */}
+      <div className="flex gap-2 px-5 pb-4 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
         {FILTERS.map(f => (
           <button
             key={f.id}
             onClick={() => setFilter(f.id)}
-            className="flex-shrink-0 px-3 py-1.5 rounded-full text-sm font-medium transition-colors"
+            className="flex-shrink-0 px-3 py-1.5 rounded-full font-medium transition-all"
             style={{
-              background: filter === f.id ? theme.colors.gold : theme.colors.surface,
+              fontSize: '0.75rem',
+              letterSpacing: '0.04em',
+              background: filter === f.id ? theme.colors.gold : 'transparent',
               color:      filter === f.id ? theme.colors.dark  : theme.colors.muted,
-              border:     `1px solid ${filter === f.id ? theme.colors.gold : '#3A2A2E'}`,
+              border:     `1px solid ${filter === f.id ? theme.colors.gold : theme.colors.border}`,
             }}
           >
             {f.label}
@@ -106,9 +162,9 @@ export default function Catas() {
         ))}
       </div>
 
-      <div className="px-4 pb-24 flex flex-col gap-3">
+      {/* ── Content ───────────────────────────────────────────── */}
+      <div className="px-5 pb-28 flex flex-col gap-3">
         {loading ? (
-          // Skeleton
           Array.from({ length: 4 }).map((_, i) => (
             <div
               key={i}
@@ -117,18 +173,51 @@ export default function Catas() {
             />
           ))
         ) : visible.length === 0 ? (
-          // Estado vacío
-          <div className="flex flex-col items-center gap-4 py-20 text-center">
-            <span style={{ fontSize: '3.5rem' }}>🍷</span>
-            <p className="font-semibold" style={{ color: theme.colors.cream }}>
-              {filter === 'all'
-                ? 'Aún no has registrado ninguna cata'
-                : 'No hay catas para este período'}
-            </p>
+          // ── Estado vacío editorial ──────────────────────────
+          <div className="flex flex-col items-center gap-5 py-16 text-center">
+            {/* Decorative arc + glass */}
+            <div className="relative flex items-center justify-center">
+              <div
+                className="absolute"
+                style={{
+                  width: 120,
+                  height: 120,
+                  borderRadius: '50%',
+                  background: `radial-gradient(circle, ${theme.colors.primary}18 0%, transparent 70%)`,
+                }}
+              />
+              <WineGlassSVG />
+            </div>
+
+            <div>
+              <p
+                className="text-editorial font-semibold"
+                style={{ fontSize: theme.font.lg, color: theme.colors.cream }}
+              >
+                {filter === 'all'
+                  ? 'Aún no has registrado ninguna cata'
+                  : 'No hay catas para este período'}
+              </p>
+              {filter === 'all' && (
+                <p style={{ fontSize: theme.font.sm, color: theme.colors.muted, marginTop: 6 }}>
+                  Cada copa tiene una historia — empieza a contarla
+                </p>
+              )}
+            </div>
+
             {filter === 'all' && (
-              <Button onClick={() => navigate('/catas/nueva')}>
+              <button
+                onClick={() => navigate('/catas/nueva')}
+                className="px-6 py-3 rounded-xl font-semibold"
+                style={{
+                  background: theme.colors.primary,
+                  color: theme.colors.cream,
+                  fontSize: theme.font.base,
+                  boxShadow: `0 4px 24px ${theme.colors.primary}40`,
+                }}
+              >
                 Registrar tu primera cata
-              </Button>
+              </button>
             )}
           </div>
         ) : (

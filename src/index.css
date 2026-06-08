@@ -1,12 +1,15 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
 
 @theme {
-  --color-primary: #722F37;
+  --color-primary: #8B1A2A;
   --color-gold:    #C9A84C;
-  --color-cream:   #F5F0E8;
-  --color-dark:    #1A0A0E;
-  --color-surface: #2A1A1E;
-  --color-muted:   #9A8A8E;
+  --color-cream:   #F0EBE1;
+  --color-dark:    #0D0608;
+  --color-surface: #1A0E10;
+  --color-surface2: #221318;
+  --color-muted:   #7A6A6E;
+  --color-border:  #2E1A1E;
 }
 
 *, *::before, *::after {
@@ -20,10 +23,19 @@ html, body, #root {
 }
 
 body {
-  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
-  background: #1A0A0E;
-  color: #F5F0E8;
+  background: #0D0608;
+  color: #F0EBE1;
+}
+
+.font-serif {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.text-editorial {
+  font-family: 'Playfair Display', Georgia, serif;
+  letter-spacing: -0.01em;
 }
 
 #root {

@@ -14,10 +14,22 @@ import type { Wine } from '../types'
 
 type ImageTab = 'frontal' | 'trasera'
 
+function StarRating({ value }: { value: number }) {
+  return (
+    <div className="flex gap-0.5">
+      {[1, 2, 3, 4, 5].map(i => (
+        <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill={i <= value ? theme.colors.gold : 'none'} stroke={theme.colors.gold} strokeWidth="1.5">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+      ))}
+    </div>
+  )
+}
+
 export default function WineDetail() {
-  const { id }     = useParams<{ id: string }>()
-  const navigate   = useNavigate()
-  const toast      = useToastStore()
+  const { id }   = useParams<{ id: string }>()
+  const navigate = useNavigate()
+  const toast    = useToastStore()
 
   const { getWine, updateWine, deleteWine } = useWines()
   const { tastings, loading: tastingsLoading } = useTastings(id)
@@ -33,10 +45,7 @@ export default function WineDetail() {
 
   useEffect(() => {
     if (!id) return
-    getWine(id).then(w => {
-      setWine(w)
-      setLoadingWine(false)
-    })
+    getWine(id).then(w => { setWine(w); setLoadingWine(false) })
   }, [id]) // eslint-disable-line react-hooks/exhaustive-deps
 
   async function handleUpdate(data: Partial<Wine>) {
@@ -71,12 +80,14 @@ export default function WineDetail() {
   const hasTrasera = !!wine?.imagen_trasera_url
   const hasBoth    = hasFrontal && hasTrasera
 
-  const avgPuntuacion = tastings.length
+  const avgPuntuacion = tastings.length && tastings.some(t => t.puntuacion !== null)
     ? Math.round(
         tastings.reduce((acc, t) => acc + (t.puntuacion ?? 0), 0) /
         tastings.filter(t => t.puntuacion !== null).length
       )
     : null
+
+  const scoreOn5 = avgPuntuacion ? Math.round((avgPuntuacion / 100) * 5) : null
 
   if (loadingWine) {
     return (
@@ -92,7 +103,9 @@ export default function WineDetail() {
     return (
       <Layout>
         <div className="flex flex-col items-center gap-4 py-16 px-6 text-center">
-          <span style={{ fontSize: '3rem' }}>🍷</span>
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke={theme.colors.border} strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M8 22h8M12 11v11M5 3h14l-2 7a5 5 0 0 1-10 0L5 3z"/>
+          </svg>
           <p style={{ color: theme.colors.muted }}>No encontramos este vino</p>
           <Button onClick={() => navigate('/bodega')}>Volver a la bodega</Button>
         </div>
@@ -100,195 +113,295 @@ export default function WineDetail() {
     )
   }
 
-  const wineFields: { label: string; value: string | number | null | undefined }[] = [
-    { label: 'Bodega',            value: wine.bodega },
-    { label: 'Añada',             value: wine.anada },
-    { label: 'Región',            value: wine.region },
-    { label: 'Denominación',      value: wine.denominacion },
-    { label: 'Uva',               value: wine.uva },
-  ]
+  const imageUrl = (hasBoth ? imageTab === 'frontal' : hasFrontal)
+    ? wine.imagen_frontal_url
+    : wine.imagen_trasera_url
 
   return (
     <Layout>
-      {/* Header */}
-      <div className="flex items-center justify-between px-4 pt-4 pb-2">
-        <button
-          onClick={() => navigate('/bodega')}
-          className="flex items-center gap-1 text-sm font-medium"
-          style={{ color: theme.colors.gold }}
-        >
-          ← Volver
-        </button>
-        <h1
-          className="flex-1 text-center font-semibold truncate px-3"
-          style={{ color: theme.colors.cream, fontSize: theme.font.base }}
-        >
-          {wine.nombre}
-        </h1>
-        <div className="relative">
+      {/* Hero */}
+      <div className="relative w-full" style={{ height: 320 }}>
+        {imageUrl ? (
+          <img
+            src={imageUrl}
+            alt={wine.nombre}
+            className="w-full h-full object-cover"
+            style={{ opacity: 0.75 }}
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center" style={{ background: '#110809' }}>
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke={theme.colors.border} strokeWidth="0.75" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M8 22h8M12 11v11M5 3h14l-2 7a5 5 0 0 1-10 0L5 3z"/>
+            </svg>
+          </div>
+        )}
+
+        {/* Gradient */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(to bottom, rgba(13,6,8,0.6) 0%, rgba(13,6,8,0.2) 40%, rgba(13,6,8,0.85) 80%, #0D0608 100%)',
+          }}
+        />
+
+        {/* Top controls */}
+        <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
           <button
-            onClick={() => setMenuOpen(o => !o)}
-            className="p-2 text-xl"
-            style={{ color: theme.colors.muted }}
+            onClick={() => navigate('/bodega')}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium"
+            style={{ background: 'rgba(13,6,8,0.5)', color: theme.colors.cream, backdropFilter: 'blur(8px)' }}
           >
-            ⋮
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="m15 18-6-6 6-6"/>
+            </svg>
+            Volver
           </button>
-          {menuOpen && (
-            <div
-              className="absolute right-0 top-8 z-20 rounded-xl shadow-xl min-w-36 overflow-hidden"
-              style={{ background: theme.colors.surface, border: '1px solid #3A2A2E' }}
-            >
-              <button
-                className="w-full text-left px-4 py-3 text-sm active:opacity-70"
-                style={{ color: theme.colors.cream }}
-                onClick={() => { setMenuOpen(false); setEditOpen(true) }}
-              >
-                ✏️ Editar
-              </button>
-              <button
-                className="w-full text-left px-4 py-3 text-sm active:opacity-70"
-                style={{ color: '#D32F2F' }}
-                onClick={() => { setMenuOpen(false); setDeleteOpen(true) }}
-              >
-                🗑 Eliminar
-              </button>
-            </div>
-          )}
-        </div>
-      </div>
 
-      <div className="px-4 flex flex-col gap-5 pb-24">
-
-        {/* Sección 1: Imágenes */}
-        <div>
+          {/* Image tab toggle */}
           {hasBoth && (
-            <div className="flex gap-1 mb-2">
+            <div className="flex rounded-full overflow-hidden" style={{ border: `1px solid ${theme.colors.border}`, background: 'rgba(13,6,8,0.5)', backdropFilter: 'blur(8px)' }}>
               {(['frontal', 'trasera'] as ImageTab[]).map(tab => (
                 <button
                   key={tab}
                   onClick={() => setImageTab(tab)}
-                  className="flex-1 py-1.5 text-sm font-medium rounded-lg transition-colors capitalize"
+                  className="px-3 py-1 text-xs font-medium capitalize transition-colors"
                   style={{
-                    background: imageTab === tab ? theme.colors.gold : theme.colors.surface,
-                    color:      imageTab === tab ? theme.colors.dark : theme.colors.muted,
+                    background: imageTab === tab ? theme.colors.primary : 'transparent',
+                    color:      imageTab === tab ? theme.colors.cream : theme.colors.muted,
                   }}
                 >
-                  {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                  {tab}
                 </button>
               ))}
             </div>
           )}
 
-          <div
-            className="w-full rounded-xl overflow-hidden flex items-center justify-center"
-            style={{ background: '#3A2A2E', height: 220 }}
-          >
-            {(hasBoth ? imageTab === 'frontal' : hasFrontal) && wine.imagen_frontal_url ? (
-              <img src={wine.imagen_frontal_url} alt="Etiqueta frontal" className="h-full object-contain" />
-            ) : hasTrasera && wine.imagen_trasera_url ? (
-              <img src={wine.imagen_trasera_url} alt="Etiqueta trasera" className="h-full object-contain" />
-            ) : (
-              <span style={{ fontSize: '4rem' }}>🍾</span>
-            )}
-          </div>
-        </div>
-
-        {/* Sección 2: Datos del vino */}
-        <div className="rounded-xl p-4 flex flex-col gap-3" style={{ background: theme.colors.surface, border: '1px solid #3A2A2E' }}>
-          <h2 className="font-semibold" style={{ color: theme.colors.gold }}>Datos del vino</h2>
-          {wineFields.filter(f => f.value !== null && f.value !== undefined && f.value !== '').map(({ label, value }) => (
-            <div key={label} className="flex justify-between items-center gap-3">
-              <span className="text-sm" style={{ color: theme.colors.muted }}>{label}</span>
-              <span className="text-sm font-medium text-right" style={{ color: theme.colors.cream }}>{value}</span>
-            </div>
-          ))}
-          <Button
-            variant="secondary"
-            className="mt-1"
-            onClick={() => setEditOpen(true)}
-          >
-            Editar
-          </Button>
-        </div>
-
-        {/* Sección 3: Catas */}
-        <div className="flex flex-col gap-3">
-          <div className="flex items-center justify-between">
-            <h2 className="font-semibold" style={{ color: theme.colors.gold }}>Mis catas</h2>
-            {avgPuntuacion !== null && !isNaN(avgPuntuacion) && (
-              <span
-                className="px-3 py-1 rounded-full font-bold text-sm"
-                style={{ background: theme.colors.surface, color: theme.colors.gold, border: `1px solid ${theme.colors.gold}` }}
+          <div className="relative">
+            <button
+              onClick={() => setMenuOpen(o => !o)}
+              className="w-8 h-8 rounded-full flex items-center justify-center"
+              style={{ background: 'rgba(13,6,8,0.5)', color: theme.colors.cream, backdropFilter: 'blur(8px)' }}
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/>
+              </svg>
+            </button>
+            {menuOpen && (
+              <div
+                className="absolute right-0 top-9 z-20 rounded-xl shadow-2xl min-w-36 overflow-hidden"
+                style={{ background: theme.colors.surface2, border: `1px solid ${theme.colors.border}` }}
               >
-                {avgPuntuacion} pts media
-              </span>
+                <button
+                  className="w-full text-left px-4 py-3 text-sm active:opacity-70 flex items-center gap-2"
+                  style={{ color: theme.colors.cream }}
+                  onClick={() => { setMenuOpen(false); setEditOpen(true) }}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                  </svg>
+                  Editar
+                </button>
+                <button
+                  className="w-full text-left px-4 py-3 text-sm active:opacity-70 flex items-center gap-2"
+                  style={{ color: '#E05050' }}
+                  onClick={() => { setMenuOpen(false); setDeleteOpen(true) }}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+                  </svg>
+                  Eliminar
+                </button>
+              </div>
             )}
           </div>
+        </div>
+
+        {/* Wine identity over hero */}
+        <div className="absolute bottom-0 left-0 right-0 px-5 pb-5 z-10">
+          {wine.tipo && (
+            <p
+              style={{
+                fontSize:      '0.6rem',
+                fontWeight:    600,
+                letterSpacing: '0.15em',
+                textTransform: 'uppercase',
+                color:         theme.colors.gold,
+                marginBottom:  6,
+              }}
+            >
+              {wine.tipo === 'Tinto' ? 'Vintage Reserve' : wine.tipo}
+            </p>
+          )}
+          <h1
+            className="text-editorial"
+            style={{
+              fontSize:   '1.75rem',
+              fontWeight: 700,
+              color:      theme.colors.cream,
+              lineHeight: 1.15,
+              marginBottom: 4,
+            }}
+          >
+            {wine.nombre}
+          </h1>
+          {wine.bodega && (
+            <p style={{ fontSize: '0.85rem', color: theme.colors.gold, fontWeight: 500 }}>
+              {wine.bodega}{wine.region ? ` · ${wine.region}` : ''}
+            </p>
+          )}
+        </div>
+      </div>
+
+      {/* Body */}
+      <div className="px-5 flex flex-col gap-5 pb-28" style={{ background: theme.colors.dark }}>
+
+        {/* Score + CTA */}
+        <div className="flex items-center justify-between pt-2">
+          {scoreOn5 !== null ? (
+            <div className="flex items-center gap-3">
+              <span
+                className="text-editorial"
+                style={{ fontSize: '2.5rem', fontWeight: 700, color: theme.colors.cream, lineHeight: 1 }}
+              >
+                {avgPuntuacion}
+              </span>
+              <div>
+                <StarRating value={scoreOn5} />
+                <p style={{ fontSize: '0.7rem', color: theme.colors.muted, marginTop: 3 }}>
+                  media de {tastings.filter(t => t.puntuacion !== null).length} cata{tastings.length !== 1 ? 's' : ''}
+                </p>
+              </div>
+            </div>
+          ) : (
+            <div />
+          )}
+          <button
+            onClick={() => navigate(`/catas/nueva?wineId=${wine.id}`)}
+            className="px-5 py-2.5 rounded-full font-semibold text-sm"
+            style={{ background: theme.colors.primary, color: theme.colors.cream }}
+          >
+            + Catar
+          </button>
+        </div>
+
+        {/* Divider */}
+        <div style={{ height: 1, background: theme.colors.border }} />
+
+        {/* Datos del vino */}
+        {[
+          { label: 'Bodega',       value: wine.bodega },
+          { label: 'Añada',        value: wine.anada },
+          { label: 'Región',       value: wine.region },
+          { label: 'Denominación', value: wine.denominacion },
+          { label: 'Uva',          value: wine.uva },
+        ].filter(f => f.value !== null && f.value !== undefined && f.value !== '').length > 0 && (
+          <div className="flex flex-col gap-3">
+            <h2
+              className="text-editorial"
+              style={{ fontSize: '1rem', fontWeight: 600, color: theme.colors.cream, letterSpacing: '0.02em' }}
+            >
+              Datos del vino
+            </h2>
+            <div
+              className="rounded-xl overflow-hidden"
+              style={{ border: `1px solid ${theme.colors.border}` }}
+            >
+              {[
+                { label: 'Bodega',       value: wine.bodega },
+                { label: 'Añada',        value: wine.anada },
+                { label: 'Región',       value: wine.region },
+                { label: 'Denominación', value: wine.denominacion },
+                { label: 'Uva',          value: wine.uva },
+              ]
+                .filter(f => f.value !== null && f.value !== undefined && f.value !== '')
+                .map(({ label, value }, i, arr) => (
+                  <div
+                    key={label}
+                    className="flex justify-between items-center px-4 py-3"
+                    style={{
+                      borderBottom: i < arr.length - 1 ? `1px solid ${theme.colors.border}` : 'none',
+                      background: i % 2 === 0 ? theme.colors.surface : 'transparent',
+                    }}
+                  >
+                    <span style={{ fontSize: '0.8rem', color: theme.colors.muted }}>{label}</span>
+                    <span style={{ fontSize: '0.85rem', fontWeight: 500, color: theme.colors.cream }}>{value}</span>
+                  </div>
+                ))
+              }
+            </div>
+            <button
+              onClick={() => setEditOpen(true)}
+              className="text-sm py-2 text-center rounded-xl transition-colors"
+              style={{ color: theme.colors.muted, border: `1px solid ${theme.colors.border}` }}
+            >
+              Editar información
+            </button>
+          </div>
+        )}
+
+        {/* Divider */}
+        <div style={{ height: 1, background: theme.colors.border }} />
+
+        {/* Mis catas */}
+        <div className="flex flex-col gap-3">
+          <h2
+            className="text-editorial"
+            style={{ fontSize: '1rem', fontWeight: 600, color: theme.colors.cream }}
+          >
+            Mis catas
+          </h2>
 
           {tastingsLoading ? (
             <div className="flex justify-center py-4"><Spinner size={24} /></div>
           ) : tastings.length === 0 ? (
-            <div className="flex flex-col items-center gap-3 py-8 text-center rounded-xl" style={{ background: theme.colors.surface, border: '1px solid #3A2A2E' }}>
-              <p style={{ color: theme.colors.muted }}>Aún no has catado este vino</p>
-              <Button
-                variant="secondary"
-                onClick={() => navigate(`/catas/nueva?wineId=${wine.id}`)}
-              >
+            <div
+              className="flex flex-col items-center gap-3 py-8 text-center rounded-xl"
+              style={{ background: theme.colors.surface, border: `1px solid ${theme.colors.border}` }}
+            >
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={theme.colors.border} strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+              </svg>
+              <p style={{ color: theme.colors.muted, fontSize: '0.85rem' }}>Aún no has catado este vino</p>
+              <Button variant="secondary" onClick={() => navigate(`/catas/nueva?wineId=${wine.id}`)}>
                 Catar ahora
               </Button>
             </div>
           ) : (
             <>
               {tastings.map(t => <TastingMiniCard key={t.id} tasting={t} />)}
-              <Button
-                variant="secondary"
+              <button
                 onClick={() => navigate(`/catas/nueva?wineId=${wine.id}`)}
+                className="text-sm py-2.5 text-center rounded-xl"
+                style={{ color: theme.colors.muted, border: `1px solid ${theme.colors.border}` }}
               >
                 + Registrar nueva cata
-              </Button>
+              </button>
             </>
           )}
         </div>
       </div>
 
-      {/* Modal edición */}
+      {/* Modales */}
       <Modal open={editOpen} onClose={() => setEditOpen(false)} title="Editar vino">
-        <WineForm
-          initialData={wine}
-          onSubmit={handleUpdate}
-          loading={saving}
-        />
+        <WineForm initialData={wine} onSubmit={handleUpdate} loading={saving} />
       </Modal>
 
-      {/* Modal eliminación */}
       <Modal open={deleteOpen} onClose={() => setDeleteOpen(false)} title="Eliminar vino">
         <p className="text-sm" style={{ color: theme.colors.muted }}>
           ¿Eliminar <span style={{ color: theme.colors.cream }}>{wine.nombre}</span> de tu bodega? Esta acción no se puede deshacer.
         </p>
         <div className="flex gap-3 mt-2">
-          <Button
-            variant="secondary"
-            className="flex-1"
-            onClick={() => setDeleteOpen(false)}
-            disabled={deleting}
-          >
+          <Button variant="secondary" className="flex-1" onClick={() => setDeleteOpen(false)} disabled={deleting}>
             Cancelar
           </Button>
-          <Button
-            className="flex-1"
-            style={{ background: '#D32F2F', color: theme.colors.cream }}
-            loading={deleting}
-            onClick={handleDelete}
-          >
+          <Button className="flex-1" style={{ background: '#D32F2F', color: theme.colors.cream }} loading={deleting} onClick={handleDelete}>
             Eliminar
           </Button>
         </div>
       </Modal>
 
-      {/* Overlay para cerrar menú */}
-      {menuOpen && (
-        <div className="fixed inset-0 z-10" onClick={() => setMenuOpen(false)} />
-      )}
+      {menuOpen && <div className="fixed inset-0 z-10" onClick={() => setMenuOpen(false)} />}
     </Layout>
   )
 }

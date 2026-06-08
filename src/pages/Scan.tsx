@@ -2,10 +2,10 @@ import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Layout from '../components/ui/Layout'
 import Spinner from '../components/ui/Spinner'
-import ImageCapture from '../components/wine/ImageCapture'
 import WineForm from '../components/wine/WineForm'
 import { analyzeWineLabel } from '../lib/openai'
 import { useWines } from '../hooks/useWines'
+import { useCamera } from '../hooks/useCamera'
 import { theme } from '../constants/theme'
 import type { Wine } from '../types'
 
@@ -17,19 +17,138 @@ function stepIndex(step: Step) {
   return ['frontal', 'trasera', 'review', 'done'].indexOf(step)
 }
 
+// ── Barrel hero background ─────────────────────────────────────────────────
+function BarrelHero({ children }: { children: React.ReactNode }) {
+  return (
+    <div
+      className="relative w-full overflow-hidden flex flex-col items-center justify-between"
+      style={{ height: '56vh', minHeight: 320 }}
+    >
+      {/* Atmospheric background — dark wine cellar gradient */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: `
+            radial-gradient(ellipse at 50% 0%, #3D1A0F 0%, #1A0A06 45%, #0D0608 100%)
+          `,
+        }}
+      />
+      {/* Barrel row — pure CSS decorative */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-10 overflow-hidden" aria-hidden>
+        <svg viewBox="0 0 360 200" width="360" height="200" style={{ opacity: 0.6 }}>
+          {[0, 80, 160, 240, 320].map((x) => (
+            <g key={x} transform={`translate(${x - 20}, 20)`}>
+              <ellipse cx="40" cy="90" rx="38" ry="88" fill="none" stroke="#C9A84C" strokeWidth="2"/>
+              <ellipse cx="40" cy="90" rx="22" ry="88" fill="none" stroke="#C9A84C" strokeWidth="1" opacity="0.5"/>
+              <line x1="2" y1="30" x2="78" y2="30" stroke="#C9A84C" strokeWidth="1.5"/>
+              <line x1="2" y1="150" x2="78" y2="150" stroke="#C9A84C" strokeWidth="1.5"/>
+            </g>
+          ))}
+        </svg>
+      </div>
+      {/* Tunnel vignette */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: 'radial-gradient(ellipse at 50% 50%, transparent 30%, rgba(13,6,8,0.7) 100%)',
+        }}
+      />
+      {/* Bottom fade to dark */}
+      <div
+        className="absolute inset-x-0 bottom-0"
+        style={{ height: 100, background: `linear-gradient(to bottom, transparent, ${theme.colors.dark})` }}
+      />
+      {children}
+    </div>
+  )
+}
+
+// ── Camera trigger button ─────────────────────────────────────────────────
+function CameraButton({ onCamera, onGallery }: { onCamera: () => void; onGallery: () => void }) {
+  return (
+    <div className="relative z-10 flex flex-col items-center gap-5 pb-4">
+      {/* Main shutter */}
+      <button
+        type="button"
+        onClick={onCamera}
+        className="relative flex items-center justify-center"
+        style={{ width: 76, height: 76 }}
+        aria-label="Tomar foto"
+      >
+        {/* Outer ring */}
+        <div
+          className="absolute inset-0 rounded-full"
+          style={{ border: `2px solid ${theme.colors.primary}`, opacity: 0.5 }}
+        />
+        {/* Middle ring */}
+        <div
+          className="absolute rounded-full"
+          style={{ inset: 6, border: `1px solid rgba(201,168,76,0.3)`, borderRadius: 9999 }}
+        />
+        {/* Inner filled disc */}
+        <div
+          className="absolute rounded-full flex items-center justify-center"
+          style={{ inset: 10, background: theme.colors.primary }}
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={theme.colors.cream} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+            <circle cx="12" cy="13" r="4"/>
+          </svg>
+        </div>
+      </button>
+
+      {/* Gallery secondary */}
+      <button
+        type="button"
+        onClick={onGallery}
+        className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium"
+        style={{
+          background: 'rgba(26,14,16,0.8)',
+          color: theme.colors.muted,
+          border: `1px solid ${theme.colors.border}`,
+          backdropFilter: 'blur(8px)',
+        }}
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+        </svg>
+        Desde galería
+      </button>
+    </div>
+  )
+}
+
+// ── Step badge ────────────────────────────────────────────────────────────
+function StepBadge({ label }: { label: string }) {
+  return (
+    <div
+      className="relative z-10 mt-auto mb-0 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase"
+      style={{
+        background: 'rgba(13,6,8,0.75)',
+        color: theme.colors.gold,
+        border: `1px solid rgba(201,168,76,0.4)`,
+        backdropFilter: 'blur(10px)',
+        letterSpacing: '0.14em',
+      }}
+    >
+      {label}
+    </div>
+  )
+}
+
 export default function Scan() {
   const navigate = useNavigate()
   const { createWine, loading: saving, status: saveStatus } = useWines()
+  const { takePhoto, pickFromGallery, compressImage } = useCamera()
 
   const [step,         setStep]         = useState<Step>('frontal')
   const [frontImage,   setFrontImage]   = useState<string | null>(null)
   const [backImage,    setBackImage]    = useState<string | null>(null)
   const [analyzing,    setAnalyzing]    = useState(false)
   const [formData,     setFormData]     = useState<Partial<Wine>>({})
-  const [analysisWarn, setAnalysisWarn] = useState(false)  // IA no pudo leer
+  const [analysisWarn, setAnalysisWarn] = useState(false)
   const [toast,        setToast]        = useState<{ msg: string; kind: 'green' | 'yellow' } | null>(null)
 
-  // Holds the in-flight analysis promise so review step can await it
   const analysisRef = useRef<Promise<Partial<Wine>> | null>(null)
 
   function showToast(msg: string, kind: 'green' | 'yellow', ms = 3000) {
@@ -37,48 +156,48 @@ export default function Scan() {
     setTimeout(() => setToast(null), ms)
   }
 
-  // ── Step 1: photo captured ─────────────────────────────────────────────────
-  function handleFrontalCapture(dataUrl: string) {
-    setFrontImage(dataUrl)
-    setAnalyzing(true)
-    setFormData({})
-    setAnalysisWarn(false)
+  async function handleCapture(source: 'camera' | 'gallery', target: 'frontal' | 'trasera') {
+    const raw = source === 'camera' ? await takePhoto() : await pickFromGallery()
+    if (!raw) return
+    const compressed = await compressImage(raw)
 
-    analysisRef.current = analyzeWineLabel(dataUrl)
-      .then(result => {
-        const isEmpty = !result.nombre && !result.bodega && !result.region && !result.uva
-        setFormData(result)
-        setAnalysisWarn(isEmpty)
-        setAnalyzing(false)
-        return result
-      })
-      .catch(() => {
-        setFormData({})
-        setAnalysisWarn(true)
-        setAnalyzing(false)
-        return {}
-      })
+    if (target === 'frontal') {
+      setFrontImage(compressed)
+      setAnalyzing(true)
+      setFormData({})
+      setAnalysisWarn(false)
 
-    setStep('trasera')
+      analysisRef.current = analyzeWineLabel(compressed)
+        .then(result => {
+          const isEmpty = !result.nombre && !result.bodega && !result.region && !result.uva
+          setFormData(result)
+          setAnalysisWarn(isEmpty)
+          setAnalyzing(false)
+          return result
+        })
+        .catch(() => {
+          setFormData({})
+          setAnalysisWarn(true)
+          setAnalyzing(false)
+          return {}
+        })
+
+      setStep('trasera')
+    } else {
+      setBackImage(compressed)
+    }
   }
 
-  // ── Step 2 → 3 ────────────────────────────────────────────────────────────
-  function proceedToReview() {
-    setStep('review')
-  }
+  function proceedToReview() { setStep('review') }
 
-  // ── Step 3 → save ─────────────────────────────────────────────────────────
   async function handleSave(data: Partial<Wine>) {
-    // Wait for analysis if somehow still running
     if (analyzing) await analysisRef.current
-
     try {
       setStep('done')
       const wine = await createWine(data, {
         frontal: frontImage ?? undefined,
         trasera: backImage  ?? undefined,
       })
-
       if (wine.synced_at === null) {
         showToast('Guardado localmente, se sincronizará cuando tengas conexión', 'yellow', 4000)
         setTimeout(() => navigate('/bodega'), 2000)
@@ -92,7 +211,6 @@ export default function Scan() {
     }
   }
 
-  // Reset if user navigates back to start manually
   useEffect(() => {
     if (step === 'frontal') {
       setFrontImage(null)
@@ -106,28 +224,39 @@ export default function Scan() {
 
   return (
     <Layout>
-      {/* ── Stepper ─────────────────────────────────────────────── */}
-      <div className="flex items-center px-5 pt-5 pb-3 gap-1">
+      {/* ── Stepper editorial ─────────────────────────────────── */}
+      <div className="flex items-center px-6 pt-4 pb-2 gap-1">
         {STEPS.map((label, i) => (
           <div key={label} className="flex items-center" style={{ flex: i < STEPS.length - 1 ? '1 1 0' : undefined }}>
             <div className="flex flex-col items-center gap-1">
               <div
-                className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0"
+                className="w-6 h-6 rounded-full flex items-center justify-center shrink-0"
                 style={{
+                  fontSize: '0.65rem',
+                  fontWeight: 700,
                   background: i === activeIdx
                     ? theme.colors.gold
                     : i < activeIdx
                       ? theme.colors.primary
-                      : theme.colors.surface,
-                  color: i === activeIdx ? theme.colors.dark : theme.colors.cream,
-                  border: i === activeIdx ? `2px solid ${theme.colors.gold}` : 'none',
+                      : 'rgba(42,20,24,0.8)',
+                  color: i === activeIdx ? theme.colors.dark : i < activeIdx ? theme.colors.cream : theme.colors.muted,
+                  border: i === activeIdx ? `2px solid ${theme.colors.gold}` : `1px solid ${theme.colors.border}`,
                 }}
               >
-                {i < activeIdx ? '✓' : i + 1}
+                {i < activeIdx ? (
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                ) : i + 1}
               </div>
               <span
-                className="text-xs text-center whitespace-nowrap"
-                style={{ color: i === activeIdx ? theme.colors.gold : theme.colors.muted }}
+                style={{
+                  fontSize: '0.6rem',
+                  letterSpacing: '0.06em',
+                  textTransform: 'uppercase',
+                  color: i === activeIdx ? theme.colors.gold : theme.colors.muted,
+                  whiteSpace: 'nowrap',
+                }}
               >
                 {label}
               </span>
@@ -135,76 +264,75 @@ export default function Scan() {
             {i < STEPS.length - 1 && (
               <div
                 className="flex-1 h-px mx-1 mb-4"
-                style={{ background: i < activeIdx ? theme.colors.primary : '#3A2A2E' }}
+                style={{ background: i < activeIdx ? `${theme.colors.primary}80` : theme.colors.border }}
               />
             )}
           </div>
         ))}
       </div>
 
-      {/* ── Content ─────────────────────────────────────────────── */}
-      <div className="px-5 pb-8 flex flex-col gap-5">
+      {/* ── Steps content ──────────────────────────────────────── */}
 
-        {/* Step 1: Foto frontal */}
-        {step === 'frontal' && (
-          <>
-            <h2 className="text-lg font-semibold" style={{ color: theme.colors.cream }}>
-              Foto de la etiqueta frontal
-            </h2>
-            <ImageCapture
-              label="Etiqueta frontal"
-              imageDataUrl={frontImage ?? undefined}
-              onCapture={handleFrontalCapture}
+      {/* Step 1 & 2: Camera hero */}
+      {(step === 'frontal' || step === 'trasera') && (
+        <>
+          <BarrelHero>
+            <StepBadge
+              label={step === 'frontal' ? 'Etiqueta frontal' : 'Etiqueta trasera · opcional'}
             />
-            {frontImage && (
-              <button
-                className="w-full py-3 rounded-xl font-semibold text-base"
-                style={{ background: theme.colors.primary, color: theme.colors.cream }}
-                onClick={() => setStep('trasera')}
+
+            {/* Preview thumbnail if captured */}
+            {step === 'trasera' && frontImage && (
+              <div
+                className="relative z-10 mt-3"
+                style={{ width: 52, height: 52, borderRadius: 10, overflow: 'hidden', border: `1px solid ${theme.colors.gold}40` }}
               >
-                Continuar
-              </button>
-            )}
-          </>
-        )}
-
-        {/* Step 2: Foto trasera */}
-        {step === 'trasera' && (
-          <>
-            <h2 className="text-lg font-semibold" style={{ color: theme.colors.cream }}>
-              Foto de la etiqueta trasera
-              <span className="text-sm font-normal ml-2" style={{ color: theme.colors.muted }}>
-                (opcional)
-              </span>
-            </h2>
-
-            {analyzing && (
-              <div className="flex items-center gap-3 px-4 py-3 rounded-xl" style={{ background: theme.colors.surface }}>
-                <Spinner size={20} />
-                <span className="text-sm" style={{ color: theme.colors.muted }}>
-                  Analizando etiqueta con IA…
-                </span>
+                <img src={frontImage} alt="frontal" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.25)' }} />
+                <svg
+                  className="absolute inset-0 m-auto"
+                  width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke={theme.colors.gold} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
               </div>
             )}
 
-            <ImageCapture
-              label="Etiqueta trasera"
-              imageDataUrl={backImage ?? undefined}
-              onCapture={(url) => { setBackImage(url) }}
-              optional
-            />
+            {analyzing && step === 'trasera' && (
+              <div
+                className="relative z-10 flex items-center gap-2 px-3 py-1.5 rounded-full text-xs"
+                style={{
+                  background: 'rgba(13,6,8,0.75)',
+                  color: theme.colors.muted,
+                  border: `1px solid ${theme.colors.border}`,
+                  backdropFilter: 'blur(8px)',
+                }}
+              >
+                <Spinner size={12} />
+                Analizando con IA…
+              </div>
+            )}
 
-            <div className="flex gap-3 mt-1">
+            <CameraButton
+              onCamera={() => handleCapture('camera', step)}
+              onGallery={() => handleCapture('gallery', step)}
+            />
+          </BarrelHero>
+
+          {/* Step 2 action bar */}
+          {step === 'trasera' && (
+            <div className="flex gap-3 px-5 pt-5">
               <button
-                className="flex-1 py-3 rounded-xl font-semibold text-sm"
-                style={{ background: theme.colors.surface, color: theme.colors.muted, border: '1px solid #3A2A2E' }}
+                className="flex-1 py-3 rounded-xl text-sm font-semibold"
+                style={{ background: theme.colors.surface, color: theme.colors.muted, border: `1px solid ${theme.colors.border}` }}
                 onClick={proceedToReview}
               >
                 Omitir
               </button>
               {backImage && (
                 <button
-                  className="flex-1 py-3 rounded-xl font-semibold text-sm"
+                  className="flex-1 py-3 rounded-xl text-sm font-semibold"
                   style={{ background: theme.colors.primary, color: theme.colors.cream }}
                   onClick={proceedToReview}
                 >
@@ -212,57 +340,65 @@ export default function Scan() {
                 </button>
               )}
             </div>
-          </>
-        )}
+          )}
+        </>
+      )}
 
-        {/* Step 3: Revisar */}
-        {step === 'review' && (
-          <>
-            <h2 className="text-lg font-semibold" style={{ color: theme.colors.cream }}>
+      {/* Step 3: Revisar */}
+      {step === 'review' && (
+        <div className="px-5 pt-5 pb-10 flex flex-col gap-5">
+          <div>
+            <h2
+              className="text-editorial"
+              style={{ fontSize: theme.font['2xl'], fontWeight: 700, color: theme.colors.cream, lineHeight: 1.1 }}
+            >
               Revisa los datos
             </h2>
-
-            {analyzing ? (
-              <div className="flex flex-col items-center gap-4 py-12">
-                <Spinner />
-                <p className="text-sm" style={{ color: theme.colors.muted }}>Analizando etiqueta con IA…</p>
-              </div>
-            ) : (
-              <>
-                {analysisWarn && (
-                  <div
-                    className="px-4 py-3 rounded-xl text-sm"
-                    style={{
-                      background: `${theme.colors.gold}18`,
-                      border:     `1px solid ${theme.colors.gold}`,
-                      color:      theme.colors.gold,
-                    }}
-                  >
-                    No pudimos leer la etiqueta, completa los datos manualmente
-                  </div>
-                )}
-                <WineForm
-                  initialData={formData}
-                  onSubmit={handleSave}
-                  loading={saving}
-                />
-              </>
-            )}
-          </>
-        )}
-
-        {/* Step 4: Saving spinner */}
-        {step === 'done' && (
-          <div className="flex flex-col items-center gap-4 py-16">
-            <Spinner />
-            <p className="text-sm" style={{ color: theme.colors.muted }}>
-              {saveStatus ?? 'Guardando en tu bodega…'}
+            <p style={{ fontSize: theme.font.sm, color: theme.colors.muted, marginTop: 4 }}>
+              La IA ha extraído esta información — corrígela si es necesario
             </p>
           </div>
-        )}
-      </div>
 
-      {/* ── Toast ───────────────────────────────────────────────── */}
+          {analyzing ? (
+            <div className="flex flex-col items-center gap-4 py-16">
+              <Spinner />
+              <p style={{ fontSize: theme.font.sm, color: theme.colors.muted }}>Analizando etiqueta con IA…</p>
+            </div>
+          ) : (
+            <>
+              {analysisWarn && (
+                <div
+                  className="px-4 py-3 rounded-xl text-sm"
+                  style={{
+                    background: `${theme.colors.gold}14`,
+                    border:     `1px solid ${theme.colors.gold}50`,
+                    color:      theme.colors.gold,
+                  }}
+                >
+                  No pudimos leer la etiqueta — completa los datos manualmente
+                </div>
+              )}
+              <WineForm
+                initialData={formData}
+                onSubmit={handleSave}
+                loading={saving}
+              />
+            </>
+          )}
+        </div>
+      )}
+
+      {/* Step 4: Saving */}
+      {step === 'done' && (
+        <div className="flex flex-col items-center gap-4 py-20">
+          <Spinner />
+          <p style={{ fontSize: theme.font.sm, color: theme.colors.muted }}>
+            {saveStatus ?? 'Guardando en tu bodega…'}
+          </p>
+        </div>
+      )}
+
+      {/* ── Toast ─────────────────────────────────────────────── */}
       {toast && (
         <div
           className="fixed left-4 right-4 bottom-24 px-4 py-3 rounded-xl text-sm font-medium z-50 shadow-lg"
