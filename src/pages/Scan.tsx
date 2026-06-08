@@ -225,48 +225,32 @@ export default function Scan() {
   return (
     <Layout>
       {/* ── Stepper editorial ─────────────────────────────────── */}
-      <div className="flex items-center px-6 pt-4 pb-2 gap-1">
+      <div className="flex items-center justify-center px-6 pt-4 pb-2 gap-3">
         {STEPS.map((label, i) => (
-          <div key={label} className="flex items-center" style={{ flex: i < STEPS.length - 1 ? '1 1 0' : undefined }}>
-            <div className="flex flex-col items-center gap-1">
-              <div
-                className="w-6 h-6 rounded-full flex items-center justify-center shrink-0"
-                style={{
-                  fontSize: '0.65rem',
-                  fontWeight: 700,
-                  background: i === activeIdx
-                    ? theme.colors.gold
-                    : i < activeIdx
-                      ? theme.colors.primary
-                      : 'rgba(42,20,24,0.8)',
-                  color: i === activeIdx ? theme.colors.dark : i < activeIdx ? theme.colors.cream : theme.colors.muted,
-                  border: i === activeIdx ? `2px solid ${theme.colors.gold}` : `1px solid ${theme.colors.border}`,
-                }}
-              >
-                {i < activeIdx ? (
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="20 6 9 17 4 12"/>
-                  </svg>
-                ) : i + 1}
-              </div>
-              <span
-                style={{
-                  fontSize: '0.6rem',
-                  letterSpacing: '0.06em',
-                  textTransform: 'uppercase',
-                  color: i === activeIdx ? theme.colors.gold : theme.colors.muted,
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                {label}
-              </span>
-            </div>
-            {i < STEPS.length - 1 && (
-              <div
-                className="flex-1 h-px mx-1 mb-4"
-                style={{ background: i < activeIdx ? `${theme.colors.primary}80` : theme.colors.border }}
-              />
-            )}
+          <div key={label} className="flex flex-col items-center gap-1">
+            <div
+              className="w-2 h-2 rounded-full"
+              style={{
+                background: i === activeIdx
+                  ? theme.colors.gold
+                  : i < activeIdx
+                    ? theme.colors.primary
+                    : theme.colors.border,
+                transform: i === activeIdx ? 'scale(1.4)' : 'scale(1)',
+                transition: 'all 0.2s ease',
+              }}
+            />
+            <span
+              style={{
+                fontSize: '0.55rem',
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                color: i === activeIdx ? theme.colors.gold : theme.colors.muted,
+                opacity: i === activeIdx ? 1 : 0.6,
+              }}
+            >
+              {label}
+            </span>
           </div>
         ))}
       </div>
@@ -277,9 +261,6 @@ export default function Scan() {
       {(step === 'frontal' || step === 'trasera') && (
         <>
           <BarrelHero>
-            <StepBadge
-              label={step === 'frontal' ? 'Etiqueta frontal' : 'Etiqueta trasera · opcional'}
-            />
 
             {/* Preview thumbnail if captured */}
             {step === 'trasera' && frontImage && (

@@ -30,29 +30,27 @@ export default function Login() {
       className="flex flex-col min-h-dvh"
       style={{ background: 'radial-gradient(ellipse at 50% 0%, #3D1A0F 0%, #1A0A06 40%, #0D0608 75%)' }}
     >
-      {/* Hero zona — botella editorial */}
+      {/* Hero zona — bodega editorial */}
       <div
         className="relative flex-shrink-0 flex items-end justify-center overflow-hidden"
         style={{ height: '52vh', minHeight: 280 }}
       >
-        {/* Fondo ahumado */}
+        {/* Imagen bodega */}
         <div
           className="absolute inset-0"
           style={{
-            background: 'radial-gradient(ellipse at 50% 30%, #2A1418 0%, #0D0608 70%)',
+            backgroundImage: 'url(/bodega-bg.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center 30%',
+            opacity: 0.35,
           }}
         />
 
-        {/* Botella */}
-        <img
-          src="/bottle-hero.png"
-          alt="Château Margaux"
-          className="relative z-10"
+        {/* Overlay radial suave para oscurecer bordes y fundir */}
+        <div
+          className="absolute inset-0"
           style={{
-            height: '90%',
-            maxHeight: 380,
-            objectFit: 'contain',
-            filter: 'drop-shadow(0 20px 60px rgba(0,0,0,0.8))',
+            background: 'radial-gradient(ellipse at 50% 40%, rgba(13,6,8,0.2) 0%, rgba(13,6,8,0.65) 100%)',
           }}
         />
 
@@ -60,8 +58,8 @@ export default function Login() {
         <div
           className="absolute inset-x-0 bottom-0 z-20"
           style={{
-            height: 120,
-            background: `linear-gradient(to bottom, transparent, ${theme.colors.dark})`,
+            height: 140,
+            background: 'linear-gradient(to bottom, transparent, #0D0608)',
           }}
         />
       </div>
