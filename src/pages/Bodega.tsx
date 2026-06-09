@@ -118,8 +118,49 @@ export default function Bodega() {
 
   return (
     <Layout>
+      {/* Bodega background — fondo fijo con imagen de barrica */}
+      <div
+        className="fixed inset-0 pointer-events-none"
+        style={{ zIndex: 0 }}
+        aria-hidden
+      >
+        <div
+          style={{
+            position: 'absolute', inset: 0,
+            backgroundImage: 'url(/bodega-bg.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center 40%',
+            opacity: 0.12,
+          }}
+        />
+        {/* Viñeta central: oscurece bordes, deja centro visible */}
+        <div
+          style={{
+            position: 'absolute', inset: 0,
+            background: 'radial-gradient(ellipse at 50% 30%, transparent 20%, rgba(13,6,8,0.55) 70%, rgba(13,6,8,0.85) 100%)',
+          }}
+        />
+        {/* Degradado superior para el header */}
+        <div
+          style={{
+            position: 'absolute', inset: '0 0 auto 0', height: 160,
+            background: 'linear-gradient(to bottom, rgba(13,6,8,0.7) 0%, transparent 100%)',
+          }}
+        />
+        {/* Degradado inferior para la nav */}
+        <div
+          style={{
+            position: 'absolute', inset: 'auto 0 0 0', height: 120,
+            background: 'linear-gradient(to top, rgba(13,6,8,0.8) 0%, transparent 100%)',
+          }}
+        />
+      </div>
+
+      {/* Contenido sobre el fondo */}
+      <div className="relative" style={{ zIndex: 1 }}>
+
       {refreshing && (
-        <div className="flex justify-center py-2" style={{ background: theme.colors.dark }}>
+        <div className="flex justify-center py-2">
           <Spinner size={20} />
         </div>
       )}
@@ -279,6 +320,8 @@ export default function Bodega() {
           <circle cx="12" cy="13" r="4"/>
         </svg>
       </button>
+
+      </div>{/* /contenido */}
     </Layout>
   )
 }
