@@ -2,6 +2,17 @@ import type { ChatMessage } from '../types'
 
 const N8N_BASE = import.meta.env.VITE_N8N_BASE_URL as string
 
+export interface ScanResult {
+  nombre:       string | null
+  bodega:       string | null
+  anada:        number | null
+  region:       string | null
+  denominacion: string | null
+  uva:          string | null
+  tipo:         string | null
+  imagen_url:   string | null
+}
+
 export interface WineCollection {
   id: string
   nombre: string
@@ -85,6 +96,20 @@ export interface StatsPayload {
   distribucionTipos: { tipo: string; count: number }[]
   anadas: { decada: string; count: number }[]
   mejorVino: { nombre: string; puntuacion: number } | null
+}
+
+function stripBase64Prefix(dataUrl: string): string {
+  return dataUrl.replace(/^data:image\/[^;]+;base64,/, '')
+}
+
+export async function callScanAnalizar(
+  frontImageDataUrl: string,
+  backImageDataUrl?: string
+): Promise<ScanResult> {
+  return post<ScanResult>('vinoteca/scan/analizar', {
+    front: stripBase64Prefix(frontImageDataUrl),
+    back:  backImageDataUrl ? stripBase64Prefix(backImageDataUrl) : null,
+  })
 }
 
 export async function callStatsInsight(

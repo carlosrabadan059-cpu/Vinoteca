@@ -72,6 +72,32 @@ export default function WineForm({ initialData, onSubmit, loading }: WineFormPro
         onChange={e => set('uva', e.target.value || null)}
         placeholder="Ej: Tempranillo, Garnacha"
       />
+      <div className="flex flex-col gap-1">
+        <label style={{ fontSize: '0.75rem', color: 'inherit', opacity: 0.7 }}>Tipo</label>
+        <select
+          value={data.tipo ?? ''}
+          onChange={e => set('tipo', e.target.value || null)}
+          style={{
+            background:   'rgba(26,14,16,0.9)',
+            color:        'inherit',
+            border:       '1px solid rgba(201,168,76,0.2)',
+            borderRadius: '0.75rem',
+            padding:      '0.75rem 1rem',
+            fontSize:     '0.875rem',
+            width:        '100%',
+            appearance:   'none',
+          }}
+        >
+          <option value="">— Sin especificar —</option>
+          <option value="Tinto">Tinto</option>
+          <option value="Blanco">Blanco</option>
+          <option value="Rosado">Rosado</option>
+          <option value="Espumoso">Espumoso</option>
+          <option value="Dulce">Dulce</option>
+          <option value="Fortificado">Fortificado</option>
+          <option value="Naranja">Naranja</option>
+        </select>
+      </div>
 
       <Button
         type="submit"

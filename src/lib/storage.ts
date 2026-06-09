@@ -24,6 +24,17 @@ function dataUrlToBlob(dataUrl: string): Blob {
 
 const TEN_YEARS_SECONDS = 60 * 60 * 24 * 365 * 10
 
+export async function fetchImageAsDataUrl(url: string): Promise<string> {
+  const res = await fetch(url)
+  const blob = await res.blob()
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onload  = () => resolve(reader.result as string)
+    reader.onerror = reject
+    reader.readAsDataURL(blob)
+  })
+}
+
 export async function uploadWineImage(
   dataUrl: string,
   userId: string,

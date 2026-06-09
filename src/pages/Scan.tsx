@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Layout from '../components/ui/Layout'
 import Spinner from '../components/ui/Spinner'
 import WineForm from '../components/wine/WineForm'
-import { analyzeWineLabel } from '../lib/openai'
+import { callScanAnalizar, type ScanResult } from '../lib/n8n'
 import { useWines } from '../hooks/useWines'
 import { useCamera } from '../hooks/useCamera'
 import { theme } from '../constants/theme'
@@ -167,7 +167,7 @@ export default function Scan() {
       setFormData({})
       setAnalysisWarn(false)
 
-      analysisRef.current = analyzeWineLabel(compressed)
+      analysisRef.current = callScanAnalizar(compressed, undefined)
         .then(result => {
           const isEmpty = !result.nombre && !result.bodega && !result.region && !result.uva
           setFormData(result)
@@ -194,9 +194,10 @@ export default function Scan() {
     if (analyzing) await analysisRef.current
     try {
       setStep('done')
+      const imagenNormalizada = (formData as ScanResult).imagen_url ?? null
       const wine = await createWine(data, {
-        frontal: frontImage ?? undefined,
-        trasera: backImage  ?? undefined,
+        frontal: imagenNormalizada ?? frontImage ?? undefined,
+        trasera: backImage ?? undefined,
       })
       if (wine.synced_at === null) {
         showToast('Guardado localmente, se sincronizará cuando tengas conexión', 'yellow', 4000)

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { supabase } from '../lib/supabase'
-import { uploadWineImage } from '../lib/storage'
+import { uploadWineImage, fetchImageAsDataUrl } from '../lib/storage'
 import {
   saveWineLocally,
   getLocalWines,
@@ -142,7 +142,12 @@ export function useWines() {
 
       if (images.frontal || images.trasera) {
         setStatus('Subiendo imágenes...')
-        if (images.frontal) imagenFrontalUrl = await uploadWineImage(images.frontal, user.id, id, 'frontal')
+        if (images.frontal) {
+          const frontalData = images.frontal.startsWith('http')
+            ? await fetchImageAsDataUrl(images.frontal)
+            : images.frontal
+          imagenFrontalUrl = await uploadWineImage(frontalData, user.id, id, 'frontal')
+        }
         if (images.trasera) imagenTraseraUrl = await uploadWineImage(images.trasera, user.id, id, 'trasera')
       }
 
