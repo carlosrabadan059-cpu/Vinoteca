@@ -206,9 +206,11 @@ export default function Scan() {
         showToast('¡Vino guardado en tu bodega!', 'green', 2500)
         setTimeout(() => navigate('/bodega'), 1200)
       }
-    } catch {
+    } catch (err) {
+      console.error('[handleSave] error:', err)
       setStep('review')
-      showToast('Error al guardar. Inténtalo de nuevo.', 'yellow', 3500)
+      const msg = err instanceof Error ? err.message : 'Error desconocido'
+      showToast(`Error: ${msg}`, 'yellow', 6000)
     }
   }
 

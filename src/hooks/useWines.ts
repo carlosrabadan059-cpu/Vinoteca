@@ -142,13 +142,17 @@ export function useWines() {
 
       if (images.frontal || images.trasera) {
         setStatus('Subiendo imágenes...')
-        if (images.frontal) {
-          const frontalData = images.frontal.startsWith('http')
-            ? await fetchImageAsDataUrl(images.frontal)
-            : images.frontal
-          imagenFrontalUrl = await uploadWineImage(frontalData, user.id, id, 'frontal')
+        try {
+          if (images.frontal) {
+            const frontalData = images.frontal.startsWith('http')
+              ? await fetchImageAsDataUrl(images.frontal)
+              : images.frontal
+            imagenFrontalUrl = await uploadWineImage(frontalData, user.id, id, 'frontal')
+          }
+          if (images.trasera) imagenTraseraUrl = await uploadWineImage(images.trasera, user.id, id, 'trasera')
+        } catch (imgErr) {
+          console.warn('[createWine] upload imagen falló, continuando sin imagen:', imgErr)
         }
-        if (images.trasera) imagenTraseraUrl = await uploadWineImage(images.trasera, user.id, id, 'trasera')
       }
 
       const wineWithImages: Wine = { ...wine, imagen_frontal_url: imagenFrontalUrl, imagen_trasera_url: imagenTraseraUrl }
@@ -163,7 +167,8 @@ export function useWines() {
       useWineStore.getState().updateWine(synced)
       return synced
 
-    } catch {
+    } catch (err) {
+      console.error('[createWine] error:', err)
       // Encolar para sync posterior
       const op: SyncOperation = {
         id:         crypto.randomUUID(),
