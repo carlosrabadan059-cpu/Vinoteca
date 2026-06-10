@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Input from '../ui/Input'
 import Button from '../ui/Button'
 import { theme } from '../../constants/theme'
@@ -13,6 +13,10 @@ interface WineFormProps {
 export default function WineForm({ initialData, onSubmit, loading }: WineFormProps) {
   const [data, setData]           = useState<Partial<Wine>>(initialData)
   const [attempted, setAttempted] = useState(false)
+
+  useEffect(() => {
+    setData(initialData)
+  }, [initialData])
 
   function set(field: keyof Wine, value: string | number | null) {
     setData(d => ({ ...d, [field]: value }))
@@ -50,7 +54,7 @@ export default function WineForm({ initialData, onSubmit, loading }: WineFormPro
         value={data.anada ?? ''}
         onChange={e => {
           const v = parseInt(e.target.value)
-          set('anada', !isNaN(v) && v >= 1800 && v <= 2025 ? v : null)
+          set('anada', !isNaN(v) && v >= 1800 && v <= new Date().getFullYear() + 1 ? v : null)
         }}
         placeholder="Ej: 2019"
       />
