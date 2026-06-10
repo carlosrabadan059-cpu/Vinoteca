@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { supabase } from '../lib/supabase'
 import { uploadWineImage, fetchImageAsDataUrl } from '../lib/storage'
+import { randomUUID } from '../lib/uuid'
 import {
   saveWineLocally,
   getLocalWines,
@@ -113,7 +114,7 @@ export function useWines() {
     setLoading(true)
     setError(null)
 
-    const id  = crypto.randomUUID()
+    const id  = randomUUID()
     const now = new Date().toISOString()
 
     const wine: Wine = {
@@ -171,7 +172,7 @@ export function useWines() {
       console.error('[createWine] error:', err)
       // Encolar para sync posterior
       const op: SyncOperation = {
-        id:         crypto.randomUUID(),
+        id:         randomUUID(),
         table:      'wines',
         action:     'insert',
         data:       wine,
@@ -217,7 +218,7 @@ export function useWines() {
     } catch {
       if (prev) {
         const op: SyncOperation = {
-          id:         crypto.randomUUID(),
+          id:         randomUUID(),
           table:      'wines',
           action:     'update',
           data:       { ...prev, ...data },
@@ -247,7 +248,7 @@ export function useWines() {
         store.addWine(prev)
         await saveWineLocally(prev)
         const op: SyncOperation = {
-          id:         crypto.randomUUID(),
+          id:         randomUUID(),
           table:      'wines',
           action:     'delete',
           data:       { id },

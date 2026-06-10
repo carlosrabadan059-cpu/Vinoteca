@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { supabase } from '../lib/supabase'
+import { randomUUID } from '../lib/uuid'
 import {
   saveTastingLocally,
   getLocalTastings,
@@ -106,7 +107,7 @@ export function useTastings(wineId?: string) {
 
     const now = new Date().toISOString()
     const tasting: Tasting = {
-      id:                crypto.randomUUID(),
+      id:                randomUUID(),
       user_id:           user.id,
       wine_id:           data.wine_id           ?? '',
       fecha:             data.fecha             ?? now.slice(0, 10),
@@ -139,7 +140,7 @@ export function useTastings(wineId?: string) {
 
     } catch {
       const op: SyncOperation = {
-        id:         crypto.randomUUID(),
+        id:         randomUUID(),
         table:      'tastings',
         action:     'insert',
         data:       tasting,
@@ -178,7 +179,7 @@ export function useTastings(wineId?: string) {
     } catch {
       if (prev) {
         const op: SyncOperation = {
-          id:         crypto.randomUUID(),
+          id:         randomUUID(),
           table:      'tastings',
           action:     'update',
           data:       { ...prev, ...data },
@@ -206,7 +207,7 @@ export function useTastings(wineId?: string) {
         store.addTasting(prev)
         await saveTastingLocally(prev)
         const op: SyncOperation = {
-          id:         crypto.randomUUID(),
+          id:         randomUUID(),
           table:      'tastings',
           action:     'delete',
           data:       { id },
