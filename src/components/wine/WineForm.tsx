@@ -103,6 +103,62 @@ export default function WineForm({ initialData, onSubmit, loading }: WineFormPro
         </select>
       </div>
 
+      <Input
+        label="Crianza"
+        value={data.crianza ?? ''}
+        onChange={e => set('crianza', e.target.value || null)}
+        placeholder="Ej: Reserva, Gran Reserva, Joven"
+      />
+      <Input
+        label="Alcohol"
+        value={data.alcohol ?? ''}
+        onChange={e => set('alcohol', e.target.value || null)}
+        placeholder="Ej: 14,5%"
+      />
+      <Input
+        label="Volumen"
+        value={data.volumen ?? ''}
+        onChange={e => set('volumen', e.target.value || null)}
+        placeholder="Ej: 75 cl"
+      />
+      <Input
+        label="Temperatura de servicio"
+        value={data.temp_servicio ?? ''}
+        onChange={e => set('temp_servicio', e.target.value || null)}
+        placeholder="Ej: 16-18°C"
+      />
+      <Input
+        label="Contiene"
+        value={data.contiene ?? ''}
+        onChange={e => set('contiene', e.target.value || null)}
+        placeholder="Ej: sulfitos"
+      />
+      <Input
+        label="Web bodega"
+        value={data.url_bodega ?? ''}
+        onChange={e => set('url_bodega', e.target.value || null)}
+        placeholder="Ej: www.bodega.com"
+      />
+      <div className="flex flex-col gap-1">
+        <label style={{ fontSize: '0.75rem', color: 'inherit', opacity: 0.7 }}>Descripción</label>
+        <textarea
+          value={data.descripcion ?? ''}
+          onChange={e => set('descripcion', e.target.value || null)}
+          placeholder="Notas de cata, descripción del vino…"
+          rows={3}
+          style={{
+            background:   'rgba(26,14,16,0.9)',
+            color:        'inherit',
+            border:       '1px solid rgba(201,168,76,0.2)',
+            borderRadius: '0.75rem',
+            padding:      '0.75rem 1rem',
+            fontSize:     '0.875rem',
+            width:        '100%',
+            resize:       'vertical',
+          }}
+        />
+      </div>
+
       <Button
         type="submit"
         disabled={nombreVacio && attempted}
