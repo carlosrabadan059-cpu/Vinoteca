@@ -146,6 +146,8 @@ export default function Scan() {
   const [backImage,    setBackImage]    = useState<string | null>(null)
   const [analyzing,    setAnalyzing]    = useState(false)
   const [formData,     setFormData]     = useState<Partial<Wine>>({})
+  const [studioUrl,    setStudioUrl]    = useState<string | null>(null)
+  const [traseraUrl,   setTraseraUrl]   = useState<string | null>(null)
   const [analysisWarn, setAnalysisWarn] = useState(false)
   const [toast,        setToast]        = useState<{ msg: string; kind: 'green' | 'yellow' } | null>(null)
 
@@ -171,12 +173,16 @@ export default function Scan() {
         .then(result => {
           const isEmpty = !result.nombre && !result.bodega && !result.region && !result.uva
           setFormData(result)
+          setStudioUrl(result.imagen_url ?? null)
+          setTraseraUrl(result.imagen_trasera_url ?? null)
           setAnalysisWarn(isEmpty)
           setAnalyzing(false)
           return result
         })
         .catch(() => {
           setFormData({})
+          setStudioUrl(null)
+          setTraseraUrl(null)
           setAnalysisWarn(true)
           setAnalyzing(false)
           return {}
@@ -194,10 +200,9 @@ export default function Scan() {
     if (analyzing) await analysisRef.current
     try {
       setStep('done')
-      const imagenNormalizada = (formData as ScanResult).imagen_url ?? null
       const wine = await createWine(data, {
-        frontal: imagenNormalizada ?? frontImage ?? undefined,
-        trasera: backImage ?? undefined,
+        frontal: studioUrl ?? frontImage ?? undefined,
+        trasera: traseraUrl ?? backImage ?? undefined,
       })
       if (wine.synced_at === null) {
         showToast('Guardado localmente, se sincronizará cuando tengas conexión', 'yellow', 4000)
@@ -219,6 +224,8 @@ export default function Scan() {
       setFrontImage(null)
       setBackImage(null)
       setFormData({})
+      setStudioUrl(null)
+      setTraseraUrl(null)
       setAnalysisWarn(false)
     }
   }, [step])
@@ -294,7 +301,7 @@ export default function Scan() {
                 }}
               >
                 <Spinner size={12} />
-                Analizando con IA…
+                Analizando etiqueta y generando imagen…
               </div>
             )}
 

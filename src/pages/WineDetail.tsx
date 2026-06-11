@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Layout from '../components/ui/Layout'
 import Modal from '../components/ui/Modal'
@@ -42,11 +42,27 @@ export default function WineDetail() {
   const [deleteOpen,  setDeleteOpen]  = useState(false)
   const [saving,      setSaving]      = useState(false)
   const [deleting,    setDeleting]    = useState(false)
+  const menuRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (!id) return
     getWine(id).then(w => { setWine(w); setLoadingWine(false) })
   }, [id]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (!menuOpen) return
+    function handleOutside(e: MouseEvent | TouchEvent) {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setMenuOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleOutside)
+    document.addEventListener('touchstart', handleOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleOutside)
+      document.removeEventListener('touchstart', handleOutside)
+    }
+  }, [menuOpen])
 
   async function handleUpdate(data: Partial<Wine>) {
     if (!wine) return
@@ -176,7 +192,7 @@ export default function WineDetail() {
             </div>
           )}
 
-          <div className="relative">
+          <div className="relative" ref={menuRef}>
             <button
               onClick={() => setMenuOpen(o => !o)}
               className="w-8 h-8 rounded-full flex items-center justify-center"
@@ -193,7 +209,7 @@ export default function WineDetail() {
               >
                 <button
                   className="w-full text-left px-4 py-3 text-sm active:opacity-70 flex items-center gap-2"
-                  style={{ color: theme.colors.cream }}
+                  style={{ color: theme.colors.cream, minHeight: 48 }}
                   onClick={() => { setMenuOpen(false); setEditOpen(true) }}
                 >
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -204,7 +220,7 @@ export default function WineDetail() {
                 </button>
                 <button
                   className="w-full text-left px-4 py-3 text-sm active:opacity-70 flex items-center gap-2"
-                  style={{ color: '#E05050' }}
+                  style={{ color: '#E05050', minHeight: 48 }}
                   onClick={() => { setMenuOpen(false); setDeleteOpen(true) }}
                 >
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -219,20 +235,6 @@ export default function WineDetail() {
 
         {/* Wine identity over hero */}
         <div className="absolute bottom-0 left-0 right-0 px-5 pb-5 z-10">
-          {wine.tipo && (
-            <p
-              style={{
-                fontSize:      '0.6rem',
-                fontWeight:    600,
-                letterSpacing: '0.15em',
-                textTransform: 'uppercase',
-                color:         theme.colors.gold,
-                marginBottom:  6,
-              }}
-            >
-              {wine.tipo === 'Tinto' ? 'Vintage Reserve' : wine.tipo}
-            </p>
-          )}
           <h1
             className="text-editorial"
             style={{
@@ -288,57 +290,83 @@ export default function WineDetail() {
         {/* Divider */}
         <div style={{ height: 1, background: theme.colors.border }} />
 
+        {/* Descripción */}
+        {wine.descripcion && (
+          <p style={{ fontSize: '0.9rem', color: theme.colors.muted, lineHeight: 1.6, fontStyle: 'italic' }}>
+            "{wine.descripcion}"
+          </p>
+        )}
+
         {/* Datos del vino */}
-        {[
-          { label: 'Bodega',       value: wine.bodega },
-          { label: 'Añada',        value: wine.anada },
-          { label: 'Región',       value: wine.region },
-          { label: 'Denominación', value: wine.denominacion },
-          { label: 'Uva',          value: wine.uva },
-        ].filter(f => f.value !== null && f.value !== undefined && f.value !== '').length > 0 && (
-          <div className="flex flex-col gap-3">
-            <h2
-              className="text-editorial"
-              style={{ fontSize: '1rem', fontWeight: 600, color: theme.colors.cream, letterSpacing: '0.02em' }}
-            >
-              Datos del vino
-            </h2>
-            <div
-              className="rounded-xl overflow-hidden"
-              style={{ border: `1px solid ${theme.colors.border}` }}
-            >
-              {[
-                { label: 'Bodega',       value: wine.bodega },
-                { label: 'Añada',        value: wine.anada },
-                { label: 'Región',       value: wine.region },
-                { label: 'Denominación', value: wine.denominacion },
-                { label: 'Uva',          value: wine.uva },
-              ]
-                .filter(f => f.value !== null && f.value !== undefined && f.value !== '')
-                .map(({ label, value }, i, arr) => (
+        {(() => {
+          const filasPrincipales = [
+            { label: 'Bodega',       value: wine.bodega },
+            { label: 'Añada',        value: wine.anada },
+            { label: 'Región',       value: wine.region },
+            { label: 'Denominación', value: wine.denominacion },
+            { label: 'Uva',          value: wine.uva },
+          ].filter(f => f.value !== null && f.value !== undefined && f.value !== '')
+
+          const filasDetalle = [
+            { label: 'Crianza',      value: wine.crianza },
+            { label: 'Alcohol',      value: wine.alcohol },
+            { label: 'Volumen',      value: wine.volumen },
+            { label: 'T. servicio',  value: wine.temp_servicio },
+            { label: 'Contiene',     value: wine.contiene },
+          ].filter(f => f.value !== null && f.value !== undefined && f.value !== '')
+
+          if (filasPrincipales.length === 0 && filasDetalle.length === 0) return null
+
+          const allFilas = [...filasPrincipales, ...filasDetalle]
+
+          return (
+            <div className="flex flex-col gap-3">
+              <h2 className="text-editorial" style={{ fontSize: '1rem', fontWeight: 600, color: theme.colors.cream, letterSpacing: '0.02em' }}>
+                Datos del vino
+              </h2>
+              <div className="rounded-xl overflow-hidden" style={{ border: `1px solid ${theme.colors.border}` }}>
+                {allFilas.map(({ label, value }, i, arr) => (
                   <div
                     key={label}
-                    className="flex justify-between items-center px-4 py-3"
+                    className="flex justify-between items-start px-4 py-3 gap-4"
                     style={{
                       borderBottom: i < arr.length - 1 ? `1px solid ${theme.colors.border}` : 'none',
                       background: i % 2 === 0 ? theme.colors.surface : 'transparent',
                     }}
                   >
-                    <span style={{ fontSize: '0.8rem', color: theme.colors.muted }}>{label}</span>
-                    <span style={{ fontSize: '0.85rem', fontWeight: 500, color: theme.colors.cream }}>{value}</span>
+                    <span style={{ fontSize: '0.8rem', color: theme.colors.muted, flexShrink: 0 }}>{label}</span>
+                    <span style={{ fontSize: '0.85rem', fontWeight: 500, color: theme.colors.cream, textAlign: 'right' }}>{value}</span>
                   </div>
-                ))
-              }
+                ))}
+              </div>
+
+              {/* URL bodega */}
+              {wine.url_bodega && (
+                <a
+                  href={wine.url_bodega.startsWith('http') ? wine.url_bodega : `https://${wine.url_bodega}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 text-sm py-2.5 rounded-xl"
+                  style={{ color: theme.colors.gold, border: `1px solid ${theme.colors.gold}40` }}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                  </svg>
+                  {wine.url_bodega.replace(/^https?:\/\//, '')}
+                </a>
+              )}
+
+              <button
+                onClick={() => setEditOpen(true)}
+                className="text-sm py-2 text-center rounded-xl transition-colors"
+                style={{ color: theme.colors.muted, border: `1px solid ${theme.colors.border}` }}
+              >
+                Editar información
+              </button>
             </div>
-            <button
-              onClick={() => setEditOpen(true)}
-              className="text-sm py-2 text-center rounded-xl transition-colors"
-              style={{ color: theme.colors.muted, border: `1px solid ${theme.colors.border}` }}
-            >
-              Editar información
-            </button>
-          </div>
-        )}
+          )
+        })()}
 
         {/* Divider */}
         <div style={{ height: 1, background: theme.colors.border }} />
@@ -401,7 +429,6 @@ export default function WineDetail() {
         </div>
       </Modal>
 
-      {menuOpen && <div className="fixed inset-0 z-10" onClick={() => setMenuOpen(false)} />}
     </Layout>
   )
 }

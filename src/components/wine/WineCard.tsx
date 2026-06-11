@@ -36,8 +36,8 @@ export default function WineCard({ wine, onClick }: WineCardProps) {
           <img
             src={wine.imagen_frontal_url}
             alt={wine.nombre}
-            className="w-full h-full object-cover"
-            style={{ opacity: 0.85 }}
+            className="w-full h-full object-contain"
+            style={{ opacity: 0.9 }}
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center">

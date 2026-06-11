@@ -5,6 +5,7 @@ import WineCard from '../components/wine/WineCard'
 import Spinner from '../components/ui/Spinner'
 import { useWines } from '../hooks/useWines'
 import { useWineStore } from '../store/wineStore'
+import { useAuth } from '../hooks/useAuth'
 import { theme } from '../constants/theme'
 import type { Wine } from '../types'
 
@@ -27,6 +28,7 @@ export default function Bodega() {
   const navigate   = useNavigate()
   const { listWines } = useWines()
   const { total }  = useWineStore()
+  const { logout } = useAuth()
 
   const [wines,       setWines]       = useState<Wine[]>([])
   const [page,        setPage]        = useState(0)
@@ -167,18 +169,6 @@ export default function Bodega() {
 
       {/* Header */}
       <div className="px-5 pt-6 pb-4">
-        <p
-          style={{
-            fontSize:      '0.6rem',
-            fontWeight:    600,
-            letterSpacing: '0.15em',
-            textTransform: 'uppercase',
-            color:         theme.colors.muted,
-            marginBottom:  6,
-          }}
-        >
-          Colección curada
-        </p>
         <div className="flex items-end justify-between">
           <h1
             className="text-editorial"
@@ -200,6 +190,17 @@ export default function Bodega() {
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+              </svg>
+            </button>
+            <button
+              onClick={logout}
+              style={{ color: theme.colors.muted }}
+              aria-label="Cerrar sesión"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                <polyline points="16 17 21 12 16 7"/>
+                <line x1="21" y1="12" x2="9" y2="12"/>
               </svg>
             </button>
           </div>

@@ -10,7 +10,15 @@ export interface ScanResult {
   denominacion: string | null
   uva:          string | null
   tipo:         string | null
-  imagen_url:   string | null
+  alcohol:      string | null
+  crianza:      string | null
+  descripcion:  string | null
+  url_bodega:   string | null
+  temp_servicio: string | null
+  contiene:     string | null
+  volumen:      string | null
+  imagen_url:        string | null
+  imagen_trasera_url: string | null
 }
 
 export interface WineCollection {
@@ -25,7 +33,7 @@ export interface WineCollection {
 
 async function post<T>(path: string, body: unknown): Promise<T> {
   const controller = new AbortController()
-  const timer = setTimeout(() => controller.abort(), 30_000)
+  const timer = setTimeout(() => controller.abort(), 60_000)
 
   try {
     const res = await fetch(`${N8N_BASE}/webhook/${path}`, {
@@ -106,9 +114,10 @@ export async function callScanAnalizar(
   frontImageDataUrl: string,
   backImageDataUrl?: string
 ): Promise<ScanResult> {
+  const front = stripBase64Prefix(frontImageDataUrl)
   return post<ScanResult>('vinoteca/scan/analizar', {
-    front: stripBase64Prefix(frontImageDataUrl),
-    back:  backImageDataUrl ? stripBase64Prefix(backImageDataUrl) : null,
+    front,
+    back: backImageDataUrl ? stripBase64Prefix(backImageDataUrl) : null,
   })
 }
 

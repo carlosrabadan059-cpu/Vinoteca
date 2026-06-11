@@ -8,6 +8,13 @@ export interface Wine {
   denominacion: string | null
   uva: string | null
   tipo: string | null
+  alcohol: string | null
+  crianza: string | null
+  descripcion: string | null
+  url_bodega: string | null
+  temp_servicio: string | null
+  contiene: string | null
+  volumen: string | null
   imagen_frontal_url: string | null
   imagen_trasera_url: string | null
   created_at: string
