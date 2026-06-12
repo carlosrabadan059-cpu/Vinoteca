@@ -12,8 +12,6 @@ import { useToastStore } from '../store/toastStore'
 import { theme } from '../constants/theme'
 import type { Wine } from '../types'
 
-type ImageTab = 'frontal' | 'trasera'
-
 function StarRating({ value }: { value: number }) {
   return (
     <div className="flex gap-0.5">
@@ -36,7 +34,6 @@ export default function WineDetail() {
 
   const [wine,        setWine]        = useState<Wine | null>(null)
   const [loadingWine, setLoadingWine] = useState(true)
-  const [imageTab,    setImageTab]    = useState<ImageTab>('frontal')
   const [menuOpen,    setMenuOpen]    = useState(false)
   const [editOpen,    setEditOpen]    = useState(false)
   const [deleteOpen,  setDeleteOpen]  = useState(false)
@@ -92,9 +89,6 @@ export default function WineDetail() {
     }
   }
 
-  const hasFrontal = !!wine?.imagen_frontal_url
-  const hasTrasera = !!wine?.imagen_trasera_url
-  const hasBoth    = hasFrontal && hasTrasera
 
   const avgPuntuacion = tastings.length && tastings.some(t => t.puntuacion !== null)
     ? Math.round(
@@ -129,9 +123,7 @@ export default function WineDetail() {
     )
   }
 
-  const imageUrl = (hasBoth ? imageTab === 'frontal' : hasFrontal)
-    ? wine.imagen_frontal_url
-    : wine.imagen_trasera_url
+  const imageUrl = wine.imagen_frontal_url
 
   return (
     <Layout>
@@ -173,24 +165,6 @@ export default function WineDetail() {
             Volver
           </button>
 
-          {/* Image tab toggle */}
-          {hasBoth && (
-            <div className="flex rounded-full overflow-hidden" style={{ border: `1px solid ${theme.colors.border}`, background: 'rgba(13,6,8,0.5)', backdropFilter: 'blur(8px)' }}>
-              {(['frontal', 'trasera'] as ImageTab[]).map(tab => (
-                <button
-                  key={tab}
-                  onClick={() => setImageTab(tab)}
-                  className="px-3 py-1 text-xs font-medium capitalize transition-colors"
-                  style={{
-                    background: imageTab === tab ? theme.colors.primary : 'transparent',
-                    color:      imageTab === tab ? theme.colors.cream : theme.colors.muted,
-                  }}
-                >
-                  {tab}
-                </button>
-              ))}
-            </div>
-          )}
 
           <div className="relative" ref={menuRef}>
             <button

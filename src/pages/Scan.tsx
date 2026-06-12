@@ -147,7 +147,6 @@ export default function Scan() {
   const [analyzing,    setAnalyzing]    = useState(false)
   const [formData,     setFormData]     = useState<Partial<Wine>>({})
   const [studioUrl,    setStudioUrl]    = useState<string | null>(null)
-  const [traseraUrl,   setTraseraUrl]   = useState<string | null>(null)
   const [analysisWarn, setAnalysisWarn] = useState(false)
   const [toast,        setToast]        = useState<{ msg: string; kind: 'green' | 'yellow' } | null>(null)
 
@@ -165,36 +164,40 @@ export default function Scan() {
 
     if (target === 'frontal') {
       setFrontImage(compressed)
-      setAnalyzing(true)
-      setFormData({})
-      setAnalysisWarn(false)
-
-      analysisRef.current = callScanAnalizar(compressed, undefined)
-        .then(result => {
-          const isEmpty = !result.nombre && !result.bodega && !result.region && !result.uva
-          setFormData(result)
-          setStudioUrl(result.imagen_url ?? null)
-          setTraseraUrl(result.imagen_trasera_url ?? null)
-          setAnalysisWarn(isEmpty)
-          setAnalyzing(false)
-          return result
-        })
-        .catch(() => {
-          setFormData({})
-          setStudioUrl(null)
-          setTraseraUrl(null)
-          setAnalysisWarn(true)
-          setAnalyzing(false)
-          return {}
-        })
-
       setStep('trasera')
     } else {
       setBackImage(compressed)
     }
   }
 
-  function proceedToReview() { setStep('review') }
+  function launchAnalysis(front: string, back?: string) {
+    setAnalyzing(true)
+    setFormData({})
+    setAnalysisWarn(false)
+
+    analysisRef.current = callScanAnalizar(front, back)
+      .then(result => {
+        const isEmpty = !result.nombre && !result.bodega && !result.region && !result.uva
+        setFormData(result)
+        setStudioUrl(result.imagen_url ?? null)
+        setAnalysisWarn(isEmpty)
+        setAnalyzing(false)
+        return result
+      })
+      .catch(() => {
+        setFormData({})
+        setStudioUrl(null)
+        setAnalysisWarn(true)
+        setAnalyzing(false)
+        return {}
+      })
+  }
+
+  function proceedToReview() {
+    // Lanzar análisis con frontal + trasera (si existe) al pasar al paso review
+    if (frontImage) launchAnalysis(frontImage, backImage ?? undefined)
+    setStep('review')
+  }
 
   async function handleSave(data: Partial<Wine>) {
     if (analyzing) await analysisRef.current
@@ -202,7 +205,6 @@ export default function Scan() {
       setStep('done')
       const wine = await createWine(data, {
         frontal: studioUrl ?? frontImage ?? undefined,
-        trasera: traseraUrl ?? backImage ?? undefined,
       })
       if (wine.synced_at === null) {
         showToast('Guardado localmente, se sincronizará cuando tengas conexión', 'yellow', 4000)
@@ -225,7 +227,6 @@ export default function Scan() {
       setBackImage(null)
       setFormData({})
       setStudioUrl(null)
-      setTraseraUrl(null)
       setAnalysisWarn(false)
     }
   }, [step])
@@ -290,20 +291,6 @@ export default function Scan() {
               </div>
             )}
 
-            {analyzing && step === 'trasera' && (
-              <div
-                className="relative z-10 flex items-center gap-2 px-3 py-1.5 rounded-full text-xs"
-                style={{
-                  background: 'rgba(13,6,8,0.75)',
-                  color: theme.colors.muted,
-                  border: `1px solid ${theme.colors.border}`,
-                  backdropFilter: 'blur(8px)',
-                }}
-              >
-                <Spinner size={12} />
-                Analizando etiqueta y generando imagen…
-              </div>
-            )}
 
             <CameraButton
               onCamera={() => handleCapture('camera', step)}
