@@ -20,6 +20,11 @@ const SUGGESTIONS = [
 const MARIDAJE_KEYWORDS = [
   'maridar', 'marida', 'combina', 'acompaña', 'con qué vino',
   'para cenar', 'para comer', 'maridaje',
+  'qué vino abro', 'qué vino pongo', 'qué vino tomo', 'qué vino elijo',
+  'qué abro', 'abrir con', 'abro con', 'abro esta noche',
+  'con carne', 'con pescado', 'con pasta', 'con queso', 'con marisco',
+  'con pollo', 'con cordero', 'con cerdo', 'con ternera', 'con salmón',
+  'esta noche', 'para la cena', 'para la comida',
 ]
 
 const DO_KEYWORDS = [
@@ -50,11 +55,12 @@ function detectIntent(text: string): 'maridaje' | 'enriquecimiento' | 'chat' {
 
 function extractPlato(text: string): string {
   const lower = text.toLowerCase()
-  for (const kw of ['maridar con ', 'combina con ', 'acompaña a ', 'con ', 'para ']) {
+  const cleaned = text.replace(/[¿?¡!]/g, '').trim()
+  for (const kw of ['maridar con ', 'combina con ', 'acompaña a ', 'acompaña con ', 'con ', 'para ']) {
     const idx = lower.indexOf(kw)
-    if (idx !== -1) return text.slice(idx + kw.length).trim()
+    if (idx !== -1) return cleaned.slice(idx + kw.length).trim()
   }
-  return text
+  return cleaned
 }
 
 export default function Sommelier() {
@@ -64,11 +70,15 @@ export default function Sommelier() {
   const bottomRef  = useRef<HTMLDivElement>(null)
   const inputRef   = useRef<HTMLInputElement>(null)
 
-  const { wines }     = useWineStore()
-  const { listWines } = useWines()
+  const { wines }      = useWineStore()
+  const { loadWines }  = useWines()
+  const winesLoadedRef = useRef(false)
 
   useEffect(() => {
-    if (wines.length === 0) listWines().catch(() => null)
+    if (!winesLoadedRef.current) {
+      winesLoadedRef.current = true
+      loadWines().catch(() => null)
+    }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
@@ -84,7 +94,14 @@ export default function Sommelier() {
     setInput('')
     setThinking(true)
 
-    const wineCollection = buildWineCollection(wines)
+    // Si el store aún no cargó, hacer fetch directo a Supabase
+    let currentWines = useWineStore.getState().wines
+    if (currentWines.length === 0) {
+      try { await loadWines() } catch { /* continuar sin colección */ }
+      currentWines = useWineStore.getState().wines
+    }
+
+    const wineCollection = buildWineCollection(currentWines)
     const intent = detectIntent(text)
 
     try {

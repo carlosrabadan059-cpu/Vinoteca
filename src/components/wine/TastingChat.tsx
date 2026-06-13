@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { askOpenAI } from '../../lib/openai'
+import { callSommelierChat } from '../../lib/n8n'
 import { theme } from '../../constants/theme'
 import Button from '../ui/Button'
 import type { Wine, ChatMessage } from '../../types'
@@ -18,18 +18,15 @@ interface TastingChatProps {
   onComplete: (data: TastingResult) => void
 }
 
-const SYSTEM_PROMPT =
-  'Eres un sommelier profesional guiando una sesión de cata estructurada. ' +
-  'Haz UNA sola pregunta a la vez en este orden exacto:\n' +
+const TASTING_CONTEXT =
+  'MODO CATA ESTRUCTURADA: Guía al usuario por una cata profesional haciendo UNA sola pregunta a la vez en este orden exacto:\n' +
   '1. Color (capa, tonalidad, brillo, limpidez)\n' +
   '2. Aroma (frutas, especias, madera, tierra, intensidad)\n' +
   '3. Boca (acidez, taninos, cuerpo, persistencia, equilibrio)\n' +
   '4. Conclusión (puntuación 1-100 y maridaje sugerido)\n' +
-  'Tras cada respuesta del usuario da feedback técnico breve (1-2 frases) ' +
-  'y avanza a la siguiente fase. Cuando termines las 4 fases escribe ' +
-  "exactamente 'CATA_COMPLETA' seguido de un JSON en una línea: " +
-  '{ "puntuacion": number, "notas_cata": string, "aroma": string, "color_descripcion": string, "maridaje": string }. ' +
-  'Responde siempre en el idioma del usuario.'
+  'Tras cada respuesta da feedback técnico breve (1-2 frases) y avanza a la siguiente fase. ' +
+  "Cuando termines las 4 fases escribe exactamente 'CATA_COMPLETA' seguido de un JSON en una línea: " +
+  '{ "puntuacion": number, "notas_cata": string, "aroma": string, "color_descripcion": string, "maridaje": string }.'
 
 function parseCataCompleta(text: string): Omit<TastingResult, 'chat_history'> | null {
   const idx = text.indexOf('CATA_COMPLETA')
@@ -56,10 +53,8 @@ export default function TastingChat({ wine, onComplete }: TastingChatProps) {
   useEffect(() => {
     if (initialized.current) return
     initialized.current = true
-    const opening: ChatMessage = {
-      role:    'user',
-      content: `Quiero registrar una cata de ${wine.nombre}${wine.anada ? ` ${wine.anada}` : ''}${wine.bodega ? ` de ${wine.bodega}` : ''}.`,
-    }
+    const openingContent = `${TASTING_CONTEXT}\n\nQuiero registrar una cata de ${wine.nombre}${wine.anada ? ` ${wine.anada}` : ''}${wine.bodega ? ` de ${wine.bodega}` : ''}.`
+    const opening: ChatMessage = { role: 'user', content: openingContent }
     sendToAI([opening])
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -71,7 +66,8 @@ export default function TastingChat({ wine, onComplete }: TastingChatProps) {
     setMessages(history)
     setThinking(true)
     try {
-      const reply = await askOpenAI(history, SYSTEM_PROMPT)
+      const userMessage = history[history.length - 1]?.content ?? ''
+      const reply = await callSommelierChat(history, [], userMessage)
       const assistantMsg: ChatMessage = { role: 'assistant', content: reply }
       const next = [...history, assistantMsg]
       setMessages(next)
@@ -80,8 +76,9 @@ export default function TastingChat({ wine, onComplete }: TastingChatProps) {
       if (parsed) {
         setCompleted(parsed)
       }
-    } catch {
-      const errMsg: ChatMessage = { role: 'assistant', content: 'Ha ocurrido un error. Por favor intenta de nuevo.' }
+    } catch (err) {
+      const detail = err instanceof Error ? err.message : String(err)
+      const errMsg: ChatMessage = { role: 'assistant', content: `Error: ${detail}` }
       setMessages(prev => [...prev, errMsg])
     } finally {
       setThinking(false)

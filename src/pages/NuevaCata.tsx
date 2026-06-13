@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import Layout from '../components/ui/Layout'
 import TastingChat from '../components/wine/TastingChat'
 import Spinner from '../components/ui/Spinner'
 import { useTastings } from '../hooks/useTastings'
 import { useWines } from '../hooks/useWines'
+import { useWineStore } from '../store/wineStore'
 import { useToastStore } from '../store/toastStore'
 import { theme } from '../constants/theme'
 import type { Wine } from '../types'
@@ -16,17 +17,24 @@ export default function NuevaCata() {
   const initialWineId   = params.get('wineId') ?? ''
   const toast           = useToastStore()
 
-  const { createTasting } = useTastings()
-  const { getWine, searchWines } = useWines()
+  const { createTasting }    = useTastings()
+  const { getWine, loadWines } = useWines()
+  const { wines: allWines }  = useWineStore()
 
-  const [wine,        setWine]        = useState<Wine | null>(null)
-  const [loading,     setLoading]     = useState(false)
-  const [saving,      setSaving]      = useState(false)
-  const [query,       setQuery]       = useState('')
-  const [results,     setResults]     = useState<Wine[]>([])
-  const [searching,   setSearching]   = useState(false)
+  const [wine,    setWine]    = useState<Wine | null>(null)
+  const [loading, setLoading] = useState(false)
+  const [saving,  setSaving]  = useState(false)
+  const [query,   setQuery]   = useState('')
+  const [open,    setOpen]    = useState(false)
+  const inputRef  = useRef<HTMLInputElement>(null)
+  const dropRef   = useRef<HTMLDivElement>(null)
 
-  // Si viene con wineId, cargar el vino directamente
+  // Cargar todos los vinos al montar
+  useEffect(() => {
+    if (allWines.length === 0) loadWines().catch(() => null)
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Si viene con wineId, seleccionar directamente
   useEffect(() => {
     if (!initialWineId) return
     setLoading(true)
@@ -35,23 +43,24 @@ export default function NuevaCata() {
       .finally(() => setLoading(false))
   }, [initialWineId]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Buscador debounced
+  // Cerrar desplegable al hacer click fuera
   useEffect(() => {
-    if (!query.trim() || wine) {
-      setResults([])
-      return
-    }
-    const t = setTimeout(async () => {
-      setSearching(true)
-      try {
-        const r = await searchWines(query)
-        setResults(r)
-      } finally {
-        setSearching(false)
+    function handleClickOutside(e: MouseEvent) {
+      if (dropRef.current && !dropRef.current.contains(e.target as Node)) {
+        setOpen(false)
       }
-    }, 350)
-    return () => clearTimeout(t)
-  }, [query, wine]) // eslint-disable-line react-hooks/exhaustive-deps
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  const filtered = query.trim()
+    ? allWines.filter(w =>
+        w.nombre.toLowerCase().includes(query.toLowerCase()) ||
+        w.bodega?.toLowerCase().includes(query.toLowerCase()) ||
+        w.region?.toLowerCase().includes(query.toLowerCase())
+      )
+    : allWines
 
   async function handleComplete(data: TastingResult) {
     if (!wine) return
@@ -103,52 +112,79 @@ export default function NuevaCata() {
               <p className="text-sm" style={{ color: theme.colors.muted }}>
                 ¿Qué vino vas a catar hoy?
               </p>
-              <div
-                className="flex items-center gap-2 rounded-xl px-3 py-2"
-                style={{ background: theme.colors.surface, border: '1px solid #3A2A2E' }}
-              >
-                <span style={{ color: theme.colors.muted }}>🔍</span>
-                <input
-                  value={query}
-                  onChange={e => setQuery(e.target.value)}
-                  placeholder="Busca por nombre, bodega..."
-                  className="flex-1 bg-transparent outline-none text-sm"
-                  style={{ color: theme.colors.cream }}
-                  autoFocus
-                />
-                {searching && <Spinner size={16} />}
-              </div>
 
-              {results.length > 0 && (
-                <div className="flex flex-col gap-2">
-                  {results.map(w => (
-                    <button
-                      key={w.id}
-                      onClick={() => { setWine(w); setQuery(''); setResults([]) }}
-                      className="flex items-center gap-3 rounded-xl p-3 text-left active:opacity-75"
-                      style={{ background: theme.colors.surface, border: '1px solid #3A2A2E' }}
-                    >
-                      <span style={{ fontSize: '1.5rem' }}>🍾</span>
-                      <div className="min-w-0">
-                        <p className="font-medium text-sm truncate" style={{ color: theme.colors.cream }}>
-                          {w.nombre}
-                        </p>
-                        {(w.bodega || w.anada) && (
-                          <p className="text-xs truncate" style={{ color: theme.colors.muted }}>
-                            {[w.bodega, w.anada].filter(Boolean).join(' · ')}
-                          </p>
-                        )}
-                      </div>
-                    </button>
-                  ))}
+              {/* Desplegable con filtro */}
+              <div ref={dropRef} style={{ position: 'relative' }}>
+                <div
+                  className="flex items-center gap-2 rounded-xl px-3 py-2"
+                  style={{ background: theme.colors.surface, border: `1px solid ${open ? theme.colors.gold + '80' : '#3A2A2E'}` }}
+                >
+                  <span style={{ color: theme.colors.muted }}>🔍</span>
+                  <input
+                    ref={inputRef}
+                    value={query}
+                    onChange={e => { setQuery(e.target.value); setOpen(true) }}
+                    onFocus={() => setOpen(true)}
+                    placeholder="Busca o selecciona un vino..."
+                    className="flex-1 bg-transparent outline-none text-sm"
+                    style={{ color: theme.colors.cream }}
+                    autoFocus
+                  />
+                  {allWines.length === 0
+                    ? <Spinner size={16} />
+                    : (
+                      <button
+                        onMouseDown={e => { e.preventDefault(); setOpen(o => !o) }}
+                        style={{ color: theme.colors.muted, fontSize: '0.75rem', lineHeight: 1, padding: '4px' }}
+                      >
+                        {open ? '▲' : '▼'}
+                      </button>
+                    )
+                  }
                 </div>
-              )}
 
-              {query.trim() && !searching && results.length === 0 && (
-                <p className="text-sm text-center py-4" style={{ color: theme.colors.muted }}>
-                  No se encontraron vinos
-                </p>
-              )}
+                {open && filtered.length > 0 && (
+                  <div
+                    className="absolute left-0 right-0 rounded-xl overflow-hidden"
+                    style={{
+                      top: 'calc(100% + 6px)',
+                      background: theme.colors.surface,
+                      border: '1px solid #3A2A2E',
+                      maxHeight: '55vh',
+                      overflowY: 'auto',
+                      zIndex: 50,
+                    }}
+                  >
+                    {filtered.map(w => (
+                      <button
+                        key={w.id}
+                        onMouseDown={() => { setWine(w); setQuery(''); setOpen(false) }}
+                        className="w-full flex items-center gap-3 px-3 py-3 text-left active:opacity-75"
+                        style={{ borderBottom: '1px solid #2A1A1E' }}
+                      >
+                        <span style={{ fontSize: '1.25rem', flexShrink: 0 }}>🍾</span>
+                        <div className="min-w-0 flex-1">
+                          <p className="font-medium text-sm truncate" style={{ color: theme.colors.cream }}>
+                            {w.nombre}{w.anada ? ` ${w.anada}` : ''}
+                          </p>
+                          {w.bodega && (
+                            <p className="text-xs truncate" style={{ color: theme.colors.muted }}>{w.bodega}</p>
+                          )}
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                )}
+
+                {open && query.trim() && filtered.length === 0 && (
+                  <div
+                    className="absolute left-0 right-0 rounded-xl px-4 py-4 text-center text-sm"
+                    style={{ top: 'calc(100% + 6px)', background: theme.colors.surface, border: '1px solid #3A2A2E', color: theme.colors.muted, zIndex: 50 }}
+                  >
+                    No se encontraron vinos
+                  </div>
+                )}
+              </div>
             </>
           )}
         </div>
