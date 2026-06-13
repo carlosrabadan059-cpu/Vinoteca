@@ -69,13 +69,13 @@ export default function SyncModal({ open, onClose }: Props) {
           width:        '100%',
           maxWidth:     480,
           background:   theme.colors.surface,
-          borderRadius: `${theme.radii.lg} ${theme.radii.lg} 0 0`,
+          borderRadius: `${theme.radius.lg} ${theme.radius.lg} 0 0`,
           padding:      '20px 16px',
           paddingBottom: 'max(20px, env(safe-area-inset-bottom))',
         }}
         onClick={e => e.stopPropagation()}
       >
-        <h3 style={{ color: theme.colors.text, fontWeight: 600, marginBottom: 4, fontSize: '1rem' }}>
+        <h3 style={{ color: theme.colors.cream, fontWeight: 600, marginBottom: 4, fontSize: '1rem' }}>
           Cambios pendientes de sync
         </h3>
         <p style={{ color: theme.colors.muted, fontSize: '0.75rem', marginBottom: 16 }}>
@@ -96,13 +96,13 @@ export default function SyncModal({ open, onClose }: Props) {
                   alignItems:   'center',
                   gap:          10,
                   background:   theme.colors.dark,
-                  borderRadius: theme.radii.sm,
+                  borderRadius: theme.radius.sm,
                   padding:      '8px 12px',
                 }}
               >
                 <span style={{ fontSize: '1.1rem' }}>{TABLE_ICON[op.table] ?? '📄'}</span>
                 <div style={{ flex: 1 }}>
-                  <span style={{ color: theme.colors.text, fontSize: '0.8rem', fontWeight: 500 }}>
+                  <span style={{ color: theme.colors.cream, fontSize: '0.8rem', fontWeight: 500 }}>
                     {itemName(op)}
                   </span>
                   {op.retries > 0 && (
@@ -118,7 +118,7 @@ export default function SyncModal({ open, onClose }: Props) {
                     color:        op.action === 'delete' ? '#ff6b7a' : theme.colors.gold,
                     background:   op.action === 'delete' ? 'rgba(220,53,69,0.15)' : 'rgba(212,175,55,0.15)',
                     padding:      '2px 6px',
-                    borderRadius: theme.radii.sm,
+                    borderRadius: theme.radius.sm,
                   }}
                 >
                   {ACTION_LABEL[op.action]}
@@ -135,7 +135,7 @@ export default function SyncModal({ open, onClose }: Props) {
             style={{
               flex:         1,
               padding:      '10px 0',
-              borderRadius: theme.radii.md,
+              borderRadius: theme.radius.md,
               background:   isSyncing || !isOnline ? '#3A2A2E' : theme.colors.primary,
               color:        isSyncing || !isOnline ? theme.colors.muted : '#fff',
               fontWeight:   600,
@@ -150,7 +150,7 @@ export default function SyncModal({ open, onClose }: Props) {
             onClick={onClose}
             style={{
               padding:      '10px 16px',
-              borderRadius: theme.radii.md,
+              borderRadius: theme.radius.md,
               background:   theme.colors.dark,
               color:        theme.colors.muted,
               fontWeight:   500,

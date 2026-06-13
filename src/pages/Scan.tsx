@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Layout from '../components/ui/Layout'
 import Spinner from '../components/ui/Spinner'
 import WineForm from '../components/wine/WineForm'
-import { callScanAnalizar, type ScanResult } from '../lib/n8n'
+import { callScanAnalizar } from '../lib/n8n'
 import { useWines } from '../hooks/useWines'
 import { useCamera } from '../hooks/useCamera'
 import { theme } from '../constants/theme'
@@ -118,23 +118,6 @@ function CameraButton({ onCamera, onGallery }: { onCamera: () => void; onGallery
   )
 }
 
-// ── Step badge ────────────────────────────────────────────────────────────
-function StepBadge({ label }: { label: string }) {
-  return (
-    <div
-      className="relative z-10 mt-auto mb-0 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase"
-      style={{
-        background: 'rgba(13,6,8,0.75)',
-        color: theme.colors.gold,
-        border: `1px solid rgba(201,168,76,0.4)`,
-        backdropFilter: 'blur(10px)',
-        letterSpacing: '0.14em',
-      }}
-    >
-      {label}
-    </div>
-  )
-}
 
 export default function Scan() {
   const navigate = useNavigate()
@@ -150,7 +133,7 @@ export default function Scan() {
   const [analysisWarn, setAnalysisWarn] = useState(false)
   const [toast,        setToast]        = useState<{ msg: string; kind: 'green' | 'yellow' } | null>(null)
 
-  const analysisRef = useRef<Promise<Partial<Wine>> | null>(null)
+  const analysisRef = useRef<Promise<unknown> | null>(null)
 
   function showToast(msg: string, kind: 'green' | 'yellow', ms = 3000) {
     setToast({ msg, kind })
@@ -178,11 +161,29 @@ export default function Scan() {
     analysisRef.current = callScanAnalizar(front, back)
       .then(result => {
         const isEmpty = !result.nombre && !result.bodega && !result.region && !result.uva
-        setFormData(result)
+        const wineData: Partial<Wine> = {
+          nombre:       result.nombre       ?? undefined,
+          bodega:       result.bodega       ?? undefined,
+          anada:        result.anada        ?? undefined,
+          region:       result.region       ?? undefined,
+          denominacion: result.denominacion ?? undefined,
+          uva:          result.uva          ?? undefined,
+          tipo:         result.tipo         ?? undefined,
+          alcohol:      result.alcohol      ?? undefined,
+          crianza:      result.crianza      ?? undefined,
+          descripcion:  result.descripcion  ?? undefined,
+          url_bodega:   result.url_bodega   ?? undefined,
+          temp_servicio: result.temp_servicio ?? undefined,
+          contiene:     result.contiene     ?? undefined,
+          volumen:      result.volumen      ?? undefined,
+          imagen_frontal_url: result.imagen_url   ?? undefined,
+          imagen_trasera_url: result.imagen_trasera_url ?? undefined,
+        }
+        setFormData(wineData)
         setStudioUrl(result.imagen_url ?? null)
         setAnalysisWarn(isEmpty)
         setAnalyzing(false)
-        return result
+        return wineData
       })
       .catch(() => {
         setFormData({})

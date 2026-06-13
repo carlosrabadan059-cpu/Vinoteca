@@ -70,7 +70,6 @@ export default function Sommelier() {
   const bottomRef  = useRef<HTMLDivElement>(null)
   const inputRef   = useRef<HTMLInputElement>(null)
 
-  const { wines }      = useWineStore()
   const { loadWines }  = useWines()
   const winesLoadedRef = useRef(false)
 

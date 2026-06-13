@@ -32,8 +32,6 @@ export default function TastingForm({ initialData = {}, onSubmit, loading }: Tas
     onSubmit(data)
   }
 
-  const puntuacionStr = data.puntuacion !== null ? String(data.puntuacion) : ''
-
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
 
