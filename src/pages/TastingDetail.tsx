@@ -113,30 +113,19 @@ export default function TastingDetail() {
       })
     : ''
 
-  if (loadingPage) {
-    return (
-      <Layout>
+  return (
+    <Layout>
+      {loadingPage ? (
         <div className="flex h-full items-center justify-center" style={{ minHeight: '60vh' }}>
           <Spinner />
         </div>
-      </Layout>
-    )
-  }
-
-  if (!tasting) {
-    return (
-      <Layout>
+      ) : !tasting ? (
         <div className="flex flex-col items-center gap-4 py-16 px-6 text-center">
           <span style={{ fontSize: '3rem' }}>📖</span>
           <p style={{ color: theme.colors.muted }}>No encontramos esta cata</p>
           <Button onClick={() => navigate('/catas')}>Volver a catas</Button>
         </div>
-      </Layout>
-    )
-  }
-
-  return (
-    <Layout>
+      ) : <>
       {/* Header */}
       <div className="flex items-center justify-between px-4 pt-4 pb-2">
         <button
@@ -274,6 +263,7 @@ export default function TastingDetail() {
           </Button>
         </div>
       </Modal>
+      </>}
     </Layout>
   )
 }

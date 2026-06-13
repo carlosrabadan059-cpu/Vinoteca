@@ -99,19 +99,15 @@ export default function WineDetail() {
 
   const scoreOn5 = avgPuntuacion ? Math.round((avgPuntuacion / 100) * 5) : null
 
-  if (loadingWine) {
-    return (
-      <Layout>
+  const imageUrl = wine?.imagen_frontal_url
+
+  return (
+    <Layout>
+      {loadingWine ? (
         <div className="flex h-full items-center justify-center" style={{ minHeight: '60vh' }}>
           <Spinner />
         </div>
-      </Layout>
-    )
-  }
-
-  if (!wine) {
-    return (
-      <Layout>
+      ) : !wine ? (
         <div className="flex flex-col items-center gap-4 py-16 px-6 text-center">
           <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke={theme.colors.border} strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
             <path d="M8 22h8M12 11v11M5 3h14l-2 7a5 5 0 0 1-10 0L5 3z"/>
@@ -119,14 +115,7 @@ export default function WineDetail() {
           <p style={{ color: theme.colors.muted }}>No encontramos este vino</p>
           <Button onClick={() => navigate('/bodega')}>Volver a la bodega</Button>
         </div>
-      </Layout>
-    )
-  }
-
-  const imageUrl = wine.imagen_frontal_url
-
-  return (
-    <Layout>
+      ) : <>
       {/* Hero */}
       <div className="relative w-full" style={{ height: 320 }}>
         {imageUrl ? (
@@ -402,7 +391,7 @@ export default function WineDetail() {
           </Button>
         </div>
       </Modal>
-
+      </>}
     </Layout>
   )
 }

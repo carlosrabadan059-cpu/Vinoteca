@@ -9,10 +9,8 @@ const tabs = [
     to: '/bodega',
     label: 'Bodega',
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M8 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2"/>
-        <path d="M8 3a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1H8V3z"/>
-        <path d="M12 12v4m-2-2h4"/>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <path d="M6 3h12v2H6zM6 19h12v2H6zM4 5h2v14H4zM18 5h2v14h-2zM6 11h12v2H6z"/>
       </svg>
     ),
   },
@@ -20,7 +18,7 @@ const tabs = [
     to: '/scan',
     label: 'Añadir',
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
         <circle cx="12" cy="13" r="4"/>
       </svg>
@@ -30,7 +28,7 @@ const tabs = [
     to: '/catas',
     label: 'Catas',
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
         <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
       </svg>
@@ -40,7 +38,7 @@ const tabs = [
     to: '/sommelier',
     label: 'Sommelier',
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 2a5 5 0 1 0 0 10A5 5 0 0 0 12 2z"/>
         <path d="M12 12c-5.33 0-8 2.67-8 4v2h16v-2c0-1.33-2.67-4-8-4z"/>
       </svg>
@@ -50,7 +48,7 @@ const tabs = [
     to: '/stats',
     label: 'Stats',
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <line x1="18" y1="20" x2="18" y2="10"/>
         <line x1="12" y1="20" x2="12" y2="4"/>
         <line x1="6" y1="20" x2="6" y2="14"/>
@@ -129,18 +127,22 @@ export default function Layout({ children }: LayoutProps) {
       <nav
         style={{
           display:       'flex',
-          background:    theme.colors.surface,
+          background:    theme.colors.surface2,
           borderTop:     `1px solid ${theme.colors.border}`,
           paddingBottom: 'env(safe-area-inset-bottom)',
+          position:      'relative',
+          zIndex:        10,
         }}
       >
         {tabs.map(({ to, label, icon }) => (
           <NavLink
             key={to}
             to={to}
+            end
             className="flex-1 flex flex-col items-center gap-1 py-2.5 no-underline transition-colors"
             style={({ isActive }) => ({
-              color:   isActive ? theme.colors.gold : theme.colors.muted,
+              color:   isActive ? '#F5C842' : theme.colors.cream,
+              opacity: isActive ? 1 : 0.35,
             })}
           >
             {icon}
