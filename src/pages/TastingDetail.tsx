@@ -89,10 +89,10 @@ export default function TastingDetail() {
   }
 
   function handleShare() {
-    if (!tasting || !wine) return
+    if (!tasting) return
     const lines = [
-      `🍷 ${wine.nombre}${wine.anada ? ` ${wine.anada}` : ''}`,
-      wine.bodega ? `🏠 ${wine.bodega}` : '',
+      wine ? `🍷 ${wine.nombre}${wine.anada ? ` ${wine.anada}` : ''}` : '',
+      wine?.bodega ? `🏠 ${wine.bodega}` : '',
       tasting.puntuacion !== null ? `⭐ Puntuación: ${tasting.puntuacion}/100` : '',
       tasting.color_descripcion ? `🎨 Color: ${tasting.color_descripcion}` : '',
       tasting.aroma ? `👃 Aroma: ${tasting.aroma}` : '',
@@ -100,10 +100,39 @@ export default function TastingDetail() {
       tasting.maridaje ? `🍽️ Maridaje: ${tasting.maridaje}` : '',
     ].filter(Boolean).join('\n')
 
-    if (navigator.share) {
-      navigator.share({ text: lines }).catch(() => null)
+    const copyToClipboard = (text: string) => {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text)
+          .then(() => toast.show('Copiado al portapapeles'))
+          .catch(() => fallbackCopy(text))
+      } else {
+        fallbackCopy(text)
+      }
+    }
+
+    const fallbackCopy = (text: string) => {
+      const el = document.createElement('textarea')
+      el.value = text
+      el.style.position = 'fixed'
+      el.style.opacity = '0'
+      document.body.appendChild(el)
+      el.focus()
+      el.select()
+      try {
+        document.execCommand('copy')
+        toast.show('Copiado al portapapeles')
+      } catch {
+        toast.show('No se pudo copiar', 'error')
+      }
+      document.body.removeChild(el)
+    }
+
+    if (navigator.share && lines && /Mobi|Android/i.test(navigator.userAgent)) {
+      navigator.share({ title: wine?.nombre ?? 'Cata de vino', text: lines })
+        .then(() => toast.show('Cata compartida'))
+        .catch(() => copyToClipboard(lines))
     } else {
-      navigator.clipboard.writeText(lines).then(() => toast.show('Copiado al portapapeles'))
+      copyToClipboard(lines)
     }
   }
 
