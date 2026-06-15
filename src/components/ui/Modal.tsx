@@ -26,7 +26,7 @@ export default function Modal({ open, onClose, title, children }: ModalProps) {
     >
       <div
         className="w-full max-w-lg rounded-t-2xl flex flex-col"
-        style={{ background: theme.colors.surface, maxHeight: '90dvh' }}
+        style={{ background: theme.colors.surface, maxHeight: '90dvh', height: 'auto' }}
         onClick={e => e.stopPropagation()}
       >
         {title && (
@@ -34,7 +34,7 @@ export default function Modal({ open, onClose, title, children }: ModalProps) {
             <h2 className="text-lg font-semibold" style={{ color: theme.colors.cream }}>{title}</h2>
           </div>
         )}
-        <div className="flex-1 overflow-y-auto px-6 py-4 flex flex-col gap-4">
+        <div style={{ overflowY: 'auto', WebkitOverflowScrolling: 'touch', padding: '1rem 1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           {children}
         </div>
       </div>
