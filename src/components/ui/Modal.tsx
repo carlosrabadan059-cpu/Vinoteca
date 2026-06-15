@@ -25,14 +25,18 @@ export default function Modal({ open, onClose, title, children }: ModalProps) {
       onClick={onClose}
     >
       <div
-        className="w-full max-w-lg rounded-t-2xl p-6 flex flex-col gap-4"
-        style={{ background: theme.colors.surface }}
+        className="w-full max-w-lg rounded-t-2xl flex flex-col"
+        style={{ background: theme.colors.surface, maxHeight: '90dvh' }}
         onClick={e => e.stopPropagation()}
       >
         {title && (
-          <h2 className="text-lg font-semibold" style={{ color: theme.colors.cream }}>{title}</h2>
+          <div className="px-6 pt-6 pb-4 flex-shrink-0" style={{ borderBottom: `1px solid ${theme.colors.border}` }}>
+            <h2 className="text-lg font-semibold" style={{ color: theme.colors.cream }}>{title}</h2>
+          </div>
         )}
-        {children}
+        <div className="flex-1 overflow-y-auto px-6 py-4 flex flex-col gap-4">
+          {children}
+        </div>
       </div>
     </div>
   )
