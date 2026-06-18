@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Layout from '../components/ui/Layout'
 import Spinner from '../components/ui/Spinner'
 import WineForm from '../components/wine/WineForm'
+import AnalysisProgress from '../components/ui/AnalysisProgress'
 import { callScanAnalizar } from '../lib/n8n'
 import { useWines } from '../hooks/useWines'
 import { useCamera } from '../hooks/useCamera'
@@ -127,10 +128,11 @@ export default function Scan() {
   const [step,         setStep]         = useState<Step>('frontal')
   const [frontImage,   setFrontImage]   = useState<string | null>(null)
   const [backImage,    setBackImage]    = useState<string | null>(null)
-  const [analyzing,    setAnalyzing]    = useState(false)
-  const [formData,     setFormData]     = useState<Partial<Wine>>({})
-  const [studioUrl,    setStudioUrl]    = useState<string | null>(null)
-  const [analysisWarn, setAnalysisWarn] = useState(false)
+  const [analyzing,     setAnalyzing]     = useState(false)
+  const [formData,      setFormData]      = useState<Partial<Wine>>({})
+  const [studioUrl,     setStudioUrl]     = useState<string | null>(null)
+  const [analysisWarn,  setAnalysisWarn]  = useState(false)
+  const [analysisError, setAnalysisError] = useState(false)
   const [toast,        setToast]        = useState<{ msg: string; kind: 'green' | 'yellow' } | null>(null)
 
   const analysisRef = useRef<Promise<unknown> | null>(null)
@@ -157,6 +159,7 @@ export default function Scan() {
     setAnalyzing(true)
     setFormData({})
     setAnalysisWarn(false)
+    setAnalysisError(false)
 
     analysisRef.current = callScanAnalizar(front, back)
       .then(result => {
@@ -189,6 +192,7 @@ export default function Scan() {
         setFormData({})
         setStudioUrl(null)
         setAnalysisWarn(true)
+        setAnalysisError(true)
         setAnalyzing(false)
         return {}
       })
@@ -338,31 +342,24 @@ export default function Scan() {
             </p>
           </div>
 
-          {analyzing ? (
-            <div className="flex flex-col items-center gap-4 py-16">
-              <Spinner />
-              <p style={{ fontSize: theme.font.sm, color: theme.colors.muted }}>Analizando etiqueta con IA…</p>
+          {analysisWarn && !analyzing && (
+            <div
+              className="px-4 py-3 rounded-xl text-sm"
+              style={{
+                background: `${theme.colors.gold}14`,
+                border:     `1px solid ${theme.colors.gold}50`,
+                color:      theme.colors.gold,
+              }}
+            >
+              No pudimos leer la etiqueta — completa los datos manualmente
             </div>
-          ) : (
-            <>
-              {analysisWarn && (
-                <div
-                  className="px-4 py-3 rounded-xl text-sm"
-                  style={{
-                    background: `${theme.colors.gold}14`,
-                    border:     `1px solid ${theme.colors.gold}50`,
-                    color:      theme.colors.gold,
-                  }}
-                >
-                  No pudimos leer la etiqueta — completa los datos manualmente
-                </div>
-              )}
-              <WineForm
-                initialData={formData}
-                onSubmit={handleSave}
-                loading={saving}
-              />
-            </>
+          )}
+          {!analyzing && (
+            <WineForm
+              initialData={formData}
+              onSubmit={handleSave}
+              loading={saving}
+            />
           )}
         </div>
       )}
@@ -389,6 +386,16 @@ export default function Scan() {
           {toast.msg}
         </div>
       )}
+
+      <AnalysisProgress
+        open={analyzing}
+        completed={!analyzing && !analysisError && Object.keys(formData).length > 0}
+        error={analysisError}
+        onRetry={() => {
+          setAnalysisError(false)
+          if (frontImage) launchAnalysis(frontImage, backImage ?? undefined)
+        }}
+      />
     </Layout>
   )
 }
