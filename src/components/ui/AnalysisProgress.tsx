@@ -18,16 +18,19 @@ const PHASES = [
   '✅ Finalizando...',
 ]
 
-export default function AnalysisProgress({ open, completed, error, onRetry }: AnalysisProgressProps) {
-  const [progress,   setProgress]   = useState(0)
-  const [phaseIdx,   setPhaseIdx]   = useState(0)
-  const [visible,    setVisible]    = useState(false)
+const TRANSITION_MS = 300
 
-  const startTimeRef   = useRef<number | null>(null)
-  const progressRef    = useRef(0)
-  const tickRef        = useRef<ReturnType<typeof setInterval> | null>(null)
-  const phaseRef       = useRef<ReturnType<typeof setInterval> | null>(null)
-  const completedRef   = useRef(false)
+export default function AnalysisProgress({ open, completed, error, onRetry }: AnalysisProgressProps) {
+  const [progress,  setProgress]  = useState(0)
+  const [phaseIdx,  setPhaseIdx]  = useState(0)
+  const [mounted,   setMounted]   = useState(false)  // DOM presente
+  const [shown,     setShown]     = useState(false)  // opacity/transform animado
+
+  const startTimeRef  = useRef<number | null>(null)
+  const progressRef   = useRef(0)
+  const tickRef       = useRef<ReturnType<typeof setInterval> | null>(null)
+  const phaseRef      = useRef<ReturnType<typeof setInterval> | null>(null)
+  const completedRef  = useRef(false)
 
   function clearTimers() {
     if (tickRef.current)  clearInterval(tickRef.current)
@@ -36,55 +39,57 @@ export default function AnalysisProgress({ open, completed, error, onRetry }: An
     phaseRef.current = null
   }
 
-  // Abrir / cerrar overlay
+  function startTimers() {
+    startTimeRef.current = Date.now()
+    tickRef.current = setInterval(() => {
+      if (completedRef.current) return
+      const elapsed = Date.now() - (startTimeRef.current ?? Date.now())
+      const next = elapsed < 10_000
+        ? (elapsed / 10_000) * 70
+        : Math.min(progressRef.current + 0.05, 95)
+      progressRef.current = next
+      setProgress(next)
+    }, 100)
+
+    phaseRef.current = setInterval(() => {
+      if (completedRef.current) return
+      setPhaseIdx(i => (i + 1) % PHASES.length)
+    }, 3_000)
+  }
+
+  // Abrir
   useEffect(() => {
-    if (open) {
-      setVisible(true)
-      setProgress(0)
-      setPhaseIdx(0)
-      progressRef.current  = 0
-      completedRef.current = false
-      startTimeRef.current = Date.now()
-
-      // Tick de progreso cada 100ms
-      tickRef.current = setInterval(() => {
-        if (completedRef.current) return
-        const elapsed = Date.now() - (startTimeRef.current ?? Date.now())
-        let next: number
-        if (elapsed < 10_000) {
-          next = (elapsed / 10_000) * 70
-        } else {
-          next = Math.min(progressRef.current + 0.05, 95)
-        }
-        progressRef.current = next
-        setProgress(next)
-      }, 100)
-
-      // Rotación de fases cada 3s
-      phaseRef.current = setInterval(() => {
-        if (completedRef.current) return
-        setPhaseIdx(i => (i + 1) % PHASES.length)
-      }, 3_000)
-    } else if (!open && !completed && !error) {
-      // reset silencioso si se cierra sin completar
-      clearTimers()
-      setVisible(false)
-      setProgress(0)
-      setPhaseIdx(0)
-    }
-
-    return clearTimers
+    if (!open) return
+    setProgress(0)
+    setPhaseIdx(0)
+    progressRef.current  = 0
+    completedRef.current = false
+    setMounted(true)
+    // Fade in: montar primero, luego en el siguiente frame activar la transición
+    const t = setTimeout(() => setShown(true), 16)
+    startTimers()
+    return () => clearTimeout(t)
   }, [open]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Completado: saltar a 100% y cerrar tras 600ms
+  // Cerrar con fade out
+  function dismiss() {
+    setShown(false)
+    setTimeout(() => {
+      setMounted(false)
+      setProgress(0)
+      setPhaseIdx(0)
+    }, TRANSITION_MS)
+  }
+
+  // Completado: barra a 100% → esperar 600ms → fade out
   useEffect(() => {
     if (!completed) return
     completedRef.current = true
     clearTimers()
     setProgress(100)
-    const t = setTimeout(() => setVisible(false), 600)
+    const t = setTimeout(dismiss, 600)
     return () => clearTimeout(t)
-  }, [completed])
+  }, [completed]) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Error: detener animación, mantener visible
   useEffect(() => {
@@ -93,7 +98,7 @@ export default function AnalysisProgress({ open, completed, error, onRetry }: An
     clearTimers()
   }, [error])
 
-  if (!visible) return null
+  if (!mounted) return null
 
   const isCompleted = completed && progress >= 100
   const isError     = error && !completed
@@ -101,7 +106,12 @@ export default function AnalysisProgress({ open, completed, error, onRetry }: An
   return (
     <div
       className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-6 px-8"
-      style={{ background: theme.colors.dark }}
+      style={{
+        background: theme.colors.dark,
+        opacity:    shown ? 1 : 0,
+        transform:  shown ? 'translateY(0)' : 'translateY(16px)',
+        transition: `opacity ${TRANSITION_MS}ms ease, transform ${TRANSITION_MS}ms ease`,
+      }}
     >
       {/* Icono copa */}
       <svg
