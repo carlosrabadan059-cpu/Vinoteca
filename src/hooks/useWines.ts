@@ -12,6 +12,7 @@ import {
 import { useWineStore } from '../store/wineStore'
 import { useAuthStore } from '../store/authStore'
 import { useSyncStore } from '../store/syncStore'
+import { findDuplicateWine, generateWineUid } from '../lib/wineDuplicates'
 import type { Wine, SyncOperation } from '../types'
 
 export interface WineFilters {
@@ -107,7 +108,8 @@ export function useWines() {
 
   async function createWine(
     data: Partial<Wine>,
-    images: { frontal?: string; trasera?: string } = {}
+    images: { frontal?: string; trasera?: string } = {},
+    { skipDuplicateCheck = false } = {}
   ): Promise<Wine> {
     if (!user) throw new Error('No autenticado')
 
@@ -136,8 +138,33 @@ export function useWines() {
       volumen:            data.volumen       ?? null,
       imagen_frontal_url: null,
       imagen_trasera_url: null,
+      qr_fuente:          data.qr_fuente ?? null,
+      wine_uid:           null,
       created_at:         now,
       synced_at:          null,
+    }
+
+    // Generar wine_uid estable antes de persistir
+    wine.wine_uid = await generateWineUid({
+      nombre: wine.nombre,
+      bodega: wine.bodega,
+      anada:  wine.anada,
+    })
+
+    // 0. Detección de duplicados antes de persistir nada
+    if (!skipDuplicateCheck && navigator.onLine) {
+      const { exactDuplicate, similarWines } = await findDuplicateWine(
+        { nombre: wine.nombre, bodega: wine.bodega, anada: wine.anada },
+        user.id
+      )
+      if (exactDuplicate) {
+        setLoading(false)
+        throw new Error('DUPLICATE_WINE')
+      }
+      if (similarWines.length > 0 && wine.anada === null) {
+        setLoading(false)
+        throw new Error('SIMILAR_WINE')
+      }
     }
 
     // 1. Persistir localmente + UI optimista
@@ -176,6 +203,9 @@ export function useWines() {
       return synced
 
     } catch (err) {
+      const msg = err instanceof Error ? err.message : ''
+      if (msg === 'DUPLICATE_WINE' || msg === 'SIMILAR_WINE') throw err
+
       console.error('[createWine] error:', err)
       // Encolar para sync posterior
       const op: SyncOperation = {

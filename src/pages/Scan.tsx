@@ -4,11 +4,14 @@ import Layout from '../components/ui/Layout'
 import Spinner from '../components/ui/Spinner'
 import WineForm from '../components/wine/WineForm'
 import AnalysisProgress from '../components/ui/AnalysisProgress'
-import { callScanAnalizar } from '../lib/n8n'
+import DuplicateWineDialog from '../components/wine/DuplicateWineDialog'
+import { callScanAnalizar, callScanIdentificar } from '../lib/n8n'
 import { useWines } from '../hooks/useWines'
 import { useCamera } from '../hooks/useCamera'
+import { findDuplicateWine } from '../lib/wineDuplicates'
 import { theme } from '../constants/theme'
 import type { Wine } from '../types'
+import { useAuthStore } from '../store/authStore'
 
 type Step = 'frontal' | 'trasera' | 'review' | 'done'
 
@@ -124,6 +127,7 @@ export default function Scan() {
   const navigate = useNavigate()
   const { createWine, loading: saving, status: saveStatus } = useWines()
   const { takePhoto, pickFromGallery, compressImage } = useCamera()
+  const { user } = useAuthStore()
 
   const [step,         setStep]         = useState<Step>('frontal')
   const [frontImage,   setFrontImage]   = useState<string | null>(null)
@@ -134,6 +138,14 @@ export default function Scan() {
   const [analysisWarn,  setAnalysisWarn]  = useState(false)
   const [analysisError, setAnalysisError] = useState(false)
   const [toast,        setToast]        = useState<{ msg: string; kind: 'green' | 'yellow' } | null>(null)
+
+  const [analysisPhase, setAnalysisPhase] = useState<'identifying' | 'analyzing'>('identifying')
+
+  // Estado del diálogo de duplicados
+  const [dupMode,        setDupMode]        = useState<'exact' | 'similar' | null>(null)
+  const [dupExact,       setDupExact]       = useState<Wine | null>(null)
+  const [dupSimilar,     setDupSimilar]     = useState<Wine[]>([])
+  const pendingSaveRef = useRef<{ data: Partial<Wine> } | null>(null)
 
   const analysisRef = useRef<Promise<unknown> | null>(null)
 
@@ -198,19 +210,41 @@ export default function Scan() {
       })
   }
 
-  function proceedToReview() {
-    // Lanzar análisis con frontal + trasera (si existe) al pasar al paso review
-    if (frontImage) launchAnalysis(frontImage, backImage ?? undefined)
+  async function proceedToReview() {
+    if (!frontImage) return
     setStep('review')
+
+    // ── Fase 1: intentar identificar sin análisis completo ────────────────────
+    if (navigator.onLine && user) {
+      setAnalysisPhase('identifying')
+      setAnalyzing(true)
+
+      try {
+        const result = await callScanIdentificar(frontImage, user.id)
+        if (result.found) {
+          setAnalyzing(false)
+          navigate(`/bodega/${result.wine_id}`)
+          return
+        }
+      } catch {
+        // Fase 1 falló (n8n no disponible, timeout, etc.) — continuar con análisis completo
+      }
+    }
+
+    // ── Fase 2: análisis completo ─────────────────────────────────────────────
+    setAnalysisPhase('analyzing')
+    launchAnalysis(frontImage, backImage ?? undefined)
   }
 
-  async function handleSave(data: Partial<Wine>) {
+  async function handleSave(data: Partial<Wine>, skipDuplicateCheck = false) {
     if (analyzing) await analysisRef.current
     try {
       setStep('done')
-      const wine = await createWine(data, {
-        frontal: studioUrl ?? frontImage ?? undefined,
-      })
+      const wine = await createWine(
+        data,
+        { frontal: studioUrl ?? frontImage ?? undefined },
+        { skipDuplicateCheck }
+      )
       if (wine.synced_at === null) {
         showToast('Guardado localmente, se sincronizará cuando tengas conexión', 'yellow', 4000)
         setTimeout(() => navigate('/bodega'), 2000)
@@ -219,11 +253,38 @@ export default function Scan() {
         setTimeout(() => navigate('/bodega'), 1200)
       }
     } catch (err) {
+      const errMsg = err instanceof Error ? err.message : ''
+
+      if ((errMsg === 'DUPLICATE_WINE' || errMsg === 'SIMILAR_WINE') && user) {
+        setStep('review')
+        pendingSaveRef.current = { data }
+        const { exactDuplicate, similarWines } = await findDuplicateWine(
+          { nombre: data.nombre ?? null, bodega: data.bodega ?? null, anada: data.anada ?? null },
+          user.id
+        )
+        setDupExact(exactDuplicate)
+        setDupSimilar(similarWines)
+        setDupMode(errMsg === 'DUPLICATE_WINE' ? 'exact' : 'similar')
+        return
+      }
+
       console.error('[handleSave] error:', err)
       setStep('review')
-      const msg = err instanceof Error ? err.message : 'Error desconocido'
-      showToast(`Error: ${msg}`, 'yellow', 6000)
+      showToast(`Error: ${errMsg || 'Error desconocido'}`, 'yellow', 6000)
     }
+  }
+
+  function handleDupSaveAnyway() {
+    setDupMode(null)
+    if (pendingSaveRef.current) {
+      handleSave(pendingSaveRef.current.data, true)
+      pendingSaveRef.current = null
+    }
+  }
+
+  function handleDupCancel() {
+    setDupMode(null)
+    pendingSaveRef.current = null
   }
 
   useEffect(() => {
@@ -233,6 +294,7 @@ export default function Scan() {
       setFormData({})
       setStudioUrl(null)
       setAnalysisWarn(false)
+      setAnalysisPhase('identifying')
     }
   }, [step])
 
@@ -391,10 +453,20 @@ export default function Scan() {
         open={analyzing}
         completed={!analyzing && !analysisError && Object.keys(formData).length > 0}
         error={analysisError}
+        phase={analysisPhase}
         onRetry={() => {
           setAnalysisError(false)
+          setAnalysisPhase('analyzing')
           if (frontImage) launchAnalysis(frontImage, backImage ?? undefined)
         }}
+      />
+
+      <DuplicateWineDialog
+        mode={dupMode}
+        exactDuplicate={dupExact}
+        similarWines={dupSimilar}
+        onSaveAnyway={handleDupSaveAnyway}
+        onCancel={handleDupCancel}
       />
     </Layout>
   )

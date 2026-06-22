@@ -2,6 +2,10 @@ import type { ChatMessage } from '../types'
 
 const N8N_BASE = import.meta.env.VITE_N8N_BASE_URL as string
 
+export type ScanIdentifyResponse =
+  | { found: true;  match_type: 'qr' | 'wine_uid'; wine_id: string; wine: import('../types').Wine }
+  | { found: false; match_type: null; nombre: string | null; bodega: string | null; anada: number | null }
+
 export interface ScanResult {
   nombre:       string | null
   bodega:       string | null
@@ -108,6 +112,14 @@ export interface StatsPayload {
 
 function stripBase64Prefix(dataUrl: string): string {
   return dataUrl.replace(/^data:image\/[^;]+;base64,/, '')
+}
+
+export async function callScanIdentificar(
+  frontImageDataUrl: string,
+  userId: string
+): Promise<ScanIdentifyResponse> {
+  const front = stripBase64Prefix(frontImageDataUrl)
+  return post<ScanIdentifyResponse>('vinoteca/scan/identificar', { front, user_id: userId })
 }
 
 export async function callScanAnalizar(

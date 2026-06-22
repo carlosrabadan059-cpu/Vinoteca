@@ -17,6 +17,8 @@ export interface Wine {
   volumen: string | null
   imagen_frontal_url: string | null
   imagen_trasera_url: string | null
+  qr_fuente: string | null
+  wine_uid: string | null
   created_at: string
   synced_at: string | null
 }

@@ -7,9 +7,16 @@ interface AnalysisProgressProps {
   completed: boolean
   error: boolean
   onRetry: () => void
+  phase?: 'identifying' | 'analyzing'
 }
 
-const PHASES = [
+const PHASES_IDENTIFYING = [
+  '🔍 Buscando en tu bodega...',
+  '📷 Leyendo la etiqueta...',
+  '🍷 Identificando el vino...',
+]
+
+const PHASES_ANALYZING = [
   '📷 Analizando etiquetas...',
   '🤖 Interpretando información...',
   '🍷 Identificando el vino...',
@@ -20,7 +27,8 @@ const PHASES = [
 
 const TRANSITION_MS = 300
 
-export default function AnalysisProgress({ open, completed, error, onRetry }: AnalysisProgressProps) {
+export default function AnalysisProgress({ open, completed, error, onRetry, phase = 'analyzing' }: AnalysisProgressProps) {
+  const PHASES = phase === 'identifying' ? PHASES_IDENTIFYING : PHASES_ANALYZING
   const [progress,  setProgress]  = useState(0)
   const [phaseIdx,  setPhaseIdx]  = useState(0)
   const [mounted,   setMounted]   = useState(false)  // DOM presente
@@ -136,7 +144,7 @@ export default function AnalysisProgress({ open, completed, error, onRetry }: An
           ? 'No se ha podido analizar el vino.'
           : isCompleted
             ? 'Ficha creada correctamente'
-            : 'Analizando vino...'}
+            : phase === 'identifying' ? 'Identificando vino...' : 'Analizando etiqueta...'}
       </h2>
 
       {/* Descripción (solo estado normal) */}
