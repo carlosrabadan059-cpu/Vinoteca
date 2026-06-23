@@ -5,9 +5,11 @@ import Spinner from '../components/ui/Spinner'
 import WineForm from '../components/wine/WineForm'
 import AnalysisProgress from '../components/ui/AnalysisProgress'
 import DuplicateWineDialog from '../components/wine/DuplicateWineDialog'
+import CameraView from '../components/ui/CameraView'
 import { callScanAnalizar, callScanIdentificar } from '../lib/n8n'
 import { useWines } from '../hooks/useWines'
 import { useCamera } from '../hooks/useCamera'
+import { getUserMediaSource } from '../lib/captureSource'
 import { findDuplicateWine } from '../lib/wineDuplicates'
 import { theme } from '../constants/theme'
 import type { Wine } from '../types'
@@ -130,6 +132,7 @@ export default function Scan() {
   const { user } = useAuthStore()
 
   const [step,         setStep]         = useState<Step>('frontal')
+  const [cameraTarget, setCameraTarget] = useState<'frontal' | 'trasera' | null>(null)
   const [frontImage,   setFrontImage]   = useState<string | null>(null)
   const [backImage,    setBackImage]    = useState<string | null>(null)
   const [analyzing,     setAnalyzing]     = useState(false)
@@ -154,16 +157,32 @@ export default function Scan() {
     setTimeout(() => setToast(null), ms)
   }
 
+  function handleCameraOpen(target: 'frontal' | 'trasera') {
+    if (typeof navigator.mediaDevices?.getUserMedia === 'function') {
+      setCameraTarget(target)
+    } else {
+      handleCameraFallback(target)
+    }
+  }
+
+  async function handleCameraFallback(target: 'frontal' | 'trasera') {
+    const raw = await takePhoto()
+    if (!raw) return
+    handleImageReady(await compressImage(raw), target)
+  }
+
   async function handleCapture(source: 'camera' | 'gallery', target: 'frontal' | 'trasera') {
     const raw = source === 'camera' ? await takePhoto() : await pickFromGallery()
     if (!raw) return
-    const compressed = await compressImage(raw)
+    handleImageReady(await compressImage(raw), target)
+  }
 
+  function handleImageReady(dataUrl: string, target: 'frontal' | 'trasera') {
     if (target === 'frontal') {
-      setFrontImage(compressed)
+      setFrontImage(dataUrl)
       setStep('trasera')
     } else {
-      setBackImage(compressed)
+      setBackImage(dataUrl)
     }
   }
 
@@ -360,7 +379,7 @@ export default function Scan() {
 
 
             <CameraButton
-              onCamera={() => handleCapture('camera', step)}
+              onCamera={() => handleCameraOpen(step)}
               onGallery={() => handleCapture('gallery', step)}
             />
           </BarrelHero>
@@ -468,6 +487,23 @@ export default function Scan() {
         onSaveAnyway={handleDupSaveAnyway}
         onCancel={handleDupCancel}
       />
+
+      {cameraTarget && (
+        <CameraView
+          source={getUserMediaSource()}
+          hint={cameraTarget === 'frontal' ? 'Centra la etiqueta frontal' : 'Centra la etiqueta trasera'}
+          onCapture={async dataUrl => {
+            const compressed = await compressImage(dataUrl)
+            setCameraTarget(null)
+            handleImageReady(compressed, cameraTarget)
+          }}
+          onCancel={() => setCameraTarget(null)}
+          onError={() => {
+            setCameraTarget(null)
+            handleCameraFallback(cameraTarget)
+          }}
+        />
+      )}
     </Layout>
   )
 }
