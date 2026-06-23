@@ -52,7 +52,13 @@ async function post<T>(path: string, body: unknown): Promise<T> {
       throw new Error(`n8n ${path} → ${res.status}: ${text}`)
     }
 
-    return res.json() as Promise<T>
+    const text = await res.text()
+    if (!text) throw new Error(`n8n ${path} → respuesta vacía (200 sin body)`)
+    try {
+      return JSON.parse(text) as T
+    } catch {
+      throw new Error(`n8n ${path} → JSON inválido: ${text.slice(0, 200)}`)
+    }
   } catch (err) {
     if (err instanceof Error && err.name === 'AbortError') {
       throw new Error(`Timeout en n8n/${path} (30s)`)
