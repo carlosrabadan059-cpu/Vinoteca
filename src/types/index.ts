@@ -35,6 +35,11 @@ export interface Tasting {
   maridaje: string | null
   chat_history: ChatMessage[]
   created_at: string
+  // V1.2
+  es_consumo_rapido: boolean
+  botella_terminada: boolean
+  ocasion:           string | null
+  lugar:             string | null
 }
 
 export interface ChatMessage {

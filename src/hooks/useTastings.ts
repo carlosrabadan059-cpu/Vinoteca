@@ -30,7 +30,14 @@ export function useTastings(wineId?: string) {
   async function loadTastings(): Promise<void> {
     if (!user) return
 
-    const local = await getLocalTastings()
+    const raw = await getLocalTastings()
+    const local = raw.map(t => ({
+      es_consumo_rapido: false,
+      botella_terminada: false,
+      ocasion:           null,
+      lugar:             null,
+      ...t,
+    }))
     store.setTastings(local)
 
     if (!navigator.onLine) return
@@ -118,6 +125,10 @@ export function useTastings(wineId?: string) {
       maridaje:          data.maridaje          ?? null,
       chat_history:      data.chat_history      ?? [],
       created_at:        now,
+      es_consumo_rapido: data.es_consumo_rapido ?? false,
+      botella_terminada: data.botella_terminada ?? false,
+      ocasion:           data.ocasion           ?? null,
+      lugar:             data.lugar             ?? null,
     }
 
     // 1. Persistir localmente + UI optimista

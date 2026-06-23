@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { theme } from '../../constants/theme'
 
 interface ModalProps {
@@ -9,6 +9,20 @@ interface ModalProps {
 }
 
 export default function Modal({ open, onClose, title, children }: ModalProps) {
+  const [visible,  setVisible]  = useState(false)
+  const [animated, setAnimated] = useState(false)
+
+  useEffect(() => {
+    if (open) {
+      setVisible(true)
+      requestAnimationFrame(() => requestAnimationFrame(() => setAnimated(true)))
+    } else {
+      setAnimated(false)
+      const t = setTimeout(() => setVisible(false), 280)
+      return () => clearTimeout(t)
+    }
+  }, [open])
+
   useEffect(() => {
     if (!open) return
     const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
@@ -16,17 +30,30 @@ export default function Modal({ open, onClose, title, children }: ModalProps) {
     return () => window.removeEventListener('keydown', handler)
   }, [open, onClose])
 
-  if (!open) return null
+  if (!visible) return null
 
   return (
     <div
       className="fixed inset-0 z-50 flex items-end justify-center"
-      style={{ background: 'rgba(0,0,0,0.6)' }}
+      style={{
+        background: animated ? 'rgba(0,0,0,0.6)' : 'rgba(0,0,0,0)',
+        transition: 'background 280ms ease',
+      }}
       onClick={onClose}
     >
       <div
-        className="w-full max-w-lg rounded-t-2xl flex flex-col"
-        style={{ background: theme.colors.surface, maxHeight: '90dvh', height: 'auto' }}
+        className="flex flex-col"
+        style={{
+          background:   theme.colors.surface,
+          width:        'calc(100% - 40px)',
+          maxWidth:     480,
+          maxHeight:    '85dvh',
+          height:       'auto',
+          borderRadius: '20px 20px 20px 20px',
+          marginBottom: 16,
+          transform:    animated ? 'translateY(0)' : 'translateY(110%)',
+          transition:   'transform 300ms cubic-bezier(0.32, 0.72, 0, 1)',
+        }}
         onClick={e => e.stopPropagation()}
       >
         {title && (

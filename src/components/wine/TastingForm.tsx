@@ -20,6 +20,8 @@ export default function TastingForm({ initialData = {}, onSubmit, loading }: Tas
     aroma:             null,
     notas_cata:        null,
     maridaje:          null,
+    ocasion:           null,
+    lugar:             null,
     ...initialData,
   })
 
@@ -115,6 +117,20 @@ export default function TastingForm({ initialData = {}, onSubmit, loading }: Tas
         value={data.maridaje ?? ''}
         onChange={e => set('maridaje', e.target.value || null)}
         placeholder="Ej: Carnes rojas, quesos curados"
+      />
+
+      <Input
+        label="Ocasión"
+        value={data.ocasion ?? ''}
+        onChange={e => set('ocasion', e.target.value || null)}
+        placeholder="Cena de cumpleaños, aperitivo..."
+      />
+
+      <Input
+        label="Lugar"
+        value={data.lugar ?? ''}
+        onChange={e => set('lugar', e.target.value || null)}
+        placeholder="Restaurante, ciudad, casa..."
       />
 
       <Button type="submit" loading={loading} className="w-full mt-1">

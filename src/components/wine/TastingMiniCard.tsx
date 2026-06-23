@@ -15,9 +15,13 @@ export default function TastingMiniCard({ tasting }: TastingMiniCardProps) {
     year:  'numeric',
   })
 
-  const preview = tasting.notas_cata
-    ? tasting.notas_cata.slice(0, 60) + (tasting.notas_cata.length > 60 ? '…' : '')
-    : null
+  const isConsumo = tasting.es_consumo_rapido
+
+  const preview = isConsumo
+    ? tasting.ocasion || tasting.lugar || null
+    : tasting.notas_cata
+      ? tasting.notas_cata.slice(0, 60) + (tasting.notas_cata.length > 60 ? '…' : '')
+      : null
 
   return (
     <div
@@ -25,11 +29,22 @@ export default function TastingMiniCard({ tasting }: TastingMiniCardProps) {
       className="rounded-xl p-3 cursor-pointer active:opacity-75 transition-opacity"
       style={{ background: theme.colors.surface, border: '1px solid #3A2A2E' }}
     >
-      <div className="flex items-center justify-between">
-        <span className="text-sm" style={{ color: theme.colors.muted }}>{fecha}</span>
-        {tasting.puntuacion !== null && (
+      <div className="flex items-center justify-between gap-2">
+        <div className="flex items-center gap-2 min-w-0">
           <span
-            className="px-2 py-0.5 rounded-full text-sm font-bold"
+            className="px-1.5 py-0.5 rounded text-xs font-semibold tracking-wide flex-shrink-0"
+            style={isConsumo
+              ? { background: '#2A1F22', color: theme.colors.muted }
+              : { background: '#2A1F0E', color: theme.colors.gold }
+            }
+          >
+            {isConsumo ? 'CONSUMO' : 'CATA'}
+          </span>
+          <span className="text-sm truncate" style={{ color: theme.colors.muted }}>{fecha}</span>
+        </div>
+        {!isConsumo && tasting.puntuacion !== null && (
+          <span
+            className="px-2 py-0.5 rounded-full text-sm font-bold flex-shrink-0"
             style={{ background: '#3A2A2E', color: theme.colors.gold }}
           >
             {tasting.puntuacion} pts

@@ -6,6 +6,7 @@ import Button from '../components/ui/Button'
 import Spinner from '../components/ui/Spinner'
 import WineForm from '../components/wine/WineForm'
 import TastingMiniCard from '../components/wine/TastingMiniCard'
+import ConsumoQuickForm from '../components/wine/ConsumoQuickForm'
 import { useWines } from '../hooks/useWines'
 import { useTastings } from '../hooks/useTastings'
 import { useToastStore } from '../store/toastStore'
@@ -37,6 +38,7 @@ export default function WineDetail() {
   const [menuOpen,    setMenuOpen]    = useState(false)
   const [editOpen,    setEditOpen]    = useState(false)
   const [deleteOpen,  setDeleteOpen]  = useState(false)
+  const [consumoOpen, setConsumoOpen] = useState(false)
   const [saving,      setSaving]      = useState(false)
   const [deleting,    setDeleting]    = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
@@ -221,34 +223,56 @@ export default function WineDetail() {
       {/* Body */}
       <div className="px-5 flex flex-col gap-5 pb-28" style={{ background: theme.colors.dark }}>
 
-        {/* Score + CTA */}
-        <div className="flex items-center justify-between pt-2">
-          {scoreOn5 !== null ? (
-            <div className="flex items-center gap-3">
-              <span
-                className="text-editorial"
-                style={{ fontSize: '2.5rem', fontWeight: 700, color: theme.colors.cream, lineHeight: 1 }}
-              >
-                {avgPuntuacion}
-              </span>
-              <div>
-                <StarRating value={scoreOn5} />
-                <p style={{ fontSize: '0.7rem', color: theme.colors.muted, marginTop: 3 }}>
-                  media de {tastings.filter(t => t.puntuacion !== null).length} cata{tastings.length !== 1 ? 's' : ''}
-                </p>
-              </div>
+        {/* Score */}
+        {scoreOn5 !== null && (
+          <div className="flex items-center gap-3 pt-2">
+            <span
+              className="text-editorial"
+              style={{ fontSize: '2.5rem', fontWeight: 700, color: theme.colors.cream, lineHeight: 1 }}
+            >
+              {avgPuntuacion}
+            </span>
+            <div>
+              <StarRating value={scoreOn5} />
+              <p style={{ fontSize: '0.7rem', color: theme.colors.muted, marginTop: 3 }}>
+                media de {tastings.filter(t => t.puntuacion !== null).length} cata{tastings.length !== 1 ? 's' : ''}
+              </p>
             </div>
-          ) : (
-            <div />
-          )}
-          <button
-            onClick={() => navigate(`/catas/nueva?wineId=${wine.id}`)}
-            className="px-5 py-2.5 rounded-full font-semibold text-sm"
-            style={{ background: theme.colors.primary, color: theme.colors.cream }}
-          >
-            + Catar
-          </button>
-        </div>
+          </div>
+        )}
+
+        {/* Acciones — añadir nuevas acciones aquí en futuras versiones */}
+        {(() => {
+          const acciones = [
+            {
+              label:   'Catar',
+              primary: true,
+              onClick: () => navigate(`/catas/nueva?wineId=${wine.id}`),
+            },
+            {
+              label:   'Registrar consumo',
+              primary: false,
+              onClick: () => setConsumoOpen(true),
+            },
+          ]
+          return (
+            <div className="flex gap-2 pt-1">
+              {acciones.map(accion => (
+                <button
+                  key={accion.label}
+                  onClick={accion.onClick}
+                  className="flex-1 py-2.5 rounded-full font-semibold text-sm"
+                  style={accion.primary
+                    ? { background: theme.colors.primary, color: theme.colors.cream }
+                    : { background: 'transparent', color: theme.colors.gold, border: `1px solid ${theme.colors.gold}` }
+                  }
+                >
+                  {accion.label}
+                </button>
+              ))}
+            </div>
+          )
+        })()}
 
         {/* Divider */}
         <div style={{ height: 1, background: theme.colors.border }} />
@@ -377,6 +401,12 @@ export default function WineDetail() {
       <Modal open={editOpen} onClose={() => setEditOpen(false)} title="Editar vino">
         <WineForm initialData={wine} onSubmit={handleUpdate} loading={saving} />
       </Modal>
+
+      <ConsumoQuickForm
+        open={consumoOpen}
+        wineId={wine.id}
+        onClose={() => setConsumoOpen(false)}
+      />
 
       <Modal open={deleteOpen} onClose={() => setDeleteOpen(false)} title="Eliminar vino">
         <p className="text-sm" style={{ color: theme.colors.muted }}>

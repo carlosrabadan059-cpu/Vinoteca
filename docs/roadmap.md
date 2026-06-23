@@ -18,6 +18,18 @@ También incluido en V1:
 
 ---
 
+## V1.2 — Completada ✅
+
+- [x] **Historial de consumo** — Nuevo tipo de entrada en la tabla `tastings` diferenciado por `es_consumo_rapido: boolean`
+- [x] **ConsumoQuickForm** — Modal bottom sheet desde `WineDetail` con campos: fecha, ocasión, lugar, botella terminada
+- [x] **TastingMiniCard** — Badge `CATA` / `CONSUMO`; preview adaptado al tipo de entrada
+- [x] **WineDetail** — Zona de acciones escalable (array `.map()`); botón "Registrar consumo" junto a "Catar"
+- [x] **TastingForm** — Campos opcionales `ocasion` y `lugar` añadidos al formulario de cata completa
+- [x] **Migración Supabase** — `ALTER TABLE tastings ADD COLUMN es_consumo_rapido`, `botella_terminada`, `ocasion`, `lugar`
+- [x] **Offline-first** — Defensive spread en `loadTastings()` para compatibilidad con registros IDB anteriores
+
+---
+
 ## V1.1 — En curso
 
 - [ ] **Identificación rápida** — Fase 1 del scan: `POST /webhook/vinoteca/scan/identificar` (OCR → wine_uid → lookup Supabase). Si el vino existe, no llama a GPT.

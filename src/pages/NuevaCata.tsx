@@ -74,6 +74,7 @@ export default function NuevaCata() {
         color_descripcion: data.color_descripcion,
         maridaje:          data.maridaje,
         chat_history:      data.chat_history,
+        es_consumo_rapido: false,
       })
       toast.show('Cata guardada')
       navigate(`/catas/${tasting.id}`, { replace: true })
