@@ -34,10 +34,10 @@ export function useTastings(wineId?: string) {
     const local = raw.map(t => ({
       es_consumo_rapido: false,
       botella_terminada: false,
-      ocasion:           null,
-      lugar:             null,
-      ...t,
-    }))
+      ocasion:           null as string | null,
+      lugar:             null as string | null,
+      ...(t as Partial<Tasting>),
+    } as Tasting))
     store.setTastings(local)
 
     if (!navigator.onLine) return
