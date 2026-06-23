@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Layout from '../components/ui/Layout'
 import Spinner from '../components/ui/Spinner'
@@ -151,6 +151,8 @@ export default function Scan() {
   const pendingSaveRef = useRef<{ data: Partial<Wine> } | null>(null)
 
   const analysisRef = useRef<Promise<unknown> | null>(null)
+
+  const cameraSource = useMemo(() => getUserMediaSource(), [cameraTarget])
 
   function showToast(msg: string, kind: 'green' | 'yellow', ms = 3000) {
     setToast({ msg, kind })
@@ -490,7 +492,7 @@ export default function Scan() {
 
       {cameraTarget && (
         <CameraView
-          source={getUserMediaSource()}
+          source={cameraSource}
           hint={cameraTarget === 'frontal' ? 'Centra la etiqueta frontal' : 'Centra la etiqueta trasera'}
           onCapture={async dataUrl => {
             const compressed = await compressImage(dataUrl)
