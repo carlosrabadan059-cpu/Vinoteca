@@ -1,0 +1,622 @@
+{
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/diagnose/scripts/hitl-loop.template.sh": {
+    "mtime": 1780779953.2814064,
+    "ast_hash": "46a2a00761be2785e59661f0e3c11471",
+    "semantic_hash": "46a2a00761be2785e59661f0e3c11471"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.claude/settings.json": {
+    "mtime": 1781027311.2695284,
+    "ast_hash": "bfee062c3962c14264fd704e975a6b38",
+    "semantic_hash": "bfee062c3962c14264fd704e975a6b38"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.claude/settings.local.json": {
+    "mtime": 1781027316.124658,
+    "ast_hash": "7342b0fc996936998344534549833cf3",
+    "semantic_hash": "7342b0fc996936998344534549833cf3"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/eslint.config.js": {
+    "mtime": 1780780144.1054275,
+    "ast_hash": "0355276bc79439afe3c53e3a2470ca1e",
+    "semantic_hash": "0355276bc79439afe3c53e3a2470ca1e"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/package.json": {
+    "mtime": 1781391275.6561825,
+    "ast_hash": "f3520ce7257bbc56e61b77718a7e4f20",
+    "semantic_hash": "f3520ce7257bbc56e61b77718a7e4f20"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/skills-lock.json": {
+    "mtime": 1780782410.350332,
+    "ast_hash": "c0855a0789ef4add2db5523cb387c355",
+    "semantic_hash": "c0855a0789ef4add2db5523cb387c355"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/App.tsx": {
+    "mtime": 1780780387.0817204,
+    "ast_hash": "29be63489ed1861111ab4234654ecc6d",
+    "semantic_hash": "29be63489ed1861111ab4234654ecc6d"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/components/ui/AnalysisProgress.tsx": {
+    "mtime": 1782167924.6005065,
+    "ast_hash": "04abcdcfda595a07443591a0b03fffe2",
+    "semantic_hash": "04abcdcfda595a07443591a0b03fffe2"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/components/ui/Badge.tsx": {
+    "mtime": 1780783136.8558152,
+    "ast_hash": "3dc1ddda083557ce0add840fb649c445",
+    "semantic_hash": "3dc1ddda083557ce0add840fb649c445"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/components/ui/Button.tsx": {
+    "mtime": 1780783129.83135,
+    "ast_hash": "59b82f547d1bf8ef9272e4508d188be7",
+    "semantic_hash": "59b82f547d1bf8ef9272e4508d188be7"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/components/ui/Card.tsx": {
+    "mtime": 1780783134.238235,
+    "ast_hash": "47b406c36fd20c6a03b69559ee5b880e",
+    "semantic_hash": "47b406c36fd20c6a03b69559ee5b880e"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/components/ui/ChatBubble.tsx": {
+    "mtime": 1781384384.872423,
+    "ast_hash": "ccf7f0a26cbce3e0ad3d08cf8dc74a90",
+    "semantic_hash": "ccf7f0a26cbce3e0ad3d08cf8dc74a90"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/components/ui/Input.tsx": {
+    "mtime": 1780783132.0332303,
+    "ast_hash": "3831a8af51f8ba5ac03b34bdff8f244c",
+    "semantic_hash": "3831a8af51f8ba5ac03b34bdff8f244c"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/components/ui/Layout.tsx": {
+    "mtime": 1781343113.192107,
+    "ast_hash": "07e705109f0e1c3cefb51f03a03ece4b",
+    "semantic_hash": "07e705109f0e1c3cefb51f03a03ece4b"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/components/ui/Modal.tsx": {
+    "mtime": 1781543260.0312555,
+    "ast_hash": "521585f7d8d4e30265d09101adb7621d",
+    "semantic_hash": "521585f7d8d4e30265d09101adb7621d"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/components/ui/Spinner.tsx": {
+    "mtime": 1780783138.1639965,
+    "ast_hash": "e3f9d3e7dfa8b94ad349362935650261",
+    "semantic_hash": "e3f9d3e7dfa8b94ad349362935650261"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/components/ui/SuggestionChips.tsx": {
+    "mtime": 1780819069.308195,
+    "ast_hash": "3eb9c0a2002c126d23ab17cd9f233bae",
+    "semantic_hash": "3eb9c0a2002c126d23ab17cd9f233bae"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/components/ui/SyncIndicator.tsx": {
+    "mtime": 1781076358.3809397,
+    "ast_hash": "2fbf742955235855bb2811c6c5131bcb",
+    "semantic_hash": "2fbf742955235855bb2811c6c5131bcb"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/components/ui/SyncModal.tsx": {
+    "mtime": 1781388514.7603276,
+    "ast_hash": "acab1594d1d275d172061b27f9d4f762",
+    "semantic_hash": "acab1594d1d275d172061b27f9d4f762"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/components/ui/Toast.tsx": {
+    "mtime": 1780784555.5522776,
+    "ast_hash": "cd62ff95696d5d00d614df11362f0d71",
+    "semantic_hash": "cd62ff95696d5d00d614df11362f0d71"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/components/wine/ChatBubble.tsx": {
+    "mtime": 1780783160.2746286,
+    "ast_hash": "333082e3b61e364bf69767e0e3625a60",
+    "semantic_hash": "333082e3b61e364bf69767e0e3625a60"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/components/wine/DuplicateWineDialog.tsx": {
+    "mtime": 1782165651.9288547,
+    "ast_hash": "ef04d58e98e85d7bc45343d1456c8bb2",
+    "semantic_hash": "ef04d58e98e85d7bc45343d1456c8bb2"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/components/wine/ImageCapture.tsx": {
+    "mtime": 1780783522.2413235,
+    "ast_hash": "211f3cec10058575cc59f9bfd2cbfc26",
+    "semantic_hash": "211f3cec10058575cc59f9bfd2cbfc26"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/components/wine/TastingCard.tsx": {
+    "mtime": 1780818337.2123826,
+    "ast_hash": "a44f0c375400e71a5b9d51b413cf9b07",
+    "semantic_hash": "a44f0c375400e71a5b9d51b413cf9b07"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/components/wine/TastingChat.tsx": {
+    "mtime": 1781385653.6705527,
+    "ast_hash": "90d39bb9c53d0258a125ccc0283d8719",
+    "semantic_hash": "90d39bb9c53d0258a125ccc0283d8719"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/components/wine/TastingForm.tsx": {
+    "mtime": 1781388526.4995286,
+    "ast_hash": "64b802b892a0002d0d96e93142c4a3cb",
+    "semantic_hash": "64b802b892a0002d0d96e93142c4a3cb"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/components/wine/TastingMiniCard.tsx": {
+    "mtime": 1780784631.949546,
+    "ast_hash": "65c5336fe25b1f78c2be9b88767b8851",
+    "semantic_hash": "65c5336fe25b1f78c2be9b88767b8851"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/components/wine/WineCard.tsx": {
+    "mtime": 1781127422.064695,
+    "ast_hash": "9de1643f050f03839e53c8e51023b3f0",
+    "semantic_hash": "9de1643f050f03839e53c8e51023b3f0"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/components/wine/WineForm.tsx": {
+    "mtime": 1781205442.142423,
+    "ast_hash": "308f37317bc2243294f4c1c544442897",
+    "semantic_hash": "308f37317bc2243294f4c1c544442897"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/constants/theme.ts": {
+    "mtime": 1780855861.1059363,
+    "ast_hash": "ad76b35179a420d1f099b3167dc27b88",
+    "semantic_hash": "ad76b35179a420d1f099b3167dc27b88"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/hooks/useAuth.ts": {
+    "mtime": 1780780287.2109094,
+    "ast_hash": "41253769b39f96d7a261780740583824",
+    "semantic_hash": "41253769b39f96d7a261780740583824"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/hooks/useCamera.ts": {
+    "mtime": 1781203760.357795,
+    "ast_hash": "53bf19aea47da10641532529f1577b1b",
+    "semantic_hash": "53bf19aea47da10641532529f1577b1b"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/hooks/useStats.ts": {
+    "mtime": 1780819536.7707098,
+    "ast_hash": "1b614a95cbedea85e51c57b6f90bbce8",
+    "semantic_hash": "1b614a95cbedea85e51c57b6f90bbce8"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/hooks/useSync.ts": {
+    "mtime": 1780820161.8581595,
+    "ast_hash": "7b24ac3bd3165112305f1d7a44773817",
+    "semantic_hash": "7b24ac3bd3165112305f1d7a44773817"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/hooks/useTastings.ts": {
+    "mtime": 1781110419.818109,
+    "ast_hash": "8778bfe34c5ace415030b219bcfc3f78",
+    "semantic_hash": "8778bfe34c5ace415030b219bcfc3f78"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/hooks/useWines.ts": {
+    "mtime": 1782167039.2263603,
+    "ast_hash": "5e78a16cd5464aa84b5745ecd4609d10",
+    "semantic_hash": "5e78a16cd5464aa84b5745ecd4609d10"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/lib/idb.ts": {
+    "mtime": 1780820076.2169564,
+    "ast_hash": "9f49e846f6f912bc87a54e522089c5f8",
+    "semantic_hash": "9f49e846f6f912bc87a54e522089c5f8"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/lib/n8n.ts": {
+    "mtime": 1782168310.3610654,
+    "ast_hash": "3afcbca53eaef82f4a662746228435c5",
+    "semantic_hash": "3afcbca53eaef82f4a662746228435c5"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/lib/storage.ts": {
+    "mtime": 1781032670.7695138,
+    "ast_hash": "8319858d739458c22ca7284818a36ff9",
+    "semantic_hash": "8319858d739458c22ca7284818a36ff9"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/lib/supabase.ts": {
+    "mtime": 1780780252.7068763,
+    "ast_hash": "354ce10f9e6a887eae1f1a1c1284df75",
+    "semantic_hash": "354ce10f9e6a887eae1f1a1c1284df75"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/lib/uuid.ts": {
+    "mtime": 1781110402.6641257,
+    "ast_hash": "bfe9440762422178582b9033426013d8",
+    "semantic_hash": "bfe9440762422178582b9033426013d8"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/lib/wineDuplicates.ts": {
+    "mtime": 1782167055.9146664,
+    "ast_hash": "c79af8064d5be52aae54fafbde00ca22",
+    "semantic_hash": "c79af8064d5be52aae54fafbde00ca22"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/lib/wineIdentifier.ts": {
+    "mtime": 1782167888.8781824,
+    "ast_hash": "02eaa2ac0a4e509f3b02858b920e4d6d",
+    "semantic_hash": "02eaa2ac0a4e509f3b02858b920e4d6d"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/main.tsx": {
+    "mtime": 1780820183.6563225,
+    "ast_hash": "452a3ec1e2f10f7a5f956200bd0320c4",
+    "semantic_hash": "452a3ec1e2f10f7a5f956200bd0320c4"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/pages/Bodega.tsx": {
+    "mtime": 1781128743.9746463,
+    "ast_hash": "9dc8e76dec02f767294e5a409fe4f930",
+    "semantic_hash": "9dc8e76dec02f767294e5a409fe4f930"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/pages/Catas.tsx": {
+    "mtime": 1780936112.591755,
+    "ast_hash": "1639e48f8ba2a04c5a3bb55e0d66c76b",
+    "semantic_hash": "1639e48f8ba2a04c5a3bb55e0d66c76b"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/pages/Login.tsx": {
+    "mtime": 1780955863.4222684,
+    "ast_hash": "c7b9237f4631115a925f00f4ba31d15d",
+    "semantic_hash": "c7b9237f4631115a925f00f4ba31d15d"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/pages/NuevaCata.tsx": {
+    "mtime": 1781386279.150538,
+    "ast_hash": "581060ef8f212e24f42136eac0c71f3d",
+    "semantic_hash": "581060ef8f212e24f42136eac0c71f3d"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/pages/Register.tsx": {
+    "mtime": 1780937119.6052737,
+    "ast_hash": "f452ac969ae23fbb7abbaedd720dd277",
+    "semantic_hash": "f452ac969ae23fbb7abbaedd720dd277"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/pages/Scan.tsx": {
+    "mtime": 1782168326.537476,
+    "ast_hash": "3ee633b9a2e53b85a8b305fe69b0ad12",
+    "semantic_hash": "3ee633b9a2e53b85a8b305fe69b0ad12"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/pages/Sommelier.tsx": {
+    "mtime": 1781388553.7561572,
+    "ast_hash": "5ac40b9b2ae8e213aa2f2a6c93546d22",
+    "semantic_hash": "5ac40b9b2ae8e213aa2f2a6c93546d22"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/pages/Stats.tsx": {
+    "mtime": 1780936884.7620952,
+    "ast_hash": "e45a4bb12a8913f5d66484ea7139e5de",
+    "semantic_hash": "e45a4bb12a8913f5d66484ea7139e5de"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/pages/TastingDetail.tsx": {
+    "mtime": 1781387473.1640875,
+    "ast_hash": "fb3e79b42d11ebd8a937d9f431593057",
+    "semantic_hash": "fb3e79b42d11ebd8a937d9f431593057"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/pages/WineDetail.tsx": {
+    "mtime": 1781342044.835734,
+    "ast_hash": "31e80f5f3674929032e55f39a1482c04",
+    "semantic_hash": "31e80f5f3674929032e55f39a1482c04"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/router/index.tsx": {
+    "mtime": 1780786027.052916,
+    "ast_hash": "317999f52659217a5a5018c9da9187f1",
+    "semantic_hash": "317999f52659217a5a5018c9da9187f1"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/store/authStore.ts": {
+    "mtime": 1780783031.871115,
+    "ast_hash": "a0e57e87f096636625cc75c9d81efb56",
+    "semantic_hash": "a0e57e87f096636625cc75c9d81efb56"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/store/syncStore.ts": {
+    "mtime": 1780820168.1220129,
+    "ast_hash": "ec9ac50c24beee3f9a82122cc57f9752",
+    "semantic_hash": "ec9ac50c24beee3f9a82122cc57f9752"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/store/tastingStore.ts": {
+    "mtime": 1780785943.5507011,
+    "ast_hash": "7c94316a12f21eed866a0ddcd2ab2a13",
+    "semantic_hash": "7c94316a12f21eed866a0ddcd2ab2a13"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/store/toastStore.ts": {
+    "mtime": 1780784549.369607,
+    "ast_hash": "6cfcb746301b7010fa010b6c737bd72d",
+    "semantic_hash": "6cfcb746301b7010fa010b6c737bd72d"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/store/wineStore.ts": {
+    "mtime": 1780784534.2794101,
+    "ast_hash": "a3a9166911f44eef5493a03ffb7c5979",
+    "semantic_hash": "a3a9166911f44eef5493a03ffb7c5979"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/types/index.ts": {
+    "mtime": 1782167023.3326964,
+    "ast_hash": "7ab63d06c2bb796f6b4de5d483714fc3",
+    "semantic_hash": "7ab63d06c2bb796f6b4de5d483714fc3"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/tsconfig.app.json": {
+    "mtime": 1780780144.1037304,
+    "ast_hash": "136630b5accce1ca50663df229534a26",
+    "semantic_hash": "136630b5accce1ca50663df229534a26"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/tsconfig.json": {
+    "mtime": 1780780144.1052258,
+    "ast_hash": "a3d39fa780ebff65444de257f291ce6c",
+    "semantic_hash": "a3d39fa780ebff65444de257f291ce6c"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/tsconfig.node.json": {
+    "mtime": 1780780144.1032913,
+    "ast_hash": "70bdd0a673bcfc0e828080b306e7c680",
+    "semantic_hash": "70bdd0a673bcfc0e828080b306e7c680"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/vite.config.ts": {
+    "mtime": 1780820268.924748,
+    "ast_hash": "04249738c5ad151f687f0bbacc6f8416",
+    "semantic_hash": "04249738c5ad151f687f0bbacc6f8416"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/caveman/SKILL.md": {
+    "mtime": 1780779953.2641828,
+    "ast_hash": "d675bd2128851ccb38a88a15fd941986",
+    "semantic_hash": "d675bd2128851ccb38a88a15fd941986"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/diagnose/SKILL.md": {
+    "mtime": 1780779953.2812233,
+    "ast_hash": "70cd92c9a5219eb8db60629b1bf59949",
+    "semantic_hash": "70cd92c9a5219eb8db60629b1bf59949"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/frontend-design/LICENSE.txt": {
+    "mtime": 1780782410.3370054,
+    "ast_hash": "2ee41112a44fe7014dce33e26468ba93",
+    "semantic_hash": "2ee41112a44fe7014dce33e26468ba93"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/frontend-design/SKILL.md": {
+    "mtime": 1780782410.337109,
+    "ast_hash": "06a0520e81f698334258c73ff0de533b",
+    "semantic_hash": "06a0520e81f698334258c73ff0de533b"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/grill-me/SKILL.md": {
+    "mtime": 1780779953.290425,
+    "ast_hash": "8cb45c74133150e6a00f18b2059aae8c",
+    "semantic_hash": "8cb45c74133150e6a00f18b2059aae8c"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/grill-with-docs/ADR-FORMAT.md": {
+    "mtime": 1780779953.305063,
+    "ast_hash": "bb327bab674f400796f64b6e2ef5850c",
+    "semantic_hash": "bb327bab674f400796f64b6e2ef5850c"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/grill-with-docs/CONTEXT-FORMAT.md": {
+    "mtime": 1780779953.305103,
+    "ast_hash": "c2f41ffc931955b2b8d01322273d75fa",
+    "semantic_hash": "c2f41ffc931955b2b8d01322273d75fa"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/grill-with-docs/SKILL.md": {
+    "mtime": 1780779953.305097,
+    "ast_hash": "8bf29044d7890561fe964b884498ff9e",
+    "semantic_hash": "8bf29044d7890561fe964b884498ff9e"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/handoff/SKILL.md": {
+    "mtime": 1780779953.3136966,
+    "ast_hash": "df46cb7daa718f1113e3b150dfe22026",
+    "semantic_hash": "df46cb7daa718f1113e3b150dfe22026"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/improve-codebase-architecture/DEEPENING.md": {
+    "mtime": 1780779953.3561358,
+    "ast_hash": "ebdd48f7e3b0afeb8085d797df543e1a",
+    "semantic_hash": "ebdd48f7e3b0afeb8085d797df543e1a"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/improve-codebase-architecture/HTML-REPORT.md": {
+    "mtime": 1780779953.3561792,
+    "ast_hash": "1857b55ee9eb301b094922f32d2f73d7",
+    "semantic_hash": "1857b55ee9eb301b094922f32d2f73d7"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/improve-codebase-architecture/INTERFACE-DESIGN.md": {
+    "mtime": 1780779953.3561423,
+    "ast_hash": "aee2c0695396f8c6432ba5bfe547f195",
+    "semantic_hash": "aee2c0695396f8c6432ba5bfe547f195"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/improve-codebase-architecture/LANGUAGE.md": {
+    "mtime": 1780779953.356225,
+    "ast_hash": "680627d828b489f96b92d4a2d7fa3bb6",
+    "semantic_hash": "680627d828b489f96b92d4a2d7fa3bb6"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/improve-codebase-architecture/SKILL.md": {
+    "mtime": 1780779953.3563917,
+    "ast_hash": "b49bc843f32d06bbba85b4ac4b606aa5",
+    "semantic_hash": "b49bc843f32d06bbba85b4ac4b606aa5"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/prototype/LOGIC.md": {
+    "mtime": 1780779953.3742943,
+    "ast_hash": "d57721452aacaa04caacd0bc7c5c2f49",
+    "semantic_hash": "d57721452aacaa04caacd0bc7c5c2f49"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/prototype/SKILL.md": {
+    "mtime": 1780779953.374308,
+    "ast_hash": "cff567de82e277cfd0e3b9e12b67cd2c",
+    "semantic_hash": "cff567de82e277cfd0e3b9e12b67cd2c"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/prototype/UI.md": {
+    "mtime": 1780779953.3745062,
+    "ast_hash": "c1eaad6437c90d5660b2ffc9ff91ffb4",
+    "semantic_hash": "c1eaad6437c90d5660b2ffc9ff91ffb4"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/setup-matt-pocock-skills/SKILL.md": {
+    "mtime": 1780779953.3960793,
+    "ast_hash": "a9e22edd638f1b2bd5b3e2934eb209c3",
+    "semantic_hash": "a9e22edd638f1b2bd5b3e2934eb209c3"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/setup-matt-pocock-skills/domain.md": {
+    "mtime": 1780779953.3960984,
+    "ast_hash": "477d9959972912279da5677825ef61c3",
+    "semantic_hash": "477d9959972912279da5677825ef61c3"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/setup-matt-pocock-skills/issue-tracker-github.md": {
+    "mtime": 1780779953.3961127,
+    "ast_hash": "b3268117bb0bb6b731632d35d6a1369a",
+    "semantic_hash": "b3268117bb0bb6b731632d35d6a1369a"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/setup-matt-pocock-skills/issue-tracker-gitlab.md": {
+    "mtime": 1780779953.396139,
+    "ast_hash": "e91b1122d99f423b5375142a14b68f76",
+    "semantic_hash": "e91b1122d99f423b5375142a14b68f76"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/setup-matt-pocock-skills/issue-tracker-local.md": {
+    "mtime": 1780779953.3962924,
+    "ast_hash": "0f479992c0a4fd62a0d1be807f31e132",
+    "semantic_hash": "0f479992c0a4fd62a0d1be807f31e132"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/setup-matt-pocock-skills/triage-labels.md": {
+    "mtime": 1780779953.3963134,
+    "ast_hash": "22add54cb98451c55b20e6b7992d4a85",
+    "semantic_hash": "22add54cb98451c55b20e6b7992d4a85"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/tdd/SKILL.md": {
+    "mtime": 1780779953.4174008,
+    "ast_hash": "7ca080c0a0b0986e031fe6a47771d57e",
+    "semantic_hash": "7ca080c0a0b0986e031fe6a47771d57e"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/tdd/deep-modules.md": {
+    "mtime": 1780779953.4175298,
+    "ast_hash": "fee2c44ab025f43e10ed717bb42cc9c2",
+    "semantic_hash": "fee2c44ab025f43e10ed717bb42cc9c2"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/tdd/interface-design.md": {
+    "mtime": 1780779953.4175296,
+    "ast_hash": "fc309d957e5735a1ac3d27023842fa1b",
+    "semantic_hash": "fc309d957e5735a1ac3d27023842fa1b"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/tdd/mocking.md": {
+    "mtime": 1780779953.4175436,
+    "ast_hash": "c5505e8da8f516c7dacebd01c58a4c2c",
+    "semantic_hash": "c5505e8da8f516c7dacebd01c58a4c2c"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/tdd/refactoring.md": {
+    "mtime": 1780779953.4177136,
+    "ast_hash": "ecbf516d99a591169adce39a8a933f2e",
+    "semantic_hash": "ecbf516d99a591169adce39a8a933f2e"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/tdd/tests.md": {
+    "mtime": 1780779953.4176106,
+    "ast_hash": "253c991bba867959c0146c72b93a6f6f",
+    "semantic_hash": "253c991bba867959c0146c72b93a6f6f"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/to-issues/SKILL.md": {
+    "mtime": 1780779953.426236,
+    "ast_hash": "a26ffd48dbf2d0ad29f65369b7dda42e",
+    "semantic_hash": "a26ffd48dbf2d0ad29f65369b7dda42e"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/to-prd/SKILL.md": {
+    "mtime": 1780779953.4350345,
+    "ast_hash": "ba20c762eb7d815411745c0102e487d6",
+    "semantic_hash": "ba20c762eb7d815411745c0102e487d6"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/triage/AGENT-BRIEF.md": {
+    "mtime": 1780779953.4489806,
+    "ast_hash": "7f815fa62b523f97710dde414f98e70b",
+    "semantic_hash": "7f815fa62b523f97710dde414f98e70b"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/triage/OUT-OF-SCOPE.md": {
+    "mtime": 1780779953.4488847,
+    "ast_hash": "d3fcb04f7f250f2d07ce4ccbc3a26c7d",
+    "semantic_hash": "d3fcb04f7f250f2d07ce4ccbc3a26c7d"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/triage/SKILL.md": {
+    "mtime": 1780779953.448926,
+    "ast_hash": "dafdaa928b34a5c317fd190591c89a65",
+    "semantic_hash": "dafdaa928b34a5c317fd190591c89a65"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/write-a-skill/SKILL.md": {
+    "mtime": 1780779953.4575438,
+    "ast_hash": "492ef034b4fc9e497cc69b8fed78a742",
+    "semantic_hash": "492ef034b4fc9e497cc69b8fed78a742"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/.agents/skills/zoom-out/SKILL.md": {
+    "mtime": 1780779953.4665425,
+    "ast_hash": "204f114b01386f4a0a8e6c7784266369",
+    "semantic_hash": "204f114b01386f4a0a8e6c7784266369"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/CLAUDE.md": {
+    "mtime": 1780854459.6379962,
+    "ast_hash": "78c87173b3edc0f58f5a2aea0694dddd",
+    "semantic_hash": "78c87173b3edc0f58f5a2aea0694dddd"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/CONTEXT.md": {
+    "mtime": 1780816220.0007086,
+    "ast_hash": "0b992115529b646f293db81d533c6b9f",
+    "semantic_hash": "0b992115529b646f293db81d533c6b9f"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/README.md": {
+    "mtime": 1780780144.103933,
+    "ast_hash": "f6e3faf55d738cf2affe1b44195f27cf",
+    "semantic_hash": "f6e3faf55d738cf2affe1b44195f27cf"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/docs/adr/0001-ai-assistants-via-n8n.md": {
+    "mtime": 1780815577.8186872,
+    "ast_hash": "7b295d8d91eff1873ff7f48128a8ad6d",
+    "semantic_hash": "7b295d8d91eff1873ff7f48128a8ad6d"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/docs/adr/0001-expo-to-vite-pwa.md": {
+    "mtime": 1780780985.22641,
+    "ast_hash": "88dc0dbb9d85a630d3abbea3be7f6e82",
+    "semantic_hash": "88dc0dbb9d85a630d3abbea3be7f6e82"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/docs/adr/0002-scan-workflow-via-n8n.md": {
+    "mtime": 1780816032.2669065,
+    "ast_hash": "c677d804ead2e656b760073678eb6cb3",
+    "semantic_hash": "c677d804ead2e656b760073678eb6cb3"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/docs/agents/domain.md": {
+    "mtime": 1780780309.9408402,
+    "ast_hash": "477d9959972912279da5677825ef61c3",
+    "semantic_hash": "477d9959972912279da5677825ef61c3"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/docs/agents/issue-tracker.md": {
+    "mtime": 1780780302.7410092,
+    "ast_hash": "b3268117bb0bb6b731632d35d6a1369a",
+    "semantic_hash": "b3268117bb0bb6b731632d35d6a1369a"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/docs/agents/triage-labels.md": {
+    "mtime": 1780780305.2257528,
+    "ast_hash": "22add54cb98451c55b20e6b7992d4a85",
+    "semantic_hash": "22add54cb98451c55b20e6b7992d4a85"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/docs/handoff-2026-06-10.md": {
+    "mtime": 1781112608.3159885,
+    "ast_hash": "6c41cdaf76db218f89e7a81827c1dde2",
+    "semantic_hash": "6c41cdaf76db218f89e7a81827c1dde2"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/docs/handoff-2026-06-11.md": {
+    "mtime": 1781205529.8830914,
+    "ast_hash": "7593385a1d5035fa097f4a2c5a7c8a1a",
+    "semantic_hash": "7593385a1d5035fa097f4a2c5a7c8a1a"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/docs/handoff-2026-06-12.md": {
+    "mtime": 1781299656.0209696,
+    "ast_hash": "27f398eba4db61121d7aa6ca9129f2e4",
+    "semantic_hash": "27f398eba4db61121d7aa6ca9129f2e4"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/docs/handoff-2026-06-13.md": {
+    "mtime": 1781383213.1183655,
+    "ast_hash": "35782f76fb8ab0e6e9d91e462110fa42",
+    "semantic_hash": "35782f76fb8ab0e6e9d91e462110fa42"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/docs/handoff-2026-06-18.md": {
+    "mtime": 1781819430.5158658,
+    "ast_hash": "5a5d695b6aafdb870727066765c28103",
+    "semantic_hash": "5a5d695b6aafdb870727066765c28103"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/index.html": {
+    "mtime": 1780853812.427907,
+    "ast_hash": "24b38991200e09234fcfef4096d4daff",
+    "semantic_hash": "24b38991200e09234fcfef4096d4daff"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/public/apple-touch-icon.png": {
+    "mtime": 1781388778.9007504,
+    "ast_hash": "537df0bf7b5c5ea52bd33daa1c42f6c8",
+    "semantic_hash": "537df0bf7b5c5ea52bd33daa1c42f6c8"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/public/bodega-bg.png": {
+    "mtime": 1781029826.6853638,
+    "ast_hash": "c9065ef0cb5e30507770d7592bc3e1d7",
+    "semantic_hash": "c9065ef0cb5e30507770d7592bc3e1d7"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/public/favicon.svg": {
+    "mtime": 1781388759.0308874,
+    "ast_hash": "cc68702d27d5ccb59404e59bafd85dd4",
+    "semantic_hash": "cc68702d27d5ccb59404e59bafd85dd4"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/public/pwa-192x192.png": {
+    "mtime": 1781388778.893533,
+    "ast_hash": "981359e0a214163089ec9268fc46a8dc",
+    "semantic_hash": "981359e0a214163089ec9268fc46a8dc"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/public/pwa-512x512.png": {
+    "mtime": 1781388778.8995883,
+    "ast_hash": "8fa3b91e474080950a53f6a7a02508b0",
+    "semantic_hash": "8fa3b91e474080950a53f6a7a02508b0"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/assets/hero.png": {
+    "mtime": 1780780144.1070042,
+    "ast_hash": "aead493361b27e7510691c5d7072dfc1",
+    "semantic_hash": "aead493361b27e7510691c5d7072dfc1"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/assets/react.svg": {
+    "mtime": 1780780144.107673,
+    "ast_hash": "f0402b67b6ce880f65666bb49e841696",
+    "semantic_hash": "f0402b67b6ce880f65666bb49e841696"
+  },
+  "/Users/carlosrabadan/Antigravity/Vinoteca/src/assets/vite.svg": {
+    "mtime": 1780780144.1074073,
+    "ast_hash": "9960a24288958394ac50e57ff638b036",
+    "semantic_hash": "9960a24288958394ac50e57ff638b036"
+  }
+}
