@@ -171,8 +171,8 @@ export default function Scan() {
     handleImageReady(await compressImage(raw), target)
   }
 
-  async function handleCapture(source: 'camera' | 'gallery', target: 'frontal' | 'trasera') {
-    const raw = source === 'camera' ? await takePhoto() : await pickFromGallery()
+  async function handleGallery(target: 'frontal' | 'trasera') {
+    const raw = await pickFromGallery()
     if (!raw) return
     handleImageReady(await compressImage(raw), target)
   }
@@ -380,7 +380,7 @@ export default function Scan() {
 
             <CameraButton
               onCamera={() => handleCameraOpen(step)}
-              onGallery={() => handleCapture('gallery', step)}
+              onGallery={() => handleGallery(step)}
             />
           </BarrelHero>
 

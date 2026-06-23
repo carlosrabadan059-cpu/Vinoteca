@@ -7,14 +7,14 @@ import type { CaptureSource } from '../../lib/captureSource'
 type CameraState =
   | { status: 'IDLE' }
   | { status: 'REQUESTING' }
-  | { status: 'ACTIVE';    stream: MediaStream }
-  | { status: 'PREVIEW';   stream: MediaStream; dataUrl: string }
-  | { status: 'SCANNING_QR'; stream: MediaStream }   // V1.3.2
-  | { status: 'ERROR';     message: string }
+  | { status: 'ACTIVE';      stream: MediaStream | null }
+  | { status: 'PREVIEW';     stream: MediaStream | null; dataUrl: string }
+  | { status: 'SCANNING_QR'; stream: MediaStream | null }   // V1.3.2
+  | { status: 'ERROR';       message: string }
 
 type CameraAction =
   | { type: 'REQUEST' }
-  | { type: 'STREAM_READY';  stream: MediaStream }
+  | { type: 'STREAM_READY';  stream: MediaStream | null }
   | { type: 'CAPTURE';       dataUrl: string }
   | { type: 'RETAKE' }
   | { type: 'ERROR';         message: string }
@@ -98,12 +98,9 @@ export default function CameraView({
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Conectar stream al <video> cuando esté listo
+  // Conectar stream al <video> siempre que el estado lo lleve
   useEffect(() => {
-    if ((state.status === 'ACTIVE' || state.status === 'SCANNING_QR') && videoRef.current) {
-      videoRef.current.srcObject = state.stream
-    }
-    if (state.status === 'PREVIEW' && videoRef.current) {
+    if (videoRef.current && 'stream' in state) {
       videoRef.current.srcObject = state.stream
     }
   }, [state])

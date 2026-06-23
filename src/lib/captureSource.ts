@@ -1,9 +1,16 @@
 export interface CaptureSource {
-  /** Inicia la fuente y devuelve un MediaStream listo para mostrar en <video> */
-  start(): Promise<MediaStream>
-  /** Libera todos los recursos de la fuente */
-  stop(stream: MediaStream): void
-  /** Captura un frame del stream y lo devuelve como dataUrl JPEG */
+  /**
+   * Inicia la fuente de captura.
+   * Devuelve un MediaStream si la fuente produce vídeo continuo (getUserMedia, Capacitor, desktop).
+   * Devuelve null si la fuente no necesita un stream (archivo local, mock para testing).
+   */
+  start(): Promise<MediaStream | null>
+  /**
+   * Libera todos los recursos de la fuente.
+   * Recibe el stream devuelto por start() — puede ser null.
+   */
+  stop(stream: MediaStream | null): void
+  /** Captura una imagen y la devuelve como dataUrl JPEG */
   captureFrame(video: HTMLVideoElement): Promise<string>
   /**
    * Configuración de zoom deseada. La fuente decide si la aplica o la ignora.
@@ -38,14 +45,14 @@ export function getUserMediaSource(
   let _track: MediaStreamTrack | null = null
 
   return {
-    async start() {
+    async start(): Promise<MediaStream | null> {
       const stream = await navigator.mediaDevices.getUserMedia(constraints)
       _track = stream.getVideoTracks()[0] ?? null
       return stream
     },
 
-    stop(stream) {
-      stream.getTracks().forEach(t => t.stop())
+    stop(stream: MediaStream | null) {
+      stream?.getTracks().forEach(t => t.stop())
       _track = null
     },
 
