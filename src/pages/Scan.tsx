@@ -150,8 +150,10 @@ export default function Scan() {
   const [dupSimilar,     setDupSimilar]     = useState<Wine[]>([])
   const pendingSaveRef = useRef<{ data: Partial<Wine> } | null>(null)
 
-  const analysisRef = useRef<Promise<unknown> | null>(null)
+  const analysisRef  = useRef<Promise<unknown> | null>(null)
   const qrHandledRef = useRef(false)
+  // Incrementado cada vez que la cámara se cierra — invalida llamadas QR en vuelo
+  const qrSessionRef = useRef(0)
 
   const cameraSource = useMemo(() => getUserMediaSource(), [cameraTarget])
 
@@ -193,6 +195,11 @@ export default function Scan() {
     if (qrHandledRef.current) return
     if (!user) return
     qrHandledRef.current = true
+
+    // Capturar la sesión actual — si cambia antes de que resuelva el await,
+    // el usuario ya canceló y cualquier efecto secundario debe descartarse
+    const session = qrSessionRef.current
+
     setCameraTarget(null)
     setStep('review')
     setAnalysisPhase('identifying')
@@ -200,6 +207,10 @@ export default function Scan() {
 
     try {
       const result = await callScanIdentificarQR(qrData, user.id)
+
+      // El usuario canceló mientras esperábamos — no hacer nada
+      if (qrSessionRef.current !== session) return
+
       setAnalyzing(false)
       if (result.found) {
         navigate(`/bodega/${result.wine_id}`)
@@ -209,6 +220,7 @@ export default function Scan() {
         qrHandledRef.current = false
       }
     } catch {
+      if (qrSessionRef.current !== session) return
       setAnalyzing(false)
       showToast('QR no encontrado en bodega', 'yellow', 3000)
       setStep('frontal')
@@ -345,6 +357,7 @@ export default function Scan() {
       setAnalysisWarn(false)
       setAnalysisPhase('identifying')
       qrHandledRef.current = false
+      qrSessionRef.current++
     }
   }, [step])
 
@@ -530,7 +543,7 @@ export default function Scan() {
             setCameraTarget(null)
             handleImageReady(compressed, cameraTarget)
           }}
-          onCancel={() => setCameraTarget(null)}
+          onCancel={() => { qrSessionRef.current++; setCameraTarget(null) }}
           onError={() => {
             setCameraTarget(null)
             handleCameraFallback(cameraTarget)
