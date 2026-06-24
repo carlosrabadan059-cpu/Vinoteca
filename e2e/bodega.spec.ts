@@ -13,11 +13,10 @@ test.describe('Bodega', () => {
   })
 
   test('muestra lista de vinos o estado vacío', async ({ page }) => {
-    const hasWines = await page.locator('[data-testid="wine-card"]').count() > 0
-    if (hasWines) {
-      await expect(page.locator('[data-testid="wine-card"]').first()).toBeVisible()
-    } else {
-      await expect(page.getByText(/vacía|sin vinos|añade/i)).toBeVisible()
-    }
+    // Espera a que cargue: o hay tarjetas (rounded-xl cursor-pointer) o el estado vacío
+    await expect(
+      page.locator('.rounded-xl.cursor-pointer').first()
+        .or(page.getByText('Tu bodega está vacía'))
+    ).toBeVisible({ timeout: 8000 })
   })
 })

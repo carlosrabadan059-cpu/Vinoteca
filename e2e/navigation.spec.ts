@@ -13,9 +13,9 @@ test.describe('Navegación principal', () => {
     await expect(page.getByRole('link', { name: /sommelier/i })).toBeVisible()
   })
 
-  test('navega a /anadir', async ({ page }) => {
+  test('navega a /scan al pulsar añadir', async ({ page }) => {
     await page.getByRole('link', { name: /añadir|anadir/i }).click()
-    await expect(page).toHaveURL(/\/anadir/)
+    await expect(page).toHaveURL(/\/scan/)
   })
 
   test('navega a /catas', async ({ page }) => {
