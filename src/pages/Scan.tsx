@@ -215,16 +215,16 @@ export default function Scan() {
       if (result.found) {
         navigate(`/bodega/${result.wine_id}`)
       } else {
-        showToast('QR no encontrado en bodega', 'yellow', 3000)
-        setStep('frontal')
-        qrHandledRef.current = false
+        // QR no reconocido — continuar con OCR usando las imágenes ya capturadas
+        setAnalysisPhase('analyzing')
+        if (frontImage) launchAnalysis(frontImage, backImage ?? undefined)
       }
     } catch {
       if (qrSessionRef.current !== session) return
       setAnalyzing(false)
-      showToast('QR no encontrado en bodega', 'yellow', 3000)
-      setStep('frontal')
-      qrHandledRef.current = false
+      // Error en n8n — continuar con OCR igualmente
+      setAnalysisPhase('analyzing')
+      if (frontImage) launchAnalysis(frontImage, backImage ?? undefined)
     }
   }
 
@@ -536,7 +536,7 @@ export default function Scan() {
         <CameraView
           source={cameraSource}
           hint={cameraTarget === 'frontal' ? 'Centra la etiqueta frontal' : 'Centra la etiqueta trasera'}
-          enableQR={cameraTarget === 'frontal'}
+          enableQR={cameraTarget === 'trasera'}
           onQrDetected={handleQrDetected}
           onCapture={async dataUrl => {
             const compressed = await compressImage(dataUrl)

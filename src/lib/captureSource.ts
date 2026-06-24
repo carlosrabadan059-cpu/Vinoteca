@@ -24,12 +24,27 @@ export interface CaptureSource {
 // ── Implementación getUserMedia ────────────────────────────────────────────
 
 function captureFrameFromVideo(video: HTMLVideoElement, quality = 0.85): string {
+  const vw = video.videoWidth
+  const vh = video.videoHeight
+  const isLandscape = vw > vh
+
   const canvas = document.createElement('canvas')
-  canvas.width  = video.videoWidth
-  canvas.height = video.videoHeight
   const ctx = canvas.getContext('2d')
   if (!ctx) throw new Error('Canvas 2D no disponible')
-  ctx.drawImage(video, 0, 0)
+
+  if (isLandscape) {
+    // Rotar 90° CW para entregar siempre en portrait
+    canvas.width  = vh
+    canvas.height = vw
+    ctx.translate(vh, 0)
+    ctx.rotate(Math.PI / 2)
+    ctx.drawImage(video, 0, 0, vw, vh)
+  } else {
+    canvas.width  = vw
+    canvas.height = vh
+    ctx.drawImage(video, 0, 0)
+  }
+
   return canvas.toDataURL('image/jpeg', quality)
 }
 
