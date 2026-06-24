@@ -132,9 +132,16 @@ export default function CameraView({
   function startQrLoop() {
     if (qrActiveRef.current) return
     if (!videoRef.current) return
+
+    // Asegurar que el vídeo está reproduciendo antes de arrancar
+    if (videoRef.current.paused) {
+      videoRef.current.play().catch(() => {})
+    }
+
     qrActiveRef.current = true
     lastDetected.current = null
 
+    // Nueva instancia por cada arranque — no reutilizar entre loops
     const reader = new BrowserMultiFormatReader()
     readerRef.current = reader
 
@@ -144,24 +151,35 @@ export default function CameraView({
       while (qrActiveRef.current) {
         try {
           const result = await reader.decodeOnceFromVideoElement(video)
+
+          // Comprobar el flag DESPUÉS del await — puede haber cambiado mientras esperábamos
           if (!qrActiveRef.current) break
 
           const code = result.getText()
           if (code && code !== lastDetected.current) {
-            lastDetected.current = code
+            // 1. Parar el loop inmediatamente — ningún ciclo más puede ejecutarse
             qrActiveRef.current = false
+            readerRef.current = null
+
+            // 2. Congelar el vídeo — ZXing no puede leer frames nuevos
+            video.pause()
+
+            // 3. Actualizar estado visual a QR_FOUND
+            lastDetected.current = code
             dispatch({ type: 'QR_FOUND' })
+
+            // 4. Notificar al padre — él decide si el QR existe o no
             onQrDetected?.(code)
           }
         } catch {
-          // NotFoundException es el caso normal (sin QR en frame) — seguir el loop
+          // NotFoundException es el caso normal (sin QR en frame) — continuar
           if (!qrActiveRef.current) break
-          // Pequeña pausa para no saturar la CPU
           await new Promise(r => setTimeout(r, 300))
         }
       }
     })()
   }
+
 
   const handleCapture = useCallback(async () => {
     if (!videoRef.current) return
