@@ -1,4 +1,5 @@
 import { useEffect, useRef, useReducer, useCallback } from 'react'
+import { BrowserMultiFormatReader } from '@zxing/browser'
 import { theme } from '../../constants/theme'
 import type { CaptureSource } from '../../lib/captureSource'
 
@@ -9,7 +10,8 @@ type CameraState =
   | { status: 'REQUESTING' }
   | { status: 'ACTIVE';      stream: MediaStream | null }
   | { status: 'PREVIEW';     stream: MediaStream | null; dataUrl: string }
-  | { status: 'SCANNING_QR'; stream: MediaStream | null }   // V1.3.2
+  | { status: 'SCANNING_QR'; stream: MediaStream | null }
+  | { status: 'QR_FOUND' }
   | { status: 'ERROR';       message: string }
 
 type CameraAction =
@@ -17,6 +19,7 @@ type CameraAction =
   | { type: 'STREAM_READY';  stream: MediaStream | null }
   | { type: 'CAPTURE';       dataUrl: string }
   | { type: 'RETAKE' }
+  | { type: 'QR_FOUND' }
   | { type: 'ERROR';         message: string }
   | { type: 'RESET' }
 
@@ -32,6 +35,8 @@ function cameraReducer(state: CameraState, action: CameraAction): CameraState {
     case 'RETAKE':
       if (state.status !== 'PREVIEW') return state
       return { status: 'ACTIVE', stream: state.stream }
+    case 'QR_FOUND':
+      return { status: 'QR_FOUND' }
     case 'ERROR':
       return { status: 'ERROR', message: action.message }
     case 'RESET':
@@ -45,13 +50,11 @@ function cameraReducer(state: CameraState, action: CameraAction): CameraState {
 
 export interface CameraViewProps {
   source: CaptureSource
-  /** Texto opcional sobre el marco de ayuda */
   hint?: string
+  enableQR?: boolean
   onCapture:     (dataUrl: string) => void
   onCancel:      () => void
-  /** Llamado cuando la fuente no puede iniciarse — el padre decide el fallback */
   onError:       (err: Error) => void
-  /** Preparado para V1.3.2 — no se usa en V1.3.1 */
   onQrDetected?: (code: string) => void
 }
 
@@ -60,13 +63,18 @@ export interface CameraViewProps {
 export default function CameraView({
   source,
   hint = 'Centra la etiqueta en el marco',
+  enableQR = false,
   onCapture,
   onCancel,
   onError,
+  onQrDetected,
 }: CameraViewProps) {
   const [state, dispatch] = useReducer(cameraReducer, { status: 'IDLE' })
-  const videoRef  = useRef<HTMLVideoElement>(null)
-  const streamRef = useRef<MediaStream | null>(null)
+  const videoRef       = useRef<HTMLVideoElement>(null)
+  const streamRef      = useRef<MediaStream | null>(null)
+  const readerRef      = useRef<BrowserMultiFormatReader | null>(null)
+  const lastDetected   = useRef<string | null>(null)
+  const qrActiveRef    = useRef(false)
 
   // Iniciar fuente al montar
   useEffect(() => {
@@ -91,6 +99,7 @@ export default function CameraView({
 
     return () => {
       cancelled = true
+      stopQrLoop()
       if (streamRef.current) {
         source.stop(streamRef.current)
         streamRef.current = null
@@ -98,12 +107,61 @@ export default function CameraView({
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Conectar stream al <video> siempre que el estado lo lleve
+  // Conectar stream al <video>
   useEffect(() => {
     if (videoRef.current && 'stream' in state) {
       videoRef.current.srcObject = state.stream
     }
   }, [state])
+
+  // Arrancar/parar loop QR según estado
+  useEffect(() => {
+    if (!enableQR) return
+    if (state.status === 'ACTIVE') {
+      startQrLoop()
+    } else {
+      stopQrLoop()
+    }
+  }, [state.status, enableQR]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  function stopQrLoop() {
+    qrActiveRef.current = false
+    readerRef.current = null
+  }
+
+  function startQrLoop() {
+    if (qrActiveRef.current) return
+    if (!videoRef.current) return
+    qrActiveRef.current = true
+    lastDetected.current = null
+
+    const reader = new BrowserMultiFormatReader()
+    readerRef.current = reader
+
+    const video = videoRef.current
+
+    ;(async () => {
+      while (qrActiveRef.current) {
+        try {
+          const result = await reader.decodeOnceFromVideoElement(video)
+          if (!qrActiveRef.current) break
+
+          const code = result.getText()
+          if (code && code !== lastDetected.current) {
+            lastDetected.current = code
+            qrActiveRef.current = false
+            dispatch({ type: 'QR_FOUND' })
+            onQrDetected?.(code)
+          }
+        } catch {
+          // NotFoundException es el caso normal (sin QR en frame) — seguir el loop
+          if (!qrActiveRef.current) break
+          // Pequeña pausa para no saturar la CPU
+          await new Promise(r => setTimeout(r, 300))
+        }
+      }
+    })()
+  }
 
   const handleCapture = useCallback(async () => {
     if (!videoRef.current) return
@@ -127,6 +185,8 @@ export default function CameraView({
     dispatch({ type: 'RETAKE' })
   }, [])
 
+  const isCapturing = state.status === 'ACTIVE' || state.status === 'SCANNING_QR'
+
   // ── Render ───────────────────────────────────────────────────────────────
 
   return (
@@ -137,7 +197,7 @@ export default function CameraView({
       {/* Video / Preview */}
       <div className="relative flex-1 overflow-hidden">
 
-        {/* Stream de cámara — siempre montado para mantener el stream */}
+        {/* Stream de cámara */}
         <video
           ref={videoRef}
           autoPlay
@@ -183,10 +243,22 @@ export default function CameraView({
           </div>
         )}
 
+        {/* Estado QR_FOUND */}
+        {state.status === 'QR_FOUND' && (
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+            <div
+              className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin"
+              style={{ borderColor: `${theme.colors.gold} transparent transparent transparent` }}
+            />
+            <p style={{ fontSize: theme.font.sm, color: theme.colors.muted }}>
+              Identificando QR…
+            </p>
+          </div>
+        )}
+
         {/* Marco de ayuda — visible en ACTIVE y SCANNING_QR */}
-        {(state.status === 'ACTIVE' || state.status === 'SCANNING_QR') && (
+        {isCapturing && (
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-            {/* Marco */}
             <div
               style={{
                 width:        '72%',
@@ -208,7 +280,7 @@ export default function CameraView({
               ))}
             </div>
 
-            {/* Hint */}
+            {/* Hint / indicador QR */}
             <p
               className="mt-5 px-4 py-2 rounded-full text-xs font-medium"
               style={{
@@ -217,7 +289,7 @@ export default function CameraView({
                 backdropFilter: 'blur(8px)',
               }}
             >
-              {hint}
+              {enableQR ? 'Buscando QR…' : hint}
             </p>
           </div>
         )}
@@ -281,14 +353,13 @@ export default function CameraView({
               <span style={{ fontSize: '0.65rem', color: theme.colors.cream }}>Usar foto</span>
             </button>
 
-            {/* Espaciado simétrico */}
             <div style={{ width: 48 }} />
           </>
         ) : (
-          /* Shutter */
+          /* Shutter — deshabilitado en QR_FOUND */
           <button
             onClick={handleCapture}
-            disabled={state.status !== 'ACTIVE' && state.status !== 'SCANNING_QR'}
+            disabled={!isCapturing}
             aria-label="Tomar foto"
             style={{ position: 'relative', width: 76, height: 76 }}
           >
@@ -304,9 +375,7 @@ export default function CameraView({
               className="absolute rounded-full flex items-center justify-center"
               style={{
                 inset:      10,
-                background: state.status === 'ACTIVE' || state.status === 'SCANNING_QR'
-                  ? theme.colors.primary
-                  : theme.colors.border,
+                background: isCapturing ? theme.colors.primary : theme.colors.border,
                 transition: 'background 200ms ease',
               }}
             >

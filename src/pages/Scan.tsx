@@ -6,7 +6,7 @@ import WineForm from '../components/wine/WineForm'
 import AnalysisProgress from '../components/ui/AnalysisProgress'
 import DuplicateWineDialog from '../components/wine/DuplicateWineDialog'
 import CameraView from '../components/ui/CameraView'
-import { callScanAnalizar, callScanIdentificar } from '../lib/n8n'
+import { callScanAnalizar, callScanIdentificar, callScanIdentificarQR } from '../lib/n8n'
 import { useWines } from '../hooks/useWines'
 import { useCamera } from '../hooks/useCamera'
 import { getUserMediaSource } from '../lib/captureSource'
@@ -151,6 +151,7 @@ export default function Scan() {
   const pendingSaveRef = useRef<{ data: Partial<Wine> } | null>(null)
 
   const analysisRef = useRef<Promise<unknown> | null>(null)
+  const qrHandledRef = useRef(false)
 
   const cameraSource = useMemo(() => getUserMediaSource(), [cameraTarget])
 
@@ -185,6 +186,33 @@ export default function Scan() {
       setStep('trasera')
     } else {
       setBackImage(dataUrl)
+    }
+  }
+
+  async function handleQrDetected(qrData: string) {
+    if (qrHandledRef.current) return
+    if (!user) return
+    qrHandledRef.current = true
+    setCameraTarget(null)
+    setStep('review')
+    setAnalysisPhase('identifying')
+    setAnalyzing(true)
+
+    try {
+      const result = await callScanIdentificarQR(qrData, user.id)
+      setAnalyzing(false)
+      if (result.found) {
+        navigate(`/bodega/${result.wine_id}`)
+      } else {
+        showToast('QR no encontrado en bodega', 'yellow', 3000)
+        setStep('frontal')
+        qrHandledRef.current = false
+      }
+    } catch {
+      setAnalyzing(false)
+      showToast('QR no encontrado en bodega', 'yellow', 3000)
+      setStep('frontal')
+      qrHandledRef.current = false
     }
   }
 
@@ -316,6 +344,7 @@ export default function Scan() {
       setStudioUrl(null)
       setAnalysisWarn(false)
       setAnalysisPhase('identifying')
+      qrHandledRef.current = false
     }
   }, [step])
 
@@ -494,6 +523,8 @@ export default function Scan() {
         <CameraView
           source={cameraSource}
           hint={cameraTarget === 'frontal' ? 'Centra la etiqueta frontal' : 'Centra la etiqueta trasera'}
+          enableQR={cameraTarget === 'frontal'}
+          onQrDetected={handleQrDetected}
           onCapture={async dataUrl => {
             const compressed = await compressImage(dataUrl)
             setCameraTarget(null)

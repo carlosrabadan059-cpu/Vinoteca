@@ -128,6 +128,13 @@ export async function callScanIdentificar(
   return post<ScanIdentifyResponse>('vinoteca/scan/identificar', { front, user_id: userId })
 }
 
+export async function callScanIdentificarQR(
+  qrData: string,
+  userId: string
+): Promise<ScanIdentifyResponse> {
+  return post<ScanIdentifyResponse>('vinoteca/scan/identificar', { qr: qrData, user_id: userId })
+}
+
 export async function callScanAnalizar(
   frontImageDataUrl: string,
   backImageDataUrl?: string
