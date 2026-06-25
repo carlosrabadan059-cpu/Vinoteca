@@ -247,6 +247,13 @@ export default function Scan() {
         }
 
         const isEmpty = !result.nombre && !result.bodega && !result.region && !result.uva
+        if (isEmpty) {
+          setAnalyzing(false)
+          setStep('frontal')
+          setNotWineError(true)
+          return {}
+        }
+
         const wineData: Partial<Wine> = {
           nombre:       result.nombre       ?? undefined,
           bodega:       result.bodega       ?? undefined,
