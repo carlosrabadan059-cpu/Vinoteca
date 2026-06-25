@@ -140,6 +140,7 @@ export default function Scan() {
   const [studioUrl,     setStudioUrl]     = useState<string | null>(null)
   const [analysisWarn,  setAnalysisWarn]  = useState(false)
   const [analysisError, setAnalysisError] = useState(false)
+  const [notWineError,  setNotWineError]  = useState(false)
   const [toast,        setToast]        = useState<{ msg: string; kind: 'green' | 'yellow' } | null>(null)
 
   const [analysisPhase, setAnalysisPhase] = useState<'identifying' | 'analyzing'>('identifying')
@@ -184,6 +185,7 @@ export default function Scan() {
 
   function handleImageReady(dataUrl: string, target: 'frontal' | 'trasera') {
     if (target === 'frontal') {
+      setNotWineError(false)
       setFrontImage(dataUrl)
       setStep('trasera')
     } else {
@@ -233,9 +235,17 @@ export default function Scan() {
     setFormData({})
     setAnalysisWarn(false)
     setAnalysisError(false)
+    setNotWineError(false)
 
     analysisRef.current = callScanAnalizar(front, back)
       .then(result => {
+        if (result.is_wine === false) {
+          setAnalyzing(false)
+          setStep('frontal')
+          setNotWineError(true)
+          return {}
+        }
+
         const isEmpty = !result.nombre && !result.bodega && !result.region && !result.uva
         const wineData: Partial<Wine> = {
           nombre:       result.nombre       ?? undefined,
@@ -358,6 +368,7 @@ export default function Scan() {
       setAnalysisPhase('identifying')
       qrHandledRef.current = false
       qrSessionRef.current++
+      // notWineError se mantiene para mostrarlo en el step frontal; se limpia al tomar nueva foto
     }
   }, [step])
 
@@ -401,6 +412,18 @@ export default function Scan() {
       {/* Step 1 & 2: Camera hero */}
       {(step === 'frontal' || step === 'trasera') && (
         <>
+          {notWineError && step === 'frontal' && (
+            <div
+              className="mx-5 mt-3 px-4 py-3 rounded-xl text-sm font-medium"
+              style={{
+                background: 'rgba(220,38,38,0.12)',
+                border: '1px solid rgba(220,38,38,0.4)',
+                color: '#f87171',
+              }}
+            >
+              No hemos detectado una botella de vino. Asegúrate de que la etiqueta sea visible y vuelve a intentarlo.
+            </div>
+          )}
           <BarrelHero>
 
             {/* Preview thumbnail if captured */}

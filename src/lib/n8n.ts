@@ -7,6 +7,7 @@ export type ScanIdentifyResponse =
   | { found: false; match_type: null; nombre: string | null; bodega: string | null; anada: number | null }
 
 export interface ScanResult {
+  is_wine:      boolean
   nombre:       string | null
   bodega:       string | null
   anada:        number | null
