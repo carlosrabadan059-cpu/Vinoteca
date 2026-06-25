@@ -26,18 +26,22 @@ export interface CaptureSource {
 function captureFrameFromVideo(video: HTMLVideoElement, quality = 0.85): string {
   const vw = video.videoWidth
   const vh = video.videoHeight
-  const isLandscape = vw > vh
+
+  // Ignorar frames landscape — siempre trabajamos en portrait
+  if (vw > vh) return canvas180(video, vw, vh, quality)
+
+  const angle = window.screen?.orientation?.angle ?? 0
 
   const canvas = document.createElement('canvas')
   const ctx = canvas.getContext('2d')
   if (!ctx) throw new Error('Canvas 2D no disponible')
 
-  if (isLandscape) {
-    // Rotar 90° CW para entregar siempre en portrait
-    canvas.width  = vh
-    canvas.height = vw
-    ctx.translate(vh, 0)
-    ctx.rotate(Math.PI / 2)
+  if (angle === 180) {
+    // Portrait invertido: rotar 180° para que la imagen llegue correcta a n8n
+    canvas.width  = vw
+    canvas.height = vh
+    ctx.translate(vw, vh)
+    ctx.rotate(Math.PI)
     ctx.drawImage(video, 0, 0, vw, vh)
   } else {
     canvas.width  = vw
@@ -45,6 +49,19 @@ function captureFrameFromVideo(video: HTMLVideoElement, quality = 0.85): string 
     ctx.drawImage(video, 0, 0)
   }
 
+  return canvas.toDataURL('image/jpeg', quality)
+}
+
+// Landscape recibido (no debería ocurrir) — rotar 90° CW y devolver portrait
+function canvas180(video: HTMLVideoElement, vw: number, vh: number, quality: number): string {
+  const canvas = document.createElement('canvas')
+  const ctx = canvas.getContext('2d')
+  if (!ctx) throw new Error('Canvas 2D no disponible')
+  canvas.width  = vh
+  canvas.height = vw
+  ctx.translate(vh, 0)
+  ctx.rotate(Math.PI / 2)
+  ctx.drawImage(video, 0, 0, vw, vh)
   return canvas.toDataURL('image/jpeg', quality)
 }
 
