@@ -130,6 +130,7 @@ export default function CameraView({
   }
 
   function startQrLoop() {
+    console.log('[QR] enableQR:', enableQR)
     if (qrActiveRef.current) return
     if (!videoRef.current) return
 
@@ -147,15 +148,21 @@ export default function CameraView({
 
     const video = videoRef.current
 
+    console.log('[QR] start loop')
+    console.log('[QR] video readyState:', video.readyState)
+    console.log('[QR] video size:', video.videoWidth, video.videoHeight)
+
     ;(async () => {
       while (qrActiveRef.current) {
         try {
+          console.log('[QR] scanning frame')
           const result = await reader.decodeOnceFromVideoElement(video)
 
           // Comprobar el flag DESPUÉS del await — puede haber cambiado mientras esperábamos
           if (!qrActiveRef.current) break
 
           const code = result.getText()
+          console.log('[QR] detected:', result?.getText?.())
           if (code && code !== lastDetected.current) {
             // 1. Parar el loop inmediatamente — ningún ciclo más puede ejecutarse
             qrActiveRef.current = false
@@ -171,8 +178,9 @@ export default function CameraView({
             // 4. Notificar al padre — él decide si el QR existe o no
             onQrDetected?.(code)
           }
-        } catch {
+        } catch (error) {
           // NotFoundException es el caso normal (sin QR en frame) — continuar
+          console.error('[QR] scan error:', error)
           if (!qrActiveRef.current) break
           await new Promise(r => setTimeout(r, 300))
         }
