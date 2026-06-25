@@ -20,9 +20,9 @@
     "semantic_hash": "0355276bc79439afe3c53e3a2470ca1e"
   },
   "package.json": {
-    "mtime": 1781391275.6561825,
-    "ast_hash": "f3520ce7257bbc56e61b77718a7e4f20",
-    "semantic_hash": "f3520ce7257bbc56e61b77718a7e4f20"
+    "mtime": 1782337119.4950821,
+    "ast_hash": "2c8aa146a80c304c4492266f00702cce",
+    "semantic_hash": ""
   },
   "skills-lock.json": {
     "mtime": 1780782410.350332,
@@ -155,9 +155,9 @@
     "semantic_hash": "41253769b39f96d7a261780740583824"
   },
   "src/hooks/useCamera.ts": {
-    "mtime": 1781203760.357795,
-    "ast_hash": "53bf19aea47da10641532529f1577b1b",
-    "semantic_hash": "53bf19aea47da10641532529f1577b1b"
+    "mtime": 1782339173.074624,
+    "ast_hash": "7ff4b6dd65fd7bbd6ca197ddf19c0193",
+    "semantic_hash": ""
   },
   "src/hooks/useStats.ts": {
     "mtime": 1780819536.7707098,
@@ -185,8 +185,8 @@
     "semantic_hash": "9f49e846f6f912bc87a54e522089c5f8"
   },
   "src/lib/n8n.ts": {
-    "mtime": 1782248752.5270355,
-    "ast_hash": "7715877376744839de78a299d92daace",
+    "mtime": 1782323902.2558122,
+    "ast_hash": "e6f8560eb97b477a2a0bd8bd1cddffb3",
     "semantic_hash": ""
   },
   "src/lib/storage.ts": {
@@ -245,9 +245,9 @@
     "semantic_hash": "f452ac969ae23fbb7abbaedd720dd277"
   },
   "src/pages/Scan.tsx": {
-    "mtime": 1782168326.537476,
-    "ast_hash": "3ee633b9a2e53b85a8b305fe69b0ad12",
-    "semantic_hash": "3ee633b9a2e53b85a8b305fe69b0ad12"
+    "mtime": 1782327089.0739994,
+    "ast_hash": "0f7952d9c1e39a619999ae0061689499",
+    "semantic_hash": ""
   },
   "src/pages/Sommelier.tsx": {
     "mtime": 1781388553.7561572,
@@ -682,6 +682,56 @@
   "docs/supabase.md": {
     "mtime": 1782169653.604036,
     "ast_hash": "c2fc9dde5bf083d857040fefe23c6108",
+    "semantic_hash": ""
+  },
+  "src/components/ui/CameraView.tsx": {
+    "mtime": 1782324330.1298854,
+    "ast_hash": "d610fd2bcf876cd93a0ba27c20eea8f1",
+    "semantic_hash": ""
+  },
+  "src/lib/captureSource.ts": {
+    "mtime": 1782327099.3315897,
+    "ast_hash": "d3bdc4654ed9ddb3ef0198b065e097bf",
+    "semantic_hash": ""
+  },
+  "docs/qa/V1.3.1a-camera-validation.md": {
+    "mtime": 1782323828.4823852,
+    "ast_hash": "37bc02789e6df7dfda4e1c9442521a82",
+    "semantic_hash": ""
+  },
+  "docs/handoff-2026-06-24.md": {
+    "mtime": 1782326472.5659537,
+    "ast_hash": "01b8ab5944d62917ee01760f05651194",
+    "semantic_hash": ""
+  },
+  "e2e/auth.spec.ts": {
+    "mtime": 1782337160.7130866,
+    "ast_hash": "1d922eb81311d2e553a8c13b6a922142",
+    "semantic_hash": ""
+  },
+  "e2e/bodega.spec.ts": {
+    "mtime": 1782337441.5662544,
+    "ast_hash": "e51feea56c397b202586ef4b9fec00c1",
+    "semantic_hash": ""
+  },
+  "e2e/helpers.ts": {
+    "mtime": 1782337107.8526251,
+    "ast_hash": "39d1f793dd9fc577e8cc3477731ffd65",
+    "semantic_hash": ""
+  },
+  "e2e/navigation.spec.ts": {
+    "mtime": 1782337408.3457768,
+    "ast_hash": "7719372897b5737d56e27087384db890",
+    "semantic_hash": ""
+  },
+  "playwright.config.ts": {
+    "mtime": 1782337387.6093194,
+    "ast_hash": "7e677e7a9f2fab82df8ed95eb90b1759",
+    "semantic_hash": ""
+  },
+  "playwright-report/index.html": {
+    "mtime": 1782338361.5280004,
+    "ast_hash": "3fd7354dfb2274453c7069e2e3b25ea6",
     "semantic_hash": ""
   }
 }

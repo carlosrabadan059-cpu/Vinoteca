@@ -1,7 +1,7 @@
 # Graph Report - Vinoteca  (2026-06-25)
 
 ## Corpus Check
-- 136 files · ~91,327 words
+- 136 files · ~91,245 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `bbca1f49`
+- Built from commit: `3ef9b585`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -410,7 +410,7 @@ Cohesion: 0.23
 Nodes (6): WineDetail(), WineState, Wine, TYPE_LABELS, WineCardProps, WineFormProps
 
 ## Knowledge Gaps
-- **523 isolated node(s):** `N8N_BASE`, `ScanIdentifyResponse`, `ScanResult`, `Step`, `STEPS` (+518 more)
+- **523 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+518 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **14 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -425,7 +425,7 @@ _Questions this graph is uniquely positioned to answer:_
   _High betweenness centrality (0.004) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `getDB()` (e.g. with `useSync()` and `syncQueue Function (main)`) actually correct?**
   _`getDB()` has 2 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `N8N_BASE`, `ScanIdentifyResponse`, `ScanResult` to the rest of the system?**
+- **What connects `name`, `private`, `version` to the rest of the system?**
   _524 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `UI Components & Design System` be split into smaller, more focused modules?**
   _Cohesion score 0.08912655971479501 - nodes in this community are weakly interconnected._
