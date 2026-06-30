@@ -31,6 +31,7 @@ function captureFrameFromVideo(video: HTMLVideoElement, quality = 0.85): string 
   if (vw > vh) return canvas180(video, vw, vh, quality)
 
   const angle = window.screen?.orientation?.angle ?? 0
+  console.log('[capture] vw:', vw, 'vh:', vh, 'orientation.angle:', angle, 'window.orientation:', (window as unknown as { orientation?: number }).orientation)
 
   const canvas = document.createElement('canvas')
   const ctx = canvas.getContext('2d')
