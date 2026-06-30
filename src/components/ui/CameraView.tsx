@@ -1,4 +1,4 @@
-import { useEffect, useRef, useReducer, useCallback } from 'react'
+import { useEffect, useRef, useReducer, useCallback, useState } from 'react'
 import { BrowserMultiFormatReader } from '@zxing/browser'
 import { theme } from '../../constants/theme'
 import type { CaptureSource } from '../../lib/captureSource'
@@ -210,12 +210,36 @@ export default function CameraView({
     }
   }, [source, state.status, onError])
 
+  const [previewRotation, setPreviewRotation] = useState(0)
+
   const handleConfirm = useCallback(() => {
     if (state.status !== 'PREVIEW') return
-    onCapture(state.dataUrl)
-  }, [state, onCapture])
+    if (previewRotation === 0) {
+      onCapture(state.dataUrl)
+      return
+    }
+    // Aplicar rotación acumulada al canvas antes de entregar
+    const img = new Image()
+    img.onload = () => {
+      const swap = previewRotation === 90 || previewRotation === 270
+      const canvas = document.createElement('canvas')
+      canvas.width  = swap ? img.height : img.width
+      canvas.height = swap ? img.width  : img.height
+      const ctx = canvas.getContext('2d')!
+      ctx.translate(canvas.width / 2, canvas.height / 2)
+      ctx.rotate((previewRotation * Math.PI) / 180)
+      ctx.drawImage(img, -img.width / 2, -img.height / 2)
+      onCapture(canvas.toDataURL('image/jpeg', 0.85))
+    }
+    img.src = state.dataUrl
+  }, [state, onCapture, previewRotation])
+
+  const handleRotate = useCallback(() => {
+    setPreviewRotation(r => (r + 180) % 360)
+  }, [])
 
   const handleRetake = useCallback(() => {
+    setPreviewRotation(0)
     dispatch({ type: 'RETAKE' })
   }, [])
 
@@ -249,6 +273,7 @@ export default function CameraView({
             src={state.dataUrl}
             alt="Foto capturada"
             className="absolute inset-0 w-full h-full object-cover"
+            style={{ transform: `rotate(${previewRotation}deg)`, transition: 'transform 300ms ease' }}
           />
         )}
 
@@ -387,7 +412,22 @@ export default function CameraView({
               <span style={{ fontSize: '0.65rem', color: theme.colors.cream }}>Usar foto</span>
             </button>
 
-            <div style={{ width: 48 }} />
+            {/* Rotar 180° */}
+            <button
+              onClick={handleRotate}
+              className="flex flex-col items-center gap-1"
+              style={{ color: theme.colors.muted }}
+            >
+              <div
+                className="flex items-center justify-center rounded-full"
+                style={{ width: 48, height: 48, border: `1px solid ${theme.colors.border}`, background: 'rgba(255,255,255,0.05)' }}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 2a10 10 0 1 0 10 10"/><polyline points="22 2 22 8 16 8"/>
+                </svg>
+              </div>
+              <span style={{ fontSize: '0.65rem' }}>Girar</span>
+            </button>
           </>
         ) : (
           /* Shutter — deshabilitado en QR_FOUND */
