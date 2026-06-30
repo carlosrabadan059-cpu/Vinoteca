@@ -30,7 +30,12 @@ function captureFrameFromVideo(video: HTMLVideoElement, quality = 0.85): string 
   // Ignorar frames landscape — siempre trabajamos en portrait
   if (vw > vh) return canvas180(video, vw, vh, quality)
 
-  const angle = window.screen?.orientation?.angle ?? 0
+  // iOS Safari ignora window.screen.orientation — usar window.orientation como fuente primaria
+  const _win = window as Window & { orientation?: number }
+  const angle: number =
+    typeof _win.orientation === 'number'
+      ? _win.orientation
+      : (window.screen?.orientation?.angle ?? 0)
 
   const canvas = document.createElement('canvas')
   const ctx = canvas.getContext('2d')
