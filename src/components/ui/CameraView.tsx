@@ -199,6 +199,8 @@ export default function CameraView({
         typeof _win.orientation === 'number'
           ? _win.orientation
           : (window.screen?.orientation?.angle ?? 0)
+      console.log('[capture] window.orientation:', _win.orientation, '| screen.orientation.angle:', window.screen?.orientation?.angle, '| resolved angle:', angle)
+      console.log('[capture] video size:', videoRef.current.videoWidth, 'x', videoRef.current.videoHeight)
       const dataUrl = await source.captureFrame(videoRef.current, angle)
       dispatch({ type: 'CAPTURE', dataUrl })
     } catch (err) {
