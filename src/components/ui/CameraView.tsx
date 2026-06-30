@@ -193,7 +193,13 @@ export default function CameraView({
     if (!videoRef.current) return
     if (state.status !== 'ACTIVE' && state.status !== 'SCANNING_QR') return
     try {
-      const dataUrl = await source.captureFrame(videoRef.current)
+      // Leer ángulo AHORA — antes de que el usuario devuelva el teléfono a portrait normal
+      const _win = window as Window & { orientation?: number }
+      const angle =
+        typeof _win.orientation === 'number'
+          ? _win.orientation
+          : (window.screen?.orientation?.angle ?? 0)
+      const dataUrl = await source.captureFrame(videoRef.current, angle)
       dispatch({ type: 'CAPTURE', dataUrl })
     } catch (err) {
       const error = err instanceof Error ? err : new Error(String(err))

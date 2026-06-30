@@ -11,7 +11,7 @@ export interface CaptureSource {
    */
   stop(stream: MediaStream | null): void
   /** Captura una imagen y la devuelve como dataUrl JPEG */
-  captureFrame(video: HTMLVideoElement): Promise<string>
+  captureFrame(video: HTMLVideoElement, orientationAngle?: number): Promise<string>
   /**
    * Configuración de zoom deseada. La fuente decide si la aplica o la ignora.
    * Preparado para V1.3.2 — no se usa en V1.3.1.
@@ -23,19 +23,22 @@ export interface CaptureSource {
 
 // ── Implementación getUserMedia ────────────────────────────────────────────
 
-function captureFrameFromVideo(video: HTMLVideoElement, quality = 0.85): string {
+function captureFrameFromVideo(video: HTMLVideoElement, quality = 0.85, orientationAngle?: number): string {
   const vw = video.videoWidth
   const vh = video.videoHeight
 
   // Ignorar frames landscape — siempre trabajamos en portrait
   if (vw > vh) return canvas180(video, vw, vh, quality)
 
-  // iOS Safari ignora window.screen.orientation — usar window.orientation como fuente primaria
+  // El ángulo se pasa desde CameraView en el momento del shutter (antes de que el usuario
+  // devuelva el teléfono a portrait normal). Fallback a APIs del navegador si no se pasa.
   const _win = window as Window & { orientation?: number }
   const angle: number =
-    typeof _win.orientation === 'number'
-      ? _win.orientation
-      : (window.screen?.orientation?.angle ?? 0)
+    orientationAngle !== undefined
+      ? orientationAngle
+      : typeof _win.orientation === 'number'
+        ? _win.orientation
+        : (window.screen?.orientation?.angle ?? 0)
 
   const canvas = document.createElement('canvas')
   const ctx = canvas.getContext('2d')
@@ -93,8 +96,8 @@ export function getUserMediaSource(
       _track = null
     },
 
-    async captureFrame(video) {
-      return captureFrameFromVideo(video)
+    async captureFrame(video, orientationAngle) {
+      return captureFrameFromVideo(video, 0.85, orientationAngle)
     },
 
     async setZoom(level) {
