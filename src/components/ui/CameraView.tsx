@@ -130,62 +130,49 @@ export default function CameraView({
   }
 
   function startQrLoop() {
-    console.log('[QR] enableQR:', enableQR)
     if (qrActiveRef.current) return
     if (!videoRef.current) return
 
-    // Asegurar que el vídeo está reproduciendo antes de arrancar
-    if (videoRef.current.paused) {
-      videoRef.current.play().catch(() => {})
-    }
-
-    qrActiveRef.current = true
-    lastDetected.current = null
-
-    // Nueva instancia por cada arranque — no reutilizar entre loops
-    const reader = new BrowserMultiFormatReader()
-    readerRef.current = reader
-
     const video = videoRef.current
 
-    console.log('[QR] start loop')
-    console.log('[QR] video readyState:', video.readyState)
-    console.log('[QR] video size:', video.videoWidth, video.videoHeight)
+    const begin = () => {
+      if (!qrActiveRef.current) return
+      if (video.paused) video.play().catch(() => {})
 
-    ;(async () => {
-      while (qrActiveRef.current) {
-        try {
-          console.log('[QR] scanning frame')
-          const result = await reader.decodeOnceFromVideoElement(video)
+      lastDetected.current = null
+      const reader = new BrowserMultiFormatReader()
+      readerRef.current = reader
 
-          // Comprobar el flag DESPUÉS del await — puede haber cambiado mientras esperábamos
-          if (!qrActiveRef.current) break
+      ;(async () => {
+        while (qrActiveRef.current) {
+          try {
+            const result = await reader.decodeOnceFromVideoElement(video)
 
-          const code = result.getText()
-          console.log('[QR] detected:', result?.getText?.())
-          if (code && code !== lastDetected.current) {
-            // 1. Parar el loop inmediatamente — ningún ciclo más puede ejecutarse
-            qrActiveRef.current = false
-            readerRef.current = null
-
-            // 2. Congelar el vídeo — ZXing no puede leer frames nuevos
-            video.pause()
-
-            // 3. Actualizar estado visual a QR_FOUND
-            lastDetected.current = code
-            dispatch({ type: 'QR_FOUND' })
-
-            // 4. Notificar al padre — él decide si el QR existe o no
-            onQrDetected?.(code)
+            if (!qrActiveRef.current) break
+            const code = result.getText()
+            if (code && code !== lastDetected.current) {
+              qrActiveRef.current = false
+              readerRef.current = null
+              video.pause()
+              lastDetected.current = code
+              dispatch({ type: 'QR_FOUND' })
+              onQrDetected?.(code)
+            }
+          } catch {
+            if (!qrActiveRef.current) break
+            await new Promise(r => setTimeout(r, 300))
           }
-        } catch (error) {
-          // NotFoundException es el caso normal (sin QR en frame) — continuar
-          console.error('[QR] scan error:', error)
-          if (!qrActiveRef.current) break
-          await new Promise(r => setTimeout(r, 300))
         }
-      }
-    })()
+      })()
+    }
+
+    // Esperar a que el vídeo tenga frames antes de arrancar ZXing
+    qrActiveRef.current = true
+    if (video.readyState >= 2) {
+      begin()
+    } else {
+      video.addEventListener('canplay', begin, { once: true })
+    }
   }
 
 
