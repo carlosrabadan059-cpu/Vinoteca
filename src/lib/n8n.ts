@@ -1,4 +1,4 @@
-import type { ChatMessage } from '../types'
+import type { ChatMessage, IdentifyResponse, EnrichResponse } from '../types'
 
 const N8N_BASE = import.meta.env.VITE_N8N_BASE_URL as string
 
@@ -138,6 +138,28 @@ export async function callScanAnalizar(
     front,
     back: backImageDataUrl ? stripBase64Prefix(backImageDataUrl) : null,
   })
+}
+
+// ── V1.4: Identificación y enriquecimiento ───────────────────────────────────
+
+export async function callWineIdentify(
+  campos: {
+    nombre:      string | null
+    bodega:      string | null
+    anada:       number | null
+    region?:     string | null
+    denominacion?: string | null
+    uva?:        string | null
+  },
+  userId: string
+): Promise<IdentifyResponse> {
+  return post<IdentifyResponse>('vinoteca/wine/identify', { ...campos, user_id: userId })
+}
+
+export async function callWineEnrich(
+  wineUid: string
+): Promise<EnrichResponse> {
+  return post<EnrichResponse>('vinoteca/wine/enrich', { wine_uid: wineUid })
 }
 
 export async function callStatsInsight(

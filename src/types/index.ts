@@ -47,6 +47,65 @@ export interface ChatMessage {
   content: string
 }
 
+// ── V1.4: Identificación y enriquecimiento ───────────────────────────────────
+
+export type SourceType =
+  | 'official_winery'
+  | 'technical_sheet'
+  | 'do_oficial'
+  | 'distributor'
+  | 'vivino'
+  | 'other'
+
+export interface FieldTrace {
+  value:           string | string[] | null
+  source:          SourceType
+  source_url:      string
+  source_priority: 1 | 2 | 3 | 4 | 5 | 6
+  obtained_at:     string                   // ISO 8601
+  confidence:      'high' | 'medium' | 'low'
+  conflict?:       boolean
+  alternatives?:   Array<{
+    value:           string
+    source:          SourceType
+    source_priority: number
+  }>
+}
+
+export interface IdentifyResponse {
+  wine_uid:          string | null
+  identified_as:     string | null          // "Malleolus 2021 — Bodegas Emilio Moro"
+  confidence:        number                 // 0–1
+  confidence_reason: string | null
+  exists:            boolean                // ya está en la bodega del usuario
+  normalizado: {
+    nombre:      string | null
+    bodega:      string | null
+    anada:       number | null
+    region:      string | null
+    denominacion: string | null
+  }
+}
+
+export interface EnrichResponse {
+  wine_uid:         string
+  identified_as:    string | null
+  enrich_confidence: number                 // 0–1
+  sources: Array<{
+    type:     SourceType
+    url:      string
+    priority: number
+  }>
+  enriched: {
+    uva?:          FieldTrace
+    crianza?:      FieldTrace
+    alcohol?:      FieldTrace
+    temp_servicio?: FieldTrace
+    url_bodega?:   FieldTrace
+    imagen_url?:   FieldTrace
+  }
+}
+
 export interface SyncOperation {
   id: string
   table: 'wines' | 'tastings'
