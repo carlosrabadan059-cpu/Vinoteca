@@ -74,6 +74,7 @@ export interface FieldTrace {
 
 export interface IdentifyResponse {
   wine_uid:          string | null
+  wine_id:           string | null          // id de Supabase cuando exists=true
   identified_as:     string | null          // "Malleolus 2021 — Bodegas Emilio Moro"
   confidence:        number                 // 0–1
   confidence_reason: string | null

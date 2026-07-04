@@ -306,9 +306,10 @@ export default function Scan() {
         console.log(`[scan] identify ${elapsed(t2)} →`, { wine_uid: wineUid?.slice(0, 12), exists: identified.exists, confidence: identified.confidence, normalizado: identifiedAs })
 
         if (identified.exists) {
-          console.log(`[scan] vino existente — navegando. Total: ${elapsed(t0)}`)
+          const navId = identified.wine_id ?? wineUid
+          console.log(`[scan] vino existente — navegando. Total: ${elapsed(t0)}`, { navId })
           setAnalyzing(false)
-          navigate(`/bodega/${wineUid}`)
+          navigate(`/bodega/${navId}`)
           return
         }
       } catch (err) {
