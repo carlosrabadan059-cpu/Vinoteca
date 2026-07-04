@@ -245,8 +245,8 @@
     "semantic_hash": "f452ac969ae23fbb7abbaedd720dd277"
   },
   "src/pages/Scan.tsx": {
-    "mtime": 1782418020.2813768,
-    "ast_hash": "edbb9c8033eebfdea6a0119b92c68f16",
+    "mtime": 1782424521.701582,
+    "ast_hash": "1363575473e524407186b75bbb780d6c",
     "semantic_hash": ""
   },
   "src/pages/Sommelier.tsx": {
@@ -685,13 +685,13 @@
     "semantic_hash": ""
   },
   "src/components/ui/CameraView.tsx": {
-    "mtime": 1782324330.1298854,
-    "ast_hash": "d610fd2bcf876cd93a0ba27c20eea8f1",
+    "mtime": 1782426491.1012425,
+    "ast_hash": "23bf303121b05ff9b6df613bb926ecb5",
     "semantic_hash": ""
   },
   "src/lib/captureSource.ts": {
-    "mtime": 1782327099.3315897,
-    "ast_hash": "d3bdc4654ed9ddb3ef0198b065e097bf",
+    "mtime": 1782840521.2959335,
+    "ast_hash": "c5231e94b96a50a4ec0ad5fb6d407016",
     "semantic_hash": ""
   },
   "docs/qa/V1.3.1a-camera-validation.md": {

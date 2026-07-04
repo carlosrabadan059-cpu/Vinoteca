@@ -245,8 +245,8 @@
     "semantic_hash": "f452ac969ae23fbb7abbaedd720dd277"
   },
   "src/pages/Scan.tsx": {
-    "mtime": 1782418020.2813768,
-    "ast_hash": "edbb9c8033eebfdea6a0119b92c68f16",
+    "mtime": 1783197129.4302373,
+    "ast_hash": "ff4d146eb4e7ec695cf514386329e053",
     "semantic_hash": ""
   },
   "src/pages/Sommelier.tsx": {
@@ -685,13 +685,13 @@
     "semantic_hash": ""
   },
   "src/components/ui/CameraView.tsx": {
-    "mtime": 1782324330.1298854,
-    "ast_hash": "d610fd2bcf876cd93a0ba27c20eea8f1",
+    "mtime": 1783197060.9578338,
+    "ast_hash": "5be9c7e428f073d10aa8cc20abf1fb52",
     "semantic_hash": ""
   },
   "src/lib/captureSource.ts": {
-    "mtime": 1782327099.3315897,
-    "ast_hash": "d3bdc4654ed9ddb3ef0198b065e097bf",
+    "mtime": 1782840788.9901466,
+    "ast_hash": "a54a1d16203b90ce4d908834a6b0d974",
     "semantic_hash": ""
   },
   "docs/qa/V1.3.1a-camera-validation.md": {
@@ -732,6 +732,16 @@
   "playwright-report/index.html": {
     "mtime": 1782338361.5280004,
     "ast_hash": "3fd7354dfb2274453c7069e2e3b25ea6",
+    "semantic_hash": ""
+  },
+  "docs/handoff-2026-06-25.md": {
+    "mtime": 1782422431.7037177,
+    "ast_hash": "b01cebd9a99c4a26caa56bb99218f281",
+    "semantic_hash": ""
+  },
+  "docs/handoff-2026-07-04.md": {
+    "mtime": 1783200289.5052323,
+    "ast_hash": "3f3a3c779b6f903d990ec61b062a9a2c",
     "semantic_hash": ""
   }
 }

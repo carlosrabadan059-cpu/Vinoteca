@@ -257,265 +257,49 @@
   },
   "nodes": [
     {
-      "label": "handoff-2026-07-04.md",
-      "file_type": "document",
-      "source_file": "docs/handoff-2026-07-04.md",
-      "source_location": "L1",
-      "id": "docs_handoff_2026_07_04",
-      "community": 7,
-      "norm_label": "handoff-2026-07-04.md"
-    },
-    {
-      "label": "Handoff \u2014 2026-07-04",
-      "file_type": "document",
-      "source_file": "docs/handoff-2026-07-04.md",
-      "source_location": "L1",
-      "id": "docs_handoff_2026_07_04_handoff_2026_07_04",
-      "community": 7,
-      "norm_label": "handoff \u2014 2026-07-04"
-    },
-    {
-      "label": "Estado del proyecto",
-      "file_type": "document",
-      "source_file": "docs/handoff-2026-07-04.md",
-      "source_location": "L3",
-      "id": "docs_handoff_2026_07_04_estado_del_proyecto",
-      "community": 7,
-      "norm_label": "estado del proyecto"
-    },
-    {
-      "label": "Lo que se hizo en esta sesi\u00f3n",
-      "file_type": "document",
-      "source_file": "docs/handoff-2026-07-04.md",
-      "source_location": "L7",
-      "id": "docs_handoff_2026_07_04_lo_que_se_hizo_en_esta_sesi\u00f3n",
-      "community": 7,
-      "norm_label": "lo que se hizo en esta sesion"
-    },
-    {
-      "label": "1. Correcci\u00f3n de orientaci\u00f3n 180\u00b0 (retrato invertido)",
-      "file_type": "document",
-      "source_file": "docs/handoff-2026-07-04.md",
-      "source_location": "L9",
-      "id": "docs_handoff_2026_07_04_1_correcci\u00f3n_de_orientaci\u00f3n_180_retrato_invertido",
-      "community": 7,
-      "norm_label": "1. correccion de orientacion 180\u00b0 (retrato invertido)"
-    },
-    {
-      "label": "2. Eliminaci\u00f3n completa del QR",
-      "file_type": "document",
-      "source_file": "docs/handoff-2026-07-04.md",
-      "source_location": "L18",
-      "id": "docs_handoff_2026_07_04_2_eliminaci\u00f3n_completa_del_qr",
-      "community": 7,
-      "norm_label": "2. eliminacion completa del qr"
-    },
-    {
-      "label": "3. Problema de cach\u00e9 PWA (pendiente en el dispositivo del usuario)",
-      "file_type": "document",
-      "source_file": "docs/handoff-2026-07-04.md",
-      "source_location": "L42",
-      "id": "docs_handoff_2026_07_04_3_problema_de_cach\u00e9_pwa_pendiente_en_el_dispositivo_del_usuario",
-      "community": 7,
-      "norm_label": "3. problema de cache pwa (pendiente en el dispositivo del usuario)"
-    },
-    {
-      "label": "Estado actual de los archivos clave",
-      "file_type": "document",
-      "source_file": "docs/handoff-2026-07-04.md",
-      "source_location": "L47",
-      "id": "docs_handoff_2026_07_04_estado_actual_de_los_archivos_clave",
-      "community": 7,
-      "norm_label": "estado actual de los archivos clave"
-    },
-    {
-      "label": "Ideas para la pr\u00f3xima sesi\u00f3n",
-      "file_type": "document",
-      "source_file": "docs/handoff-2026-07-04.md",
-      "source_location": "L55",
-      "id": "docs_handoff_2026_07_04_ideas_para_la_pr\u00f3xima_sesi\u00f3n",
-      "community": 7,
-      "norm_label": "ideas para la proxima sesion"
-    },
-    {
-      "label": "Reglas arquitect\u00f3nicas a respetar",
-      "file_type": "document",
-      "source_file": "docs/handoff-2026-07-04.md",
-      "source_location": "L65",
-      "id": "docs_handoff_2026_07_04_reglas_arquitect\u00f3nicas_a_respetar",
-      "community": 7,
-      "norm_label": "reglas arquitectonicas a respetar"
-    },
-    {
-      "label": "Suggested skills",
-      "file_type": "document",
-      "source_file": "docs/handoff-2026-07-04.md",
-      "source_location": "L73",
-      "id": "docs_handoff_2026_07_04_suggested_skills",
-      "community": 7,
-      "norm_label": "suggested skills"
-    },
-    {
-      "label": "CameraView.tsx",
-      "file_type": "code",
-      "source_file": "src/components/ui/CameraView.tsx",
-      "source_location": "L1",
-      "community": 25,
-      "norm_label": "cameraview.tsx",
-      "id": "ui_cameraview"
-    },
-    {
-      "label": "CameraState",
-      "file_type": "code",
-      "source_file": "src/components/ui/CameraView.tsx",
-      "source_location": "L7",
-      "community": 25,
-      "norm_label": "camerastate",
-      "id": "ui_cameraview_camerastate"
-    },
-    {
-      "label": "CameraAction",
-      "file_type": "code",
-      "source_file": "src/components/ui/CameraView.tsx",
-      "source_location": "L14",
-      "community": 25,
-      "norm_label": "cameraaction",
-      "id": "ui_cameraview_cameraaction"
-    },
-    {
-      "label": "cameraReducer()",
-      "file_type": "code",
-      "source_file": "src/components/ui/CameraView.tsx",
-      "source_location": "L21",
-      "community": 25,
-      "norm_label": "camerareducer()",
-      "id": "ui_cameraview_camerareducer"
-    },
-    {
-      "label": "CameraViewProps",
-      "file_type": "code",
-      "source_file": "src/components/ui/CameraView.tsx",
-      "source_location": "L38",
-      "community": 25,
-      "norm_label": "cameraviewprops",
-      "id": "ui_cameraview_cameraviewprops"
-    },
-    {
-      "label": "CameraView()",
-      "file_type": "code",
-      "source_file": "src/components/ui/CameraView.tsx",
-      "source_location": "L48",
-      "community": 25,
-      "norm_label": "cameraview()",
-      "id": "ui_cameraview_cameraview"
-    },
-    {
-      "label": "Scan.tsx",
-      "file_type": "code",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L1",
-      "community": 8,
-      "norm_label": "scan.tsx",
-      "id": "pages_scan"
-    },
-    {
-      "label": "Step",
-      "file_type": "code",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L18",
-      "community": 8,
-      "norm_label": "step",
-      "id": "pages_scan_step"
-    },
-    {
-      "label": "STEPS",
-      "file_type": "code",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L20",
-      "community": 8,
-      "norm_label": "steps",
-      "id": "pages_scan_steps"
-    },
-    {
-      "label": "stepIndex()",
-      "file_type": "code",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L22",
-      "community": 8,
-      "norm_label": "stepindex()",
-      "id": "pages_scan_stepindex"
-    },
-    {
-      "label": "BarrelHero()",
-      "file_type": "code",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L27",
-      "community": 8,
-      "norm_label": "barrelhero()",
-      "id": "pages_scan_barrelhero"
-    },
-    {
-      "label": "CameraButton()",
-      "file_type": "code",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L73",
-      "community": 8,
-      "norm_label": "camerabutton()",
-      "id": "pages_scan_camerabutton"
-    },
-    {
-      "label": "Scan()",
-      "file_type": "code",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L128",
-      "community": 8,
-      "norm_label": "scan()",
-      "id": "pages_scan_scan"
-    },
-    {
       "label": "captureSource.ts",
       "file_type": "code",
       "source_file": "src/lib/captureSource.ts",
       "source_location": "L1",
-      "community": 25,
-      "norm_label": "capturesource.ts",
-      "id": "lib_capturesource"
+      "id": "lib_capturesource",
+      "community": 8,
+      "norm_label": "capturesource.ts"
     },
     {
       "label": "CaptureSource",
       "file_type": "code",
       "source_file": "src/lib/captureSource.ts",
       "source_location": "L1",
-      "community": 25,
-      "norm_label": "capturesource",
-      "id": "lib_capturesource_capturesource"
+      "id": "lib_capturesource_capturesource",
+      "community": 8,
+      "norm_label": "capturesource"
     },
     {
       "label": "captureFrameFromVideo()",
       "file_type": "code",
       "source_file": "src/lib/captureSource.ts",
       "source_location": "L26",
-      "community": 25,
-      "norm_label": "captureframefromvideo()",
-      "id": "lib_capturesource_captureframefromvideo"
+      "id": "lib_capturesource_captureframefromvideo",
+      "community": 8,
+      "norm_label": "captureframefromvideo()"
     },
     {
       "label": "canvas180()",
       "file_type": "code",
       "source_file": "src/lib/captureSource.ts",
-      "source_location": "L64",
-      "community": 25,
-      "norm_label": "canvas180()",
-      "id": "lib_capturesource_canvas180"
+      "source_location": "L61",
+      "id": "lib_capturesource_canvas180",
+      "community": 8,
+      "norm_label": "canvas180()"
     },
     {
       "label": "getUserMediaSource()",
       "file_type": "code",
       "source_file": "src/lib/captureSource.ts",
-      "source_location": "L76",
+      "source_location": "L73",
+      "id": "lib_capturesource_getusermediasource",
       "community": 8,
-      "norm_label": "getusermediasource()",
-      "id": "lib_capturesource_getusermediasource"
+      "norm_label": "getusermediasource()"
     },
     {
       "label": "handoff-2026-06-25.md",
@@ -603,7 +387,7 @@
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
       "source_location": "L1",
-      "community": 45,
+      "community": 2,
       "norm_label": "n8n.ts",
       "id": "lib_n8n"
     },
@@ -612,7 +396,7 @@
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
       "source_location": "L3",
-      "community": 45,
+      "community": 2,
       "norm_label": "n8n_base",
       "id": "lib_n8n_n8n_base"
     },
@@ -621,7 +405,7 @@
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
       "source_location": "L5",
-      "community": 45,
+      "community": 2,
       "norm_label": "scanidentifyresponse",
       "id": "lib_n8n_scanidentifyresponse"
     },
@@ -630,7 +414,7 @@
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
       "source_location": "L9",
-      "community": 45,
+      "community": 2,
       "norm_label": "scanresult",
       "id": "lib_n8n_scanresult"
     },
@@ -639,7 +423,7 @@
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
       "source_location": "L29",
-      "community": 45,
+      "community": 2,
       "norm_label": "winecollection",
       "id": "lib_n8n_winecollection"
     },
@@ -648,7 +432,7 @@
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
       "source_location": "L39",
-      "community": 45,
+      "community": 2,
       "norm_label": "post()",
       "id": "lib_n8n_post"
     },
@@ -657,7 +441,7 @@
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
       "source_location": "L73",
-      "community": 45,
+      "community": 2,
       "norm_label": "callsommelierchat()",
       "id": "lib_n8n_callsommelierchat"
     },
@@ -666,7 +450,7 @@
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
       "source_location": "L86",
-      "community": 45,
+      "community": 2,
       "norm_label": "callmaridaje()",
       "id": "lib_n8n_callmaridaje"
     },
@@ -675,7 +459,7 @@
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
       "source_location": "L98",
-      "community": 45,
+      "community": 2,
       "norm_label": "callenriquecimiento()",
       "id": "lib_n8n_callenriquecimiento"
     },
@@ -684,7 +468,7 @@
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
       "source_location": "L110",
-      "community": 45,
+      "community": 2,
       "norm_label": "statspayload",
       "id": "lib_n8n_statspayload"
     },
@@ -693,7 +477,7 @@
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
       "source_location": "L120",
-      "community": 45,
+      "community": 2,
       "norm_label": "stripbase64prefix()",
       "id": "lib_n8n_stripbase64prefix"
     },
@@ -702,7 +486,7 @@
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
       "source_location": "L124",
-      "community": 45,
+      "community": 2,
       "norm_label": "callscanidentificar()",
       "id": "lib_n8n_callscanidentificar"
     },
@@ -711,7 +495,7 @@
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
       "source_location": "L132",
-      "community": 45,
+      "community": 2,
       "norm_label": "callscanidentificarqr()",
       "id": "lib_n8n_callscanidentificarqr"
     },
@@ -720,7 +504,7 @@
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
       "source_location": "L139",
-      "community": 45,
+      "community": 2,
       "norm_label": "callscananalizar()",
       "id": "lib_n8n_callscananalizar"
     },
@@ -729,16 +513,79 @@
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
       "source_location": "L150",
-      "community": 45,
+      "community": 2,
       "norm_label": "callstatsinsight()",
       "id": "lib_n8n_callstatsinsight"
+    },
+    {
+      "label": "Scan.tsx",
+      "file_type": "code",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L1",
+      "community": 8,
+      "norm_label": "scan.tsx",
+      "id": "pages_scan"
+    },
+    {
+      "label": "Step",
+      "file_type": "code",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L18",
+      "community": 8,
+      "norm_label": "step",
+      "id": "pages_scan_step"
+    },
+    {
+      "label": "STEPS",
+      "file_type": "code",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L20",
+      "community": 8,
+      "norm_label": "steps",
+      "id": "pages_scan_steps"
+    },
+    {
+      "label": "stepIndex()",
+      "file_type": "code",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L22",
+      "community": 8,
+      "norm_label": "stepindex()",
+      "id": "pages_scan_stepindex"
+    },
+    {
+      "label": "BarrelHero()",
+      "file_type": "code",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L27",
+      "community": 8,
+      "norm_label": "barrelhero()",
+      "id": "pages_scan_barrelhero"
+    },
+    {
+      "label": "CameraButton()",
+      "file_type": "code",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L73",
+      "community": 8,
+      "norm_label": "camerabutton()",
+      "id": "pages_scan_camerabutton"
+    },
+    {
+      "label": "Scan()",
+      "file_type": "code",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L128",
+      "community": 8,
+      "norm_label": "scan()",
+      "id": "pages_scan_scan"
     },
     {
       "label": "useCamera.ts",
       "file_type": "code",
       "source_file": "src/hooks/useCamera.ts",
       "source_location": "L1",
-      "community": 71,
+      "community": 8,
       "norm_label": "usecamera.ts",
       "id": "hooks_usecamera"
     },
@@ -747,7 +594,7 @@
       "file_type": "code",
       "source_file": "src/hooks/useCamera.ts",
       "source_location": "L1",
-      "community": 71,
+      "community": 8,
       "norm_label": "pickfile()",
       "id": "hooks_usecamera_pickfile"
     },
@@ -756,7 +603,7 @@
       "file_type": "code",
       "source_file": "src/hooks/useCamera.ts",
       "source_location": "L30",
-      "community": 71,
+      "community": 8,
       "norm_label": "readexiforientation()",
       "id": "hooks_usecamera_readexiforientation"
     },
@@ -765,7 +612,7 @@
       "file_type": "code",
       "source_file": "src/hooks/useCamera.ts",
       "source_location": "L63",
-      "community": 71,
+      "community": 8,
       "norm_label": "compressimage()",
       "id": "hooks_usecamera_compressimage"
     },
@@ -774,7 +621,7 @@
       "file_type": "code",
       "source_file": "src/hooks/useCamera.ts",
       "source_location": "L95",
-      "community": 71,
+      "community": 8,
       "norm_label": "usecamera()",
       "id": "hooks_usecamera_usecamera"
     },
@@ -1346,6 +1193,60 @@
       "id": "docs_handoff_2026_06_24_referencias_r\u00e1pidas"
     },
     {
+      "label": "CameraView.tsx",
+      "file_type": "code",
+      "source_file": "src/components/ui/CameraView.tsx",
+      "source_location": "L1",
+      "community": 8,
+      "norm_label": "cameraview.tsx",
+      "id": "ui_cameraview"
+    },
+    {
+      "label": "CameraState",
+      "file_type": "code",
+      "source_file": "src/components/ui/CameraView.tsx",
+      "source_location": "L8",
+      "community": 8,
+      "norm_label": "camerastate",
+      "id": "ui_cameraview_camerastate"
+    },
+    {
+      "label": "CameraAction",
+      "file_type": "code",
+      "source_file": "src/components/ui/CameraView.tsx",
+      "source_location": "L17",
+      "community": 8,
+      "norm_label": "cameraaction",
+      "id": "ui_cameraview_cameraaction"
+    },
+    {
+      "label": "cameraReducer()",
+      "file_type": "code",
+      "source_file": "src/components/ui/CameraView.tsx",
+      "source_location": "L26",
+      "community": 8,
+      "norm_label": "camerareducer()",
+      "id": "ui_cameraview_camerareducer"
+    },
+    {
+      "label": "CameraViewProps",
+      "file_type": "code",
+      "source_file": "src/components/ui/CameraView.tsx",
+      "source_location": "L51",
+      "community": 8,
+      "norm_label": "cameraviewprops",
+      "id": "ui_cameraview_cameraviewprops"
+    },
+    {
+      "label": "CameraView()",
+      "file_type": "code",
+      "source_file": "src/components/ui/CameraView.tsx",
+      "source_location": "L63",
+      "community": 8,
+      "norm_label": "cameraview()",
+      "id": "ui_cameraview_cameraview"
+    },
+    {
       "label": "V1.3.1a-camera-validation.md",
       "file_type": "document",
       "source_file": "docs/qa/V1.3.1a-camera-validation.md",
@@ -1699,7 +1600,7 @@
       "file_type": "code",
       "source_file": "src/components/ui/AnalysisProgress.tsx",
       "source_location": "L1",
-      "community": 0,
+      "community": 8,
       "norm_label": "analysisprogress.tsx",
       "id": "ui_analysisprogress"
     },
@@ -1708,7 +1609,7 @@
       "file_type": "code",
       "source_file": "src/components/ui/AnalysisProgress.tsx",
       "source_location": "L5",
-      "community": 0,
+      "community": 8,
       "norm_label": "analysisprogressprops",
       "id": "ui_analysisprogress_analysisprogressprops"
     },
@@ -1717,7 +1618,7 @@
       "file_type": "code",
       "source_file": "src/components/ui/AnalysisProgress.tsx",
       "source_location": "L13",
-      "community": 0,
+      "community": 8,
       "norm_label": "phases_identifying",
       "id": "ui_analysisprogress_phases_identifying"
     },
@@ -1726,7 +1627,7 @@
       "file_type": "code",
       "source_file": "src/components/ui/AnalysisProgress.tsx",
       "source_location": "L19",
-      "community": 0,
+      "community": 8,
       "norm_label": "phases_analyzing",
       "id": "ui_analysisprogress_phases_analyzing"
     },
@@ -1735,7 +1636,7 @@
       "file_type": "code",
       "source_file": "src/components/ui/AnalysisProgress.tsx",
       "source_location": "L30",
-      "community": 0,
+      "community": 8,
       "norm_label": "analysisprogress()",
       "id": "ui_analysisprogress_analysisprogress"
     },
@@ -1744,7 +1645,7 @@
       "file_type": "code",
       "source_file": "src/components/ui/Badge.tsx",
       "source_location": "L1",
-      "community": 85,
+      "community": 0,
       "norm_label": "badge.tsx",
       "id": "ui_badge"
     },
@@ -1753,7 +1654,7 @@
       "file_type": "code",
       "source_file": "src/components/ui/Badge.tsx",
       "source_location": "L3",
-      "community": 85,
+      "community": 0,
       "norm_label": "badgeprops",
       "id": "ui_badge_badgeprops"
     },
@@ -1762,7 +1663,7 @@
       "file_type": "code",
       "source_file": "src/components/ui/Badge.tsx",
       "source_location": "L8",
-      "community": 85,
+      "community": 0,
       "norm_label": "badge()",
       "id": "ui_badge_badge"
     },
@@ -1798,7 +1699,7 @@
       "file_type": "code",
       "source_file": "src/components/ui/Card.tsx",
       "source_location": "L1",
-      "community": 85,
+      "community": 0,
       "norm_label": "card.tsx",
       "id": "ui_card"
     },
@@ -1807,7 +1708,7 @@
       "file_type": "code",
       "source_file": "src/components/ui/Card.tsx",
       "source_location": "L3",
-      "community": 85,
+      "community": 0,
       "norm_label": "cardprops",
       "id": "ui_card_cardprops"
     },
@@ -1816,7 +1717,7 @@
       "file_type": "code",
       "source_file": "src/components/ui/Card.tsx",
       "source_location": "L9",
-      "community": 85,
+      "community": 0,
       "norm_label": "card()",
       "id": "ui_card_card"
     },
@@ -1897,7 +1798,7 @@
       "file_type": "code",
       "source_file": "src/components/ui/Layout.tsx",
       "source_location": "L1",
-      "community": 8,
+      "community": 7,
       "norm_label": "layout.tsx",
       "id": "ui_layout"
     },
@@ -1906,7 +1807,7 @@
       "file_type": "code",
       "source_file": "src/components/ui/Layout.tsx",
       "source_location": "L7",
-      "community": 8,
+      "community": 7,
       "norm_label": "tabs",
       "id": "ui_layout_tabs"
     },
@@ -1915,7 +1816,7 @@
       "file_type": "code",
       "source_file": "src/components/ui/Layout.tsx",
       "source_location": "L60",
-      "community": 8,
+      "community": 7,
       "norm_label": "layoutprops",
       "id": "ui_layout_layoutprops"
     },
@@ -1960,7 +1861,7 @@
       "file_type": "code",
       "source_file": "src/components/ui/Spinner.tsx",
       "source_location": "L1",
-      "community": 34,
+      "community": 84,
       "norm_label": "spinner.tsx",
       "id": "ui_spinner"
     },
@@ -1969,7 +1870,7 @@
       "file_type": "code",
       "source_file": "src/components/ui/Spinner.tsx",
       "source_location": "L1",
-      "community": 34,
+      "community": 84,
       "norm_label": "spinnerprops",
       "id": "ui_spinner_spinnerprops"
     },
@@ -1978,7 +1879,7 @@
       "file_type": "code",
       "source_file": "src/components/ui/Spinner.tsx",
       "source_location": "L5",
-      "community": 34,
+      "community": 84,
       "norm_label": "spinner()",
       "id": "ui_spinner_spinner"
     },
@@ -1987,7 +1888,7 @@
       "file_type": "code",
       "source_file": "src/components/ui/SuggestionChips.tsx",
       "source_location": "L1",
-      "community": 45,
+      "community": 0,
       "norm_label": "suggestionchips.tsx",
       "id": "ui_suggestionchips"
     },
@@ -1996,7 +1897,7 @@
       "file_type": "code",
       "source_file": "src/components/ui/SuggestionChips.tsx",
       "source_location": "L3",
-      "community": 45,
+      "community": 0,
       "norm_label": "suggestionchipsprops",
       "id": "ui_suggestionchips_suggestionchipsprops"
     },
@@ -2005,7 +1906,7 @@
       "file_type": "code",
       "source_file": "src/components/ui/SuggestionChips.tsx",
       "source_location": "L8",
-      "community": 45,
+      "community": 0,
       "norm_label": "suggestionchips()",
       "id": "ui_suggestionchips_suggestionchips"
     },
@@ -2194,7 +2095,7 @@
       "file_type": "code",
       "source_file": "src/components/wine/ImageCapture.tsx",
       "source_location": "L1",
-      "community": 71,
+      "community": 8,
       "norm_label": "imagecapture.tsx",
       "id": "wine_imagecapture"
     },
@@ -2203,7 +2104,7 @@
       "file_type": "code",
       "source_file": "src/components/wine/ImageCapture.tsx",
       "source_location": "L4",
-      "community": 71,
+      "community": 8,
       "norm_label": "imagecaptureprops",
       "id": "wine_imagecapture_imagecaptureprops"
     },
@@ -2212,7 +2113,7 @@
       "file_type": "code",
       "source_file": "src/components/wine/ImageCapture.tsx",
       "source_location": "L11",
-      "community": 71,
+      "community": 8,
       "norm_label": "imagecapture()",
       "id": "wine_imagecapture_imagecapture"
     },
@@ -2446,7 +2347,7 @@
       "file_type": "code",
       "source_file": "src/hooks/useAuth.ts",
       "source_location": "L1",
-      "community": 84,
+      "community": 3,
       "norm_label": "useauth.ts",
       "id": "hooks_useauth"
     },
@@ -2455,7 +2356,7 @@
       "file_type": "code",
       "source_file": "src/hooks/useAuth.ts",
       "source_location": "L5",
-      "community": 84,
+      "community": 3,
       "norm_label": "useauth()",
       "id": "hooks_useauth_useauth"
     },
@@ -2608,7 +2509,7 @@
       "file_type": "code",
       "source_file": "src/hooks/useTastings.ts",
       "source_location": "L16",
-      "community": 84,
+      "community": 34,
       "norm_label": "usetastings()",
       "id": "hooks_usetastings_usetastings"
     },
@@ -2617,7 +2518,7 @@
       "file_type": "code",
       "source_file": "src/hooks/useWines.ts",
       "source_location": "L1",
-      "community": 3,
+      "community": 84,
       "norm_label": "usewines.ts",
       "id": "hooks_usewines"
     },
@@ -2626,7 +2527,7 @@
       "file_type": "code",
       "source_file": "src/hooks/useWines.ts",
       "source_location": "L18",
-      "community": 3,
+      "community": 84,
       "norm_label": "winefilters",
       "id": "hooks_usewines_winefilters"
     },
@@ -2635,7 +2536,7 @@
       "file_type": "code",
       "source_file": "src/hooks/useWines.ts",
       "source_location": "L27",
-      "community": 84,
+      "community": 34,
       "norm_label": "usewines()",
       "id": "hooks_usewines_usewines"
     },
@@ -2653,7 +2554,7 @@
       "file_type": "code",
       "source_file": "src/lib/idb.ts",
       "source_location": "L7",
-      "community": 1,
+      "community": 83,
       "norm_label": "vinotecadb",
       "id": "lib_idb_vinotecadb"
     },
@@ -2734,7 +2635,7 @@
       "file_type": "code",
       "source_file": "src/lib/idb.ts",
       "source_location": "L68",
-      "community": 1,
+      "community": 83,
       "norm_label": "addtoqueue()",
       "id": "lib_idb_addtoqueue"
     },
@@ -2842,7 +2743,7 @@
       "file_type": "code",
       "source_file": "src/lib/storage.ts",
       "source_location": "L27",
-      "community": 3,
+      "community": 34,
       "norm_label": "fetchimageasdataurl()",
       "id": "lib_storage_fetchimageasdataurl"
     },
@@ -3166,7 +3067,7 @@
       "file_type": "code",
       "source_file": "src/pages/Sommelier.tsx",
       "source_location": "L1",
-      "community": 45,
+      "community": 7,
       "norm_label": "sommelier.tsx",
       "id": "pages_sommelier"
     },
@@ -3175,7 +3076,7 @@
       "file_type": "code",
       "source_file": "src/pages/Sommelier.tsx",
       "source_location": "L13",
-      "community": 45,
+      "community": 7,
       "norm_label": "suggestions",
       "id": "pages_sommelier_suggestions"
     },
@@ -3184,7 +3085,7 @@
       "file_type": "code",
       "source_file": "src/pages/Sommelier.tsx",
       "source_location": "L20",
-      "community": 45,
+      "community": 7,
       "norm_label": "maridaje_keywords",
       "id": "pages_sommelier_maridaje_keywords"
     },
@@ -3193,7 +3094,7 @@
       "file_type": "code",
       "source_file": "src/pages/Sommelier.tsx",
       "source_location": "L30",
-      "community": 45,
+      "community": 7,
       "norm_label": "do_keywords",
       "id": "pages_sommelier_do_keywords"
     },
@@ -3202,7 +3103,7 @@
       "file_type": "code",
       "source_file": "src/pages/Sommelier.tsx",
       "source_location": "L37",
-      "community": 45,
+      "community": 7,
       "norm_label": "buildwinecollection()",
       "id": "pages_sommelier_buildwinecollection"
     },
@@ -3211,7 +3112,7 @@
       "file_type": "code",
       "source_file": "src/pages/Sommelier.tsx",
       "source_location": "L49",
-      "community": 45,
+      "community": 7,
       "norm_label": "detectintent()",
       "id": "pages_sommelier_detectintent"
     },
@@ -3220,7 +3121,7 @@
       "file_type": "code",
       "source_file": "src/pages/Sommelier.tsx",
       "source_location": "L56",
-      "community": 45,
+      "community": 7,
       "norm_label": "extractplato()",
       "id": "pages_sommelier_extractplato"
     },
@@ -3229,7 +3130,7 @@
       "file_type": "code",
       "source_file": "src/pages/Sommelier.tsx",
       "source_location": "L66",
-      "community": 45,
+      "community": 7,
       "norm_label": "sommelier()",
       "id": "pages_sommelier_sommelier"
     },
@@ -3373,7 +3274,7 @@
       "file_type": "code",
       "source_file": "src/pages/TastingDetail.tsx",
       "source_location": "L51",
-      "community": 84,
+      "community": 34,
       "norm_label": "tastingdetail()",
       "id": "pages_tastingdetail_tastingdetail"
     },
@@ -3400,7 +3301,7 @@
       "file_type": "code",
       "source_file": "src/pages/WineDetail.tsx",
       "source_location": "L28",
-      "community": 84,
+      "community": 34,
       "norm_label": "winedetail()",
       "id": "pages_winedetail_winedetail"
     },
@@ -5632,7 +5533,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/to-prd/SKILL.md",
       "source_location": "L1",
-      "community": 5,
+      "community": 71,
       "norm_label": "skill.md",
       "id": "to_prd_skill"
     },
@@ -5641,7 +5542,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/to-prd/SKILL.md",
       "source_location": "L10",
-      "community": 5,
+      "community": 71,
       "norm_label": "process",
       "id": "to_prd_skill_process"
     },
@@ -5650,7 +5551,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/to-prd/SKILL.md",
       "source_location": "L22",
-      "community": 5,
+      "community": 71,
       "norm_label": "problem statement",
       "id": "to_prd_skill_problem_statement"
     },
@@ -5659,7 +5560,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/to-prd/SKILL.md",
       "source_location": "L26",
-      "community": 5,
+      "community": 71,
       "norm_label": "solution",
       "id": "to_prd_skill_solution"
     },
@@ -5668,7 +5569,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/to-prd/SKILL.md",
       "source_location": "L30",
-      "community": 5,
+      "community": 71,
       "norm_label": "user stories",
       "id": "to_prd_skill_user_stories"
     },
@@ -5677,7 +5578,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/to-prd/SKILL.md",
       "source_location": "L42",
-      "community": 5,
+      "community": 71,
       "norm_label": "implementation decisions",
       "id": "to_prd_skill_implementation_decisions"
     },
@@ -5686,7 +5587,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/to-prd/SKILL.md",
       "source_location": "L58",
-      "community": 5,
+      "community": 71,
       "norm_label": "testing decisions",
       "id": "to_prd_skill_testing_decisions"
     },
@@ -5695,7 +5596,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/to-prd/SKILL.md",
       "source_location": "L66",
-      "community": 5,
+      "community": 71,
       "norm_label": "out of scope",
       "id": "to_prd_skill_out_of_scope"
     },
@@ -5704,7 +5605,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/to-prd/SKILL.md",
       "source_location": "L70",
-      "community": 5,
+      "community": 71,
       "norm_label": "further notes",
       "id": "to_prd_skill_further_notes"
     },
@@ -5830,7 +5731,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/triage/OUT-OF-SCOPE.md",
       "source_location": "L1",
-      "community": 5,
+      "community": 87,
       "norm_label": "out-of-scope knowledge base",
       "id": "triage_out_of_scope_out_of_scope_knowledge_base"
     },
@@ -5839,7 +5740,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/triage/OUT-OF-SCOPE.md",
       "source_location": "L8",
-      "community": 5,
+      "community": 87,
       "norm_label": "directory structure",
       "id": "triage_out_of_scope_directory_structure"
     },
@@ -5848,7 +5749,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/triage/OUT-OF-SCOPE.md",
       "source_location": "L19",
-      "community": 5,
+      "community": 87,
       "norm_label": "file format",
       "id": "triage_out_of_scope_file_format"
     },
@@ -5857,7 +5758,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/triage/OUT-OF-SCOPE.md",
       "source_location": "L56",
-      "community": 5,
+      "community": 87,
       "norm_label": "naming the file",
       "id": "triage_out_of_scope_naming_the_file"
     },
@@ -5866,7 +5767,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/triage/OUT-OF-SCOPE.md",
       "source_location": "L60",
-      "community": 5,
+      "community": 87,
       "norm_label": "writing the reason",
       "id": "triage_out_of_scope_writing_the_reason"
     },
@@ -5875,7 +5776,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/triage/OUT-OF-SCOPE.md",
       "source_location": "L70",
-      "community": 5,
+      "community": 87,
       "norm_label": "when to check `.out-of-scope/`",
       "id": "triage_out_of_scope_when_to_check_out_of_scope"
     },
@@ -5884,7 +5785,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/triage/OUT-OF-SCOPE.md",
       "source_location": "L84",
-      "community": 5,
+      "community": 87,
       "norm_label": "when to write to `.out-of-scope/`",
       "id": "triage_out_of_scope_when_to_write_to_out_of_scope"
     },
@@ -5893,7 +5794,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/triage/OUT-OF-SCOPE.md",
       "source_location": "L95",
-      "community": 5,
+      "community": 87,
       "norm_label": "updating or removing out-of-scope files",
       "id": "triage_out_of_scope_updating_or_removing_out_of_scope_files"
     },
@@ -5911,7 +5812,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/triage/SKILL.md",
       "source_location": "L6",
-      "community": 5,
+      "community": 85,
       "norm_label": "triage",
       "id": "triage_skill_triage"
     },
@@ -5920,7 +5821,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/triage/SKILL.md",
       "source_location": "L16",
-      "community": 5,
+      "community": 85,
       "norm_label": "reference docs",
       "id": "triage_skill_reference_docs"
     },
@@ -5929,7 +5830,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/triage/SKILL.md",
       "source_location": "L21",
-      "community": 5,
+      "community": 85,
       "norm_label": "roles",
       "id": "triage_skill_roles"
     },
@@ -5938,7 +5839,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/triage/SKILL.md",
       "source_location": "L42",
-      "community": 5,
+      "community": 85,
       "norm_label": "invocation",
       "id": "triage_skill_invocation"
     },
@@ -5947,7 +5848,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/triage/SKILL.md",
       "source_location": "L51",
-      "community": 5,
+      "community": 85,
       "norm_label": "show what needs attention",
       "id": "triage_skill_show_what_needs_attention"
     },
@@ -5956,7 +5857,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/triage/SKILL.md",
       "source_location": "L61",
-      "community": 5,
+      "community": 85,
       "norm_label": "triage a specific issue",
       "id": "triage_skill_triage_a_specific_issue"
     },
@@ -5965,7 +5866,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/triage/SKILL.md",
       "source_location": "L79",
-      "community": 5,
+      "community": 85,
       "norm_label": "quick state override",
       "id": "triage_skill_quick_state_override"
     },
@@ -5974,7 +5875,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/triage/SKILL.md",
       "source_location": "L83",
-      "community": 5,
+      "community": 85,
       "norm_label": "needs-info template",
       "id": "triage_skill_needs_info_template"
     },
@@ -5983,7 +5884,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/triage/SKILL.md",
       "source_location": "L101",
-      "community": 5,
+      "community": 85,
       "norm_label": "resuming a previous session",
       "id": "triage_skill_resuming_a_previous_session"
     },
@@ -7198,7 +7099,7 @@
       "file_type": "document",
       "source_file": "docs/handoff-2026-06-10.md",
       "source_location": "L23",
-      "community": 37,
+      "community": 89,
       "norm_label": "estado actual del workflow n8n",
       "id": "docs_handoff_2026_06_10_estado_actual_del_workflow_n8n"
     },
@@ -7207,7 +7108,7 @@
       "file_type": "document",
       "source_file": "docs/handoff-2026-06-10.md",
       "source_location": "L29",
-      "community": 37,
+      "community": 89,
       "norm_label": "arquitectura del workflow (8 nodos)",
       "id": "docs_handoff_2026_06_10_arquitectura_del_workflow_8_nodos"
     },
@@ -7216,7 +7117,7 @@
       "file_type": "document",
       "source_file": "docs/handoff-2026-06-10.md",
       "source_location": "L58",
-      "community": 37,
+      "community": 89,
       "norm_label": "logica de \"extraer url imagen\"",
       "id": "docs_handoff_2026_06_10_l\u00f3gica_de_extraer_url_imagen"
     },
@@ -7225,7 +7126,7 @@
       "file_type": "document",
       "source_file": "docs/handoff-2026-06-10.md",
       "source_location": "L65",
-      "community": 37,
+      "community": 89,
       "norm_label": "prompt de analisis (preparar mensajes)",
       "id": "docs_handoff_2026_06_10_prompt_de_an\u00e1lisis_preparar_mensajes"
     },
@@ -7234,7 +7135,7 @@
       "file_type": "document",
       "source_file": "docs/handoff-2026-06-10.md",
       "source_location": "L68",
-      "community": 37,
+      "community": 89,
       "norm_label": "pendiente en n8n (accion manual)",
       "id": "docs_handoff_2026_06_10_pendiente_en_n8n_acci\u00f3n_manual"
     },
@@ -7504,7 +7405,7 @@
       "file_type": "document",
       "source_file": "docs/handoff-2026-06-12.md",
       "source_location": "L20",
-      "community": 87,
+      "community": 46,
       "norm_label": "estado actual",
       "id": "docs_handoff_2026_06_12_estado_actual"
     },
@@ -7513,7 +7414,7 @@
       "file_type": "document",
       "source_file": "docs/handoff-2026-06-12.md",
       "source_location": "L22",
-      "community": 87,
+      "community": 46,
       "norm_label": "flujo de escaneo (scan.tsx)",
       "id": "docs_handoff_2026_06_12_flujo_de_escaneo_scan_tsx"
     },
@@ -7522,7 +7423,7 @@
       "file_type": "document",
       "source_file": "docs/handoff-2026-06-12.md",
       "source_location": "L31",
-      "community": 87,
+      "community": 46,
       "norm_label": "winedetail.tsx",
       "id": "docs_handoff_2026_06_12_winedetail_tsx"
     },
@@ -7531,7 +7432,7 @@
       "file_type": "document",
       "source_file": "docs/handoff-2026-06-12.md",
       "source_location": "L36",
-      "community": 87,
+      "community": 46,
       "norm_label": "usewines.ts (fix `96b4790`)",
       "id": "docs_handoff_2026_06_12_usewines_ts_fix_96b4790"
     },
@@ -7540,7 +7441,7 @@
       "file_type": "document",
       "source_file": "docs/handoff-2026-06-12.md",
       "source_location": "L40",
-      "community": 87,
+      "community": 46,
       "norm_label": "wineform.tsx (fix `96b4790`)",
       "id": "docs_handoff_2026_06_12_wineform_tsx_fix_96b4790"
     },
@@ -8394,7 +8295,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 8,
       "norm_label": "animated overlay pattern",
       "id": "concept_animatedoverlay"
     },
@@ -8407,7 +8308,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 85,
+      "community": 0,
       "norm_label": "ui design system (theme-driven components)",
       "id": "concept_uidesignsystem"
     },
@@ -8433,7 +8334,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 71,
+      "community": 8,
       "norm_label": "imagecapture component",
       "id": "wine_imagecapture_component"
     },
@@ -8459,7 +8360,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 45,
+      "community": 2,
       "norm_label": "tastingchat component",
       "id": "wine_tastingchat_component"
     },
@@ -8472,7 +8373,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 45,
+      "community": 2,
       "norm_label": "tasting_context structured prompt",
       "id": "wine_tastingchat_tasting_context"
     },
@@ -8537,7 +8438,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 1,
+      "community": 83,
       "norm_label": "usetastings hook",
       "id": "hooks_usestastings_usetastings"
     },
@@ -8589,7 +8490,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 1,
+      "community": 3,
       "norm_label": "syncqueue function (main)",
       "id": "main_maintf_syncqueue"
     },
@@ -8667,7 +8568,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 45,
+      "community": 7,
       "norm_label": "sommelier intent routing (maridaje/enriquecimiento/chat)",
       "id": "concept_intent_routing"
     },
@@ -9044,7 +8945,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
+      "community": 25,
       "norm_label": "context.md - domain glossary",
       "id": "root_context_md"
     },
@@ -9057,7 +8958,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
+      "community": 25,
       "norm_label": "adr: ai assistants via n8n",
       "id": "adr_ai_assistants_n8n"
     },
@@ -9083,7 +8984,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
+      "community": 25,
       "norm_label": "adr: scan workflow via n8n",
       "id": "adr_scan_workflow_n8n"
     },
@@ -9148,7 +9049,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
+      "community": 25,
       "norm_label": "vino (wine record)",
       "id": "concept_vino"
     },
@@ -9161,7 +9062,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
+      "community": 25,
       "norm_label": "bodega (user wine cellar)",
       "id": "concept_bodega"
     },
@@ -9174,7 +9075,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
+      "community": 25,
       "norm_label": "cata (tasting session)",
       "id": "concept_cata"
     },
@@ -9187,7 +9088,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
+      "community": 25,
       "norm_label": "sommelier (ai assistant)",
       "id": "concept_sommelier"
     },
@@ -9200,7 +9101,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
+      "community": 25,
       "norm_label": "asistente de cata",
       "id": "concept_asistente_cata"
     },
@@ -9213,7 +9114,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
+      "community": 25,
       "norm_label": "scan workflow (n8n)",
       "id": "concept_scan_workflow"
     },
@@ -9226,7 +9127,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
+      "community": 25,
       "norm_label": "n8n webhook pattern",
       "id": "concept_n8n_webhook"
     },
@@ -9252,7 +9153,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
+      "community": 25,
       "norm_label": "supabase rls (row level security)",
       "id": "concept_supabase_rls"
     },
@@ -9560,630 +9461,6 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "docs/handoff-2026-07-04.md",
-      "source_location": "L1",
-      "weight": 1.0,
-      "source": "docs_handoff_2026_07_04",
-      "target": "docs_handoff_2026_07_04_handoff_2026_07_04",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "docs/handoff-2026-07-04.md",
-      "source_location": "L47",
-      "weight": 1.0,
-      "source": "docs_handoff_2026_07_04_handoff_2026_07_04",
-      "target": "docs_handoff_2026_07_04_estado_actual_de_los_archivos_clave",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "docs/handoff-2026-07-04.md",
-      "source_location": "L3",
-      "weight": 1.0,
-      "source": "docs_handoff_2026_07_04_handoff_2026_07_04",
-      "target": "docs_handoff_2026_07_04_estado_del_proyecto",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "docs/handoff-2026-07-04.md",
-      "source_location": "L55",
-      "weight": 1.0,
-      "source": "docs_handoff_2026_07_04_handoff_2026_07_04",
-      "target": "docs_handoff_2026_07_04_ideas_para_la_pr\u00f3xima_sesi\u00f3n",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "docs/handoff-2026-07-04.md",
-      "source_location": "L7",
-      "weight": 1.0,
-      "source": "docs_handoff_2026_07_04_handoff_2026_07_04",
-      "target": "docs_handoff_2026_07_04_lo_que_se_hizo_en_esta_sesi\u00f3n",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "docs/handoff-2026-07-04.md",
-      "source_location": "L65",
-      "weight": 1.0,
-      "source": "docs_handoff_2026_07_04_handoff_2026_07_04",
-      "target": "docs_handoff_2026_07_04_reglas_arquitect\u00f3nicas_a_respetar",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "docs/handoff-2026-07-04.md",
-      "source_location": "L73",
-      "weight": 1.0,
-      "source": "docs_handoff_2026_07_04_handoff_2026_07_04",
-      "target": "docs_handoff_2026_07_04_suggested_skills",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "docs/handoff-2026-07-04.md",
-      "source_location": "L9",
-      "weight": 1.0,
-      "source": "docs_handoff_2026_07_04_lo_que_se_hizo_en_esta_sesi\u00f3n",
-      "target": "docs_handoff_2026_07_04_1_correcci\u00f3n_de_orientaci\u00f3n_180_retrato_invertido",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "docs/handoff-2026-07-04.md",
-      "source_location": "L18",
-      "weight": 1.0,
-      "source": "docs_handoff_2026_07_04_lo_que_se_hizo_en_esta_sesi\u00f3n",
-      "target": "docs_handoff_2026_07_04_2_eliminaci\u00f3n_completa_del_qr",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "docs/handoff-2026-07-04.md",
-      "source_location": "L42",
-      "weight": 1.0,
-      "source": "docs_handoff_2026_07_04_lo_que_se_hizo_en_esta_sesi\u00f3n",
-      "target": "docs_handoff_2026_07_04_3_problema_de_cach\u00e9_pwa_pendiente_en_el_dispositivo_del_usuario",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
-      "target": "ui_cameraview"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/ui/CameraView.tsx",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "ui_cameraview",
-      "target": "constants_theme_theme"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/ui/CameraView.tsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "ui_cameraview",
-      "target": "lib_capturesource"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/ui/CameraView.tsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "ui_cameraview",
-      "target": "lib_capturesource_capturesource"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/ui/CameraView.tsx",
-      "source_location": "L15",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "ui_cameraview",
-      "target": "ui_cameraview_cameraaction"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/ui/CameraView.tsx",
-      "source_location": "L23",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "ui_cameraview",
-      "target": "ui_cameraview_camerareducer"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/ui/CameraView.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "ui_cameraview",
-      "target": "ui_cameraview_camerastate"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/ui/CameraView.tsx",
-      "source_location": "L60",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "ui_cameraview",
-      "target": "ui_cameraview_cameraview"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/ui/CameraView.tsx",
-      "source_location": "L46",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "ui_cameraview",
-      "target": "ui_cameraview_cameraviewprops"
-    },
-    {
-      "relation": "references",
-      "context": "field",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/ui/CameraView.tsx",
-      "source_location": "L47",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "ui_cameraview_cameraviewprops",
-      "target": "lib_capturesource_capturesource"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L12",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
-      "target": "constants_theme"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L12",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
-      "target": "constants_theme_theme"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
-      "target": "hooks_usecamera"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
-      "target": "hooks_usecamera_usecamera"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
-      "target": "hooks_usewines"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
-      "target": "hooks_usewines_usewines"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L12",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
-      "target": "lib_capturesource"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L12",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
-      "target": "lib_capturesource_getusermediasource"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
-      "target": "lib_n8n"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
-      "target": "lib_n8n_callscananalizar"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
-      "target": "lib_n8n_callscanidentificar"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
-      "target": "lib_n8n_callscanidentificarqr"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
-      "target": "lib_wineduplicates"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
-      "target": "lib_wineduplicates_findduplicatewine"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L25",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
-      "target": "pages_scan_barrelhero"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L71",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
-      "target": "pages_scan_camerabutton"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L126",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
-      "target": "pages_scan_scan"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L16",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
-      "target": "pages_scan_step"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L20",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
-      "target": "pages_scan_stepindex"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L18",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
-      "target": "pages_scan_steps"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L14",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
-      "target": "store_authstore"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L14",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
-      "target": "store_authstore_useauthstore"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L13",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
-      "target": "types_index"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L13",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
-      "target": "types_index_wine"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
-      "target": "ui_analysisprogress"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
-      "target": "ui_layout"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
-      "target": "ui_spinner"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
-      "target": "wine_duplicatewinedialog"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
-      "target": "wine_wineform"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/router/index.tsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "router_index",
-      "target": "pages_scan"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L301",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan_scan",
-      "target": "pages_scan_stepindex"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "341",
-      "weight": 1.0,
-      "source": "pages_scan_scan",
-      "target": "pages_scan_barrelhero"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "362",
-      "weight": 1.0,
-      "source": "pages_scan_scan",
-      "target": "pages_scan_camerabutton"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L129",
-      "weight": 1.0,
-      "source": "pages_scan_scan",
-      "target": "hooks_usecamera_usecamera"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L128",
-      "weight": 1.0,
-      "source": "pages_scan_scan",
-      "target": "hooks_usewines_usewines"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L493",
-      "weight": 1.0,
-      "source": "pages_scan_scan",
-      "target": "lib_capturesource_getusermediasource"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "14",
-      "weight": 1.0,
-      "source": "pages_scan_scan",
-      "target": "store_authstore_useauthstore"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "13",
-      "weight": 1.0,
-      "source": "pages_scan_scan",
-      "target": "types_index_wine"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/router/index.tsx",
-      "source_location": "42",
-      "weight": 1.0,
-      "source": "router_index_router",
-      "target": "pages_scan_scan"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
       "source_file": "src/lib/captureSource.ts",
       "source_location": "L56",
       "weight": 1.0,
@@ -10222,6 +9499,50 @@
       "target": "lib_capturesource_getusermediasource"
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "lib_capturesource"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/CameraView.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "ui_cameraview",
+      "target": "lib_capturesource"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/CameraView.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "ui_cameraview",
+      "target": "lib_capturesource_capturesource"
+    },
+    {
+      "relation": "references",
+      "context": "field",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/CameraView.tsx",
+      "source_location": "L47",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "ui_cameraview_cameraviewprops",
+      "target": "lib_capturesource_capturesource"
+    },
+    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
@@ -10231,6 +9552,28 @@
       "confidence_score": 1.0,
       "source": "lib_capturesource_captureframefromvideo",
       "target": "lib_capturesource_canvas180"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "lib_capturesource_getusermediasource"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L493",
+      "weight": 1.0,
+      "source": "pages_scan_scan",
+      "target": "lib_capturesource_getusermediasource"
     },
     {
       "relation": "contains",
@@ -10478,6 +9821,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "lib_n8n"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/pages/Sommelier.tsx",
       "source_location": "L11",
       "weight": 1.0,
@@ -10685,12 +10039,398 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "lib_n8n_callscanidentificar"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "lib_n8n_callscanidentificarqr"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "lib_n8n_callscananalizar"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/pages/Stats.tsx",
       "source_location": "L9",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "pages_stats",
       "target": "lib_n8n_callstatsinsight"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "constants_theme"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "constants_theme_theme"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "hooks_usecamera"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "hooks_usecamera_usecamera"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "hooks_usewines"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "hooks_usewines_usewines"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "lib_wineduplicates"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "lib_wineduplicates_findduplicatewine"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L25",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "pages_scan_barrelhero"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L71",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "pages_scan_camerabutton"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L126",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "pages_scan_scan"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L16",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "pages_scan_step"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "pages_scan_stepindex"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "pages_scan_steps"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "store_authstore"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "store_authstore_useauthstore"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "types_index"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "types_index_wine"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "ui_analysisprogress"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "ui_cameraview"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "ui_layout"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "ui_spinner"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "wine_duplicatewinedialog"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "wine_wineform"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/router/index.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "router_index",
+      "target": "pages_scan"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L301",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan_scan",
+      "target": "pages_scan_stepindex"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "341",
+      "weight": 1.0,
+      "source": "pages_scan_scan",
+      "target": "pages_scan_barrelhero"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "362",
+      "weight": 1.0,
+      "source": "pages_scan_scan",
+      "target": "pages_scan_camerabutton"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L129",
+      "weight": 1.0,
+      "source": "pages_scan_scan",
+      "target": "hooks_usecamera_usecamera"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L128",
+      "weight": 1.0,
+      "source": "pages_scan_scan",
+      "target": "hooks_usewines_usewines"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "14",
+      "weight": 1.0,
+      "source": "pages_scan_scan",
+      "target": "store_authstore_useauthstore"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "13",
+      "weight": 1.0,
+      "source": "pages_scan_scan",
+      "target": "types_index_wine"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/router/index.tsx",
+      "source_location": "42",
+      "weight": 1.0,
+      "source": "router_index_router",
+      "target": "pages_scan_scan"
     },
     {
       "relation": "contains",
@@ -11398,6 +11138,67 @@
       "confidence_score": 1.0,
       "source": "docs_handoff_2026_06_24_contexto_del_proyecto",
       "target": "docs_handoff_2026_06_24_n8n_endpoint"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/CameraView.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "ui_cameraview",
+      "target": "constants_theme_theme"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/CameraView.tsx",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "ui_cameraview",
+      "target": "ui_cameraview_cameraaction"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/CameraView.tsx",
+      "source_location": "L23",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "ui_cameraview",
+      "target": "ui_cameraview_camerareducer"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/CameraView.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "ui_cameraview",
+      "target": "ui_cameraview_camerastate"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/CameraView.tsx",
+      "source_location": "L60",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "ui_cameraview",
+      "target": "ui_cameraview_cameraview"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui/CameraView.tsx",
+      "source_location": "L46",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "ui_cameraview",
+      "target": "ui_cameraview_cameraviewprops"
     },
     {
       "relation": "contains",
@@ -24539,5 +24340,5 @@
       "source_file": "docs/handoff-2026-06-18.md"
     }
   ],
-  "built_at_commit": "5bfe6e0c58f2c2fdfc3831bb6b44029aace1697a"
+  "built_at_commit": "9c0af0e89f7dace96256fc7a706ab08c5243e622"
 }
