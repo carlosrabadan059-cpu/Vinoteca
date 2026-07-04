@@ -258,18 +258,24 @@ export default function Scan() {
     setAnalysisError(false)
     setNotWineError(false)
 
+    const t0 = performance.now()
+    const elapsed = (from: number) => `${((performance.now() - from) / 1000).toFixed(2)}s`
+
     // ── Fase 1: OCR completo (scan/analizar) ──────────────────────────────────
     setAnalysisPhase('analyzing')
     let scanResult: Awaited<ReturnType<typeof callScanAnalizar>> | null = null
+    const t1 = performance.now()
     try {
       scanResult = await callScanAnalizar(frontImage, backImage ?? undefined)
+      console.log(`[scan] OCR ${elapsed(t1)} →`, { nombre: scanResult.nombre, bodega: scanResult.bodega, anada: scanResult.anada, is_wine: scanResult.is_wine })
       if (scanResult.is_wine === false || (!scanResult.nombre && !scanResult.bodega)) {
         setAnalyzing(false)
         setStep('frontal')
         setNotWineError(true)
         return
       }
-    } catch {
+    } catch (err) {
+      console.error(`[scan] OCR error ${elapsed(t1)}`, err)
       setAnalyzing(false)
       setAnalysisWarn(true)
       setAnalysisError(true)
@@ -282,6 +288,7 @@ export default function Scan() {
     let identifiedAs: { nombre: string | null; bodega: string | null; anada: number | null; region: string | null; denominacion: string | null } | null = null
 
     if (navigator.onLine && user) {
+      const t2 = performance.now()
       try {
         const identified = await callWineIdentify(
           {
@@ -296,20 +303,23 @@ export default function Scan() {
         )
         wineUid      = identified.wine_uid
         identifiedAs = identified.normalizado
+        console.log(`[scan] identify ${elapsed(t2)} →`, { wine_uid: wineUid?.slice(0, 12), exists: identified.exists, confidence: identified.confidence, normalizado: identifiedAs })
 
         if (identified.exists) {
+          console.log(`[scan] vino existente — navegando. Total: ${elapsed(t0)}`)
           setAnalyzing(false)
           navigate(`/bodega/${wineUid}`)
           return
         }
-      } catch {
-        // identify falló — continuar con los datos del OCR sin normalizar
+      } catch (err) {
+        console.warn(`[scan] identify error ${elapsed(t2)} — usando OCR crudo`, err)
       }
     }
 
     // ── Fase 3: enrich (datos complementarios) ───────────────────────────────
     let enriched: Awaited<ReturnType<typeof callWineEnrich>>['enriched'] = {}
     if (navigator.onLine && wineUid && identifiedAs) {
+      const t3 = performance.now()
       try {
         const enrichResult = await callWineEnrich(wineUid, {
           nombre:       identifiedAs.nombre,
@@ -319,14 +329,15 @@ export default function Scan() {
           denominacion: identifiedAs.denominacion,
         })
         enriched = enrichResult.enriched
-      } catch {
-        // enrich falló — continuar sin datos complementarios
+        console.log(`[scan] enrich ${elapsed(t3)} →`, { confidence: enrichResult.enrich_confidence, campos: Object.keys(enriched) })
+      } catch (err) {
+        console.warn(`[scan] enrich error ${elapsed(t3)} — continuando sin datos complementarios`, err)
       }
+    } else if (!navigator.onLine) {
+      console.log('[scan] enrich omitido — sin conexión')
     }
 
     // ── Merge: identidad (fuente de verdad) + complementario (enriched) ───────
-    // La identidad normalizada tiene prioridad sobre el OCR crudo.
-    // Los campos de enriched solo rellenan vacíos, nunca sobreescriben identidad.
     const identity = identifiedAs ?? {
       nombre:       scanResult.nombre       ?? null,
       bodega:       scanResult.bodega       ?? null,
@@ -357,6 +368,8 @@ export default function Scan() {
       url_bodega:   (enriched.url_bodega?.value   as string | undefined) ?? scanResult.url_bodega   ?? undefined,
       descripcion:  scanResult.descripcion ?? undefined,
     }
+
+    console.log(`[scan] merge → render formulario. Total: ${elapsed(t0)}`, { fuente_identidad: identifiedAs ? 'identify' : 'ocr_crudo', campos_enriched: Object.keys(enriched), wineData })
 
     setFormData(wineData)
     setStudioUrl(scanResult.imagen_url ?? null)
