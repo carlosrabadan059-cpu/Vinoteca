@@ -157,9 +157,19 @@ export async function callWineIdentify(
 }
 
 export async function callWineEnrich(
-  wineUid: string
+  wineUid: string,
+  identifiedAs?: {
+    nombre:       string | null
+    bodega:       string | null
+    anada:        number | null
+    region?:      string | null
+    denominacion?: string | null
+  }
 ): Promise<EnrichResponse> {
-  return post<EnrichResponse>('vinoteca/wine/enrich', { wine_uid: wineUid })
+  return post<EnrichResponse>('vinoteca/wine/enrich', {
+    wine_uid:      wineUid,
+    identified_as: identifiedAs ?? null,
+  })
 }
 
 export async function callStatsInsight(

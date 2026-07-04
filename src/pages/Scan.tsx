@@ -6,7 +6,7 @@ import WineForm from '../components/wine/WineForm'
 import AnalysisProgress from '../components/ui/AnalysisProgress'
 import DuplicateWineDialog from '../components/wine/DuplicateWineDialog'
 import CameraView from '../components/ui/CameraView'
-import { callScanAnalizar, callScanIdentificar } from '../lib/n8n'
+import { callScanAnalizar, callWineIdentify, callWineEnrich } from '../lib/n8n'
 import { useWines } from '../hooks/useWines'
 import { useCamera } from '../hooks/useCamera'
 import { getUserMediaSource } from '../lib/captureSource'
@@ -252,27 +252,115 @@ export default function Scan() {
   async function proceedToReview() {
     if (!frontImage) return
     setStep('review')
+    setAnalyzing(true)
+    setFormData({})
+    setAnalysisWarn(false)
+    setAnalysisError(false)
+    setNotWineError(false)
 
-    // ── Fase 1: intentar identificar sin análisis completo ────────────────────
+    // ── Fase 1: OCR completo (scan/analizar) ──────────────────────────────────
+    setAnalysisPhase('analyzing')
+    let scanResult: Awaited<ReturnType<typeof callScanAnalizar>> | null = null
+    try {
+      scanResult = await callScanAnalizar(frontImage, backImage ?? undefined)
+      if (scanResult.is_wine === false || (!scanResult.nombre && !scanResult.bodega)) {
+        setAnalyzing(false)
+        setStep('frontal')
+        setNotWineError(true)
+        return
+      }
+    } catch {
+      setAnalyzing(false)
+      setAnalysisWarn(true)
+      setAnalysisError(true)
+      return
+    }
+
+    // ── Fase 2: identify (normalización + wine_uid) ───────────────────────────
+    setAnalysisPhase('identifying')
+    let wineUid: string | null = null
+    let identifiedAs: { nombre: string | null; bodega: string | null; anada: number | null; region: string | null; denominacion: string | null } | null = null
+
     if (navigator.onLine && user) {
-      setAnalysisPhase('identifying')
-      setAnalyzing(true)
-
       try {
-        const result = await callScanIdentificar(frontImage, user.id)
-        if (result.found) {
+        const identified = await callWineIdentify(
+          {
+            nombre:       scanResult.nombre       ?? null,
+            bodega:       scanResult.bodega       ?? null,
+            anada:        scanResult.anada        ?? null,
+            region:       scanResult.region       ?? null,
+            denominacion: scanResult.denominacion ?? null,
+            uva:          scanResult.uva          ?? null,
+          },
+          user.id
+        )
+        wineUid      = identified.wine_uid
+        identifiedAs = identified.normalizado
+
+        if (identified.exists) {
           setAnalyzing(false)
-          navigate(`/bodega/${result.wine_id}`)
+          navigate(`/bodega/${wineUid}`)
           return
         }
       } catch {
-        // Fase 1 falló (n8n no disponible, timeout, etc.) — continuar con análisis completo
+        // identify falló — continuar con los datos del OCR sin normalizar
       }
     }
 
-    // ── Fase 2: análisis completo ─────────────────────────────────────────────
-    setAnalysisPhase('analyzing')
-    launchAnalysis(frontImage, backImage ?? undefined)
+    // ── Fase 3: enrich (datos complementarios) ───────────────────────────────
+    let enriched: Awaited<ReturnType<typeof callWineEnrich>>['enriched'] = {}
+    if (navigator.onLine && wineUid && identifiedAs) {
+      try {
+        const enrichResult = await callWineEnrich(wineUid, {
+          nombre:       identifiedAs.nombre,
+          bodega:       identifiedAs.bodega,
+          anada:        identifiedAs.anada,
+          region:       identifiedAs.region,
+          denominacion: identifiedAs.denominacion,
+        })
+        enriched = enrichResult.enriched
+      } catch {
+        // enrich falló — continuar sin datos complementarios
+      }
+    }
+
+    // ── Merge: identidad (fuente de verdad) + complementario (enriched) ───────
+    // La identidad normalizada tiene prioridad sobre el OCR crudo.
+    // Los campos de enriched solo rellenan vacíos, nunca sobreescriben identidad.
+    const identity = identifiedAs ?? {
+      nombre:       scanResult.nombre       ?? null,
+      bodega:       scanResult.bodega       ?? null,
+      anada:        scanResult.anada        ?? null,
+      region:       scanResult.region       ?? null,
+      denominacion: scanResult.denominacion ?? null,
+    }
+
+    const wineData: Partial<Wine> = {
+      // Identidad — fuente de verdad
+      nombre:       identity.nombre       ?? undefined,
+      bodega:       identity.bodega       ?? undefined,
+      anada:        identity.anada        ?? undefined,
+      region:       identity.region       ?? undefined,
+      denominacion: identity.denominacion ?? undefined,
+      wine_uid:     wineUid               ?? undefined,
+      // OCR directo (no cubierto por identidad ni enriched)
+      tipo:         scanResult.tipo       ?? undefined,
+      contiene:     scanResult.contiene   ?? undefined,
+      volumen:      scanResult.volumen    ?? undefined,
+      imagen_frontal_url: scanResult.imagen_url        ?? undefined,
+      imagen_trasera_url: scanResult.imagen_trasera_url ?? undefined,
+      // Enriched — solo rellena vacíos (nunca sobreescribe identidad)
+      uva:          (enriched.uva?.value          as string | undefined) ?? scanResult.uva          ?? undefined,
+      alcohol:      (enriched.alcohol?.value      as string | undefined) ?? scanResult.alcohol      ?? undefined,
+      crianza:      (enriched.crianza?.value      as string | undefined) ?? scanResult.crianza      ?? undefined,
+      temp_servicio:(enriched.temp_servicio?.value as string | undefined) ?? scanResult.temp_servicio ?? undefined,
+      url_bodega:   (enriched.url_bodega?.value   as string | undefined) ?? scanResult.url_bodega   ?? undefined,
+      descripcion:  scanResult.descripcion ?? undefined,
+    }
+
+    setFormData(wineData)
+    setStudioUrl(scanResult.imagen_url ?? null)
+    setAnalyzing(false)
   }
 
   async function handleSave(data: Partial<Wine>, skipDuplicateCheck = false) {
