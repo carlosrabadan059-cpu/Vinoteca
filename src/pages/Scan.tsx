@@ -6,7 +6,7 @@ import WineForm from '../components/wine/WineForm'
 import AnalysisProgress from '../components/ui/AnalysisProgress'
 import DuplicateWineDialog from '../components/wine/DuplicateWineDialog'
 import CameraView from '../components/ui/CameraView'
-import { callScanAnalizar, callScanIdentificar, callScanIdentificarQR } from '../lib/n8n'
+import { callScanAnalizar, callScanIdentificar } from '../lib/n8n'
 import { useWines } from '../hooks/useWines'
 import { useCamera } from '../hooks/useCamera'
 import { getUserMediaSource } from '../lib/captureSource'
@@ -152,9 +152,6 @@ export default function Scan() {
   const pendingSaveRef = useRef<{ data: Partial<Wine> } | null>(null)
 
   const analysisRef  = useRef<Promise<unknown> | null>(null)
-  const qrHandledRef = useRef(false)
-  // Incrementado cada vez que la cámara se cierra — invalida llamadas QR en vuelo
-  const qrSessionRef = useRef(0)
 
   const cameraSource = useMemo(() => getUserMediaSource(), [cameraTarget])
 
@@ -193,42 +190,6 @@ export default function Scan() {
     }
   }
 
-  async function handleQrDetected(qrData: string) {
-    if (qrHandledRef.current) return
-    if (!user) return
-    qrHandledRef.current = true
-
-    // Capturar la sesión actual — si cambia antes de que resuelva el await,
-    // el usuario ya canceló y cualquier efecto secundario debe descartarse
-    const session = qrSessionRef.current
-
-    setCameraTarget(null)
-    setStep('review')
-    setAnalysisPhase('identifying')
-    setAnalyzing(true)
-
-    try {
-      const result = await callScanIdentificarQR(qrData, user.id)
-
-      // El usuario canceló mientras esperábamos — no hacer nada
-      if (qrSessionRef.current !== session) return
-
-      setAnalyzing(false)
-      if (result.found) {
-        navigate(`/bodega/${result.wine_id}`)
-      } else {
-        // QR no reconocido — continuar con OCR usando las imágenes ya capturadas
-        setAnalysisPhase('analyzing')
-        if (frontImage) launchAnalysis(frontImage, backImage ?? undefined)
-      }
-    } catch {
-      if (qrSessionRef.current !== session) return
-      setAnalyzing(false)
-      // Error en n8n — continuar con OCR igualmente
-      setAnalysisPhase('analyzing')
-      if (frontImage) launchAnalysis(frontImage, backImage ?? undefined)
-    }
-  }
 
   function launchAnalysis(front: string, back?: string) {
     setAnalyzing(true)
@@ -373,8 +334,6 @@ export default function Scan() {
       setStudioUrl(null)
       setAnalysisWarn(false)
       setAnalysisPhase('identifying')
-      qrHandledRef.current = false
-      qrSessionRef.current++
       // notWineError se mantiene para mostrarlo en el step frontal; se limpia al tomar nueva foto
     }
   }, [step])
@@ -566,14 +525,12 @@ export default function Scan() {
         <CameraView
           source={cameraSource}
           hint={cameraTarget === 'frontal' ? 'Centra la etiqueta frontal' : 'Centra la etiqueta trasera'}
-          enableQR={cameraTarget === 'trasera'}
-          onQrDetected={handleQrDetected}
           onCapture={async dataUrl => {
             const compressed = await compressImage(dataUrl)
             setCameraTarget(null)
             handleImageReady(compressed, cameraTarget)
           }}
-          onCancel={() => { qrSessionRef.current++; setCameraTarget(null) }}
+          onCancel={() => setCameraTarget(null)}
           onError={() => {
             setCameraTarget(null)
             handleCameraFallback(cameraTarget)

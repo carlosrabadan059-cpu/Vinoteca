@@ -1,5 +1,4 @@
 import { useEffect, useRef, useReducer, useCallback, useState } from 'react'
-import { BrowserMultiFormatReader } from '@zxing/browser'
 import { theme } from '../../constants/theme'
 import type { CaptureSource } from '../../lib/captureSource'
 
@@ -8,54 +7,40 @@ import type { CaptureSource } from '../../lib/captureSource'
 type CameraState =
   | { status: 'IDLE' }
   | { status: 'REQUESTING' }
-  | { status: 'ACTIVE';      stream: MediaStream | null }
-  | { status: 'PREVIEW';     stream: MediaStream | null; dataUrl: string }
-  | { status: 'SCANNING_QR'; stream: MediaStream | null }
-  | { status: 'QR_FOUND' }
-  | { status: 'ERROR';       message: string }
+  | { status: 'ACTIVE';  stream: MediaStream | null }
+  | { status: 'PREVIEW'; stream: MediaStream | null; dataUrl: string }
+  | { status: 'ERROR';   message: string }
 
 type CameraAction =
   | { type: 'REQUEST' }
-  | { type: 'STREAM_READY';  stream: MediaStream | null }
-  | { type: 'CAPTURE';       dataUrl: string }
+  | { type: 'STREAM_READY'; stream: MediaStream | null }
+  | { type: 'CAPTURE';      dataUrl: string }
   | { type: 'RETAKE' }
-  | { type: 'QR_FOUND' }
-  | { type: 'ERROR';         message: string }
-  | { type: 'RESET' }
+  | { type: 'ERROR';        message: string }
 
 function cameraReducer(state: CameraState, action: CameraAction): CameraState {
   switch (action.type) {
-    case 'REQUEST':
-      return { status: 'REQUESTING' }
-    case 'STREAM_READY':
-      return { status: 'ACTIVE', stream: action.stream }
+    case 'REQUEST':      return { status: 'REQUESTING' }
+    case 'STREAM_READY': return { status: 'ACTIVE', stream: action.stream }
     case 'CAPTURE':
-      if (state.status !== 'ACTIVE' && state.status !== 'SCANNING_QR') return state
+      if (state.status !== 'ACTIVE') return state
       return { status: 'PREVIEW', stream: state.stream, dataUrl: action.dataUrl }
     case 'RETAKE':
       if (state.status !== 'PREVIEW') return state
       return { status: 'ACTIVE', stream: state.stream }
-    case 'QR_FOUND':
-      return { status: 'QR_FOUND' }
-    case 'ERROR':
-      return { status: 'ERROR', message: action.message }
-    case 'RESET':
-      return { status: 'IDLE' }
-    default:
-      return state
+    case 'ERROR': return { status: 'ERROR', message: action.message }
+    default:      return state
   }
 }
 
 // ── Props ─────────────────────────────────────────────────────────────────
 
 export interface CameraViewProps {
-  source: CaptureSource
-  hint?: string
-  enableQR?: boolean
-  onCapture:     (dataUrl: string) => void
-  onCancel:      () => void
-  onError:       (err: Error) => void
-  onQrDetected?: (code: string) => void
+  source:    CaptureSource
+  hint?:     string
+  onCapture: (dataUrl: string) => void
+  onCancel:  () => void
+  onError:   (err: Error) => void
 }
 
 // ── Componente ────────────────────────────────────────────────────────────
@@ -63,18 +48,13 @@ export interface CameraViewProps {
 export default function CameraView({
   source,
   hint = 'Centra la etiqueta en el marco',
-  enableQR = false,
   onCapture,
   onCancel,
   onError,
-  onQrDetected,
 }: CameraViewProps) {
   const [state, dispatch] = useReducer(cameraReducer, { status: 'IDLE' })
-  const videoRef       = useRef<HTMLVideoElement>(null)
-  const streamRef      = useRef<MediaStream | null>(null)
-  const readerRef      = useRef<BrowserMultiFormatReader | null>(null)
-  const lastDetected   = useRef<string | null>(null)
-  const qrActiveRef    = useRef(false)
+  const videoRef  = useRef<HTMLVideoElement>(null)
+  const streamRef = useRef<MediaStream | null>(null)
 
   // Iniciar fuente al montar
   useEffect(() => {
@@ -99,7 +79,6 @@ export default function CameraView({
 
     return () => {
       cancelled = true
-      stopQrLoop()
       if (streamRef.current) {
         source.stop(streamRef.current)
         streamRef.current = null
@@ -107,84 +86,21 @@ export default function CameraView({
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const enableQRRef = useRef(enableQR)
-  enableQRRef.current = enableQR
-
-  // Conectar stream al <video> y arrancar QR tras asignar srcObject
+  // Conectar stream al <video>
   useEffect(() => {
-    if (!videoRef.current || !('stream' in state)) return
-    videoRef.current.srcObject = state.stream
-    if (state.status === 'ACTIVE' && enableQRRef.current) {
-      startQrLoop()
-    } else {
-      stopQrLoop()
+    if (videoRef.current && 'stream' in state) {
+      videoRef.current.srcObject = state.stream
     }
-  }, [state]) // eslint-disable-line react-hooks/exhaustive-deps
-
-  function stopQrLoop() {
-    qrActiveRef.current = false
-    readerRef.current = null
-  }
-
-  function startQrLoop() {
-    if (qrActiveRef.current) return
-    if (!videoRef.current) return
-
-    const video = videoRef.current
-
-    const begin = () => {
-      if (!qrActiveRef.current) return
-      if (video.paused) video.play().catch(() => {})
-
-      lastDetected.current = null
-      const reader = new BrowserMultiFormatReader()
-      readerRef.current = reader
-
-      ;(async () => {
-        while (qrActiveRef.current) {
-          try {
-            const result = await reader.decodeOnceFromVideoElement(video)
-
-            if (!qrActiveRef.current) break
-            const code = result.getText()
-            if (code && code !== lastDetected.current) {
-              qrActiveRef.current = false
-              readerRef.current = null
-              video.pause()
-              lastDetected.current = code
-              dispatch({ type: 'QR_FOUND' })
-              onQrDetected?.(code)
-            }
-          } catch {
-            if (!qrActiveRef.current) break
-            await new Promise(r => setTimeout(r, 300))
-          }
-        }
-      })()
-    }
-
-    // Esperar a que el vídeo tenga frames antes de arrancar ZXing
-    qrActiveRef.current = true
-    if (video.readyState >= 2) {
-      begin()
-    } else {
-      video.addEventListener('canplay', begin, { once: true })
-    }
-  }
-
+  }, [state])
 
   const handleCapture = useCallback(async () => {
-    if (!videoRef.current) return
-    if (state.status !== 'ACTIVE' && state.status !== 'SCANNING_QR') return
+    if (!videoRef.current || state.status !== 'ACTIVE') return
     try {
-      // Leer ángulo AHORA — antes de que el usuario devuelva el teléfono a portrait normal
       const _win = window as Window & { orientation?: number }
       const angle =
         typeof _win.orientation === 'number'
           ? _win.orientation
           : (window.screen?.orientation?.angle ?? 0)
-      console.log('[capture] window.orientation:', _win.orientation, '| screen.orientation.angle:', window.screen?.orientation?.angle, '| resolved angle:', angle)
-      console.log('[capture] video size:', videoRef.current.videoWidth, 'x', videoRef.current.videoHeight)
       const dataUrl = await source.captureFrame(videoRef.current, angle)
       dispatch({ type: 'CAPTURE', dataUrl })
     } catch (err) {
@@ -202,13 +118,11 @@ export default function CameraView({
       onCapture(state.dataUrl)
       return
     }
-    // Aplicar rotación acumulada al canvas antes de entregar
     const img = new Image()
     img.onload = () => {
-      const swap = previewRotation === 90 || previewRotation === 270
       const canvas = document.createElement('canvas')
-      canvas.width  = swap ? img.height : img.width
-      canvas.height = swap ? img.width  : img.height
+      canvas.width  = img.width
+      canvas.height = img.height
       const ctx = canvas.getContext('2d')!
       ctx.translate(canvas.width / 2, canvas.height / 2)
       ctx.rotate((previewRotation * Math.PI) / 180)
@@ -227,8 +141,6 @@ export default function CameraView({
     dispatch({ type: 'RETAKE' })
   }, [])
 
-  const isCapturing = state.status === 'ACTIVE' || state.status === 'SCANNING_QR'
-
   // ── Render ───────────────────────────────────────────────────────────────
 
   return (
@@ -239,19 +151,15 @@ export default function CameraView({
       {/* Video / Preview */}
       <div className="relative flex-1 overflow-hidden">
 
-        {/* Stream de cámara */}
         <video
           ref={videoRef}
           autoPlay
           playsInline
           muted
           className="absolute inset-0 w-full h-full object-cover"
-          style={{
-            display: state.status === 'PREVIEW' ? 'none' : 'block',
-          }}
+          style={{ display: state.status === 'PREVIEW' ? 'none' : 'block' }}
         />
 
-        {/* Preview del frame capturado */}
         {state.status === 'PREVIEW' && (
           <img
             src={state.dataUrl}
@@ -261,7 +169,6 @@ export default function CameraView({
           />
         )}
 
-        {/* Estado REQUESTING */}
         {state.status === 'REQUESTING' && (
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
             <div
@@ -274,7 +181,6 @@ export default function CameraView({
           </div>
         )}
 
-        {/* Estado ERROR */}
         {state.status === 'ERROR' && (
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 px-8 text-center">
             <p style={{ fontSize: theme.font.base, color: theme.colors.cream }}>
@@ -286,67 +192,46 @@ export default function CameraView({
           </div>
         )}
 
-        {/* Estado QR_FOUND */}
-        {state.status === 'QR_FOUND' && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-            <div
-              className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin"
-              style={{ borderColor: `${theme.colors.gold} transparent transparent transparent` }}
-            />
-            <p style={{ fontSize: theme.font.sm, color: theme.colors.muted }}>
-              Identificando QR…
-            </p>
-          </div>
-        )}
-
-        {/* Marco de ayuda — visible en ACTIVE y SCANNING_QR */}
-        {isCapturing && (
+        {/* Marco de ayuda */}
+        {state.status === 'ACTIVE' && (
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
             <div
               style={{
-                width:        '72%',
-                aspectRatio:  '3 / 4',
-                border:       `2px solid ${theme.colors.gold}`,
+                width:       '72%',
+                aspectRatio: '3 / 4',
+                border:      `2px solid ${theme.colors.gold}`,
                 borderRadius: 16,
-                opacity:      0.7,
-                position:     'relative',
+                opacity:     0.7,
+                position:    'relative',
               }}
             >
-              {/* Esquinas */}
               {[
-                { top: -2, left: -2, borderTop: `3px solid ${theme.colors.gold}`, borderLeft: `3px solid ${theme.colors.gold}`, borderRadius: '12px 0 0 0' },
-                { top: -2, right: -2, borderTop: `3px solid ${theme.colors.gold}`, borderRight: `3px solid ${theme.colors.gold}`, borderRadius: '0 12px 0 0' },
-                { bottom: -2, left: -2, borderBottom: `3px solid ${theme.colors.gold}`, borderLeft: `3px solid ${theme.colors.gold}`, borderRadius: '0 0 0 12px' },
+                { top: -2, left: -2,  borderTop:    `3px solid ${theme.colors.gold}`, borderLeft:  `3px solid ${theme.colors.gold}`, borderRadius: '12px 0 0 0' },
+                { top: -2, right: -2, borderTop:    `3px solid ${theme.colors.gold}`, borderRight: `3px solid ${theme.colors.gold}`, borderRadius: '0 12px 0 0' },
+                { bottom: -2, left: -2,  borderBottom: `3px solid ${theme.colors.gold}`, borderLeft:  `3px solid ${theme.colors.gold}`, borderRadius: '0 0 0 12px' },
                 { bottom: -2, right: -2, borderBottom: `3px solid ${theme.colors.gold}`, borderRight: `3px solid ${theme.colors.gold}`, borderRadius: '0 0 12px 0' },
               ].map((s, i) => (
                 <div key={i} className="absolute" style={{ width: 24, height: 24, ...s }} />
               ))}
             </div>
-
-            {/* Hint / indicador QR */}
             <p
               className="mt-5 px-4 py-2 rounded-full text-xs font-medium"
-              style={{
-                background: 'rgba(13,6,8,0.7)',
-                color:      theme.colors.muted,
-                backdropFilter: 'blur(8px)',
-              }}
+              style={{ background: 'rgba(13,6,8,0.7)', color: theme.colors.muted, backdropFilter: 'blur(8px)' }}
             >
-              {enableQR ? 'Buscando QR…' : hint}
+              {hint}
             </p>
           </div>
         )}
 
-        {/* Botón cancelar — siempre visible */}
+        {/* Botón cancelar */}
         <button
           onClick={onCancel}
           className="absolute top-4 left-4 flex items-center justify-center rounded-full"
           style={{
-            width:      40,
-            height:     40,
+            width:  40, height: 40,
             background: 'rgba(13,6,8,0.7)',
             backdropFilter: 'blur(8px)',
-            border:     `1px solid ${theme.colors.border}`,
+            border: `1px solid ${theme.colors.border}`,
           }}
           aria-label="Cerrar cámara"
         >
@@ -363,7 +248,6 @@ export default function CameraView({
       >
         {state.status === 'PREVIEW' ? (
           <>
-            {/* Repetir */}
             <button
               onClick={handleRetake}
               className="flex flex-col items-center gap-1"
@@ -380,7 +264,6 @@ export default function CameraView({
               <span style={{ fontSize: '0.65rem' }}>Repetir</span>
             </button>
 
-            {/* Confirmar */}
             <button
               onClick={handleConfirm}
               className="flex flex-col items-center gap-1"
@@ -396,7 +279,6 @@ export default function CameraView({
               <span style={{ fontSize: '0.65rem', color: theme.colors.cream }}>Usar foto</span>
             </button>
 
-            {/* Rotar 180° */}
             <button
               onClick={handleRotate}
               className="flex flex-col items-center gap-1"
@@ -414,26 +296,19 @@ export default function CameraView({
             </button>
           </>
         ) : (
-          /* Shutter — deshabilitado en QR_FOUND */
           <button
             onClick={handleCapture}
-            disabled={!isCapturing}
+            disabled={state.status !== 'ACTIVE'}
             aria-label="Tomar foto"
             style={{ position: 'relative', width: 76, height: 76 }}
           >
-            <div
-              className="absolute inset-0 rounded-full"
-              style={{ border: `2px solid ${theme.colors.primary}`, opacity: 0.5 }}
-            />
-            <div
-              className="absolute rounded-full"
-              style={{ inset: 6, border: `1px solid rgba(201,168,76,0.3)` }}
-            />
+            <div className="absolute inset-0 rounded-full" style={{ border: `2px solid ${theme.colors.primary}`, opacity: 0.5 }} />
+            <div className="absolute rounded-full" style={{ inset: 6, border: `1px solid rgba(201,168,76,0.3)` }} />
             <div
               className="absolute rounded-full flex items-center justify-center"
               style={{
                 inset:      10,
-                background: isCapturing ? theme.colors.primary : theme.colors.border,
+                background: state.status === 'ACTIVE' ? theme.colors.primary : theme.colors.border,
                 transition: 'background 200ms ease',
               }}
             >
