@@ -107,22 +107,21 @@ export default function CameraView({
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Conectar stream al <video>
+  // Conectar stream al <video> y arrancar QR una vez que srcObject está asignado
   useEffect(() => {
-    if (videoRef.current && 'stream' in state) {
-      videoRef.current.srcObject = state.stream
-    }
-  }, [state])
-
-  // Arrancar/parar loop QR según estado
-  useEffect(() => {
-    if (!enableQR) return
-    if (state.status === 'ACTIVE') {
+    if (!videoRef.current || !('stream' in state)) return
+    videoRef.current.srcObject = state.stream
+    if (enableQR && state.status === 'ACTIVE') {
       startQrLoop()
-    } else {
+    }
+  }, [state]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Parar QR cuando el estado deja de ser ACTIVE
+  useEffect(() => {
+    if (state.status !== 'ACTIVE') {
       stopQrLoop()
     }
-  }, [state.status, enableQR]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [state.status]) // eslint-disable-line react-hooks/exhaustive-deps
 
   function stopQrLoop() {
     qrActiveRef.current = false
