@@ -388,10 +388,10 @@ export default function Scan() {
       )
       if (wine.synced_at === null) {
         showToast('Guardado localmente, se sincronizará cuando tengas conexión', 'yellow', 4000)
-        setTimeout(() => navigate('/bodega'), 2000)
+        setTimeout(() => navigate(`/bodega/${wine.id}`), 2000)
       } else {
         showToast('¡Vino guardado en tu bodega!', 'green', 2500)
-        setTimeout(() => navigate('/bodega'), 1200)
+        setTimeout(() => navigate(`/bodega/${wine.id}`), 1200)
       }
     } catch (err) {
       const errMsg = err instanceof Error ? err.message : ''
