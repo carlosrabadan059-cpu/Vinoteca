@@ -202,19 +202,22 @@ function ConfChip({ confidence, manual }: { confidence: number | undefined; manu
 
 // ── Main component ────────────────────────────────────────────────────────────
 export default function WineForm({ initialData, onSubmit, loading, identifyConfidence, imageUrl }: WineFormProps) {
-  const [data,     setData]     = useState<Partial<Wine>>(initialData)
-  const [original, setOriginal] = useState<Partial<Wine>>(initialData)
-  const [attempted, setAttempted] = useState(false)
+  const normalize = (d: Partial<Wine>): Partial<Wine> => ({
+    num_botellas: 1,
+    favorito:     false,
+    consumido:    false,
+    ...d,
+  })
 
-  // Extra fields not in Wine type
-  const [precio,    setPrecio]    = useState('')
-  const [botellas,  setBotellas]  = useState(1)
-  const [ubicacion, setUbicacion] = useState('')
-  const [obs,       setObs]       = useState('')
+  const [data,      setData]      = useState<Partial<Wine>>(normalize(initialData))
+  const [original,  setOriginal]  = useState<Partial<Wine>>(normalize(initialData))
+  const [attempted, setAttempted] = useState(false)
+  const [obs,       setObs]       = useState(initialData.descripcion ?? '')
 
   useEffect(() => {
-    setData(initialData)
-    setOriginal(initialData)
+    setData(normalize(initialData))
+    setOriginal(normalize(initialData))
+    setObs(initialData.descripcion ?? '')
     setAttempted(false)
   }, [initialData])
 
@@ -243,7 +246,7 @@ export default function WineForm({ initialData, onSubmit, loading, identifyConfi
     if (nombreVacio) return
     onSubmit({
       ...data,
-      descripcion: obs || data.descripcion || null,
+      descripcion: obs || null,
     })
   }
 
@@ -485,13 +488,16 @@ export default function WineForm({ initialData, onSubmit, loading, identifyConfi
           <label style={{ fontSize: '0.75rem', color: theme.colors.muted, padding: '13px 0' }}>Precio</label>
           <div style={{ position: 'relative', display: 'flex', alignItems: 'center', width: '100%' }}>
             <input
-              style={{ ...fieldValueStyle, ...(precio ? {} : { color: theme.colors.muted, opacity: 0.45, fontStyle: 'italic' }), fontVariantNumeric: 'tabular-nums', paddingRight: precio ? 20 : 0 }}
-              value={precio}
-              onChange={e => setPrecio(e.target.value.replace(/[^0-9.,]/g, ''))}
+              style={{ ...fieldValueStyle, ...(data.precio != null ? {} : { color: theme.colors.muted, opacity: 0.45, fontStyle: 'italic' }), fontVariantNumeric: 'tabular-nums', paddingRight: data.precio != null ? 20 : 0 }}
+              value={data.precio != null ? String(data.precio) : ''}
+              onChange={e => {
+                const v = e.target.value.replace(/[^0-9.,]/g, '')
+                setData(d => ({ ...d, precio: v === '' ? null : parseFloat(v.replace(',', '.')) || null }))
+              }}
               placeholder="—"
               inputMode="decimal"
             />
-            {precio && (
+            {data.precio != null && (
               <span style={{ position: 'absolute', right: 0, fontSize: '0.85rem', color: theme.colors.muted, opacity: 0.7, pointerEvents: 'none' }}>€</span>
             )}
           </div>
@@ -504,12 +510,12 @@ export default function WineForm({ initialData, onSubmit, loading, identifyConfi
         }}>
           <span style={{ fontSize: '0.75rem', color: theme.colors.muted }}>Botellas</span>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            {(['−', String(botellas), '+'] as const).map((item, i) => {
+            {(['−', String(data.num_botellas ?? 1), '+'] as const).map((item, i) => {
               const isBtn = item === '−' || item === '+'
               return isBtn ? (
                 <button
                   key={i} type="button"
-                  onClick={() => setBotellas(b => Math.max(0, b + (item === '+' ? 1 : -1)))}
+                  onClick={() => setData(d => ({ ...d, num_botellas: Math.max(0, (d.num_botellas ?? 1) + (item === '+' ? 1 : -1)) }))}
                   style={{
                     width: 36, height: 32, border: `1px solid ${theme.colors.border}`,
                     background: theme.colors.surface2, color: theme.colors.cream,
@@ -538,9 +544,9 @@ export default function WineForm({ initialData, onSubmit, loading, identifyConfi
         {/* Ubicación */}
         <FieldRow label="Ubicación">
           <input
-            style={ubicacion ? fieldValueStyle : emptyValueStyle}
-            value={ubicacion}
-            onChange={e => setUbicacion(e.target.value)}
+            style={data.ubicacion ? fieldValueStyle : emptyValueStyle}
+            value={data.ubicacion ?? ''}
+            onChange={e => set('ubicacion', e.target.value || null)}
             placeholder="Ej: Estantería A"
             list="ubicaciones-suggestions"
           />

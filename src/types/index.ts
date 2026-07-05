@@ -21,6 +21,13 @@ export interface Wine {
   wine_uid: string | null
   created_at: string
   synced_at: string | null
+  // Colección personal
+  precio:       number | null
+  num_botellas: number
+  ubicacion:    string | null
+  fecha_compra: string | null
+  favorito:     boolean
+  consumido:    boolean
 }
 
 export interface Tasting {
