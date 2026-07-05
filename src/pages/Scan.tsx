@@ -143,7 +143,8 @@ export default function Scan() {
   const [notWineError,  setNotWineError]  = useState(false)
   const [toast,        setToast]        = useState<{ msg: string; kind: 'green' | 'yellow' } | null>(null)
 
-  const [analysisPhase, setAnalysisPhase] = useState<'identifying' | 'analyzing'>('identifying')
+  const [analysisPhase,       setAnalysisPhase]       = useState<'identifying' | 'analyzing'>('identifying')
+  const [identifyConfidence,  setIdentifyConfidence]  = useState<number | undefined>(undefined)
 
   // Estado del diálogo de duplicados
   const [dupMode,        setDupMode]        = useState<'exact' | 'similar' | null>(null)
@@ -303,6 +304,7 @@ export default function Scan() {
         )
         wineUid      = identified.wine_uid
         identifiedAs = identified.normalizado
+        setIdentifyConfidence(identified.confidence)
         console.log(`[scan] identify ${elapsed(t2)} →`, { wine_uid: wineUid?.slice(0, 12), exists: identified.exists, confidence: identified.confidence, normalizado: identifiedAs })
 
         if (identified.exists) {
@@ -436,6 +438,7 @@ export default function Scan() {
       setStudioUrl(null)
       setAnalysisWarn(false)
       setAnalysisPhase('identifying')
+      setIdentifyConfidence(undefined)
       // notWineError se mantiene para mostrarlo en el step frontal; se limpia al tomar nueva foto
     }
   }, [step])
@@ -545,36 +548,29 @@ export default function Scan() {
 
       {/* Step 3: Revisar */}
       {step === 'review' && (
-        <div className="px-5 pt-5 pb-10 flex flex-col gap-5">
-          <div>
-            <h2
-              className="text-editorial"
-              style={{ fontSize: theme.font['2xl'], fontWeight: 700, color: theme.colors.cream, lineHeight: 1.1 }}
+        <div className="pb-10 flex flex-col gap-2">
+          {/* Back link */}
+          <div className="flex items-center justify-between px-5 pt-4">
+            <button
+              type="button"
+              onClick={() => setStep('frontal')}
+              className="flex items-center gap-1.5 text-sm"
+              style={{ color: theme.colors.muted, background: 'transparent', border: 'none', cursor: 'pointer', padding: 0 }}
             >
-              Revisa los datos
-            </h2>
-            <p style={{ fontSize: theme.font.sm, color: theme.colors.muted, marginTop: 4 }}>
-              La IA ha extraído esta información — corrígela si es necesario
-            </p>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                <path d="m15 18-6-6 6-6"/>
+              </svg>
+              Escanear de nuevo
+            </button>
           </div>
 
-          {analysisWarn && !analyzing && (
-            <div
-              className="px-4 py-3 rounded-xl text-sm"
-              style={{
-                background: `${theme.colors.gold}14`,
-                border:     `1px solid ${theme.colors.gold}50`,
-                color:      theme.colors.gold,
-              }}
-            >
-              No pudimos leer la etiqueta — completa los datos manualmente
-            </div>
-          )}
           {!analyzing && (
             <WineForm
               initialData={formData}
               onSubmit={handleSave}
               loading={saving}
+              identifyConfidence={identifyConfidence}
+              imageUrl={studioUrl ?? frontImage ?? undefined}
             />
           )}
         </div>
