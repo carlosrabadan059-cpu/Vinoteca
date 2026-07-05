@@ -304,14 +304,9 @@ export default function Scan() {
         wineUid      = identified.wine_uid
         identifiedAs = identified.normalizado
         console.log(`[scan] identify ${elapsed(t2)} →`, { wine_uid: wineUid?.slice(0, 12), exists: identified.exists, confidence: identified.confidence, normalizado: identifiedAs })
-        console.log('[identify] respuesta completa', identified)
-        console.log('[identify] exists', identified.exists)
-        console.log('[identify] wine_id', identified.wine_id)
-        console.log('[identify] identified_as', identified.identified_as)
 
         if (identified.exists) {
           const navId = identified.wine_id ?? wineUid
-          console.log('[navigate] ficha existente', navId)
           console.log(`[scan] vino existente — navegando. Total: ${elapsed(t0)}`, { navId })
           setAnalyzing(false)
           navigate(`/bodega/${navId}`)
@@ -375,8 +370,7 @@ export default function Scan() {
       descripcion:  scanResult.descripcion ?? undefined,
     }
 
-    console.log('[navigate] formulario nuevo')
-    console.log(`[scan] merge → render formulario. Total: ${elapsed(t0)}`, { fuente_identidad: identifiedAs ? 'identify' : 'ocr_crudo', campos_enriched: Object.keys(enriched), wineData })
+    console.log(`[scan] merge → render formulario. Total: ${elapsed(t0)}`, { fuente_identidad: identifiedAs ? 'identify' : 'ocr_crudo', campos_enriched: Object.keys(enriched) })
 
     setFormData(wineData)
     setStudioUrl(scanResult.imagen_url ?? null)
