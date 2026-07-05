@@ -254,10 +254,18 @@ export default function WineForm({ initialData, onSubmit, loading, identifyConfi
   return (
     <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
 
-      {/* ── Global confidence + back action handled by parent (Scan.tsx) ─── */}
-      {/* Chip shown here for standalone use (e.g. edit modal) */}
-      <div style={{ padding: '8px 14px 4px', display: 'flex', justifyContent: 'flex-end' }}>
+      {/* ── Global confidence ─────────────────────────────────────────────── */}
+      <div style={{ padding: '8px 14px 4px', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 4 }}>
         <ConfChip confidence={identifyConfidence} manual={isManual} />
+        {!isManual && (
+          <span style={{ fontSize: '0.65rem', color: theme.colors.muted, opacity: 0.6 }}>
+            {identifyConfidence !== undefined && identifyConfidence >= 0.75
+              ? '✓ Información verificada automáticamente'
+              : identifyConfidence !== undefined
+                ? '⚠ Algunos datos requieren revisión'
+                : '✓ Información extraída de la etiqueta'}
+          </span>
+        )}
       </div>
 
       {/* ── Summary card ─────────────────────────────────────────────────── */}
@@ -432,6 +440,7 @@ export default function WineForm({ initialData, onSubmit, loading, identifyConfi
       <Section title="Información adicional" defaultOpen={false}>
 
         <SubDivider label="Información del vino" />
+        {/* Espacio reservado: imagen adicional (Fase 6) */}
 
         {/* URL: link when auto, editable when not */}
         {hasUrlAuto ? (
@@ -465,6 +474,7 @@ export default function WineForm({ initialData, onSubmit, loading, identifyConfi
         )}
 
         <SubDivider label="Mi colección" />
+        {/* Espacio reservado: valoración ★, fecha compra, favorito, consumido (Fases 8–9) */}
 
         {/* Precio */}
         <div style={{
