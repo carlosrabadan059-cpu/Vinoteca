@@ -13,7 +13,7 @@ interface WineFormProps {
 // ── Field status ──────────────────────────────────────────────────────────────
 type FieldStatus = 'auto' | 'edited' | 'review' | 'empty'
 
-function deriveStatus(original: string | number | null | undefined, current: string | number | null | undefined): FieldStatus {
+function deriveStatus(original: string | number | boolean | null | undefined, current: string | number | boolean | null | undefined): FieldStatus {
   const orig = original !== null && original !== undefined && original !== '' ? String(original) : ''
   const curr = current  !== null && current  !== undefined && current  !== '' ? String(current)  : ''
   if (curr === '') return 'empty'
