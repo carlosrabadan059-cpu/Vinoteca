@@ -142,6 +142,12 @@ export function useWines() {
       wine_uid:           null,
       created_at:         now,
       synced_at:          null,
+      precio:             data.precio       ?? null,
+      num_botellas:       data.num_botellas ?? 1,
+      ubicacion:          data.ubicacion    ?? null,
+      fecha_compra:       data.fecha_compra ?? null,
+      favorito:           data.favorito     ?? false,
+      consumido:          data.consumido    ?? false,
     }
 
     // Generar wine_uid estable antes de persistir

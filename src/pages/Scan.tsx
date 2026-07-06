@@ -138,7 +138,7 @@ export default function Scan() {
   const [analyzing,     setAnalyzing]     = useState(false)
   const [formData,      setFormData]      = useState<Partial<Wine>>({})
   const [studioUrl,     setStudioUrl]     = useState<string | null>(null)
-  const [analysisWarn,  setAnalysisWarn]  = useState(false)
+  const [_analysisWarn, setAnalysisWarn]  = useState(false)
   const [analysisError, setAnalysisError] = useState(false)
   const [notWineError,  setNotWineError]  = useState(false)
   const [toast,        setToast]        = useState<{ msg: string; kind: 'green' | 'yellow' } | null>(null)
