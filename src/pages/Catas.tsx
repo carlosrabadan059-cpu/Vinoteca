@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import Layout from '../components/ui/Layout'
 import TastingCard from '../components/wine/TastingCard'
 import { useTastings } from '../hooks/useTastings'
@@ -53,6 +53,9 @@ function WineGlassSVG() {
 
 export default function Catas() {
   const navigate = useNavigate()
+  const [params] = useSearchParams()
+  const wineIdFilter = params.get('wineId') ?? null
+
   const [filter,  setFilter]  = useState<Filter>('all')
   const [wineMap, setWineMap] = useState<Record<string, Wine>>({})
 
@@ -74,62 +77,76 @@ export default function Catas() {
     })
   }, [tastings]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const visible = applyFilter(tastings, filter)
+  const filtered = wineIdFilter
+    ? tastings.filter(t => t.wine_id === wineIdFilter)
+    : tastings
+  const visible = applyFilter(filtered, filter)
+  const wineTitle = wineIdFilter ? wineMap[wineIdFilter]?.nombre ?? null : null
 
   return (
     <Layout>
       {/* ── Header editorial ──────────────────────────────────── */}
       <div className="px-5 pt-6 pb-4">
+        {wineIdFilter && (
+          <button
+            onClick={() => navigate(-1)}
+            style={{ fontSize: theme.font.sm, color: theme.colors.gold, background: 'none', border: 'none', cursor: 'pointer', padding: '0 0 12px', display: 'block' }}
+          >
+            ← Volver al vino
+          </button>
+        )}
         <div className="flex items-start justify-between">
           <div>
             <p
               style={{
-                fontSize: '0.65rem',
+                fontSize: theme.font['2xs'],
                 letterSpacing: '0.16em',
                 textTransform: 'uppercase',
                 color: theme.colors.muted,
                 marginBottom: 4,
               }}
             >
-              Diario de cata
+              {wineIdFilter ? 'Historial de catas' : 'Diario de cata'}
             </p>
             <h1
               className="text-editorial"
               style={{ fontSize: theme.font['2xl'], fontWeight: 700, color: theme.colors.cream, lineHeight: 1.1 }}
             >
-              Mis Catas
-              {tastings.length > 0 && (
+              {wineTitle ?? 'Mis Catas'}
+              {filtered.length > 0 && (
                 <span
                   className="ml-2"
                   style={{
-                    fontSize: '0.75rem',
+                    fontSize: theme.font.sm,
                     fontWeight: 500,
                     color: theme.colors.muted,
                     verticalAlign: 'middle',
                   }}
                 >
-                  {tastings.length}
+                  {filtered.length}
                 </span>
               )}
             </h1>
           </div>
 
-          {/* Nueva cata FAB */}
-          <button
-            onClick={() => navigate('/catas/nueva')}
-            className="flex items-center justify-center rounded-full shrink-0"
-            style={{
-              width: 42,
-              height: 42,
-              background: theme.colors.primary,
-              boxShadow: `0 4px 20px ${theme.colors.primary}50`,
-            }}
-            aria-label="Nueva cata"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={theme.colors.cream} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-            </svg>
-          </button>
+          {/* Nueva cata FAB — solo en vista general */}
+          {!wineIdFilter && (
+            <button
+              onClick={() => navigate('/catas/nueva')}
+              className="flex items-center justify-center rounded-full shrink-0"
+              style={{
+                width: 42,
+                height: 42,
+                background: theme.colors.primary,
+                boxShadow: `0 4px 20px ${theme.colors.primary}50`,
+              }}
+              aria-label="Nueva cata"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={theme.colors.cream} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </button>
+          )}
         </div>
 
         {/* Divisor dorado */}
@@ -194,11 +211,13 @@ export default function Catas() {
                 className="text-editorial font-semibold"
                 style={{ fontSize: theme.font.lg, color: theme.colors.cream }}
               >
-                {filter === 'all'
-                  ? 'Aún no has registrado ninguna cata'
-                  : 'No hay catas para este período'}
+                {wineIdFilter
+                  ? 'Este vino no tiene catas registradas'
+                  : filter === 'all'
+                    ? 'Aún no has registrado ninguna cata'
+                    : 'No hay catas para este período'}
               </p>
-              {filter === 'all' && (
+              {!wineIdFilter && filter === 'all' && (
                 <p style={{ fontSize: theme.font.sm, color: theme.colors.muted, marginTop: 6 }}>
                   Cada copa tiene una historia — empieza a contarla
                 </p>
@@ -207,7 +226,7 @@ export default function Catas() {
 
             {filter === 'all' && (
               <button
-                onClick={() => navigate('/catas/nueva')}
+                onClick={() => navigate(wineIdFilter ? `/catas/nueva?wineId=${wineIdFilter}` : '/catas/nueva')}
                 className="px-6 py-3 rounded-xl font-semibold"
                 style={{
                   background: theme.colors.primary,
@@ -216,7 +235,7 @@ export default function Catas() {
                   boxShadow: `0 4px 24px ${theme.colors.primary}40`,
                 }}
               >
-                Registrar tu primera cata
+                {wineIdFilter ? 'Registrar una cata' : 'Registrar tu primera cata'}
               </button>
             )}
           </div>

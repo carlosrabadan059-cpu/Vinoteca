@@ -529,6 +529,7 @@ export default function WineDetail() {
               </div>
               {tastings.length > 3 && (
                 <button
+                  onClick={() => navigate(`/catas?wineId=${wine.id}`)}
                   style={{ display: 'block', width: '100%', textAlign: 'center', marginTop: 10, padding: '8px 0', fontSize: '0.76rem', color: theme.colors.gold, background: 'none', border: 'none', cursor: 'pointer' }}
                 >
                   Ver historial completo · {tastings.length} catas →
