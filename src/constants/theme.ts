@@ -1,6 +1,38 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // Vinoteca Design System — fuente de verdad única
-// Todos los componentes consumen estos tokens. No usar hex hardcodeados.
+//
+// REGLAS DE USO:
+//   · Todos los componentes consumen estos tokens. No usar hex hardcodeados.
+//   · No definir font-size, font-weight ni font-family fuera de theme.typography.
+//   · No añadir nuevos tokens tipográficos sin actualizar este archivo primero.
+//
+// ESCALA TIPOGRÁFICA — uso previsto por token:
+//   heroTitle       → encabezado principal de pantallas de estado vacío
+//   pageTitle       → h1 de cada vista (Bodega, WineDetail…)
+//   sectionTitle    → inicio de sección dentro de un panel
+//   statNumber      → número protagonista en stats del header
+//   statLabel       → etiqueta debajo del statNumber (VINOS, BOTELLAS…)
+//   cardTitleGrid   → nombre del vino en vista grid
+//   cardTitleList   → nombre del vino en vista lista
+//   cardSubtitle    → bodega en ambas vistas de card
+//   cardAnada       → año del vino en vista lista (tamaño grande)
+//   cardAnadaSmall  → año del vino en vista grid (tamaño compacto)
+//   cardMetaGrid    → región / D.O. en vista grid
+//   cardMetaList    → región en vista lista
+//   badge           → etiqueta de tipo de vino (TINTO, BLANCO…)
+//   badgeStock      → contador de botellas en grid (×3)
+//   badgeStockList  → contador de botellas en lista
+//   body            → texto principal de cuerpo
+//   bodySmall       → texto secundario más pequeño
+//   caption         → ayudas, hints y mensajes informativos
+//   micro           → etiquetas técnicas, eyebrows uppercase, metadatos
+//   chipLabel       → texto de chips y filtros rápidos
+//   inputAnada      → campo numérico de añada en panel de filtros
+//   groupHeader     → encabezado de grupo cuando groupBy está activo
+//   suggestionType  → etiqueta typeLabel en autocomplete (VINO, BODEGA…)
+//   suggestionEmoji → emoji en sugerencias de autocomplete
+//   button          → botones primarios y secundarios
+//   sortLabel       → etiqueta de ordenación en barra toolbar
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const theme = {
