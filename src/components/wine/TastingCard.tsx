@@ -53,9 +53,12 @@ export default function TastingCard({ tasting, wineName, onClick }: TastingCardP
 
       {/* Contenido */}
       <div className="flex-1 min-w-0">
-        <p className="font-semibold truncate text-sm" style={{ color: theme.colors.cream }}>
-          {wineName}
-        </p>
+        <div className="flex items-center gap-2 min-w-0">
+          <p className="font-semibold truncate text-sm" style={{ color: theme.colors.cream }}>
+            {wineName}
+          </p>
+          <TypeBadge rapid={tasting.es_consumo_rapido} />
+        </div>
         <p className="text-xs" style={{ color: theme.colors.muted }}>{fecha}</p>
         {preview && (
           <p className="text-xs mt-0.5 line-clamp-2" style={{ color: theme.colors.muted }}>
@@ -64,5 +67,23 @@ export default function TastingCard({ tasting, wineName, onClick }: TastingCardP
         )}
       </div>
     </div>
+  )
+}
+
+function TypeBadge({ rapid }: { rapid: boolean }) {
+  if (!rapid) return null
+  return (
+    <span
+      className="flex-shrink-0 inline-flex items-center gap-0.5 rounded-full px-1.5 py-0.5 font-semibold"
+      style={{
+        fontSize:   theme.font['2xs'],
+        letterSpacing: '0.06em',
+        background: theme.colors.warning + '22',
+        color:      theme.colors.warning,
+        border:     `1px solid ${theme.colors.warningBorder}`,
+      }}
+    >
+      ⚡
+    </span>
   )
 }

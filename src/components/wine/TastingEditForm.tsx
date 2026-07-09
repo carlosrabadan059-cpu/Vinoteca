@@ -55,18 +55,21 @@ export default function TastingEditForm({ tasting, onSave, onCancel }: TastingEd
 
   async function handleSave() {
     setSaving(true)
-    await onSave({
-      fecha:             fields.fecha,
-      puntuacion:        hasScore ? fields.puntuacion : null,
-      notas_cata:        fields.notas_cata.trim()        || null,
-      color_descripcion: fields.color_descripcion.trim() || null,
-      aroma:             fields.aroma.trim()             || null,
-      maridaje:          fields.maridaje.trim()          || null,
-      lugar:             fields.lugar.trim()             || null,
-      ocasion:           fields.ocasion.trim()           || null,
-      botella_terminada: fields.botella_terminada,
-    })
-    setSaving(false)
+    try {
+      await onSave({
+        fecha:             fields.fecha,
+        puntuacion:        hasScore ? fields.puntuacion : null,
+        notas_cata:        fields.notas_cata.trim()        || null,
+        color_descripcion: fields.color_descripcion.trim() || null,
+        aroma:             fields.aroma.trim()             || null,
+        maridaje:          fields.maridaje.trim()          || null,
+        lugar:             fields.lugar.trim()             || null,
+        ocasion:           fields.ocasion.trim()           || null,
+        botella_terminada: fields.botella_terminada,
+      })
+    } finally {
+      setSaving(false)
+    }
   }
 
   const inputStyle: React.CSSProperties = {

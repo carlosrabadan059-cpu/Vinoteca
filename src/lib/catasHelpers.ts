@@ -1,12 +1,13 @@
 import type { Tasting } from '../types'
 
-export type FilterKey = 'all' | 'week' | 'month' | 'top'
+export type FilterKey = 'all' | 'week' | 'month' | 'top' | 'rapido'
 
 export const FILTERS: { id: FilterKey; label: string }[] = [
-  { id: 'all',   label: 'Todas' },
-  { id: 'week',  label: 'Esta semana' },
-  { id: 'month', label: 'Este mes' },
-  { id: 'top',   label: 'Mejor puntuadas' },
+  { id: 'all',    label: 'Todas' },
+  { id: 'week',   label: 'Esta semana' },
+  { id: 'month',  label: 'Este mes' },
+  { id: 'top',    label: 'Mejor puntuadas' },
+  { id: 'rapido', label: '⚡ Rápidas' },
 ]
 
 export function applyFilter(tastings: Tasting[], filter: FilterKey): Tasting[] {
@@ -23,6 +24,9 @@ export function applyFilter(tastings: Tasting[], filter: FilterKey): Tasting[] {
   }
   if (filter === 'top') {
     return [...tastings].sort((a, b) => (b.puntuacion ?? 0) - (a.puntuacion ?? 0))
+  }
+  if (filter === 'rapido') {
+    return tastings.filter(t => t.es_consumo_rapido)
   }
   return tastings
 }

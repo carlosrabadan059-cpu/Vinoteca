@@ -214,10 +214,24 @@ export default function TastingDetail() {
         {/* Puntuación + fecha */}
         <div className="flex items-center gap-4">
           <ScoreBadge score={tasting.puntuacion} />
-          <div>
-            <p className="font-semibold capitalize" style={{ color: theme.colors.cream, fontSize: theme.font.base }}>
-              {fecha}
-            </p>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 flex-wrap">
+              <p className="font-semibold capitalize" style={{ color: theme.colors.cream, fontSize: theme.font.base }}>
+                {fecha}
+              </p>
+              <span
+                className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 font-semibold flex-shrink-0"
+                style={{
+                  fontSize:      theme.font['2xs'],
+                  letterSpacing: '0.06em',
+                  background:    tasting.es_consumo_rapido ? theme.colors.warning + '22' : theme.colors.primary + '22',
+                  color:         tasting.es_consumo_rapido ? theme.colors.warning        : theme.colors.primary,
+                  border:        `1px solid ${tasting.es_consumo_rapido ? theme.colors.warningBorder : theme.colors.primaryBorder}`,
+                }}
+              >
+                {tasting.es_consumo_rapido ? '⚡ Rápido' : '🍷 Cata completa'}
+              </span>
+            </div>
             {tasting.puntuacion !== null && (
               <p className="text-sm" style={{ color: theme.colors.muted }}>
                 {tasting.puntuacion >= 90 ? 'Excepcional' :
