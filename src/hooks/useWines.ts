@@ -15,11 +15,24 @@ import { useSyncStore } from '../store/syncStore'
 import { findDuplicateWine, generateWineUid } from '../lib/wineDuplicates'
 import type { Wine, SyncOperation } from '../types'
 
+export type SortKey =
+  | 'created_at_desc'
+  | 'nombre_asc'
+  | 'bodega_asc'
+  | 'anada_asc'
+  | 'anada_desc'
+  | 'precio_desc'
+  | 'num_botellas_desc'
+
 export interface WineFilters {
-  tipo?: string
-  region?: string
-  query?: string
-  page?: number
+  query?:     string
+  tipo?:      string
+  favorito?:  boolean
+  stock?:     boolean   // filtra num_botellas > 0 en Supabase
+  anada_min?: number
+  anada_max?: number
+  page?:      number
+  sort?:      SortKey
 }
 
 const PAGE_SIZE = 20
@@ -66,21 +79,43 @@ export function useWines() {
   async function listWines(filters: WineFilters = {}): Promise<Wine[]> {
     if (!user) throw new Error('No autenticado')
 
-    const { query, page = 0 } = filters
+    const {
+      query, tipo, favorito, stock,
+      anada_min, anada_max,
+      page = 0, sort = 'created_at_desc',
+    } = filters
     const from = page * PAGE_SIZE
     const to   = from + PAGE_SIZE - 1
+
+    const sortMap: Record<SortKey, { column: string; ascending: boolean }> = {
+      created_at_desc:   { column: 'created_at',  ascending: false },
+      nombre_asc:        { column: 'nombre',       ascending: true  },
+      bodega_asc:        { column: 'bodega',       ascending: true  },
+      anada_asc:         { column: 'anada',        ascending: true  },
+      anada_desc:        { column: 'anada',        ascending: false },
+      precio_desc:       { column: 'precio',       ascending: false },
+      num_botellas_desc: { column: 'num_botellas', ascending: false },
+    }
+    const { column, ascending } = sortMap[sort]
 
     let q = supabase
       .from('wines')
       .select('*', page === 0 ? { count: 'exact' } : undefined)
       .eq('user_id', user.id)
-      .order('created_at', { ascending: false })
+      .order(column, { ascending })
       .range(from, to)
 
     if (query?.trim()) {
       const safe = query.trim().replace(/[%_]/g, '\\$&')
-      q = q.or(`nombre.ilike.%${safe}%,bodega.ilike.%${safe}%,region.ilike.%${safe}%`)
+      q = q.or(
+        `nombre.ilike.%${safe}%,bodega.ilike.%${safe}%,region.ilike.%${safe}%,denominacion.ilike.%${safe}%`
+      )
     }
+    if (tipo)              q = q.eq('tipo', tipo)
+    if (favorito === true) q = q.eq('favorito', true)
+    if (stock === true)    q = q.gt('num_botellas', 0)
+    if (anada_min !== undefined) q = q.gte('anada', anada_min)
+    if (anada_max !== undefined) q = q.lte('anada', anada_max)
 
     const { data, count, error: dbError } = await q
     if (dbError) throw dbError
