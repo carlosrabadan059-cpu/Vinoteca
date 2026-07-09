@@ -4,6 +4,49 @@ Todas las versiones relevantes del proyecto se documentan aquí.
 
 ---
 
+## v0.8.0 — 2026-07-09
+
+### Fase 8 — Catas
+
+**Nuevos componentes**
+- `TastingEditForm` — formulario de edición inline de una cata existente: puntuación (slider con opción de quitar), notas, color, aroma, maridaje, fecha, lugar, ocasión, botella terminada. Responsabilidad única; extensible añadiendo campos a `EditFields` + `toFields`.
+- `TypeBadge` (local en `TastingCard`) — indicador visual ⚡ para consumo rápido; invisible para cata completa
+
+**Pantalla NuevaCata rediseñada**
+- Selector de modo **Cata completa / Consumo rápido** antes de iniciar el chat o el formulario rápido
+- `MetaSection` — sección colapsable con `fecha`, `lugar`, `ocasion` y toggle `botella_terminada`; desacoplada del formulario principal
+- `ModeSelector` — componente de selección visual de modo, sin lógica de negocio
+- `QuickForm` — formulario de consumo rápido con slider de puntuación (50–100) y textarea; guarda con `es_consumo_rapido: true`
+- `WineBanner` — banner del vino seleccionado, extraído para evitar duplicación entre ambos flujos
+- Todos los campos del tipo `Tasting` quedan poblados en ambos flujos, preparando los datos para IA y estadísticas
+
+**Pantalla TastingDetail**
+- Botón **Editar** en el header; alterna entre modo lectura y modo edición sin cambiar de pantalla
+- Modo edición renderiza `TastingEditForm`; Cancelar restaura los valores originales (desmonte del componente)
+- Badge de tipo (⚡ Rápido / 🍷 Cata completa) junto a la fecha, siempre visible
+
+**Pantalla Catas**
+- Historial filtrado por vino: `?wineId=xxx` — header adaptativo, botón volver, estado vacío contextual
+- Navegación desde **Ver historial completo** en `WineDetail` ahora funciona
+- Nuevo filtro **⚡ Rápidas** — filtra por `es_consumo_rapido`
+
+**Arquitectura**
+- `src/lib/catasHelpers.ts` — tipos (`FilterKey`), constantes (`FILTERS`) y función pura `applyFilter` sin dependencias React
+- `src/hooks/useCatasState.ts` — todo el estado reactivo, efectos y derivados de la pantalla Catas
+- `src/pages/Catas.tsx` — composición pura (~120 líneas), consume `useCatasState` y `FILTERS`
+- Patrón Bodega replicado: helpers puros → hook de estado → página de composición
+
+**Design System**
+- Nuevos tokens: `colors.scoreNeutral`, `colors.borderSubtle`, `colors.borderDivider`
+- Badge de consumo rápido usa `colors.warning` / `colors.warningBorder` (tokens existentes, sin añadir nuevos)
+- Badge de cata completa usa `colors.primary` / `colors.primaryBorder`
+- Cero valores hex hardcodeados en los archivos de Fase 8
+
+**Fixes**
+- `TastingEditForm.handleSave` envuelto en `try/finally` — el estado `saving` nunca queda bloqueado si `onSave` lanza una excepción
+
+---
+
 ## v0.7.0 — 2026-07-09
 
 ### Fase 7 — Gestión de Bodega
