@@ -174,7 +174,7 @@ export default function WineCardGrid({ wine, index, onClick }: Props) {
         {wine.tipo && (
           <div style={{
             position: 'absolute', top: 8, left: 8,
-            fontSize: t.font['2xs'], fontWeight: 700, letterSpacing: '0.12em',
+            ...t.typography.badge,
             textTransform: 'uppercase', color: t.colors.gold,
             padding: '2px 6px', border: t.borders.gold,
             borderRadius: t.radius.xs, backdropFilter: 'blur(4px)',
@@ -196,7 +196,7 @@ export default function WineCardGrid({ wine, index, onClick }: Props) {
         {/* Badge stock */}
         <div style={{
           position: 'absolute', bottom: 7, right: 7,
-          fontSize: '0.58rem', fontWeight: 700,
+          ...t.typography.badgeStock,
           background: 'rgba(13,6,8,0.75)',
           color: stockState === 'out' ? t.colors.muted : stockState === 'low' ? t.colors.warning : t.colors.cream,
           padding: '1px 6px', borderRadius: t.radius.pill,
@@ -211,8 +211,8 @@ export default function WineCardGrid({ wine, index, onClick }: Props) {
       {/* Cuerpo */}
       <div style={{ padding: '8px 10px 10px' }}>
         <div style={{
-          fontFamily: t.font.serif, fontSize: '0.92rem', fontWeight: 700,
-          color: t.colors.cream, lineHeight: 1.2, marginBottom: 3,
+          ...t.typography.cardTitleGrid,
+          color: t.colors.cream, marginBottom: 3,
           overflow: 'hidden', display: '-webkit-box',
           WebkitLineClamp: 2, WebkitBoxOrient: 'vertical',
         }}>
@@ -220,18 +220,18 @@ export default function WineCardGrid({ wine, index, onClick }: Props) {
         </div>
         {wine.bodega && (
           <div style={{
-            fontSize: t.font.xs, color: t.colors.gold, fontWeight: 500,
+            ...t.typography.cardSubtitle, color: t.colors.gold,
             overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis', marginBottom: 3,
           }}>
             {wine.bodega}
           </div>
         )}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 2 }}>
-          <span style={{ fontSize: '0.6rem', color: t.colors.muted2, overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>
+          <span style={{ ...t.typography.cardMetaGrid, color: t.colors.muted2, overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>
             {[wine.region, wine.denominacion].filter(Boolean).join(' · ')}
           </span>
           {wine.anada && (
-            <span style={{ fontFamily: t.font.serif, fontSize: '0.85rem', fontWeight: 300, color: t.colors.muted, flexShrink: 0 }}>
+            <span style={{ ...t.typography.cardAnadaSmall, color: t.colors.muted, flexShrink: 0 }}>
               {wine.anada}
             </span>
           )}
@@ -325,15 +325,15 @@ export default function WineCardList({ wine, index, onClick }: Props) {
       {/* Info */}
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{
-          fontFamily: t.font.serif, fontSize: '0.97rem', fontWeight: 700,
-          color: t.colors.cream, lineHeight: 1.2, marginBottom: 2,
+          ...t.typography.cardTitleList,
+          color: t.colors.cream, marginBottom: 2,
           whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
         }}>
           {wine.nombre}
         </div>
         {wine.bodega && (
           <div style={{
-            fontSize: t.font.sm, color: t.colors.gold, fontWeight: 500,
+            ...t.typography.cardSubtitle, color: t.colors.gold,
             whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
           }}>
             {wine.bodega}
@@ -342,7 +342,8 @@ export default function WineCardList({ wine, index, onClick }: Props) {
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 4 }}>
           {wine.tipo && (
             <span style={{
-              fontSize: '0.58rem', fontWeight: 700, letterSpacing: '0.1em',
+              ...t.typography.badgeStock,
+              letterSpacing: '0.1em',
               textTransform: 'uppercase', color: t.colors.muted3,
               background: t.colors.surface2, padding: '1px 6px',
               borderRadius: t.radius.xs, border: `1px solid ${t.colors.border}`,
@@ -352,7 +353,7 @@ export default function WineCardList({ wine, index, onClick }: Props) {
           )}
           {wine.region && (
             <span style={{
-              fontSize: '0.68rem', color: t.colors.muted3,
+              ...t.typography.cardMetaList, color: t.colors.muted3,
               whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
             }}>
               {wine.region}
@@ -365,14 +366,13 @@ export default function WineCardList({ wine, index, onClick }: Props) {
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 6, flexShrink: 0 }}>
         {wine.anada && (
           <span style={{
-            fontFamily: t.font.serif, fontSize: '1.1rem',
-            fontWeight: 300, color: t.colors.muted, fontVariantNumeric: 'tabular-nums',
+            ...t.typography.cardAnada, color: t.colors.muted, fontVariantNumeric: 'tabular-nums',
           }}>
             {wine.anada}
           </span>
         )}
         <span style={{
-          fontSize: '0.65rem', fontWeight: 600,
+          ...t.typography.badgeStockList,
           color: stockOut ? t.colors.muted : stockLow ? t.colors.warning : t.colors.cream,
           background: t.colors.surface2,
           border: `1px solid ${stockLow ? t.colors.warningBorder : t.colors.border}`,
@@ -618,8 +618,8 @@ function FilterSection({ title, children }: { title: string; children: React.Rea
     <div style={{ marginBottom: 32 }}>
       <div style={{ marginBottom: 10, paddingBottom: 8, borderBottom: `1px solid ${t.colors.border}` }}>
         <span style={{
-          fontSize: '0.78rem', fontWeight: 800,
-          letterSpacing: '0.12em', textTransform: 'uppercase', color: t.colors.cream,
+          ...t.typography.sectionTitle,
+          textTransform: 'uppercase', color: t.colors.cream,
         }}>
           {title}
         </span>
@@ -632,11 +632,11 @@ function FilterSection({ title, children }: { title: string; children: React.Rea
 function FilterChip({ label, active, onClick }: { label: string; active: boolean; onClick: () => void }) {
   return (
     <button onClick={onClick} style={{
-      padding: '5px 13px', borderRadius: t.radius.pill, fontFamily: 'inherit',
+      padding: '5px 13px', borderRadius: t.radius.pill, fontFamily: t.typography.chipLabel.fontFamily,
       border: `1px solid ${active ? t.colors.primaryBorder : t.colors.border}`,
       background: active ? t.colors.primary : 'transparent',
       color: active ? t.colors.cream : t.colors.muted,
-      fontSize: '0.78rem', fontWeight: active ? 600 : 400, cursor: 'pointer',
+      fontSize: t.typography.chipLabel.fontSize, fontWeight: active ? 600 : 400, cursor: 'pointer',
     }}>
       {label}
     </button>
@@ -885,7 +885,7 @@ cd /Users/carlosrabadan/Antigravity/Vinoteca && npx tsc --noEmit 2>&1 | head -20
 
           {/* Fila 1: título + acciones */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
-            <h1 style={{ fontFamily: t.font.serif, fontSize: t.font.xl, fontWeight: 700, lineHeight: 1.15, color: t.colors.cream }}>
+            <h1 style={{ ...t.typography.pageTitle, color: t.colors.cream }}>
               Mi Bodega <em style={{ fontStyle: 'italic', color: t.colors.gold }}>Personal</em>
             </h1>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -931,13 +931,13 @@ cd /Users/carlosrabadan/Antigravity/Vinoteca && npx tsc --noEmit 2>&1 | head -20
                 ].map(({ num, label }) => (
                   <div key={label} style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 1 }}>
                     <span style={{
-                      fontFamily: t.font.serif, fontSize: '1.6rem', fontWeight: 300,
-                      color: t.colors.cream, lineHeight: 1,
+                      ...t.typography.statNumber,
+                      color: t.colors.cream,
                       animation: 'countUp 0.4s ease both',
                     }}>
                       {num}
                     </span>
-                    <span style={{ fontSize: t.font['2xs'], color: t.colors.muted, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                    <span style={{ ...t.typography.statLabel, color: t.colors.muted, textTransform: 'uppercase' }}>
                       {label}
                     </span>
                   </div>
@@ -952,22 +952,26 @@ cd /Users/carlosrabadan/Antigravity/Vinoteca && npx tsc --noEmit 2>&1 | head -20
               {/* Todos */}
               <button onClick={() => { setTipoFilter(null); setFavoritoFilter(false); setStockFilter(false) }}
                 style={{
-                  flexShrink: 0, padding: '5px 13px', borderRadius: t.radius.pill, fontFamily: 'inherit',
+                  flexShrink: 0, padding: '5px 13px', borderRadius: t.radius.pill,
+                  fontFamily: t.typography.chipLabel.fontFamily,
                   border: `1px solid ${!tipoFilter && !favoritoFilter && !stockFilter ? t.colors.primaryBorder : t.colors.border}`,
                   background: !tipoFilter && !favoritoFilter && !stockFilter ? t.colors.primary : 'transparent',
                   color: !tipoFilter && !favoritoFilter && !stockFilter ? t.colors.cream : t.colors.muted,
-                  fontSize: '0.78rem', fontWeight: !tipoFilter && !favoritoFilter && !stockFilter ? 600 : 400, cursor: 'pointer',
+                  fontSize: t.typography.chipLabel.fontSize,
+                  fontWeight: !tipoFilter && !favoritoFilter && !stockFilter ? 600 : 400, cursor: 'pointer',
                 }}>
                 Todos
               </button>
               {TIPOS.map(tipo => (
                 <button key={tipo} onClick={() => setTipoFilter(tipoFilter === tipo ? null : tipo)}
                   style={{
-                    flexShrink: 0, padding: '5px 13px', borderRadius: t.radius.pill, fontFamily: 'inherit',
+                    flexShrink: 0, padding: '5px 13px', borderRadius: t.radius.pill,
+                    fontFamily: t.typography.chipLabel.fontFamily,
                     border: `1px solid ${tipoFilter === tipo ? t.colors.primaryBorder : t.colors.border}`,
                     background: tipoFilter === tipo ? t.colors.primary : 'transparent',
                     color: tipoFilter === tipo ? t.colors.cream : t.colors.muted,
-                    fontSize: '0.78rem', fontWeight: tipoFilter === tipo ? 600 : 400, cursor: 'pointer',
+                    fontSize: t.typography.chipLabel.fontSize,
+                    fontWeight: tipoFilter === tipo ? 600 : 400, cursor: 'pointer',
                   }}>
                   {tipo}
                 </button>
@@ -976,22 +980,26 @@ cd /Users/carlosrabadan/Antigravity/Vinoteca && npx tsc --noEmit 2>&1 | head -20
               {/* Favoritos */}
               <button onClick={() => setFavoritoFilter(f => !f)}
                 style={{
-                  flexShrink: 0, padding: '5px 13px', borderRadius: t.radius.pill, fontFamily: 'inherit',
+                  flexShrink: 0, padding: '5px 13px', borderRadius: t.radius.pill,
+                  fontFamily: t.typography.chipLabel.fontFamily,
                   border: `1px solid ${favoritoFilter ? t.colors.goldBorder : t.colors.border}`,
                   background: favoritoFilter ? t.colors.goldSubtle : 'transparent',
                   color: favoritoFilter ? t.colors.gold : t.colors.muted,
-                  fontSize: '0.78rem', fontWeight: favoritoFilter ? 600 : 400, cursor: 'pointer',
+                  fontSize: t.typography.chipLabel.fontSize,
+                  fontWeight: favoritoFilter ? 600 : 400, cursor: 'pointer',
                 }}>
                 ⭐ Favoritos
               </button>
               {/* En stock */}
               <button onClick={() => setStockFilter(s => !s)}
                 style={{
-                  flexShrink: 0, padding: '5px 13px', borderRadius: t.radius.pill, fontFamily: 'inherit',
+                  flexShrink: 0, padding: '5px 13px', borderRadius: t.radius.pill,
+                  fontFamily: t.typography.chipLabel.fontFamily,
                   border: `1px solid ${stockFilter ? t.colors.primaryBorder : t.colors.border}`,
                   background: stockFilter ? t.colors.primary : 'transparent',
                   color: stockFilter ? t.colors.cream : t.colors.muted,
-                  fontSize: '0.78rem', fontWeight: stockFilter ? 600 : 400, cursor: 'pointer',
+                  fontSize: t.typography.chipLabel.fontSize,
+                  fontWeight: stockFilter ? 600 : 400, cursor: 'pointer',
                 }}>
                 En stock
               </button>
@@ -1002,7 +1010,7 @@ cd /Users/carlosrabadan/Antigravity/Vinoteca && npx tsc --noEmit 2>&1 | head -20
           {!searchOpen && !loading && wines.length > 0 && (
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '2px 0' }}>
               <button onClick={() => setFilterPanelOpen(o => !o)}
-                style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'none', border: 'none', cursor: 'pointer', color: t.colors.muted, fontSize: '0.75rem', fontFamily: 'inherit' }}>
+                style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'none', border: 'none', cursor: 'pointer', color: t.colors.muted, fontSize: t.typography.sortLabel.fontSize, fontFamily: t.typography.sortLabel.fontFamily }}>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M3 6h18M7 12h10M10 18h4"/>
                 </svg>
@@ -1015,7 +1023,7 @@ cd /Users/carlosrabadan/Antigravity/Vinoteca && npx tsc --noEmit 2>&1 | head -20
                 {(['grid', 'list'] as const).map(v => (
                   <button key={v} aria-pressed={view === v} onClick={() => setView(v)}
                     style={{
-                      background: view === v ? t.colors.surface2 : 'none',
+                      background: view === v ? t.colors.surface2 : 'none', fontFamily: 'inherit',
                       border: 'none', cursor: 'pointer', padding: '6px 10px', display: 'flex', alignItems: 'center',
                       color: view === v ? t.colors.cream : t.colors.muted,
                     }}>
@@ -1070,13 +1078,13 @@ cd /Users/carlosrabadan/Antigravity/Vinoteca && npx tsc --noEmit 2>&1 | head -20
                     <div key={i} role="option" aria-selected={false} onClick={() => applySuggestion(s)}
                       style={{
                         display: 'flex', alignItems: 'center', gap: 10,
-                        padding: '11px 14px', fontSize: t.font.base, color: t.colors.cream,
+                        padding: '11px 14px', ...t.typography.body, color: t.colors.cream,
                         borderBottom: i < suggestions.length - 1 ? `1px solid ${t.colors.border}` : 'none',
                         cursor: 'pointer',
                       }}>
-                      <span style={{ fontSize: '0.9rem', width: 20, textAlign: 'center' }}>{s.emoji}</span>
+                      <span style={{ ...t.typography.suggestionEmoji, width: 20, textAlign: 'center' }}>{s.emoji}</span>
                       <span style={{
-                        fontSize: t.font.xs, textTransform: 'uppercase', letterSpacing: '0.08em',
+                        ...t.typography.suggestionType, textTransform: 'uppercase',
                         color: t.colors.muted2, background: t.colors.surface2, padding: '2px 6px',
                         borderRadius: t.radius.xs, flexShrink: 0,
                       }}>
@@ -1113,14 +1121,14 @@ cd /Users/carlosrabadan/Antigravity/Vinoteca && npx tsc --noEmit 2>&1 | head -20
               <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
                 {(['Desde', 'Hasta'] as const).map((lbl, idx) => (
                   <div key={lbl} style={{ flex: 1, background: t.colors.surface, border: `1px solid ${t.colors.border}`, borderRadius: t.radius.md, padding: '10px 12px' }}>
-                    <div style={{ fontSize: t.font.xs, color: t.colors.muted, marginBottom: 2, textTransform: 'uppercase', letterSpacing: '0.06em' }}>{lbl}</div>
+                    <div style={{ ...t.typography.micro, color: t.colors.muted, marginBottom: 2, textTransform: 'uppercase' }}>{lbl}</div>
                     <input type="number" min={1900} max={CURRENT_YEAR} value={anadaRange[idx]}
                       onChange={e => {
                         const val = Number(e.target.value)
                         setAnadaRange(prev => idx === 0 ? [val, prev[1]] : [prev[0], val])
                         setAnadaActive(true)
                       }}
-                      style={{ background: 'none', border: 'none', outline: 'none', color: t.colors.cream, fontFamily: t.font.serif, fontSize: '1.05rem', fontWeight: 300, width: '100%' }}
+                      style={{ background: 'none', border: 'none', outline: 'none', color: t.colors.cream, ...t.typography.inputAnada, width: '100%' }}
                     />
                   </div>
                 ))}
@@ -1157,11 +1165,11 @@ cd /Users/carlosrabadan/Antigravity/Vinoteca && npx tsc --noEmit 2>&1 | head -20
               </div>
             </FilterSection>
             <button onClick={() => setFilterPanelOpen(false)}
-              style={{ width: '100%', padding: 14, background: t.colors.primary, color: t.colors.cream, border: 'none', borderRadius: t.radius.xl, fontSize: t.font.md, fontWeight: 600, fontFamily: 'inherit', cursor: 'pointer', marginBottom: 12 }}>
+              style={{ width: '100%', padding: 14, background: t.colors.primary, color: t.colors.cream, border: 'none', borderRadius: t.radius.xl, ...t.typography.button, cursor: 'pointer', marginBottom: 12 }}>
               Ver resultados ({total})
             </button>
             <button onClick={clearFilters}
-              style={{ width: '100%', padding: 10, background: 'transparent', color: t.colors.muted, border: `1px solid ${t.colors.border}`, borderRadius: t.radius.xl, fontSize: t.font.base, fontFamily: 'inherit', cursor: 'pointer' }}>
+              style={{ width: '100%', padding: 10, background: 'transparent', color: t.colors.muted, border: `1px solid ${t.colors.border}`, borderRadius: t.radius.xl, ...t.typography.body, fontFamily: t.typography.button.fontFamily, cursor: 'pointer' }}>
               Restablecer filtros
             </button>
           </div>
@@ -1169,7 +1177,7 @@ cd /Users/carlosrabadan/Antigravity/Vinoteca && npx tsc --noEmit 2>&1 | head -20
 
         {/* Meta resultados */}
         {!loading && !searchOpen && wines.length > 0 && (
-          <p style={{ fontSize: t.font.xs, color: t.colors.muted, padding: '4px 20px 6px' }}>
+          <p style={{ ...t.typography.micro, color: t.colors.muted, padding: '4px 20px 6px' }}>
             <strong style={{ color: t.colors.cream }}>{total}</strong> vino{total !== 1 ? 's' : ''}
             {groupBy && ` · Agrupados por ${GROUP_OPTIONS.find(o => o.key === groupBy)?.label?.toLowerCase()}`}
           </p>
@@ -1212,26 +1220,26 @@ cd /Users/carlosrabadan/Antigravity/Vinoteca && npx tsc --noEmit 2>&1 | head -20
               {hasActiveFilters || debouncedQ ? (
                 <>
                   <div>
-                    <div style={{ fontFamily: t.font.serif, fontSize: t.font['2xl'], fontWeight: 600, color: t.colors.cream }}>Sin resultados</div>
-                    <p style={{ fontSize: t.font.base, color: t.colors.muted, lineHeight: 1.6, marginTop: 8 }}>No hemos encontrado ningún vino<br/>con esos filtros.</p>
+                    <div style={{ ...t.typography.heroTitle, color: t.colors.cream }}>Sin resultados</div>
+                    <p style={{ ...t.typography.body, color: t.colors.muted, marginTop: 8 }}>No hemos encontrado ningún vino<br/>con esos filtros.</p>
                   </div>
                   <button onClick={clearFilters}
-                    style={{ background: 'transparent', color: t.colors.muted, border: `1px solid ${t.colors.border}`, padding: '12px 28px', borderRadius: 24, fontSize: t.font.md, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>
+                    style={{ background: 'transparent', color: t.colors.muted, border: `1px solid ${t.colors.border}`, padding: '12px 28px', borderRadius: 24, ...t.typography.button, cursor: 'pointer' }}>
                     Limpiar filtros
                   </button>
                 </>
               ) : (
                 <>
                   <div>
-                    <div style={{ fontFamily: t.font.serif, fontSize: t.font['2xl'], fontWeight: 600, color: t.colors.cream }}>Tu bodega está vacía</div>
-                    <p style={{ fontSize: t.font.base, color: t.colors.muted, lineHeight: 1.6, marginTop: 8 }}>Empieza escaneando la etiqueta<br/>de tu primer vino</p>
+                    <div style={{ ...t.typography.heroTitle, color: t.colors.cream }}>Tu bodega está vacía</div>
+                    <p style={{ ...t.typography.body, color: t.colors.muted, marginTop: 8 }}>Empieza escaneando la etiqueta<br/>de tu primer vino</p>
                   </div>
                   <button onClick={() => navigate('/scan')}
-                    style={{ background: t.colors.primary, color: t.colors.cream, border: 'none', padding: '12px 28px', borderRadius: 24, fontSize: t.font.md, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>
+                    style={{ background: t.colors.primary, color: t.colors.cream, border: 'none', padding: '12px 28px', borderRadius: 24, ...t.typography.button, cursor: 'pointer' }}>
                     Escanear vino
                   </button>
                   <button onClick={() => navigate('/anadir')}
-                    style={{ fontSize: t.font.sm, color: t.colors.muted, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', textDecoration: 'underline', textUnderlineOffset: 3 }}>
+                    style={{ ...t.typography.bodySmall, color: t.colors.muted, background: 'none', border: 'none', cursor: 'pointer', fontFamily: t.typography.button.fontFamily, textDecoration: 'underline', textUnderlineOffset: 3 }}>
                     o añadir un vino manualmente
                   </button>
                 </>
@@ -1241,7 +1249,7 @@ cd /Users/carlosrabadan/Antigravity/Vinoteca && npx tsc --noEmit 2>&1 | head -20
 
           {/* Hint swipe (vista lista) */}
           {!loading && wines.length > 0 && view === 'list' && !groupBy && (
-            <p style={{ fontSize: '0.65rem', color: t.colors.muted2, textAlign: 'right', paddingBottom: 6, fontStyle: 'italic' }}>
+            <p style={{ ...t.typography.caption, color: t.colors.muted2, textAlign: 'right', paddingBottom: 6, fontStyle: 'italic' }}>
               Desliza para acciones rápidas →
             </p>
           )}
@@ -1250,11 +1258,11 @@ cd /Users/carlosrabadan/Antigravity/Vinoteca && npx tsc --noEmit 2>&1 | head -20
           {!loading && grouped && grouped.map((group, gi) => (
             <div key={group.label}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: gi === 0 ? '4px 0 14px' : '36px 0 14px' }}>
-                <span style={{ fontSize: '0.72rem', fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', color: t.colors.cream, whiteSpace: 'nowrap' }}>
+                <span style={{ ...t.typography.groupHeader, textTransform: 'uppercase', color: t.colors.cream, whiteSpace: 'nowrap' }}>
                   {group.label}
                 </span>
                 <div style={{ flex: 1, height: 1, background: 'rgba(46,30,34,0.6)' }} />
-                <span style={{ fontSize: t.font.xs, color: t.colors.muted, background: t.colors.surface2, padding: '2px 8px', borderRadius: t.radius.pill }}>
+                <span style={{ ...t.typography.micro, color: t.colors.muted, background: t.colors.surface2, padding: '2px 8px', borderRadius: t.radius.pill }}>
                   {group.wines.length} {group.wines.length === 1 ? 'referencia' : 'referencias'}
                 </span>
               </div>

@@ -170,6 +170,247 @@ export const theme = {
     bottomNavHeight:     68,    // px — altura de la bottom nav
   },
 
+  // ── Typography — escala semántica ─────────────────────────────────────────
+  // Cada token cubre un rol específico en la UI. Los componentes no definen
+  // fontFamily, fontSize, fontWeight, lineHeight ni letterSpacing manualmente.
+  typography: {
+
+    // Títulos de página / hero editorial
+    heroTitle: {
+      fontFamily: "Georgia, 'Times New Roman', serif",
+      fontSize:   '1.5rem',     // t.font['2xl']
+      fontWeight: 700,
+      lineHeight: 1.15,
+      letterSpacing: '0',
+    },
+
+    // Título principal de pantalla (h1 de Bodega, WineDetail…)
+    pageTitle: {
+      fontFamily: "Georgia, 'Times New Roman', serif",
+      fontSize:   '1.25rem',    // t.font.xl
+      fontWeight: 700,
+      lineHeight: 1.15,
+      letterSpacing: '0',
+    },
+
+    // Encabezado de sección dentro de un panel (FilterSection, GroupHeader…)
+    sectionTitle: {
+      fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
+      fontSize:   '0.78rem',
+      fontWeight: 800,
+      lineHeight: 1.3,
+      letterSpacing: '0.12em',
+    },
+
+    // Número protagonista en stats del header (1.6rem, Georgia weight 300)
+    statNumber: {
+      fontFamily: "Georgia, 'Times New Roman', serif",
+      fontSize:   '1.6rem',
+      fontWeight: 300,
+      lineHeight: 1,
+      letterSpacing: '0',
+    },
+
+    // Etiqueta debajo del número de stat ("VINOS", "BOTELLAS"…)
+    statLabel: {
+      fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
+      fontSize:   '0.55rem',    // t.font['2xs']
+      fontWeight: 500,
+      lineHeight: 1.2,
+      letterSpacing: '0.08em',
+    },
+
+    // Nombre del vino en vista grid
+    cardTitleGrid: {
+      fontFamily: "Georgia, 'Times New Roman', serif",
+      fontSize:   '0.92rem',
+      fontWeight: 700,
+      lineHeight: 1.2,
+      letterSpacing: '0',
+    },
+
+    // Nombre del vino en vista lista
+    cardTitleList: {
+      fontFamily: "Georgia, 'Times New Roman', serif",
+      fontSize:   '0.97rem',
+      fontWeight: 700,
+      lineHeight: 1.2,
+      letterSpacing: '0',
+    },
+
+    // Subtítulo de card: bodega, en ambas vistas
+    cardSubtitle: {
+      fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
+      fontSize:   '0.75rem',    // t.font.sm
+      fontWeight: 500,
+      lineHeight: 1.3,
+      letterSpacing: '0',
+    },
+
+    // Añada grande en vista lista (Georgia, thin)
+    cardAnada: {
+      fontFamily: "Georgia, 'Times New Roman', serif",
+      fontSize:   '1.1rem',
+      fontWeight: 300,
+      lineHeight: 1,
+      letterSpacing: '0',
+    },
+
+    // Añada pequeña en vista grid (Georgia, thin)
+    cardAnadaSmall: {
+      fontFamily: "Georgia, 'Times New Roman', serif",
+      fontSize:   '0.85rem',
+      fontWeight: 300,
+      lineHeight: 1,
+      letterSpacing: '0',
+    },
+
+    // Región / DO en vista grid
+    cardMetaGrid: {
+      fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
+      fontSize:   '0.6rem',
+      fontWeight: 400,
+      lineHeight: 1.3,
+      letterSpacing: '0',
+    },
+
+    // Región en vista lista
+    cardMetaList: {
+      fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
+      fontSize:   '0.68rem',
+      fontWeight: 400,
+      lineHeight: 1.3,
+      letterSpacing: '0',
+    },
+
+    // Badge de tipo de vino (TINTO, BLANCO…) en ambas vistas
+    badge: {
+      fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
+      fontSize:   '0.55rem',    // t.font['2xs']
+      fontWeight: 700,
+      lineHeight: 1,
+      letterSpacing: '0.12em',
+    },
+
+    // Badge de stock (×3, ×0) en grid
+    badgeStock: {
+      fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
+      fontSize:   '0.58rem',
+      fontWeight: 700,
+      lineHeight: 1,
+      letterSpacing: '0',
+    },
+
+    // Badge de stock en lista y stock pill más grande
+    badgeStockList: {
+      fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
+      fontSize:   '0.65rem',
+      fontWeight: 600,
+      lineHeight: 1,
+      letterSpacing: '0',
+    },
+
+    // Texto principal de cuerpo (body)
+    body: {
+      fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
+      fontSize:   '0.875rem',   // t.font.base
+      fontWeight: 400,
+      lineHeight: 1.6,
+      letterSpacing: '0',
+    },
+
+    // Texto secundario más pequeño
+    bodySmall: {
+      fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
+      fontSize:   '0.75rem',    // t.font.sm
+      fontWeight: 400,
+      lineHeight: 1.5,
+      letterSpacing: '0',
+    },
+
+    // Label de sort y chips de filtro
+    chipLabel: {
+      fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
+      fontSize:   '0.78rem',
+      fontWeight: 400,          // 600 cuando activo — sobrescribir en componente
+      lineHeight: 1,
+      letterSpacing: '0',
+    },
+
+    // Input de añada (panel filtros)
+    inputAnada: {
+      fontFamily: "Georgia, 'Times New Roman', serif",
+      fontSize:   '1.05rem',
+      fontWeight: 300,
+      lineHeight: 1.2,
+      letterSpacing: '0',
+    },
+
+    // Group header label (BODEGA MUGA…)
+    groupHeader: {
+      fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
+      fontSize:   '0.72rem',
+      fontWeight: 800,
+      lineHeight: 1,
+      letterSpacing: '0.14em',
+    },
+
+    // Caption y hints pequeños (hint swipe, meta resultados…)
+    caption: {
+      fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
+      fontSize:   '0.65rem',
+      fontWeight: 400,
+      lineHeight: 1.4,
+      letterSpacing: '0',
+    },
+
+    // Micro: label de campo en inputs, eyebrows uppercase
+    micro: {
+      fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
+      fontSize:   '0.625rem',   // t.font.xs
+      fontWeight: 500,
+      lineHeight: 1.2,
+      letterSpacing: '0.06em',
+    },
+
+    // Etiqueta typeLabel en autocomplete (VINO, BODEGA, D.O…)
+    suggestionType: {
+      fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
+      fontSize:   '0.625rem',   // t.font.xs
+      fontWeight: 600,
+      lineHeight: 1,
+      letterSpacing: '0.08em',
+    },
+
+    // Emoji en sugerencias de autocomplete
+    suggestionEmoji: {
+      fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
+      fontSize:   '0.9rem',
+      fontWeight: 400,
+      lineHeight: 1,
+      letterSpacing: '0',
+    },
+
+    // Botones primarios y secundarios
+    button: {
+      fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
+      fontSize:   '1rem',       // t.font.md
+      fontWeight: 600,
+      lineHeight: 1,
+      letterSpacing: '0',
+    },
+
+    // Sort label en toolbar (Fila 4)
+    sortLabel: {
+      fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
+      fontSize:   '0.75rem',    // t.font.sm
+      fontWeight: 400,
+      lineHeight: 1,
+      letterSpacing: '0',
+    },
+
+  },
+
 } as const
 
 export type Theme = typeof theme
