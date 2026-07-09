@@ -142,6 +142,19 @@ Resumen de los más importantes:
 
 ---
 
+## Regla de implementación — diseño congelado
+
+Durante la Fase 7 **no se rediseña la interfaz.**
+
+Si durante el desarrollo aparece una mejora visual:
+
+1. Se documenta (comentario en el código o nota en `docs/qa/`) 
+2. **No se implementa** salvo que corrija un error funcional
+
+El objetivo es entregar la implementación respetando exactamente el diseño aprobado en `docs/superpowers/specs/2026-07-09-bodega-fase7-design.md`. Cualquier desviación estética, aunque parezca una mejora, queda para fases posteriores.
+
+---
+
 ## Definition of Done (Fase 7)
 
 Una tarea se considera completada **únicamente** cuando cumple todos estos criterios:
