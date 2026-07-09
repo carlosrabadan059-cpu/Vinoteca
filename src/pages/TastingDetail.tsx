@@ -4,6 +4,7 @@ import Layout from '../components/ui/Layout'
 import Modal from '../components/ui/Modal'
 import Button from '../components/ui/Button'
 import Spinner from '../components/ui/Spinner'
+import TastingEditForm from '../components/wine/TastingEditForm'
 import { useTastings } from '../hooks/useTastings'
 import { useWines } from '../hooks/useWines'
 import { useToastStore } from '../store/toastStore'
@@ -53,12 +54,13 @@ export default function TastingDetail() {
   const navigate   = useNavigate()
   const toast      = useToastStore()
 
-  const { getTasting, deleteTasting } = useTastings()
-  const { getWine }                   = useWines()
+  const { getTasting, updateTasting, deleteTasting } = useTastings()
+  const { getWine }                                  = useWines()
 
   const [tasting,      setTasting]      = useState<Tasting | null>(null)
   const [wine,         setWine]         = useState<Wine | null>(null)
   const [loadingPage,  setLoadingPage]  = useState(true)
+  const [editing,      setEditing]      = useState(false)
   const [deleteOpen,   setDeleteOpen]   = useState(false)
   const [deleting,     setDeleting]     = useState(false)
   const [chatExpanded, setChatExpanded] = useState(false)
@@ -74,6 +76,14 @@ export default function TastingDetail() {
       setLoadingPage(false)
     })
   }, [id]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  async function handleEdit(fields: Partial<Tasting>) {
+    if (!tasting) return
+    const updated = await updateTasting(tasting.id, fields)
+    setTasting(updated)
+    setEditing(false)
+    toast.show('Cata actualizada')
+  }
 
   async function handleDelete() {
     if (!tasting) return
@@ -158,21 +168,47 @@ export default function TastingDetail() {
       {/* Header */}
       <div className="flex items-center justify-between px-4 pt-4 pb-2">
         <button
-          onClick={() => navigate('/catas')}
+          onClick={() => editing ? setEditing(false) : navigate('/catas')}
           className="flex items-center gap-1 text-sm font-medium"
           style={{ color: theme.colors.gold }}
         >
-          ← Volver
+          ← {editing ? 'Cancelar' : 'Volver'}
         </button>
-        <button
-          onClick={() => setDeleteOpen(true)}
-          className="text-sm"
-          style={{ color: theme.colors.errorStrong }}
-        >
-          Eliminar
-        </button>
+        <div className="flex items-center gap-3">
+          {!editing && (
+            <button
+              onClick={() => setEditing(true)}
+              className="text-sm font-medium"
+              style={{ color: theme.colors.cream }}
+            >
+              Editar
+            </button>
+          )}
+          {!editing && (
+            <button
+              onClick={() => setDeleteOpen(true)}
+              className="text-sm"
+              style={{ color: theme.colors.errorStrong }}
+            >
+              Eliminar
+            </button>
+          )}
+        </div>
       </div>
 
+      {/* Modo edición */}
+      {editing && (
+        <div className="px-4 pb-24 flex flex-col gap-4">
+          <TastingEditForm
+            tasting={tasting}
+            onSave={handleEdit}
+            onCancel={() => setEditing(false)}
+          />
+        </div>
+      )}
+
+      {/* Modo lectura */}
+      {!editing && (
       <div className="px-4 pb-24 flex flex-col gap-4">
 
         {/* Puntuación + fecha */}
@@ -267,6 +303,7 @@ export default function TastingDetail() {
           Compartir cata
         </Button>
       </div>
+      )}
 
       {/* Modal eliminación */}
       <Modal open={deleteOpen} onClose={() => setDeleteOpen(false)} title="Eliminar cata">
