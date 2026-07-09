@@ -118,7 +118,7 @@ export default function NuevaCata() {
               <div ref={dropRef} style={{ position: 'relative' }}>
                 <div
                   className="flex items-center gap-2 rounded-xl px-3 py-2"
-                  style={{ background: theme.colors.surface, border: `1px solid ${open ? theme.colors.gold + '80' : '#3A2A2E'}` }}
+                  style={{ background: theme.colors.surface, border: `1px solid ${open ? theme.colors.gold + '80' : theme.colors.borderSubtle}` }}
                 >
                   <span style={{ color: theme.colors.muted }}>🔍</span>
                   <input
@@ -150,7 +150,7 @@ export default function NuevaCata() {
                     style={{
                       top: 'calc(100% + 6px)',
                       background: theme.colors.surface,
-                      border: '1px solid #3A2A2E',
+                      border: `1px solid ${theme.colors.borderSubtle}`,
                       maxHeight: '55vh',
                       overflowY: 'auto',
                       zIndex: 50,
@@ -161,7 +161,7 @@ export default function NuevaCata() {
                         key={w.id}
                         onMouseDown={() => { setWine(w); setQuery(''); setOpen(false) }}
                         className="w-full flex items-center gap-3 px-3 py-3 text-left active:opacity-75"
-                        style={{ borderBottom: '1px solid #2A1A1E' }}
+                        style={{ borderBottom: `1px solid ${theme.colors.borderDivider}` }}
                       >
                         <span style={{ fontSize: '1.25rem', flexShrink: 0 }}>🍾</span>
                         <div className="min-w-0 flex-1">
@@ -180,7 +180,7 @@ export default function NuevaCata() {
                 {open && query.trim() && filtered.length === 0 && (
                   <div
                     className="absolute left-0 right-0 rounded-xl px-4 py-4 text-center text-sm"
-                    style={{ top: 'calc(100% + 6px)', background: theme.colors.surface, border: '1px solid #3A2A2E', color: theme.colors.muted, zIndex: 50 }}
+                    style={{ top: 'calc(100% + 6px)', background: theme.colors.surface, border: `1px solid ${theme.colors.borderSubtle}`, color: theme.colors.muted, zIndex: 50 }}
                   >
                     No se encontraron vinos
                   </div>

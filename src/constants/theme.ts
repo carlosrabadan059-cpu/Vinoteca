@@ -67,8 +67,11 @@ export const theme = {
     muted3: '#5A4448',   // chips de tipo/región en lista
 
     // Fondos especiales de componente
-    imageBg:    '#110809',   // fondo interior de thumbnail/zona de imagen de botella
-    iconMuted:  '#9A7E82',   // iconos de acción inactivos en header (entre muted y cream)
+    imageBg:      '#110809',  // fondo interior de thumbnail/zona de imagen de botella
+    iconMuted:    '#9A7E82',  // iconos de acción inactivos en header (entre muted y cream)
+    scoreNeutral: '#4A3A3E',  // fondo de badge de puntuación sin valor asignado
+    borderSubtle: '#3A2A2E',  // borde secundario (cards de catas, dropdowns, chat)
+    borderDivider:'#2A1A1E',  // separador entre items de lista desplegable
 
     // Retrocompatibilidad — valores anteriores que puede haber en código viejo
     // Se mantienen para no romper componentes que aún no se han migrado

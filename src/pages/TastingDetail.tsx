@@ -14,7 +14,7 @@ function ScoreBadge({ score }: { score: number | null }) {
   const bg =
     score === null    ? theme.colors.surface :
     score >= 90       ? theme.colors.gold    :
-    score >= 70       ? theme.colors.primary : '#4A3A3E'
+    score >= 70       ? theme.colors.primary : theme.colors.scoreNeutral
 
   const color =
     score === null    ? theme.colors.muted :
@@ -39,7 +39,7 @@ interface SectionCardProps {
 function SectionCard({ icon, title, content }: SectionCardProps) {
   if (!content) return null
   return (
-    <div className="rounded-xl p-4" style={{ background: theme.colors.surface, border: '1px solid #3A2A2E' }}>
+    <div className="rounded-xl p-4" style={{ background: theme.colors.surface, border: `1px solid ${theme.colors.borderSubtle}` }}>
       <p className="text-xs font-semibold mb-2" style={{ color: theme.colors.muted }}>
         {icon} {title}
       </p>
@@ -167,7 +167,7 @@ export default function TastingDetail() {
         <button
           onClick={() => setDeleteOpen(true)}
           className="text-sm"
-          style={{ color: '#D32F2F' }}
+          style={{ color: theme.colors.errorStrong }}
         >
           Eliminar
         </button>
@@ -221,7 +221,7 @@ export default function TastingDetail() {
 
         {/* Chat history */}
         {tasting.chat_history.length > 0 && (
-          <div className="rounded-xl overflow-hidden" style={{ background: theme.colors.surface, border: '1px solid #3A2A2E' }}>
+          <div className="rounded-xl overflow-hidden" style={{ background: theme.colors.surface, border: `1px solid ${theme.colors.borderSubtle}` }}>
             <button
               className="w-full flex items-center justify-between px-4 py-3"
               onClick={() => setChatExpanded(e => !e)}
@@ -233,7 +233,7 @@ export default function TastingDetail() {
             </button>
 
             {chatExpanded && (
-              <div className="px-4 pb-4 flex flex-col gap-2 border-t" style={{ borderColor: '#3A2A2E' }}>
+              <div className="px-4 pb-4 flex flex-col gap-2 border-t" style={{ borderColor: theme.colors.borderSubtle }}>
                 <div style={{ height: 12 }} />
                 {tasting.chat_history.map((msg, i) => {
                   const isUser = msg.role === 'user'
@@ -246,7 +246,7 @@ export default function TastingDetail() {
                       <div
                         className="max-w-xs rounded-2xl px-3 py-2 text-sm leading-relaxed"
                         style={{
-                          background: isUser ? theme.colors.primary : '#3A2A2E',
+                          background: isUser ? theme.colors.primary : theme.colors.borderSubtle,
                           color:      theme.colors.cream,
                           borderBottomRightRadius: isUser ? 4 : undefined,
                           borderBottomLeftRadius:  isUser ? undefined : 4,
@@ -284,7 +284,7 @@ export default function TastingDetail() {
           </Button>
           <Button
             className="flex-1"
-            style={{ background: '#D32F2F', color: theme.colors.cream }}
+            style={{ background: theme.colors.errorStrong, color: theme.colors.cream }}
             loading={deleting}
             onClick={handleDelete}
           >

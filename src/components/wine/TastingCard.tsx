@@ -11,7 +11,7 @@ function scoreBg(score: number | null): string {
   if (score === null) return theme.colors.surface
   if (score >= 90) return theme.colors.gold
   if (score >= 70) return theme.colors.primary
-  return '#4A3A3E'
+  return theme.colors.scoreNeutral
 }
 
 function scoreColor(score: number | null): string {
@@ -35,7 +35,7 @@ export default function TastingCard({ tasting, wineName, onClick }: TastingCardP
     <div
       onClick={onClick}
       className="flex items-center gap-3 rounded-xl p-3 cursor-pointer active:opacity-75 transition-opacity"
-      style={{ background: theme.colors.surface, border: '1px solid #3A2A2E' }}
+      style={{ background: theme.colors.surface, border: `1px solid ${theme.colors.borderSubtle}` }}
     >
       {/* Badge puntuación */}
       <div
