@@ -35,7 +35,7 @@ export default function WineCardList({ wine, index, onClick }: Props) {
         width: t.sizes.cardListThumbWidth,
         height: t.sizes.cardListThumbHeight,
         borderRadius: t.radius.sm,
-        background: '#110809', overflow: 'hidden', flexShrink: 0,
+        background: t.colors.imageBg, overflow: 'hidden', flexShrink: 0,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         border: `1px solid ${t.colors.border}`,
       }}>

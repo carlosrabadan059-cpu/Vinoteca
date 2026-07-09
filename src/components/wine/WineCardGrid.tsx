@@ -29,7 +29,7 @@ export default function WineCardGrid({ wine, index, onClick }: Props) {
       }}
     >
       {/* Zona imagen */}
-      <div style={{ position: 'relative', height: t.sizes.cardGridImageHeight, background: '#110809', overflow: 'hidden' }}>
+      <div style={{ position: 'relative', height: t.sizes.cardGridImageHeight, background: t.colors.imageBg, overflow: 'hidden' }}>
         {wine.imagen_frontal_url ? (
           <img
             src={wine.imagen_frontal_url}

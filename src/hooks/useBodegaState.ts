@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { useWines } from './useWines'
 import { useWineStore } from '../store/wineStore'
 import theme, { injectKeyframes } from '../constants/theme'
-import { getSuggestions, groupWines, GROUP_OPTIONS } from '../lib/bodegaHelpers'
+import { getSuggestions, groupWines } from '../lib/bodegaHelpers'
 import type { GroupKey, Suggestion } from '../lib/bodegaHelpers'
 import type { SortKey } from './useWines'
 import type { Wine } from '../types'
@@ -23,7 +23,7 @@ export interface BodegaState {
   suggestions: Suggestion[]
   applySuggestion: (s: Suggestion) => void
   closeSearch: () => void
-  searchRef: React.RefObject<HTMLInputElement>
+  searchRef: React.RefObject<HTMLInputElement | null>
 
   // Filtros rápidos
   tipoFilter: string | null
@@ -52,7 +52,7 @@ export interface BodegaState {
   loading: boolean
   loadingMore: boolean
   refreshing: boolean
-  sentinelRef: React.RefObject<HTMLDivElement>
+  sentinelRef: React.RefObject<HTMLDivElement | null>
 
   // FAB
   fabHidden: boolean

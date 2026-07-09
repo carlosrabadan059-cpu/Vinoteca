@@ -1,51 +1,50 @@
 # Roadmap — Vinoteca
 
-## V1 — Completada ✅
-
-- [x] **OCR** — Captura de foto frontal/trasera, análisis con GPT-4o Vision vía n8n (`/scan/analizar`)
-- [x] **GPT** — Extracción de campos del vino (nombre, bodega, añada, región, uva, descripción, etc.) desde etiqueta
-- [x] **Storage** — CRUD completo de vinos en Supabase, imágenes en bucket `wine-labels`, IndexedDB offline, cola de sync
-- [x] **wine_uid** — SHA-256 de `normalizeWineText(nombre)|normalizeWineText(bodega)|añada`, algoritmo idéntico en frontend y n8n
-
-También incluido en V1:
-- Autenticación Supabase (email + contraseña)
-- Lista de bodega con búsqueda, filtros y scroll infinito
-- Catas: formulario, puntuación, notas, historial de chat
-- Sommelier: chat con enrutamiento de intención (maridaje / enriquecimiento / libre)
-- Estadísticas con Recharts + insight narrativo vía n8n
-- PWA instalable con Service Worker (Workbox NetworkFirst)
-- Tema centralizado (`src/constants/theme.ts`)
+> Este documento es la referencia oficial del proyecto. Cada fase tiene su documento detallado en `docs/roadmap/`.
+> Para retomar cualquier fase: lee su documento y tendrás todo el contexto necesario.
 
 ---
 
-## V1.2 — Completada ✅
+## Completadas
 
-- [x] **Historial de consumo** — Nuevo tipo de entrada en la tabla `tastings` diferenciado por `es_consumo_rapido: boolean`
-- [x] **ConsumoQuickForm** — Modal bottom sheet desde `WineDetail` con campos: fecha, ocasión, lugar, botella terminada
-- [x] **TastingMiniCard** — Badge `CATA` / `CONSUMO`; preview adaptado al tipo de entrada
-- [x] **WineDetail** — Zona de acciones escalable (array `.map()`); botón "Registrar consumo" junto a "Catar"
-- [x] **TastingForm** — Campos opcionales `ocasion` y `lugar` añadidos al formulario de cata completa
-- [x] **Migración Supabase** — `ALTER TABLE tastings ADD COLUMN es_consumo_rapido`, `botella_terminada`, `ocasion`, `lugar`
-- [x] **Offline-first** — Defensive spread en `loadTastings()` para compatibilidad con registros IDB anteriores
-
----
-
-## V1.1 — En curso
-
-- [ ] **Identificación rápida** — Fase 1 del scan: `POST /webhook/vinoteca/scan/identificar` (OCR → wine_uid → lookup Supabase). Si el vino existe, no llama a GPT.
-- [ ] **QR cache** — Primera forma de identificación antes de wine_uid. Lookup por `qr_fuente` en la bodega del usuario.
-- [ ] **Caché inteligente** — (pendiente de especificar)
-
-Pendientes técnicos de V1 que deben resolverse en V1.1:
-- Migrar `TastingChat` de llamada directa a OpenAI → n8n webhook (expone API key en cliente)
-- Backfill de `wine_uid` para vinos con `wine_uid = NULL` (script comentado en `wineDuplicates.ts`)
-- Resolver `processOperation` duplicado (en `useSync.ts` y `main.tsx`)
-- Consolidar `ChatBubble` duplicado (`src/components/wine/` vs `src/components/ui/`)
-- Completar offline sync automático al reconectar (estructuras IDB listas, flujo no activado)
+| Fase | Nombre | Documento |
+|------|--------|-----------|
+| ✅ Fase 1 | Captura y OCR | [fase-01-captura-ocr.md](roadmap/fase-01-captura-ocr.md) |
+| ✅ Fase 2 | Identificación (V1.4) | [fase-02-identificacion.md](roadmap/fase-02-identificacion.md) |
+| ✅ Fase 3 | Enriquecimiento | [fase-03-enriquecimiento.md](roadmap/fase-03-enriquecimiento.md) |
+| ✅ Fase 4 | WineForm y backend Sommelier | [fase-04-wineform.md](roadmap/fase-04-wineform.md) |
+| ✅ Fase 5 | Ficha del vino (WineDetail) | [fase-05-ficha-vino.md](roadmap/fase-05-ficha-vino.md) |
+| ✅ Fase 6 | Schema colección personal | [fase-06-schema-coleccion.md](roadmap/fase-06-schema-coleccion.md) |
+| ✅ Fase 7 | Gestión de la bodega (v0.7.0, 2026-07-09) | [fase-07-gestion-bodega.md](roadmap/fase-07-gestion-bodega.md) |
 
 ---
 
-## V2 — Planificada
+## Pendientes
 
-- [ ] **Recomendaciones IA** — (pendiente de especificar)
-- [ ] **Compartir bodega** — (pendiente de especificar)
+| Fase | Nombre | Documento |
+|------|--------|-----------|
+| ⬜ Fase 8 | Catas | [fase-08-catas.md](roadmap/fase-08-catas.md) |
+| ⬜ Fase 9 | Estadísticas | [fase-09-estadisticas.md](roadmap/fase-09-estadisticas.md) |
+| ⬜ Fase 10 | Sommelier IA | [fase-10-sommelier-ia.md](roadmap/fase-10-sommelier-ia.md) |
+| ⬜ Fase 11 | Optimización | [fase-11-optimizacion.md](roadmap/fase-11-optimizacion.md) |
+
+---
+
+## Congelado
+
+| Pipeline | Estado | Motivo |
+|----------|--------|--------|
+| OCR V1.4 (identify + enrich) | ⏸️ Congelado | Pendiente validación con colección real de etiquetas |
+
+No tocar: `Scan.tsx`, workflows n8n `wine/identify` y `wine/enrich`, tipos `IdentifyResponse`/`EnrichResponse`.
+
+---
+
+## Principios arquitectónicos
+
+- **n8n** = lógica de negocio (OCR, identificación, enriquecimiento, Sommelier)
+- **Supabase** = fuente de verdad (CRUD, auth, storage de imágenes)
+- **GPT** solo si el vino no existe en la base de datos
+- **`wine_uid`** debe ser idéntico en n8n y en el frontend (SHA-256 de `nombre|bodega|añada` normalizados)
+
+Ver [decisions/README.md](decisions/README.md) para el registro de decisiones de diseño.

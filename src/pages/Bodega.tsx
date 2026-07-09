@@ -107,7 +107,7 @@ export default function Bodega() {
               <button
                 onClick={() => { s.setSearchOpen(!s.searchOpen); s.setFilterPanelOpen(false) }}
                 style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px 2px',
-                  color: s.searchOpen ? t.colors.gold : '#9A7E82' }}
+                  color: s.searchOpen ? t.colors.gold : t.colors.iconMuted }}
                 aria-label="Buscar"
               >
                 <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -117,7 +117,7 @@ export default function Bodega() {
               <button
                 onClick={() => { s.setFilterPanelOpen(o => !o); s.setSearchOpen(false) }}
                 style={{ position: 'relative', background: 'none', border: 'none', cursor: 'pointer', padding: '4px 2px',
-                  color: s.filterPanelOpen ? t.colors.gold : '#9A7E82' }}
+                  color: s.filterPanelOpen ? t.colors.gold : t.colors.iconMuted }}
                 aria-label="Filtros y orden"
               >
                 <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">

@@ -66,6 +66,10 @@ export const theme = {
     muted2: '#4A3438',   // texto terciario, separadores, hints
     muted3: '#5A4448',   // chips de tipo/región en lista
 
+    // Fondos especiales de componente
+    imageBg:    '#110809',   // fondo interior de thumbnail/zona de imagen de botella
+    iconMuted:  '#9A7E82',   // iconos de acción inactivos en header (entre muted y cream)
+
     // Retrocompatibilidad — valores anteriores que puede haber en código viejo
     // Se mantienen para no romper componentes que aún no se han migrado
     // TODO: eliminar en Fase 9 tras migrar todos los componentes
