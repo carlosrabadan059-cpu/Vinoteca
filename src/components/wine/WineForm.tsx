@@ -8,6 +8,7 @@ interface WineFormProps {
   loading:             boolean
   identifyConfidence?: number   // 0–1; drives the global chip
   imageUrl?:           string   // miniatura en el resumen
+  editMode?:           boolean  // true cuando se edita un vino existente
 }
 
 // ── Field status ──────────────────────────────────────────────────────────────
@@ -201,7 +202,7 @@ function ConfChip({ confidence, manual }: { confidence: number | undefined; manu
 }
 
 // ── Main component ────────────────────────────────────────────────────────────
-export default function WineForm({ initialData, onSubmit, loading, identifyConfidence, imageUrl }: WineFormProps) {
+export default function WineForm({ initialData, onSubmit, loading, identifyConfidence, imageUrl, editMode }: WineFormProps) {
   const normalize = (d: Partial<Wine>): Partial<Wine> => ({
     num_botellas: 1,
     favorito:     false,
@@ -445,8 +446,8 @@ export default function WineForm({ initialData, onSubmit, loading, identifyConfi
         <SubDivider label="Información del vino" />
         {/* Espacio reservado: imagen adicional (Fase 6) */}
 
-        {/* URL: link when auto, editable when not */}
-        {hasUrlAuto ? (
+        {/* URL: always editable in editMode, link when auto otherwise */}
+        {hasUrlAuto && !editMode ? (
           <div style={{
             display: 'flex', alignItems: 'center', justifyContent: 'space-between',
             padding: '0 16px', minHeight: 50,
@@ -555,6 +556,17 @@ export default function WineForm({ initialData, onSubmit, loading, identifyConfi
           </datalist>
         </FieldRow>
 
+        {/* Fecha de compra */}
+        <FieldRow label="F. compra">
+          <input
+            style={data.fecha_compra ? fieldValueStyle : emptyValueStyle}
+            type="date"
+            value={data.fecha_compra ?? ''}
+            onChange={e => set('fecha_compra', e.target.value || null)}
+            placeholder="—"
+          />
+        </FieldRow>
+
         {/* Observaciones */}
         <div style={{
           display: 'flex', flexDirection: 'column',
@@ -611,7 +623,7 @@ export default function WineForm({ initialData, onSubmit, loading, identifyConfi
                 <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
                 <polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>
               </svg>
-              Añadir a mi bodega
+              {editMode ? 'Guardar cambios' : 'Añadir a mi bodega'}
             </>
           )}
         </button>

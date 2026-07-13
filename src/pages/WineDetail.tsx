@@ -549,7 +549,7 @@ export default function WineDetail() {
 
       {/* ── Modales ─────────────────────────────────────────────────────────── */}
       <Modal open={editOpen} onClose={() => setEditOpen(false)} title="Editar vino">
-        <WineForm initialData={wine} onSubmit={handleUpdate} loading={saving} />
+        <WineForm initialData={wine} onSubmit={handleUpdate} loading={saving} editMode />
       </Modal>
 
       <ConsumoQuickForm open={consumoOpen} wineId={wine.id} onClose={() => setConsumoOpen(false)} />
