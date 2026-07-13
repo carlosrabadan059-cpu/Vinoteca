@@ -373,9 +373,10 @@ export default function WineForm({ initialData, onSubmit, loading, identifyConfi
             style={data.anada ? fieldValueStyle : emptyValueStyle}
             type="number" inputMode="numeric"
             value={data.anada ?? ''}
-            onChange={e => {
+            onChange={e => set('anada', e.target.value === '' ? null : Number(e.target.value))}
+            onBlur={e => {
               const v = parseInt(e.target.value)
-              set('anada', !isNaN(v) && v >= 1800 && v <= new Date().getFullYear() + 1 ? v : null)
+              if (!isNaN(v) && (v < 1800 || v > new Date().getFullYear() + 1)) set('anada', null)
             }}
             placeholder="—"
           />
