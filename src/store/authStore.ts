@@ -9,6 +9,8 @@ interface AuthState {
   login: (email: string, password: string) => Promise<void>
   register: (email: string, password: string) => Promise<void>
   logout: () => Promise<void>
+  requestPasswordReset: (email: string) => Promise<void>
+  updatePassword: (password: string) => Promise<void>
 }
 
 export const useAuthStore = create<AuthState>((set) => {
@@ -26,8 +28,16 @@ export const useAuthStore = create<AuthState>((set) => {
     loading: true,
 
     async login(email, password) {
-      const { error } = await supabase.auth.signInWithPassword({ email, password })
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password })
       if (error) throw error
+      if (data.user) {
+        // Best-effort: no debe bloquear el login si falla.
+        supabase
+          .from('profiles')
+          .update({ last_login_at: new Date().toISOString() })
+          .eq('id', data.user.id)
+          .then(() => {})
+      }
     },
 
     async register(email, password) {
@@ -37,6 +47,18 @@ export const useAuthStore = create<AuthState>((set) => {
 
     async logout() {
       const { error } = await supabase.auth.signOut()
+      if (error) throw error
+    },
+
+    async requestPasswordReset(email) {
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/restablecer`,
+      })
+      if (error) throw error
+    },
+
+    async updatePassword(password) {
+      const { error } = await supabase.auth.updateUser({ password })
       if (error) throw error
     },
   }

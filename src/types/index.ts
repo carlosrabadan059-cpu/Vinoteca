@@ -54,6 +54,40 @@ export interface ChatMessage {
   content: string
 }
 
+// ── Fase 9: identidad y preferencias ─────────────────────────────────────────
+
+export type UserRole = 'user' | 'premium' | 'family' | 'admin'
+export type UserPlan = 'free' | 'premium' | 'family'
+
+export interface Profile {
+  id: string
+  display_name: string | null
+  avatar_url: string | null
+  country: string | null
+  locale: string
+  role: UserRole
+  plan: UserPlan
+  last_login_at: string | null
+  created_at: string
+  updated_at: string
+}
+
+export interface UserSettings {
+  user_id: string
+  theme: 'system' | 'light' | 'dark'
+  language: string
+  currency: string
+  timezone: string
+  date_format: string
+  notifications_email: boolean
+  notifications_push: boolean
+  camera_preferences: Record<string, unknown>
+  ai_preferences: Record<string, unknown>
+  privacy_preferences: Record<string, unknown>
+  created_at: string
+  updated_at: string
+}
+
 // ── V1.4: Identificación y enriquecimiento ───────────────────────────────────
 
 export type SourceType =

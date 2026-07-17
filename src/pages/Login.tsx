@@ -130,6 +130,14 @@ export default function Login() {
           </button>
 
           <Link
+            to="/recuperar"
+            className="text-center text-sm"
+            style={{ color: theme.colors.muted }}
+          >
+            ¿Olvidaste tu contraseña?
+          </Link>
+
+          <Link
             to="/register"
             className="text-center text-sm mt-2"
             style={{ color: theme.colors.muted }}

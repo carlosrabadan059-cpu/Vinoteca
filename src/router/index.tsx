@@ -4,6 +4,8 @@ import Spinner from '../components/ui/Spinner'
 
 import Login        from '../pages/Login'
 import Register     from '../pages/Register'
+import ForgotPassword from '../pages/ForgotPassword'
+import ResetPassword  from '../pages/ResetPassword'
 import Bodega       from '../pages/Bodega'
 import WineDetail   from '../pages/WineDetail'
 import Scan         from '../pages/Scan'
@@ -12,6 +14,8 @@ import NuevaCata    from '../pages/NuevaCata'
 import TastingDetail from '../pages/TastingDetail'
 import Sommelier    from '../pages/Sommelier'
 import Stats        from '../pages/Stats'
+import Perfil       from '../pages/Perfil'
+import Ajustes      from '../pages/Ajustes'
 
 function ProtectedRoute() {
   const { session, loading } = useAuthStore()
@@ -31,8 +35,10 @@ function ProtectedRoute() {
 export const router = createBrowserRouter([
   { path: '/', element: <Navigate to="/bodega" replace /> },
 
-  { path: '/login',    element: <Login /> },
-  { path: '/register', element: <Register /> },
+  { path: '/login',      element: <Login /> },
+  { path: '/register',   element: <Register /> },
+  { path: '/recuperar',  element: <ForgotPassword /> },
+  { path: '/restablecer', element: <ResetPassword /> },
 
   {
     element: <ProtectedRoute />,
@@ -45,6 +51,8 @@ export const router = createBrowserRouter([
       { path: '/catas/:id',    element: <TastingDetail /> },
       { path: '/sommelier',    element: <Sommelier /> },
       { path: '/stats',        element: <Stats /> },
+      { path: '/perfil',       element: <Perfil /> },
+      { path: '/ajustes',      element: <Ajustes /> },
     ],
   },
 ])
