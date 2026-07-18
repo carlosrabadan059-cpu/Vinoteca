@@ -513,7 +513,7 @@ export default function Bodega() {
                     Escanear vino
                   </button>
                   <button
-                    onClick={() => navigate('/anadir')}
+                    onClick={() => navigate('/scan?manual=1')}
                     style={{ ...t.typography.bodySmall, color: t.colors.muted, background: 'none', border: 'none',
                       cursor: 'pointer', fontFamily: t.typography.button.fontFamily,
                       textDecoration: 'underline', textUnderlineOffset: 3 }}

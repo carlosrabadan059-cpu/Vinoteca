@@ -108,10 +108,13 @@ export default function Ajustes() {
                 className="w-full px-4 py-3 rounded-xl outline-none text-base"
                 style={inputStyle}
               >
-                <option value="system">Sistema</option>
-                <option value="light">Claro</option>
+                <option value="system">Sistema (próximamente)</option>
+                <option value="light">Claro (próximamente)</option>
                 <option value="dark">Oscuro</option>
               </select>
+              <p className="text-xs" style={{ color: theme.colors.muted }}>
+                Por ahora la app solo tiene diseño oscuro. Tu preferencia se guarda para cuando esté disponible.
+              </p>
 
               <select
                 value={language}

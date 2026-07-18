@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import Layout from '../components/ui/Layout'
 import Spinner from '../components/ui/Spinner'
 import WineForm from '../components/wine/WineForm'
@@ -127,11 +127,13 @@ function CameraButton({ onCamera, onGallery }: { onCamera: () => void; onGallery
 
 export default function Scan() {
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+  const isManual = searchParams.get('manual') === '1'
   const { createWine, loading: saving, status: saveStatus } = useWines()
   const { takePhoto, pickFromGallery, compressImage } = useCamera()
   const { user } = useAuthStore()
 
-  const [step,         setStep]         = useState<Step>('frontal')
+  const [step,         setStep]         = useState<Step>(isManual ? 'review' : 'frontal')
   const [cameraTarget, setCameraTarget] = useState<'frontal' | 'trasera' | null>(null)
   const [frontImage,   setFrontImage]   = useState<string | null>(null)
   const [backImage,    setBackImage]    = useState<string | null>(null)
@@ -553,14 +555,14 @@ export default function Scan() {
           <div className="flex items-center justify-between px-5 pt-4">
             <button
               type="button"
-              onClick={() => setStep('frontal')}
+              onClick={() => isManual ? navigate('/bodega') : setStep('frontal')}
               className="flex items-center gap-1.5 text-sm"
               style={{ color: theme.colors.muted, background: 'transparent', border: 'none', cursor: 'pointer', padding: 0 }}
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
                 <path d="m15 18-6-6 6-6"/>
               </svg>
-              Escanear de nuevo
+              {isManual ? 'Cancelar' : 'Escanear de nuevo'}
             </button>
           </div>
 
