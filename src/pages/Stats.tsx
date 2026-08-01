@@ -104,7 +104,19 @@ function MetricCard({
       <span className="text-editorial font-bold" style={{ fontSize: '1.3rem', color: theme.colors.gold, lineHeight: 1 }}>
         {value}
       </span>
-      <span className="text-center" style={{ fontSize: '0.58rem', letterSpacing: '0.06em', textTransform: 'uppercase', color: theme.colors.muted }}>
+      <span
+        className="text-center"
+        style={{
+          fontSize: '0.58rem',
+          letterSpacing: '0.06em',
+          textTransform: 'uppercase',
+          color: theme.colors.muted,
+          display: '-webkit-box',
+          WebkitLineClamp: 2,
+          WebkitBoxOrient: 'vertical',
+          overflow: 'hidden',
+        }}
+      >
         {label}
       </span>
     </div>
@@ -145,6 +157,7 @@ function GroupTitle({ children }: { children: React.ReactNode }) {
 
 // ── Top bar list (regiones / uvas / bodegas) ────────────────────────────────────
 function TopBarList({ items, emptyLabel }: { items: DistribucionEntry[]; emptyLabel: string }) {
+  const maxCount = items[0]?.count ?? 1
   return (
     <div
       className="rounded-xl p-4 flex flex-col gap-3"
@@ -154,7 +167,6 @@ function TopBarList({ items, emptyLabel }: { items: DistribucionEntry[]; emptyLa
         <p style={{ fontSize: theme.font.sm, color: theme.colors.muted }}>{emptyLabel}</p>
       ) : (
         items.map(({ label, count }) => {
-          const maxCount = items[0].count
           const pct = Math.round((count / maxCount) * 100)
           return (
             <div key={label} className="flex flex-col gap-1">
