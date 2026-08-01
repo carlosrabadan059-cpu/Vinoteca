@@ -6,6 +6,7 @@ import Spinner from '../components/ui/Spinner'
 import { callSommelierChat, callMaridaje, callEnriquecimiento } from '../lib/n8n'
 import { useWineStore } from '../store/wineStore'
 import { useWines } from '../hooks/useWines'
+import { useSommelier } from '../hooks/useSommelier'
 import { theme } from '../constants/theme'
 import type { ChatMessage } from '../types'
 import type { WineCollection } from '../lib/n8n'
@@ -27,6 +28,21 @@ const MARIDAJE_KEYWORDS = [
   'esta noche', 'para la cena', 'para la comida',
 ]
 
+const COMPARATIVA_KEYWORDS = [
+  'compara', 'comparar', 'diferencia entre', 'cuál es mejor', 'cual es mejor',
+  'versus', ' vs ', 'frente a',
+]
+
+const MARIDAJE_INVERSO_KEYWORDS = [
+  'qué como con', 'que como con', 'qué platos van con', 'que platos van con',
+  'qué comida marida con', 'que comida marida con', 'platos para acompañar',
+]
+
+const OCASION_KEYWORDS = [
+  'cena romántica', 'cena romantica', 'celebración', 'celebracion', 'aniversario',
+  'cumpleaños', 'cumpleanos', 'asado', 'reunión', 'reunion', 'boda', 'brindis',
+]
+
 const DO_KEYWORDS = [
   'rioja', 'ribera', 'priorat', 'rías baixas', 'rueda', 'jerez', 'cava',
   'penedès', 'bierzo', 'toro', 'somontano', 'jumilla', 'yecla', 'valdepeñas',
@@ -46,11 +62,18 @@ function buildWineCollection(wines: ReturnType<typeof useWineStore.getState>['wi
   }))
 }
 
-function detectIntent(text: string): 'maridaje' | 'enriquecimiento' | 'chat' {
+function detectIntent(text: string): 'maridaje' | 'comparativa' | 'maridaje-inverso' | 'enriquecimiento' | 'chat' {
   const lower = text.toLowerCase()
-  if (MARIDAJE_KEYWORDS.some(k => lower.includes(k))) return 'maridaje'
-  if (DO_KEYWORDS.some(k => lower.includes(k)))       return 'enriquecimiento'
+  if (COMPARATIVA_KEYWORDS.some(k => lower.includes(k)))       return 'comparativa'
+  if (MARIDAJE_INVERSO_KEYWORDS.some(k => lower.includes(k)))  return 'maridaje-inverso'
+  if (MARIDAJE_KEYWORDS.some(k => lower.includes(k)))          return 'maridaje'
+  if (DO_KEYWORDS.some(k => lower.includes(k)))                return 'enriquecimiento'
   return 'chat'
+}
+
+function extractOcasion(text: string): string | undefined {
+  const lower = text.toLowerCase()
+  return OCASION_KEYWORDS.find(k => lower.includes(k))
 }
 
 function extractPlato(text: string): string {
@@ -73,10 +96,17 @@ export default function Sommelier() {
   const { loadWines }  = useWines()
   const winesLoadedRef = useRef(false)
 
+  const { tasteProfile, loadTasteProfile } = useSommelier()
+  const tasteProfileLoadedRef = useRef(false)
+
   useEffect(() => {
     if (!winesLoadedRef.current) {
       winesLoadedRef.current = true
       loadWines().catch(() => null)
+    }
+    if (!tasteProfileLoadedRef.current) {
+      tasteProfileLoadedRef.current = true
+      loadTasteProfile().catch(() => null)
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -108,8 +138,12 @@ export default function Sommelier() {
 
       if (intent === 'maridaje') {
         const plato = extractPlato(text)
-        const result = await callMaridaje(plato, wineCollection)
+        const ocasion = extractOcasion(text)
+        const result = await callMaridaje(plato, wineCollection, ocasion, tasteProfile ?? undefined)
         reply = result.recomendacion
+
+      } else if (intent === 'comparativa' || intent === 'maridaje-inverso') {
+        reply = await callSommelierChat(next, wineCollection, text, tasteProfile ?? undefined, intent)
 
       } else if (intent === 'enriquecimiento') {
         const doMatch = DO_KEYWORDS.find(k => text.toLowerCase().includes(k))
@@ -118,7 +152,7 @@ export default function Sommelier() {
           : text
 
         const [chatResult, enrichResult] = await Promise.allSettled([
-          callSommelierChat(next, wineCollection, text),
+          callSommelierChat(next, wineCollection, text, tasteProfile ?? undefined),
           callEnriquecimiento(denominacion),
         ])
 
@@ -127,7 +161,7 @@ export default function Sommelier() {
         reply = [chatPart, enrichPart].filter(Boolean).join('\n\n')
 
       } else {
-        reply = await callSommelierChat(next, wineCollection, text)
+        reply = await callSommelierChat(next, wineCollection, text, tasteProfile ?? undefined)
       }
 
       const assistantMsg: ChatMessage = { role: 'assistant', content: reply }
