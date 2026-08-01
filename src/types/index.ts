@@ -54,7 +54,7 @@ export interface ChatMessage {
   content: string
 }
 
-// ── Fase 9: identidad y preferencias ─────────────────────────────────────────
+// ── Gestión de usuarios: identidad y preferencias ────────────────────────────
 
 export type UserRole = 'user' | 'premium' | 'family' | 'admin'
 export type UserPlan = 'free' | 'premium' | 'family'

@@ -30,6 +30,16 @@
 
 ---
 
+## Fuera de numeración
+
+Trabajo realizado entre el cierre de la Fase 8 y el inicio de la Fase 9, sin ocupar un número de fase para no interferir con la numeración del roadmap:
+
+| Fecha | Nombre | Documento |
+|-------|--------|-----------|
+| 2026-07-18 | Gestión de usuarios y cuentas (auth, perfil, ajustes, RLS) | [gestion-usuarios-cuentas.md](gestion-usuarios-cuentas.md), [auth-architecture.md](auth-architecture.md) |
+
+---
+
 ## Congelado
 
 | Pipeline | Estado | Motivo |

@@ -1,13 +1,15 @@
-# Handoff — Fase 9: Gestión de usuarios y cuentas
+# Handoff — Gestión de usuarios y cuentas
 
 **Fecha:** 2026-07-18
 **Rama:** `master`
+
+> Nota de nomenclatura: este trabajo se realizó fuera de la numeración oficial del roadmap (`docs/roadmap.md`), entre el cierre de la Fase 8 (Catas) y el inicio de la Fase 9 real (Estadísticas). No confundir con `docs/roadmap/fase-09-estadisticas.md`.
 
 ---
 
 ## Estado del proyecto
 
-La Fase 9 deja la app lista para producción desde el punto de vista de cuentas: registro, login, recuperación de contraseña, perfil, ajustes, y una tabla de identidad (`profiles`) separada de una tabla de preferencias (`user_settings`), preparadas para futuras funcionalidades (Premium, Family, admin) sin requerir migraciones disruptivas.
+Este trabajo deja la app lista para producción desde el punto de vista de cuentas: registro, login, recuperación de contraseña, perfil, ajustes, y una tabla de identidad (`profiles`) separada de una tabla de preferencias (`user_settings`), preparadas para futuras funcionalidades (Premium, Family, admin) sin requerir migraciones disruptivas.
 
 El modelo de datos de vino no cambia: `Usuario → Bodega → Vinos → Catas` sigue siendo estrictamente privado por usuario, sin nada compartido.
 

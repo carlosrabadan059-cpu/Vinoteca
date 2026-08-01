@@ -1,6 +1,6 @@
 # Arquitectura de autenticación e identidad
 
-Ver también [`docs/fase-09-auth.md`](fase-09-auth.md) para el handoff de implementación.
+Ver también [`docs/gestion-usuarios-cuentas.md`](gestion-usuarios-cuentas.md) para el handoff de implementación.
 
 ## Diagrama de tablas
 
