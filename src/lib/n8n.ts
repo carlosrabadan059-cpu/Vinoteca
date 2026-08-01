@@ -109,6 +109,8 @@ export async function callEnriquecimiento(
 
 export interface StatsPayload {
   totalVinos: number
+  totalBotellas: number
+  valorEstimado: number
   totalCatas: number
   puntuacionMedia: number
   topRegiones: { region: string; count: number }[]
