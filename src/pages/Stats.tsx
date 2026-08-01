@@ -5,10 +5,13 @@ import {
 } from 'recharts'
 import Layout from '../components/ui/Layout'
 import Spinner from '../components/ui/Spinner'
-import { useStats } from '../hooks/useStats'
+import { useStats, type StatsData } from '../hooks/useStats'
 import { callStatsInsight } from '../lib/n8n'
 import type { StatsPayload } from '../lib/n8n'
+import type { DistribucionEntry } from '../lib/statsHelpers'
 import { theme } from '../constants/theme'
+
+const eur = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 })
 
 // ── Skeleton ──────────────────────────────────────────────────────────────────
 function Skel({ h = 120 }: { h?: number }) {
@@ -50,7 +53,39 @@ function IconTrophy() {
   )
 }
 
-// ── Metric card ───────────────────────────────────────────────────────────────
+// ── Hero: valor estimado de la bodega ───────────────────────────────────────────
+function Hero({ stats }: { stats: StatsData }) {
+  const hasValor = stats.valorEstimado > 0
+  return (
+    <div
+      className="relative rounded-2xl p-6 overflow-hidden"
+      style={{
+        background: `linear-gradient(180deg, ${theme.colors.surface2} 0%, ${theme.colors.surface} 100%)`,
+        border: `1px solid ${theme.colors.borderActive}`,
+      }}
+    >
+      <p style={{ fontSize: '0.7rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: theme.colors.gold, opacity: 0.85, marginBottom: 8 }}>
+        Valor de tu bodega
+      </p>
+      {hasValor ? (
+        <>
+          <div className="text-editorial" style={{ fontFamily: theme.font.serif, fontWeight: 300, fontSize: '3rem', lineHeight: 1, color: theme.colors.cream }}>
+            {eur.format(stats.valorEstimado)}
+          </div>
+          <p style={{ fontSize: theme.font.sm, color: theme.colors.muted, marginTop: 8 }}>
+            <span style={{ color: theme.colors.text, fontWeight: 600 }}>{stats.totalBotellas} botellas</span> registradas desde que empezaste tu colección
+          </p>
+        </>
+      ) : (
+        <p style={{ fontSize: theme.font.sm, color: theme.colors.muted }}>
+          Añade precios a tus vinos para ver el valor de tu bodega
+        </p>
+      )}
+    </div>
+  )
+}
+
+// ── Metric card (tira secundaria) ───────────────────────────────────────────────
 function MetricCard({
   icon,
   value,
@@ -62,20 +97,14 @@ function MetricCard({
 }) {
   return (
     <div
-      className="flex flex-col items-center justify-center gap-2 rounded-xl p-4"
+      className="flex flex-col items-center justify-center gap-1.5 rounded-xl p-3"
       style={{ background: theme.colors.surface, border: `1px solid ${theme.colors.border}` }}
     >
       {icon}
-      <span
-        className="text-editorial font-bold"
-        style={{ fontSize: '1.75rem', color: theme.colors.gold, lineHeight: 1 }}
-      >
+      <span className="text-editorial font-bold" style={{ fontSize: '1.3rem', color: theme.colors.gold, lineHeight: 1 }}>
         {value}
       </span>
-      <span
-        className="text-center"
-        style={{ fontSize: '0.65rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: theme.colors.muted }}
-      >
+      <span className="text-center" style={{ fontSize: '0.58rem', letterSpacing: '0.06em', textTransform: 'uppercase', color: theme.colors.muted }}>
         {label}
       </span>
     </div>
@@ -98,6 +127,51 @@ function Section({ title, children }: { title: string; children: React.ReactNode
         {title}
       </h2>
       {children}
+    </div>
+  )
+}
+
+// ── Group title ("Tu colección" / "Tu actividad") ──────────────────────────────
+function GroupTitle({ children }: { children: React.ReactNode }) {
+  return (
+    <h2
+      className="text-editorial"
+      style={{ fontFamily: theme.font.serif, fontStyle: 'italic', fontSize: '1.05rem', color: theme.colors.gold, margin: 0 }}
+    >
+      {children}
+    </h2>
+  )
+}
+
+// ── Top bar list (regiones / uvas / bodegas) ────────────────────────────────────
+function TopBarList({ items, emptyLabel }: { items: DistribucionEntry[]; emptyLabel: string }) {
+  return (
+    <div
+      className="rounded-xl p-4 flex flex-col gap-3"
+      style={{ background: theme.colors.surface, border: `1px solid ${theme.colors.border}` }}
+    >
+      {items.length === 0 ? (
+        <p style={{ fontSize: theme.font.sm, color: theme.colors.muted }}>{emptyLabel}</p>
+      ) : (
+        items.map(({ label, count }) => {
+          const maxCount = items[0].count
+          const pct = Math.round((count / maxCount) * 100)
+          return (
+            <div key={label} className="flex flex-col gap-1">
+              <div className="flex justify-between" style={{ fontSize: theme.font.sm }}>
+                <span style={{ color: theme.colors.cream }}>{label}</span>
+                <span style={{ color: theme.colors.muted }}>{count}</span>
+              </div>
+              <div className="w-full rounded-full overflow-hidden" style={{ height: 4, background: theme.colors.border }}>
+                <div
+                  className="h-full rounded-full"
+                  style={{ width: `${pct}%`, background: theme.colors.gold, transition: 'width 0.6s ease' }}
+                />
+              </div>
+            </div>
+          )
+        })
+      )}
     </div>
   )
 }
@@ -147,9 +221,11 @@ export default function Stats() {
     try {
       const payload: StatsPayload = {
         totalVinos:        stats.totalVinos,
+        totalBotellas:     stats.totalBotellas,
+        valorEstimado:     stats.valorEstimado,
         totalCatas:        stats.totalCatas,
         puntuacionMedia:   stats.puntuacionMedia ?? 0,
-        topRegiones:       stats.topRegiones,
+        topRegiones:       stats.topRegiones.map(r => ({ region: r.label, count: r.count })),
         distribucionTipos: stats.distribucionTipos,
         anadas:            stats.distribucionAnadas,
         mejorVino:         stats.mejorVino,
@@ -243,7 +319,6 @@ export default function Stats() {
                   background: `radial-gradient(circle, ${theme.colors.gold}10 0%, transparent 70%)`,
                 }}
               />
-              {/* Bar chart SVG icon */}
               <svg
                 width="52" height="52"
                 viewBox="0 0 24 24"
@@ -261,10 +336,7 @@ export default function Stats() {
               </svg>
             </div>
             <div>
-              <p
-                className="text-editorial font-semibold"
-                style={{ fontSize: theme.font.lg, color: theme.colors.cream }}
-              >
+              <p className="text-editorial font-semibold" style={{ fontSize: theme.font.lg, color: theme.colors.cream }}>
                 Aún no hay datos
               </p>
               <p style={{ fontSize: theme.font.sm, color: theme.colors.muted, marginTop: 6 }}>
@@ -274,15 +346,18 @@ export default function Stats() {
           </div>
         )}
 
-        {/* ── 1. Resumen rápido ─────────────────────────────────── */}
+        {/* ── Hero: valor de la bodega ───────────────────────────── */}
+        {!isEmpty && (loading ? <Skel h={140} /> : stats && <Hero stats={stats} />)}
+
+        {/* ── Tira de métricas secundarias ──────────────────────── */}
         {loading ? (
-          <div className="grid grid-cols-2 gap-3">
-            {Array.from({ length: 4 }).map((_, i) => <Skel key={i} h={100} />)}
+          <div className="grid grid-cols-4 gap-2">
+            {Array.from({ length: 4 }).map((_, i) => <Skel key={i} h={90} />)}
           </div>
         ) : stats && !isEmpty ? (
-          <div className="grid grid-cols-2 gap-3">
-            <MetricCard icon={<IconWine />}  value={String(stats.totalVinos)}  label="Vinos en bodega" />
-            <MetricCard icon={<IconBook />}  value={String(stats.totalCatas)}  label="Catas registradas" />
+          <div className="grid grid-cols-4 gap-2">
+            <MetricCard icon={<IconWine />}  value={String(stats.totalVinos)}  label="Vinos distintos" />
+            <MetricCard icon={<IconBook />}  value={String(stats.totalCatas)}  label="Catas" />
             <MetricCard
               icon={<IconStar />}
               value={stats.puntuacionMedia !== null ? stats.puntuacionMedia.toFixed(1) : '—'}
@@ -296,9 +371,66 @@ export default function Stats() {
           </div>
         ) : null}
 
-        {/* ── 2 + 3: Tipos y Regiones ───────────────────────────── */}
+        {/* ── Insight IA (promovido) ────────────────────────────── */}
         {!isEmpty && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Section title="Análisis de tu colección">
+            <div
+              className="rounded-xl p-4 flex flex-col gap-3"
+              style={{ background: theme.colors.surface, border: `1px solid ${theme.colors.gold}40` }}
+            >
+              <div className="flex items-center gap-2">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={theme.colors.gold} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/><path d="M12 8v4l3 3"/>
+                </svg>
+                <span style={{ fontSize: theme.font.sm, fontWeight: 600, color: theme.colors.cream }}>
+                  Sommelier IA
+                </span>
+              </div>
+
+              {insightLoading ? (
+                <div className="flex items-center gap-3 py-4">
+                  <Spinner size={18} />
+                  <p style={{ fontSize: theme.font.sm, color: theme.colors.muted }}>Analizando tu colección…</p>
+                </div>
+              ) : insight ? (
+                <>
+                  <p style={{ fontSize: theme.font.sm, color: theme.colors.cream, lineHeight: 1.6 }}>
+                    {insight}
+                  </p>
+                  <button
+                    onClick={() => fetchInsight(true)}
+                    style={{ fontSize: '0.7rem', color: theme.colors.muted, alignSelf: 'flex-end' }}
+                  >
+                    Actualizar análisis
+                  </button>
+                </>
+              ) : (
+                <>
+                  {insightError && (
+                    <p style={{ fontSize: '0.75rem', color: '#D32F2F' }}>{insightError}</p>
+                  )}
+                  <button
+                    onClick={() => fetchInsight(false)}
+                    disabled={loading || !stats}
+                    className="w-full py-3 rounded-xl font-semibold disabled:opacity-50"
+                    style={{
+                      background: theme.colors.gold,
+                      color: theme.colors.dark,
+                      fontSize: theme.font.base,
+                    }}
+                  >
+                    Analizar mi colección
+                  </button>
+                </>
+              )}
+            </div>
+          </Section>
+        )}
+
+        {/* ── Grupo: Tu colección ────────────────────────────────── */}
+        {!isEmpty && (
+          <div className="flex flex-col gap-6">
+            <GroupTitle>Tu colección</GroupTitle>
 
             <Section title="Distribución por tipo">
               {loading ? <Skel h={180} /> : stats && (
@@ -332,77 +464,68 @@ export default function Stats() {
               )}
             </Section>
 
-            <Section title="Top 5 regiones">
-              {loading ? <Skel h={180} /> : stats && (
-                <div
-                  className="rounded-xl p-4 flex flex-col gap-3"
-                  style={{ background: theme.colors.surface, border: `1px solid ${theme.colors.border}` }}
-                >
-                  {stats.topRegiones.length === 0 ? (
-                    <p style={{ fontSize: theme.font.sm, color: theme.colors.muted }}>Sin datos de región</p>
-                  ) : (
-                    stats.topRegiones.map(({ region, count }) => {
-                      const maxCount = stats.topRegiones[0].count
-                      const pct = Math.round((count / maxCount) * 100)
-                      return (
-                        <div key={region} className="flex flex-col gap-1">
-                          <div className="flex justify-between" style={{ fontSize: theme.font.sm }}>
-                            <span style={{ color: theme.colors.cream }}>{region}</span>
-                            <span style={{ color: theme.colors.muted }}>{count}</span>
-                          </div>
-                          <div className="w-full rounded-full overflow-hidden" style={{ height: 4, background: theme.colors.border }}>
-                            <div
-                              className="h-full rounded-full"
-                              style={{ width: `${pct}%`, background: theme.colors.gold, transition: 'width 0.6s ease' }}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <Section title="Top 5 regiones">
+                {loading ? <Skel h={180} /> : stats && (
+                  <TopBarList items={stats.topRegiones} emptyLabel="Sin datos de región" />
+                )}
+              </Section>
+
+              <Section title="Top uvas">
+                {loading ? <Skel h={180} /> : stats && (
+                  <TopBarList items={stats.distribucionUva} emptyLabel="Sin datos de uva" />
+                )}
+              </Section>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <Section title="Top bodegas">
+                {loading ? <Skel h={180} /> : stats && (
+                  <TopBarList items={stats.distribucionBodega} emptyLabel="Sin datos de bodega" />
+                )}
+              </Section>
+
+              <Section title="Distribución por añadas">
+                {loading ? <Skel h={180} /> : stats && (
+                  <div
+                    className="rounded-xl p-4"
+                    style={{ background: theme.colors.surface, border: `1px solid ${theme.colors.border}` }}
+                  >
+                    <ResponsiveContainer width="100%" height={160}>
+                      <BarChart
+                        data={stats.distribucionAnadas}
+                        margin={{ left: 0, right: 0, top: 4, bottom: 4 }}
+                      >
+                        <CartesianGrid strokeDasharray="3 3" stroke={theme.colors.border} vertical={false} />
+                        <XAxis dataKey="decada" tick={{ fill: theme.colors.muted, fontSize: 11 }} axisLine={false} tickLine={false} />
+                        <YAxis allowDecimals={false} tick={{ fill: theme.colors.muted, fontSize: 11 }} axisLine={false} tickLine={false} />
+                        <Tooltip
+                          contentStyle={{ background: theme.colors.surface, border: `1px solid ${theme.colors.gold}40`, borderRadius: 8 }}
+                          labelStyle={{ color: theme.colors.cream }}
+                          itemStyle={{ color: theme.colors.gold }}
+                          cursor={{ fill: theme.colors.border }}
+                        />
+                        <Bar dataKey="count" radius={[4, 4, 0, 0]} stroke={theme.colors.gold} strokeWidth={1}>
+                          {stats.distribucionAnadas.map((entry) => (
+                            <Cell
+                              key={entry.decada}
+                              fill={entry.count === maxDecada ? theme.colors.gold : theme.colors.surface2}
                             />
-                          </div>
-                        </div>
-                      )
-                    })
-                  )}
-                </div>
-              )}
-            </Section>
+                          ))}
+                        </Bar>
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+                )}
+              </Section>
+            </div>
           </div>
         )}
 
-        {/* ── 4 + 5: Añadas y Evolución ─────────────────────────── */}
+        {/* ── Grupo: Tu actividad ────────────────────────────────── */}
         {!isEmpty && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-            <Section title="Distribución por añadas">
-              {loading ? <Skel h={180} /> : stats && (
-                <div
-                  className="rounded-xl p-4"
-                  style={{ background: theme.colors.surface, border: `1px solid ${theme.colors.border}` }}
-                >
-                  <ResponsiveContainer width="100%" height={160}>
-                    <BarChart
-                      data={stats.distribucionAnadas}
-                      margin={{ left: 0, right: 0, top: 4, bottom: 4 }}
-                    >
-                      <CartesianGrid strokeDasharray="3 3" stroke={theme.colors.border} vertical={false} />
-                      <XAxis dataKey="decada" tick={{ fill: theme.colors.muted, fontSize: 11 }} axisLine={false} tickLine={false} />
-                      <YAxis allowDecimals={false} tick={{ fill: theme.colors.muted, fontSize: 11 }} axisLine={false} tickLine={false} />
-                      <Tooltip
-                        contentStyle={{ background: theme.colors.surface, border: `1px solid ${theme.colors.gold}40`, borderRadius: 8 }}
-                        labelStyle={{ color: theme.colors.cream }}
-                        itemStyle={{ color: theme.colors.gold }}
-                        cursor={{ fill: theme.colors.border }}
-                      />
-                      <Bar dataKey="count" radius={[4, 4, 0, 0]} stroke={theme.colors.gold} strokeWidth={1}>
-                        {stats.distribucionAnadas.map((entry) => (
-                          <Cell
-                            key={entry.decada}
-                            fill={entry.count === maxDecada ? theme.colors.gold : theme.colors.surface2}
-                          />
-                        ))}
-                      </Bar>
-                    </BarChart>
-                  </ResponsiveContainer>
-                </div>
-              )}
-            </Section>
+          <div className="flex flex-col gap-6">
+            <GroupTitle>Tu actividad</GroupTitle>
 
             <Section title="Evolución de catas (6 meses)">
               {loading ? <Skel h={180} /> : stats && (
@@ -435,66 +558,6 @@ export default function Stats() {
               )}
             </Section>
           </div>
-        )}
-
-        {/* ── 6. Insight IA ─────────────────────────────────────── */}
-        {!isEmpty && (
-          <Section title="Análisis de tu colección">
-            <div
-              className="rounded-xl p-4 flex flex-col gap-3"
-              style={{ background: theme.colors.surface, border: `1px solid ${theme.colors.gold}40` }}
-            >
-              <div className="flex items-center gap-2">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={theme.colors.gold} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/><path d="M12 8v4l3 3"/>
-                </svg>
-                <span
-                  style={{ fontSize: theme.font.sm, fontWeight: 600, color: theme.colors.cream }}
-                >
-                  Sommelier IA
-                </span>
-              </div>
-
-              {insightLoading ? (
-                <div className="flex items-center gap-3 py-4">
-                  <Spinner size={18} />
-                  <p style={{ fontSize: theme.font.sm, color: theme.colors.muted }}>Analizando tu colección…</p>
-                </div>
-              ) : insight ? (
-                <>
-                  <p
-                    style={{ fontSize: theme.font.sm, color: theme.colors.cream, lineHeight: 1.6 }}
-                  >
-                    {insight}
-                  </p>
-                  <button
-                    onClick={() => fetchInsight(true)}
-                    style={{ fontSize: '0.7rem', color: theme.colors.muted, alignSelf: 'flex-end' }}
-                  >
-                    Actualizar análisis
-                  </button>
-                </>
-              ) : (
-                <>
-                  {insightError && (
-                    <p style={{ fontSize: '0.75rem', color: '#D32F2F' }}>{insightError}</p>
-                  )}
-                  <button
-                    onClick={() => fetchInsight(false)}
-                    disabled={loading || !stats}
-                    className="w-full py-3 rounded-xl font-semibold disabled:opacity-50"
-                    style={{
-                      background: theme.colors.gold,
-                      color: theme.colors.dark,
-                      fontSize: theme.font.base,
-                    }}
-                  >
-                    Analizar mi colección
-                  </button>
-                </>
-              )}
-            </div>
-          </Section>
         )}
       </div>
     </Layout>
