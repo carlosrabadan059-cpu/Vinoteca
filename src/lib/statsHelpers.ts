@@ -80,7 +80,7 @@ export function computeMejorVino(wines: Wine[], tastings: Tasting[]): MejorVino 
   const best = scored.reduce((a, b) => (b.puntuacion ?? 0) > (a.puntuacion ?? 0) ? b : a)
   const wine = wines.find(w => w.id === best.wine_id)
   if (!wine) return null
-  return { nombre: wine.nombre, puntuacion: best.puntuacion! }
+  return { nombre: wine.nombre, puntuacion: best.puntuacion ?? 0 }
 }
 
 // ── Distribución por tipo ────────────────────────────────────────────────────
@@ -128,6 +128,8 @@ export interface DistribucionEntry {
   count: number
 }
 
+// campo está restringido a claves de Wine tipadas como `string | null` — añadir un
+// campo de otro tipo requeriría ajustar la indexación genérica de abajo.
 export function computeDistribucionPorCampo(
   wines: Wine[],
   campo: 'region' | 'uva' | 'bodega',
