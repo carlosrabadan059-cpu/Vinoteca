@@ -52,6 +52,20 @@ function IconTrophy() {
     </svg>
   )
 }
+function IconRefresh({ color }: { color: string }) {
+  return (
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/>
+    </svg>
+  )
+}
+function IconCheck({ color }: { color: string }) {
+  return (
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20 6 9 17l-5-5"/>
+    </svg>
+  )
+}
 
 // ── Hero: valor estimado de la bodega ───────────────────────────────────────────
 function Hero({ stats }: { stats: StatsData }) {
@@ -422,14 +436,22 @@ export default function Stats() {
                   </p>
                   <button
                     onClick={() => fetchInsight(true)}
+                    className="flex items-center gap-1.5 rounded-full"
                     style={{
                       fontSize: '0.7rem',
-                      color: justUpdated ? theme.colors.gold : theme.colors.muted,
+                      padding: '6px 12px',
                       alignSelf: 'flex-end',
-                      transition: 'color 0.2s',
+                      color: justUpdated ? theme.colors.gold : theme.colors.muted,
+                      background: theme.colors.dark,
+                      border: `1px solid ${justUpdated ? theme.colors.gold : theme.colors.muted}40`,
+                      transition: 'color 0.2s, border-color 0.2s',
+                      WebkitTapHighlightColor: 'transparent',
+                      WebkitUserSelect: 'none',
+                      userSelect: 'none',
                     }}
                   >
-                    {justUpdated ? '✓ Actualizado' : 'Actualizar análisis'}
+                    {justUpdated ? <IconCheck color={theme.colors.gold} /> : <IconRefresh color={theme.colors.muted} />}
+                    {justUpdated ? 'Actualizado' : 'Actualizar análisis'}
                   </button>
                 </>
               ) : (
