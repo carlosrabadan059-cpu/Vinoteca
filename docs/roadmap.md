@@ -17,6 +17,7 @@
 | ✅ Fase 6 | Schema colección personal | [fase-06-schema-coleccion.md](roadmap/fase-06-schema-coleccion.md) |
 | ✅ Fase 7 | Gestión de la bodega (v0.7.0, 2026-07-09) | [fase-07-gestion-bodega.md](roadmap/fase-07-gestion-bodega.md) |
 | ✅ Fase 8 | Catas (v0.8.0, 2026-07-09) | [fase-08-catas.md](roadmap/fase-08-catas.md) |
+| ✅ Fase 9 | Estadísticas (2026-07-18) | [fase-09-estadisticas.md](roadmap/fase-09-estadisticas.md) |
 
 ---
 
@@ -24,7 +25,6 @@
 
 | Fase | Nombre | Documento |
 |------|--------|-----------|
-| ⬜ Fase 9 | Estadísticas | [fase-09-estadisticas.md](roadmap/fase-09-estadisticas.md) |
 | ⬜ Fase 10 | Sommelier IA | [fase-10-sommelier-ia.md](roadmap/fase-10-sommelier-ia.md) |
 | ⬜ Fase 11 | Optimización | [fase-11-optimizacion.md](roadmap/fase-11-optimizacion.md) |
 

@@ -2,7 +2,9 @@
 
 ## Estado
 
-⬜ Pendiente
+✅ Completada (2026-07-18)
+
+Verificación de código completa: `npx tsc -b` limpio (nota: `npx tsc --noEmit` es un no-op silencioso en este repo — ver `CLAUDE.md`), servidor de desarrollo arranca sin errores. **Pendiente de verificación manual en pantalla** por el usuario (navegar a `/stats` con datos reales y confirmar que el hero, la tira de métricas, el insight IA y las listas de top uva/bodega se ven correctamente).
 
 ---
 
@@ -25,15 +27,21 @@ Ofrecer al usuario una vista analítica de su colección: distribución por tipo
 
 ## Funcionalidades
 
-*(Por definir en la sesión de diseño de la fase)*
+Ver el spec completo en [`docs/superpowers/specs/2026-07-18-estadisticas-fase9-design.md`](../superpowers/specs/2026-07-18-estadisticas-fase9-design.md) y el plan de implementación en [`docs/superpowers/plans/2026-07-18-estadisticas-fase9-plan.md`](../superpowers/plans/2026-07-18-estadisticas-fase9-plan.md).
 
-La base técnica existe: `useStats`, `Stats.tsx` y `callStatsInsight` en `src/lib/n8n.ts` están implementados con Recharts y el endpoint de n8n activo.
+Resumen:
+- Valor estimado del inventario y total de botellas (nuevas métricas hero, calculadas a partir de `precio`/`num_botellas`).
+- Distribución por uva y por bodega (top 5), sumadas a la ya existente distribución por región.
+- `src/hooks/useStats.ts` refactorizado como orquestador fino sobre `src/lib/statsHelpers.ts` (funciones puras, mismo patrón que `catasHelpers.ts` de Fase 8).
+- `Stats.tsx` rediseñada: hero de valor, insight IA promovido, agrupación en "Tu colección"/"Tu actividad".
 
 ---
 
 ## Decisiones de diseño
 
-*(Por definir)*
+Ver `docs/superpowers/specs/2026-07-18-estadisticas-fase9-design.md` para el detalle completo (mockup aprobado, arquitectura de datos, criterios de agrupación "sin especificar"). Resumen de las decisiones clave tomadas con el usuario:
+- El valor estimado y el total de botellas cuentan **todas** las botellas alguna vez registradas (incluidas las consumidas), como valor histórico invertido en la colección, no solo el stock actual.
+- No se parsean variedades múltiples en el campo `uva` (blends cuentan como una única etiqueta).
 
 ---
 
