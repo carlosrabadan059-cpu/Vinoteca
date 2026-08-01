@@ -2,9 +2,12 @@
 
 ## Estado
 
-✅ Completada (2026-07-18)
+✅ Completada (2026-08-02)
 
-Verificación de código completa: `npx tsc -b` limpio (nota: `npx tsc --noEmit` es un no-op silencioso en este repo — ver `CLAUDE.md`), servidor de desarrollo arranca sin errores. **Pendiente de verificación manual en pantalla** por el usuario (navegar a `/stats` con datos reales y confirmar que el hero, la tira de métricas, el insight IA y las listas de top uva/bodega se ven correctamente).
+Verificación de código completa: `npx tsc -b` limpio (nota: `npx tsc --noEmit` es un no-op silencioso en este repo — ver `CLAUDE.md`). **Verificación manual en pantalla completada** por el usuario en producción (`/stats`): hero de valor, tira de métricas y distribuciones se ven correctamente. Durante la prueba se detectaron y corrigieron tres problemas:
+- Service Worker de la PWA sirviendo un bundle desactualizado que impedía que el botón "Analizar mi colección" reaccionara — mitigado navegando en pestaña privada; el propio `autoUpdate` del SW se encarga de refrescarlo en uso normal.
+- El workflow n8n `vinoteca-stats-insight` fallaba con "rate limit reached" porque el nodo `OpenRouter Model` usaba un modelo gratuito de OpenRouter — corregido en n8n (fuera de este repo) cambiando a un modelo de pago de OpenAI.
+- El botón "Actualizar análisis" no daba ninguna señal visual de éxito y estaba estilizado como texto plano (se seleccionaba al tocar en móvil en vez de activarse) — corregido en `src/pages/Stats.tsx`: ahora es una pastilla con icono y confirmación visual "✓ Actualizado" (commits `6b47840`, `81951e3`).
 
 ---
 
@@ -54,8 +57,7 @@ Ver `docs/superpowers/specs/2026-07-18-estadisticas-fase9-design.md` para el det
 
 ## Pendiente
 
-- Rediseño visual completo de la pantalla Stats.tsx
-- Incorporar datos de colección personal (precio, num_botellas) en las estadísticas
+Nada — ambos puntos originales (rediseño visual e incorporación de precio/num_botellas) están hechos y verificados en producción.
 
 ---
 
