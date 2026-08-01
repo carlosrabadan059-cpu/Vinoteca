@@ -70,15 +70,29 @@ async function post<T>(path: string, body: unknown): Promise<T> {
   }
 }
 
+export interface TasteProfile {
+  vinosMejorValorados: { nombre: string; puntuacion: number }[]
+  tipoPreferido: string | null
+  regionesPreferidas: string[]
+  puntuacionMediaGeneral: number | null
+  ocasionesFrecuentes: string[]
+}
+
+export type SommelierIntentHint = 'comparativa' | 'maridaje-inverso'
+
 export async function callSommelierChat(
   messages: ChatMessage[],
   wineCollection: WineCollection[],
-  userMessage: string
+  userMessage: string,
+  tasteProfile?: TasteProfile,
+  intentHint?: SommelierIntentHint
 ): Promise<string> {
   const data = await post<{ reply: string }>('vinoteca/sommelier/chat', {
     messages,
     wineCollection,
     userMessage,
+    tasteProfile,
+    intentHint,
   })
   return data.reply
 }
@@ -86,12 +100,14 @@ export async function callSommelierChat(
 export async function callMaridaje(
   plato: string,
   wineCollection: WineCollection[],
-  ocasion?: string
+  ocasion?: string,
+  tasteProfile?: TasteProfile
 ): Promise<{ recomendacion: string; wineId?: string }> {
   return post<{ recomendacion: string; wineId?: string }>('vinoteca/sommelier/maridaje', {
     plato,
     wineCollection,
     ocasion,
+    tasteProfile,
   })
 }
 
