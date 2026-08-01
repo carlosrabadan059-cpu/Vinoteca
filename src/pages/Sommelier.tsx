@@ -67,6 +67,7 @@ function detectIntent(text: string): 'maridaje' | 'comparativa' | 'maridaje-inve
   if (COMPARATIVA_KEYWORDS.some(k => lower.includes(k)))       return 'comparativa'
   if (MARIDAJE_INVERSO_KEYWORDS.some(k => lower.includes(k)))  return 'maridaje-inverso'
   if (MARIDAJE_KEYWORDS.some(k => lower.includes(k)))          return 'maridaje'
+  if (OCASION_KEYWORDS.some(k => lower.includes(k)))           return 'maridaje'
   if (DO_KEYWORDS.some(k => lower.includes(k)))                return 'enriquecimiento'
   return 'chat'
 }
@@ -96,7 +97,7 @@ export default function Sommelier() {
   const { loadWines }  = useWines()
   const winesLoadedRef = useRef(false)
 
-  const { tasteProfile, loadTasteProfile } = useSommelier()
+  const { tasteProfile, loaded: tasteProfileLoaded, loadTasteProfile } = useSommelier()
   const tasteProfileLoadedRef = useRef(false)
 
   useEffect(() => {
@@ -130,6 +131,10 @@ export default function Sommelier() {
       currentWines = useWineStore.getState().wines
     }
 
+    if (!tasteProfileLoaded) {
+      try { await loadTasteProfile() } catch { /* continuar sin perfil de gusto */ }
+    }
+
     const wineCollection = buildWineCollection(currentWines)
     const intent = detectIntent(text)
 
@@ -137,7 +142,8 @@ export default function Sommelier() {
       let reply: string
 
       if (intent === 'maridaje') {
-        const plato = extractPlato(text)
+        const disparadoPorOcasion = !MARIDAJE_KEYWORDS.some(k => text.toLowerCase().includes(k))
+        const plato = disparadoPorOcasion ? '' : extractPlato(text)
         const ocasion = extractOcasion(text)
         const result = await callMaridaje(plato, wineCollection, ocasion, tasteProfile ?? undefined)
         reply = result.recomendacion
