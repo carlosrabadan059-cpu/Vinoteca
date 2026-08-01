@@ -8,7 +8,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 npm run dev       # dev server at http://localhost:5173
 npm run build     # production build (outputs to dist/)
 npm run preview   # preview the production build locally
-npx tsc --noEmit  # type-check only (no test runner configured yet)
+npx tsc -b        # type-check only (no test runner configured yet). NOTE: `npx tsc --noEmit`
+                  # is a silent no-op here — the root tsconfig.json is solution-style
+                  # ("files": [], only "references"), so plain --noEmit checks nothing and
+                  # always exits 0. Must use `-b` (build mode) to actually type-check.
 ```
 
 ## Architecture
