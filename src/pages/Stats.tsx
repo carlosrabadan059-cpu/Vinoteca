@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
 import {
   BarChart, Bar, Cell, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid,
   LineChart, Line, Legend,
@@ -216,6 +216,8 @@ export default function Stats() {
   const [insight,        setInsight]        = useState<string | null>(loadCachedInsight)
   const [insightLoading, setInsightLoading] = useState(false)
   const [insightError,   setInsightError]   = useState<string | null>(null)
+  const [justUpdated,    setJustUpdated]    = useState(false)
+  const justUpdatedTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const [pulling,    setPulling]    = useState(false)
   const [pullStartY, setPullStartY] = useState(0)
@@ -245,12 +247,21 @@ export default function Stats() {
       const { insight: text } = await callStatsInsight(payload)
       setInsight(text)
       saveInsight(text)
+      if (force) {
+        setJustUpdated(true)
+        if (justUpdatedTimer.current) clearTimeout(justUpdatedTimer.current)
+        justUpdatedTimer.current = setTimeout(() => setJustUpdated(false), 2000)
+      }
     } catch (e) {
       setInsightError(e instanceof Error ? e.message : 'Error al analizar')
     } finally {
       setInsightLoading(false)
     }
   }, [stats])
+
+  useEffect(() => {
+    return () => { if (justUpdatedTimer.current) clearTimeout(justUpdatedTimer.current) }
+  }, [])
 
   function onTouchStart(e: React.TouchEvent) { setPullStartY(e.touches[0].clientY) }
   function onTouchEnd(e: React.TouchEvent) {
@@ -411,9 +422,14 @@ export default function Stats() {
                   </p>
                   <button
                     onClick={() => fetchInsight(true)}
-                    style={{ fontSize: '0.7rem', color: theme.colors.muted, alignSelf: 'flex-end' }}
+                    style={{
+                      fontSize: '0.7rem',
+                      color: justUpdated ? theme.colors.gold : theme.colors.muted,
+                      alignSelf: 'flex-end',
+                      transition: 'color 0.2s',
+                    }}
                   >
-                    Actualizar análisis
+                    {justUpdated ? '✓ Actualizado' : 'Actualizar análisis'}
                   </button>
                 </>
               ) : (
