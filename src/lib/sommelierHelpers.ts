@@ -50,7 +50,7 @@ export function buildTasteProfile(wines: Wine[], tastings: Tasting[]): TasteProf
     .filter(([, v]) => v.count >= MIN_CATAS_TIPO)
     .sort((a, b) => (b[1].sum / b[1].count) - (a[1].sum / a[1].count))[0]?.[0] ?? null
 
-  // ── Regiones preferidas (top 3 por puntuación media, mín. 1 cata) ───────
+  // ── Regiones preferidas (top 3 por puntuación media, mín. MIN_CATAS_TIPO catas) ───────
   const regionScores: Record<string, { sum: number; count: number }> = {}
   scored.forEach(t => {
     const wine = wineById.get(t.wine_id)
@@ -62,6 +62,7 @@ export function buildTasteProfile(wines: Wine[], tastings: Tasting[]): TasteProf
     regionScores[region] = entry
   })
   const regionesPreferidas = Object.entries(regionScores)
+    .filter(([, v]) => v.count >= MIN_CATAS_TIPO)
     .sort((a, b) => (b[1].sum / b[1].count) - (a[1].sum / a[1].count))
     .slice(0, 3)
     .map(([region]) => region)
