@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
-import { theme } from '../../constants/theme'
+import { useEffect, useState } from 'react'
+import { NavLink, useNavigate, useLocation } from 'react-router-dom'
+import { theme, injectKeyframes } from '../../constants/theme'
 import { useAuthStore } from '../../store/authStore'
 import Toast from './Toast'
 import SyncIndicator from './SyncIndicator'
@@ -67,8 +67,11 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   const { logout }        = useAuthStore()
   const navigate          = useNavigate()
+  const location           = useLocation()
   const [confirmSalir, setConfirmSalir] = useState(false)
   const [saliendo,     setSaliendo]     = useState(false)
+
+  useEffect(() => { injectKeyframes() }, [])
 
   async function handleLogout() {
     if (saliendo) return
@@ -178,7 +181,9 @@ export default function Layout({ children }: LayoutProps) {
       </Modal>
 
       <main className="flex-1 overflow-y-auto">
-        {children}
+        <div key={location.pathname} style={{ animation: 'pageFade 0.25s ease both' }}>
+          {children}
+        </div>
       </main>
 
       {/* Bottom nav */}

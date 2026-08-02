@@ -63,6 +63,15 @@ button, input {
   outline-offset: 2px;
 }
 
+/* Micro-interacción táctil: la mayoría de botones e items con role="button"
+   no tenían ningún feedback al pulsar. Opacidad (no transform) para no
+   interferir con componentes que ya animan su propio transform (p. ej. el FAB). */
+button:not(:disabled):active,
+[role="button"]:active {
+  opacity: 0.75;
+  transition: opacity 0.1s ease;
+}
+
 .spinner {
   width: 36px;
   height: 36px;

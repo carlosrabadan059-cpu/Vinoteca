@@ -480,6 +480,10 @@ export const KEYFRAMES_CSS = `
     from { transform: rotate(0deg); }
     to   { transform: rotate(360deg); }
   }
+  @keyframes pageFade {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
