@@ -1,7 +1,7 @@
 import { useEffect, useRef, useReducer, useCallback, useState } from 'react'
 import { theme } from '../../constants/theme'
 import type { CaptureSource } from '../../lib/captureSource'
-import { applyAdjustments, autoEnhance } from '../../lib/imageQuality'
+import { applyAdjustments, autoEnhance, estimateSharpness, SHARPNESS_THRESHOLD } from '../../lib/imageQuality'
 
 // ── Máquina de estados ────────────────────────────────────────────────────
 
@@ -98,6 +98,19 @@ export default function CameraView({
     }
   }, [state])
 
+  // Analizar nitidez al entrar en previsualización (no bloquea el flujo)
+  useEffect(() => {
+    if (state.status !== 'PREVIEW') { setIsBlurry(false); return }
+    let cancelled = false
+    estimateSharpness(state.dataUrl).then(sharpness => {
+      if (cancelled) return
+      // Log temporal para calibrar SHARPNESS_THRESHOLD con fotos reales
+      console.debug('[camera] nitidez estimada:', Math.round(sharpness))
+      setIsBlurry(sharpness > 0 && sharpness < SHARPNESS_THRESHOLD)
+    })
+    return () => { cancelled = true }
+  }, [state])
+
   const handleCapture = useCallback(async () => {
     if (!videoRef.current || state.status !== 'ACTIVE') return
     try {
@@ -123,6 +136,7 @@ export default function CameraView({
   const [confirming,      setConfirming]      = useState(false)
   const [enhanced,        setEnhanced]        = useState(false)
   const [enhancing,       setEnhancing]       = useState(false)
+  const [isBlurry,        setIsBlurry]        = useState(false)
 
   const handleConfirm = useCallback(async () => {
     if (state.status !== 'PREVIEW' || confirming || enhancing) return
@@ -200,6 +214,25 @@ export default function CameraView({
               transition: 'transform 300ms ease, filter 120ms linear',
             }}
           />
+        )}
+
+        {state.status === 'PREVIEW' && isBlurry && (
+          <div
+            className="absolute flex items-center gap-2 rounded-full px-3 py-2"
+            style={{
+              top: 16, left: '50%', transform: 'translateX(-50%)',
+              background: 'rgba(13,6,8,0.85)',
+              border: `1px solid ${theme.colors.gold}`,
+              backdropFilter: 'blur(8px)',
+            }}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={theme.colors.gold} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 9v4M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+            </svg>
+            <span style={{ fontSize: '0.7rem', color: theme.colors.cream }}>
+              Puede estar borrosa
+            </span>
+          </div>
         )}
 
         {state.status === 'REQUESTING' && (
