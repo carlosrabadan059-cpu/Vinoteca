@@ -49,6 +49,8 @@ Ver también [`docs/auth-architecture.md`](auth-architecture.md) para la arquite
 
 Navegación: `src/components/ui/Layout.tsx` sustituye el botón de logout del header por dos iconos (perfil, ajustes); el logout se movió a `Ajustes.tsx`.
 
+**Actualización 2026-08-02:** se añadió un tercer icono de salida en el header (`Layout.tsx`), junto a perfil y ajustes, que abre un modal de confirmación ("¿Seguro que quieres salir...?") antes de invocar `authStore.logout()`. El logout sigue disponible también desde `Ajustes.tsx`; ahora hay dos puntos de entrada al mismo método.
+
 ### Tipos
 
 `src/types/index.ts`: nuevos `Profile`, `UserSettings`, `UserRole`, `UserPlan`.

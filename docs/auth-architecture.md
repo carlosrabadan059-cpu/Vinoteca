@@ -61,7 +61,7 @@ Sin cambios de esquema. Cuelgan de `user_id = auth.uid()`, con RLS que aísla co
 3. **Login** (`Login.tsx` → `authStore.login`) → `signInWithPassword`, y actualiza `profiles.last_login_at` en segundo plano.
 4. **Recuperar contraseña**: `ForgotPassword.tsx` → `authStore.requestPasswordReset` → `resetPasswordForEmail` → email con enlace a `/restablecer` → `ResetPassword.tsx` → `authStore.updatePassword` → `auth.updateUser({ password })`.
 5. **Cambio de contraseña ya logueado**: mismo `authStore.updatePassword`, invocado desde `Ajustes.tsx`.
-6. **Logout**: `authStore.logout`, invocado desde `Ajustes.tsx`.
+6. **Logout**: `authStore.logout`. Invocable desde `Ajustes.tsx` y, desde el 2026-08-02, también desde un icono de salida en el header (`src/components/ui/Layout.tsx`) con un modal de confirmación previo — mismo método de `authStore`, dos puntos de entrada.
 7. **Persistencia de sesión**: sin cambios — `localStorage`, `autoRefreshToken: true` (`src/lib/supabase.ts`).
 
 ## Responsabilidades por componente

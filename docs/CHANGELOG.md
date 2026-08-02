@@ -13,6 +13,7 @@ El versionado sigue [Semantic Versioning](https://semver.org/). El proyecto perm
 ### Added
 
 - Prototipo navegable de la Fase 7 (Gestión de bodega): grid 2 columnas, vista lista con agrupación, búsqueda con sugerencias, panel de filtros completo, indicadores de stock, estados vacíos y skeletons
+- Icono de salir de la app en el header (`Layout.tsx`), con modal de confirmación antes de cerrar sesión
 
 ---
 
