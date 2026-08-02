@@ -125,7 +125,7 @@ export default function CameraView({
   const [enhancing,       setEnhancing]       = useState(false)
 
   const handleConfirm = useCallback(async () => {
-    if (state.status !== 'PREVIEW' || confirming) return
+    if (state.status !== 'PREVIEW' || confirming || enhancing) return
     // Camino rápido: sin ajustes, se entrega el dataUrl tal cual (comportamiento original)
     if (previewRotation === 0 && brightness === 0) {
       setConfirming(true)
@@ -144,7 +144,7 @@ export default function CameraView({
       // permitimos reintentar en vez de dejar el botón bloqueado
       setConfirming(false)
     }
-  }, [state, onCapture, previewRotation, brightness, confirming])
+  }, [state, onCapture, previewRotation, brightness, confirming, enhancing])
 
   const handleRotate = useCallback(() => {
     setPreviewRotation(r => (r + 180) % 360)
@@ -329,7 +329,7 @@ export default function CameraView({
           <>
             <button
               onClick={handleRetake}
-              disabled={confirming}
+              disabled={confirming || enhancing}
               className="flex flex-col items-center gap-1 disabled:opacity-40"
               style={{ color: theme.colors.muted }}
             >
@@ -346,7 +346,7 @@ export default function CameraView({
 
             <button
               onClick={handleConfirm}
-              disabled={confirming}
+              disabled={confirming || enhancing}
               className="flex flex-col items-center gap-1 disabled:opacity-60"
             >
               <div
@@ -364,7 +364,7 @@ export default function CameraView({
 
             <button
               onClick={handleRotate}
-              disabled={confirming}
+              disabled={confirming || enhancing}
               className="flex flex-col items-center gap-1 disabled:opacity-40"
               style={{ color: theme.colors.muted }}
             >
