@@ -150,9 +150,11 @@ export interface EnrichResponse {
 
 export interface SyncOperation {
   id: string
-  table: 'wines' | 'tastings'
+  table: 'wines' | 'tastings' | 'profiles' | 'user_settings'
   action: 'insert' | 'update' | 'delete'
   data: unknown
+  /** Columna usada para el WHERE en update/delete. Por defecto 'id' (wines/tastings/profiles usan 'id'; user_settings usa 'user_id'). */
+  idColumn?: string
   created_at: string
   retries: number
 }

@@ -12,8 +12,15 @@ interface Props {
 }
 
 const TABLE_ICON: Record<string, string> = {
-  wines:    '🍷',
-  tastings: '📖',
+  wines:         '🍷',
+  tastings:      '📖',
+  profiles:      '👤',
+  user_settings: '⚙️',
+}
+
+const TABLE_LABEL: Record<string, string> = {
+  profiles:      'Perfil',
+  user_settings: 'Ajustes',
 }
 
 const ACTION_LABEL: Record<string, string> = {
@@ -51,6 +58,7 @@ export default function SyncModal({ open, onClose }: Props) {
   }
 
   function itemName(op: SyncOperation): string {
+    if (TABLE_LABEL[op.table]) return TABLE_LABEL[op.table]
     const d = op.data as Record<string, unknown>
     return (d.nombre as string) ?? (d.id as string) ?? '—'
   }

@@ -4,16 +4,16 @@ import { useSyncStore } from '../store/syncStore'
 import type { SyncOperation } from '../types'
 
 export async function processOperation(op: SyncOperation): Promise<void> {
-  const { table, action, data } = op
+  const { table, action, data, idColumn = 'id' } = op
   const d = data as Record<string, unknown>
   if (action === 'insert') {
     const { error } = await supabase.from(table).insert(d)
     if (error) throw error
   } else if (action === 'update') {
-    const { error } = await supabase.from(table).update(d).eq('id', d.id as string)
+    const { error } = await supabase.from(table).update(d).eq(idColumn, d[idColumn] as string)
     if (error) throw error
   } else if (action === 'delete') {
-    const { error } = await supabase.from(table).delete().eq('id', d.id as string)
+    const { error } = await supabase.from(table).delete().eq(idColumn, d[idColumn] as string)
     if (error) throw error
   }
 }

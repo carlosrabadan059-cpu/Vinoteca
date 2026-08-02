@@ -37,6 +37,7 @@ Preparar Vinoteca para uso intensivo: rendimiento, modo offline completo, sincro
 ## Decisiones técnicas
 
 - `useSync.ts` y `idb.ts` existen — el listener `online` de `main.tsx` sincroniza automáticamente; `useSync().syncToSupabase()` también se usa manualmente desde `src/components/ui/SyncModal.tsx`
+- ✅ **Offline completo** (2026-08-02): `useWines`/`useTastings` ya encolaban sus escrituras al fallar; `useProfile`/`useSettings` no lo hacían (fallaban en silencio sin conexión). Ahora ambos siguen el mismo patrón (UI optimista + `addToQueue` en el `catch`). `SyncOperation.table` se amplió a `'profiles' | 'user_settings'` y se añadió `idColumn` opcional (`user_settings` usa `user_id` como PK, no `id`) — `processOperation` en `syncQueue.ts` ahora filtra por esa columna en vez de asumir siempre `'id'`.
 - ✅ `processOperation`/`syncQueue` consolidados en `src/lib/syncQueue.ts` (2026-08-02) — `main.tsx` y `useSync.ts` ya no duplican la lógica
 - ✅ `ChatBubble` de `src/components/wine/` era código muerto (nadie lo importaba) — eliminado (2026-08-02); la versión activa sigue en `src/components/ui/ChatBubble.tsx`
 - ~~TastingChat hace llamada directa a OpenAI~~ — ya resuelto desde antes de esta fase (commit `011a94b`), `TastingChat.tsx` usa `callSommelierChat` (n8n) igual que el resto de features de IA. Nota eliminada por estar desactualizada.
