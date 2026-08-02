@@ -2,7 +2,7 @@
 
 ## Estado
 
-⬜ Pendiente
+🚧 En desarrollo — 4 de 5 subsistemas implementados (2026-08-02); queda la validación masiva de OCR
 
 ---
 
@@ -37,6 +37,7 @@ Preparar Vinoteca para uso intensivo: rendimiento, modo offline completo, sincro
 ## Decisiones técnicas
 
 - `useSync.ts` y `idb.ts` existen — el listener `online` de `main.tsx` sincroniza automáticamente; `useSync().syncToSupabase()` también se usa manualmente desde `src/components/ui/SyncModal.tsx`
+- ✅ **Rendimiento** (2026-08-02): la Bodega ya paginaba con scroll infinito (`PAGE_SIZE = 20` en `useBodegaState.ts`), lo que acota la carga inicial pero no libera DOM fuera de pantalla al hacer scroll. En vez de introducir una librería de virtualización (arriesgado sin poder verificar visualmente el layout de grid/lista con agrupación en el dispositivo), se usó `content-visibility: auto` + `contain-intrinsic-size` nativo del navegador en `WineCardGrid`/`WineCardList`/`TastingCard` — el navegador salta layout/paint de las tarjetas fuera de pantalla sin tocar la estructura del DOM ni el scroll infinito existentes. Las imágenes de las tarjetas usan `loading="lazy" decoding="async"` (el cacheo en sí ya lo cubre Workbox `CacheFirst` en `vite.config.ts` para `supabase.co/storage`).
 - ✅ **Offline completo** (2026-08-02): `useWines`/`useTastings` ya encolaban sus escrituras al fallar; `useProfile`/`useSettings` no lo hacían (fallaban en silencio sin conexión). Ahora ambos siguen el mismo patrón (UI optimista + `addToQueue` en el `catch`). `SyncOperation.table` se amplió a `'profiles' | 'user_settings'` y se añadió `idColumn` opcional (`user_settings` usa `user_id` como PK, no `id`) — `processOperation` en `syncQueue.ts` ahora filtra por esa columna en vez de asumir siempre `'id'`.
 - ✅ **Animaciones** (2026-08-02): `injectKeyframes()` solo se llamaba desde `useBodegaState.ts`; `SyncIndicator.tsx`/`WineForm.tsx` usan esas mismas animaciones sin garantizar que estuvieran inyectadas si el usuario entraba por una ruta distinta a `/bodega`. Movido a `Layout.tsx` (se renderiza en todas las páginas autenticadas). Añadida una transición de página (`pageFade`, fade + translateY sutil) al contenedor de `<main>`, con `key={location.pathname}` para que se re-dispare también en rutas con parámetro (`/bodega/:id`, `/catas/:id`). Micro-interacción táctil global (`:active { opacity: 0.75 }`) en `button` y `[role="button"]` — la mayoría de botones no tenían ningún feedback al pulsar; con opacidad en vez de `transform` para no interferir con el FAB de `Bodega.tsx`, que ya anima su propio `transform`. Todo respeta `prefers-reduced-motion` (ya cubierto por la regla existente en `KEYFRAMES_CSS`).
 - ✅ **Accesibilidad** (2026-08-02): no existía ningún estilo `:focus-visible` global — varios inputs usan `outline-none` de Tailwind sin sustituto, dejando la navegación por teclado sin indicador de foco. Añadida una regla global en `index.css` (ver ADR de esa decisión más abajo). `aria-live="polite"`/`role="status"` en el aviso de foto borrosa de `CameraView.tsx`. `aria-label` en los dos botones icon-only sin nombre accesible detectados (menú "⋯" de `WineDetail.tsx`, toggle grid/lista de `Bodega.tsx`) — el resto de botones con icono ya incluían texto visible. `theme.colors.muted` (#7A6266, contraste 3.6:1 sobre el fondo) no cumplía WCAG AA (4.5:1) para texto normal; ajustado a #9E7F84 (≥4.5:1 sobre bg/surface/surface2), mismo tono. `muted2`/`muted3` quedan sin tocar — se usan también para separadores puramente decorativos y cambiarlos a ciegas (sin poder verificar visualmente en el dispositivo) es más arriesgado que el beneficio; pendiente de auditar con más detalle si se retoma esta línea.
@@ -48,10 +49,18 @@ Preparar Vinoteca para uso intensivo: rendimiento, modo offline completo, sincro
 
 ## Pendiente
 
-- Todo. Esta es la última fase y depende de que las anteriores estén estables.
-- Validación masiva de OCR con etiquetas reales (desbloqueará el pipeline V1.4 congelado).
+- Validación masiva de OCR con etiquetas reales (desbloqueará el pipeline V1.4 congelado) — el único de los cinco subsistemas del alcance sin empezar.
+- Verificación manual en el dispositivo de las cuatro líneas ya implementadas (rendimiento, offline, accesibilidad, animaciones) — ver sección "Verificación manual pendiente" más abajo.
+- `muted2`/`muted3` sin auditar en contraste (ver nota de accesibilidad arriba).
 
 ---
+
+## Verificación manual pendiente (en el dispositivo)
+
+- **Rendimiento:** scroll largo en Bodega/Catas sigue fluido; las tarjetas fuera de pantalla no rompen el layout al reaparecer.
+- **Offline:** DevTools → Network → Offline, editar Perfil o Ajustes, volver Online — confirmar que se sincroniza (además de la verificación ya pendiente de wines/tastings de la Fase 11 parte 1).
+- **Accesibilidad:** navegar con teclado (Tab) y comprobar que el anillo dorado de foco aparece en botones e inputs; contraste del texto secundario a simple vista.
+- **Animaciones:** transición sutil al cambiar de pestaña/ruta; feedback de opacidad al tocar botones y tarjetas; con "Reducir movimiento" activado en iOS, confirmar que las animaciones se acortan a casi nada.
 
 ## Criterio de finalización
 
