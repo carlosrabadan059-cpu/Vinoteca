@@ -115,20 +115,29 @@ export default function CameraView({
 
   const [previewRotation, setPreviewRotation] = useState(0)
   const [brightness,      setBrightness]      = useState(0)
+  const [confirming,      setConfirming]      = useState(false)
 
   const handleConfirm = useCallback(async () => {
-    if (state.status !== 'PREVIEW') return
+    if (state.status !== 'PREVIEW' || confirming) return
     // Camino rápido: sin ajustes, se entrega el dataUrl tal cual (comportamiento original)
     if (previewRotation === 0 && brightness === 0) {
+      setConfirming(true)
       onCapture(state.dataUrl)
       return
     }
-    const adjusted = await applyAdjustments(state.dataUrl, {
-      rotation:   previewRotation,
-      brightness,
-    })
-    onCapture(adjusted)
-  }, [state, onCapture, previewRotation, brightness])
+    setConfirming(true)
+    try {
+      const adjusted = await applyAdjustments(state.dataUrl, {
+        rotation:   previewRotation,
+        brightness,
+      })
+      onCapture(adjusted)
+    } catch {
+      // applyAdjustments ya devuelve el original ante fallo; si aun así lanza,
+      // permitimos reintentar en vez de dejar el botón bloqueado
+      setConfirming(false)
+    }
+  }, [state, onCapture, previewRotation, brightness, confirming])
 
   const handleRotate = useCallback(() => {
     setPreviewRotation(r => (r + 180) % 360)
@@ -137,6 +146,7 @@ export default function CameraView({
   const handleRetake = useCallback(() => {
     setPreviewRotation(0)
     setBrightness(0)
+    setConfirming(false)
     dispatch({ type: 'RETAKE' })
   }, [])
 
@@ -279,7 +289,8 @@ export default function CameraView({
           <>
             <button
               onClick={handleRetake}
-              className="flex flex-col items-center gap-1"
+              disabled={confirming}
+              className="flex flex-col items-center gap-1 disabled:opacity-40"
               style={{ color: theme.colors.muted }}
             >
               <div
@@ -295,7 +306,8 @@ export default function CameraView({
 
             <button
               onClick={handleConfirm}
-              className="flex flex-col items-center gap-1"
+              disabled={confirming}
+              className="flex flex-col items-center gap-1 disabled:opacity-60"
             >
               <div
                 className="flex items-center justify-center rounded-full"
@@ -305,12 +317,15 @@ export default function CameraView({
                   <polyline points="20 6 9 17 4 12"/>
                 </svg>
               </div>
-              <span style={{ fontSize: '0.65rem', color: theme.colors.cream }}>Usar foto</span>
+              <span style={{ fontSize: '0.65rem', color: theme.colors.cream }}>
+                {confirming ? 'Procesando…' : 'Usar foto'}
+              </span>
             </button>
 
             <button
               onClick={handleRotate}
-              className="flex flex-col items-center gap-1"
+              disabled={confirming}
+              className="flex flex-col items-center gap-1 disabled:opacity-40"
               style={{ color: theme.colors.muted }}
             >
               <div
