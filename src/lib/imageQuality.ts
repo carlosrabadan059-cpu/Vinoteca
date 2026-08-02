@@ -134,7 +134,7 @@ export async function autoEnhance(dataUrl: string): Promise<string> {
 export interface ImageAdjustments {
   /** Grados de rotación: 0 o 180 (los únicos que produce CameraView). */
   rotation: number
-  /** Ajuste de brillo, -50 a 50. 0 = sin cambio. */
+  /** Ajuste de brillo, -50 a 50, aplicado como factor multiplicativo (1 + brightness/100). 0 = sin cambio. */
   brightness: number
 }
 
@@ -167,11 +167,14 @@ export async function applyAdjustments(
     }
 
     if (brightness !== 0) {
-      const delta = brightness * 2.55
+      // Multiplicativo, para que coincida exactamente con el `filter: brightness()`
+      // de CSS que usa la previsualización — si fuese aditivo, lo que ve el usuario
+      // no sería lo que se guarda.
+      const factor = 1 + brightness / 100
       const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
       const data = imageData.data
       const lut = new Uint8ClampedArray(256)
-      for (let v = 0; v < 256; v++) lut[v] = v + delta
+      for (let v = 0; v < 256; v++) lut[v] = v * factor
       for (let i = 0; i < data.length; i += 4) {
         data[i]     = lut[data[i]]
         data[i + 1] = lut[data[i + 1]]

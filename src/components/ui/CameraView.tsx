@@ -292,7 +292,8 @@ export default function CameraView({
         {/* Botón cancelar */}
         <button
           onClick={onCancel}
-          className="absolute top-4 left-4 flex items-center justify-center rounded-full"
+          disabled={confirming || enhancing}
+          className="absolute top-4 left-4 flex items-center justify-center rounded-full disabled:opacity-40"
           style={{
             width:  40, height: 40,
             background: 'rgba(13,6,8,0.7)',
@@ -325,8 +326,9 @@ export default function CameraView({
               step={1}
               value={brightness}
               onChange={e => setBrightness(Number(e.target.value))}
+              disabled={confirming || enhancing}
               aria-label="Ajustar brillo"
-              className="flex-1"
+              className="flex-1 disabled:opacity-40"
               style={{ accentColor: theme.colors.gold }}
             />
             <span
