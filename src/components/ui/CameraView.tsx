@@ -1,6 +1,7 @@
 import { useEffect, useRef, useReducer, useCallback, useState } from 'react'
 import { theme } from '../../constants/theme'
 import type { CaptureSource } from '../../lib/captureSource'
+import { applyAdjustments } from '../../lib/imageQuality'
 
 // ── Máquina de estados ────────────────────────────────────────────────────
 
@@ -102,6 +103,8 @@ export default function CameraView({
           ? _win.orientation
           : (window.screen?.orientation?.angle ?? 0)
       const dataUrl = await source.captureFrame(videoRef.current, angle)
+      setPreviewRotation(0)
+      setBrightness(0)
       dispatch({ type: 'CAPTURE', dataUrl })
     } catch (err) {
       const error = err instanceof Error ? err : new Error(String(err))
@@ -111,26 +114,21 @@ export default function CameraView({
   }, [source, state.status, onError])
 
   const [previewRotation, setPreviewRotation] = useState(0)
+  const [brightness,      setBrightness]      = useState(0)
 
-  const handleConfirm = useCallback(() => {
+  const handleConfirm = useCallback(async () => {
     if (state.status !== 'PREVIEW') return
-    if (previewRotation === 0) {
+    // Camino rápido: sin ajustes, se entrega el dataUrl tal cual (comportamiento original)
+    if (previewRotation === 0 && brightness === 0) {
       onCapture(state.dataUrl)
       return
     }
-    const img = new Image()
-    img.onload = () => {
-      const canvas = document.createElement('canvas')
-      canvas.width  = img.width
-      canvas.height = img.height
-      const ctx = canvas.getContext('2d')!
-      ctx.translate(canvas.width / 2, canvas.height / 2)
-      ctx.rotate((previewRotation * Math.PI) / 180)
-      ctx.drawImage(img, -img.width / 2, -img.height / 2)
-      onCapture(canvas.toDataURL('image/jpeg', 0.85))
-    }
-    img.src = state.dataUrl
-  }, [state, onCapture, previewRotation])
+    const adjusted = await applyAdjustments(state.dataUrl, {
+      rotation:   previewRotation,
+      brightness,
+    })
+    onCapture(adjusted)
+  }, [state, onCapture, previewRotation, brightness])
 
   const handleRotate = useCallback(() => {
     setPreviewRotation(r => (r + 180) % 360)
@@ -138,6 +136,7 @@ export default function CameraView({
 
   const handleRetake = useCallback(() => {
     setPreviewRotation(0)
+    setBrightness(0)
     dispatch({ type: 'RETAKE' })
   }, [])
 
@@ -165,7 +164,11 @@ export default function CameraView({
             src={state.dataUrl}
             alt="Foto capturada"
             className="absolute inset-0 w-full h-full object-cover"
-            style={{ transform: `rotate(${previewRotation}deg)`, transition: 'transform 300ms ease' }}
+            style={{
+              transform:  `rotate(${previewRotation}deg)`,
+              filter:     brightness !== 0 ? `brightness(${1 + brightness / 100})` : undefined,
+              transition: 'transform 300ms ease, filter 120ms linear',
+            }}
           />
         )}
 
@@ -243,9 +246,35 @@ export default function CameraView({
 
       {/* Barra inferior */}
       <div
-        className="flex-shrink-0 flex items-center justify-center gap-8 py-6"
+        className="flex-shrink-0 flex flex-col"
         style={{ background: 'rgba(13,6,8,0.9)', backdropFilter: 'blur(12px)' }}
       >
+        {state.status === 'PREVIEW' && (
+          <div className="flex items-center gap-3 px-6 pt-4">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={theme.colors.muted} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+              <circle cx="12" cy="12" r="4"/>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+            </svg>
+            <input
+              type="range"
+              min={-50}
+              max={50}
+              step={1}
+              value={brightness}
+              onChange={e => setBrightness(Number(e.target.value))}
+              aria-label="Ajustar brillo"
+              className="flex-1"
+              style={{ accentColor: theme.colors.gold }}
+            />
+            <span
+              style={{ fontSize: '0.65rem', color: theme.colors.muted, width: 32, textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}
+            >
+              {brightness > 0 ? `+${brightness}` : brightness}
+            </span>
+          </div>
+        )}
+
+        <div className="flex items-center justify-center gap-8 py-6">
         {state.status === 'PREVIEW' ? (
           <>
             <button
@@ -319,6 +348,7 @@ export default function CameraView({
             </div>
           </button>
         )}
+        </div>
       </div>
     </div>
   )
