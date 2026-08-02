@@ -1,7 +1,11 @@
-import { NavLink } from 'react-router-dom'
+import { useState } from 'react'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { theme } from '../../constants/theme'
+import { useAuthStore } from '../../store/authStore'
 import Toast from './Toast'
 import SyncIndicator from './SyncIndicator'
+import Modal from './Modal'
+import Button from './Button'
 
 const tabs = [
   {
@@ -61,6 +65,23 @@ interface LayoutProps {
 }
 
 export default function Layout({ children }: LayoutProps) {
+  const { logout }        = useAuthStore()
+  const navigate          = useNavigate()
+  const [confirmSalir, setConfirmSalir] = useState(false)
+  const [saliendo,     setSaliendo]     = useState(false)
+
+  async function handleLogout() {
+    if (saliendo) return
+    setSaliendo(true)
+    try {
+      await logout()
+      navigate('/login', { replace: true })
+    } finally {
+      setSaliendo(false)
+      setConfirmSalir(false)
+    }
+  }
+
   return (
     <div
       className="flex flex-col h-dvh"
@@ -114,8 +135,47 @@ export default function Layout({ children }: LayoutProps) {
               <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
             </svg>
           </NavLink>
+          <button
+            type="button"
+            onClick={() => setConfirmSalir(true)}
+            aria-label="Salir de la app"
+            style={{
+              color:      theme.colors.iconMuted,
+              lineHeight: 0,
+              background: 'transparent',
+              border:     'none',
+              padding:    0,
+              cursor:     'pointer',
+              WebkitTapHighlightColor: 'transparent',
+            }}
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+              <polyline points="16 17 21 12 16 7"/>
+              <line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+          </button>
         </div>
       </header>
+
+      <Modal open={confirmSalir} onClose={() => setConfirmSalir(false)} title="Cerrar sesión">
+        <p style={{ color: theme.colors.muted, fontSize: '0.875rem' }}>
+          ¿Seguro que quieres salir de la app? Tendrás que volver a iniciar sesión.
+        </p>
+        <div className="flex gap-3">
+          <Button
+            variant="secondary"
+            className="flex-1"
+            onClick={() => setConfirmSalir(false)}
+            disabled={saliendo}
+          >
+            Cancelar
+          </Button>
+          <Button className="flex-1" onClick={handleLogout} loading={saliendo}>
+            Salir
+          </Button>
+        </div>
+      </Modal>
 
       <main className="flex-1 overflow-y-auto">
         {children}
