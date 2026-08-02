@@ -32,11 +32,12 @@
 
 ## Fuera de numeración
 
-Trabajo realizado entre el cierre de la Fase 8 y el inicio de la Fase 9, sin ocupar un número de fase para no interferir con la numeración del roadmap:
+Trabajo que no encaja en ninguna fase del roadmap, registrado sin ocupar un número de fase para no interferir con la numeración:
 
 | Fecha | Nombre | Documento |
 |-------|--------|-----------|
 | 2026-07-18 | Gestión de usuarios y cuentas (auth, perfil, ajustes, RLS) | [gestion-usuarios-cuentas.md](gestion-usuarios-cuentas.md), [auth-architecture.md](auth-architecture.md) |
+| 2026-08-02 | Mejoras de calidad de imagen en la captura de cámara (brillo, auto-niveles, aviso de borrosa) | [spec](superpowers/specs/2026-08-02-mejoras-camara-captura-design.md), [plan](superpowers/plans/2026-08-02-mejoras-camara-captura-plan.md) |
 
 ---
 

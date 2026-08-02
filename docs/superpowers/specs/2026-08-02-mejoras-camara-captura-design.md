@@ -46,6 +46,15 @@ Hoy `handleConfirm` en `CameraView.tsx` solo hornea la rotación si `previewRota
 - Cambios en `src/pages/Scan.tsx` (congelado) o en los workflows n8n `wine/identify`/`wine/enrich`.
 - Edición/reemplazo de fotos de vinos ya guardados, múltiples fotos por vino, preferencias de cámara en Ajustes — mejoras identificadas en la misma sesión pero no elegidas para este diseño; quedan para un diseño posterior si se retoman.
 
+## Seguimiento pendiente (detectado durante la implementación)
+
+Ninguno bloquea el uso normal; se registran para no perderlos:
+
+- **Quitar el `console.debug` de calibración** en `src/components/ui/CameraView.tsx` una vez ajustado `SHARPNESS_THRESHOLD` con fotos reales. Se dejó activo a propósito (y no limitado a `import.meta.env.DEV`) porque el usuario prueba en la URL de producción de Vercel desde el móvil, donde un log limitado a desarrollo no serviría para calibrar.
+- **El auto-mejorado es irreversible sin recapturar**: sobreescribe el `dataUrl` en memoria y la única vía de deshacerlo es "Repetir", que obliga a hacer la foto de nuevo (a diferencia del brillo y la rotación, que son reversibles hasta el momento de confirmar). Es el comportamiento acordado en este diseño ("aplicar una vez"), pero si molesta en uso real, guardar el dataUrl original en un `useRef` permitiría revertir sin recapturar.
+- **`autoEnhance` recorre la imagen a resolución completa** en el hilo principal (la compresión de `Scan.tsx` ocurre después, en `onCapture`), lo que puede bloquear la UI unos cientos de ms en dispositivos lentos. Si se nota, cabría reducir la imagen antes de analizar el histograma o mover el trabajo a un Web Worker.
+- **Accesibilidad**: el aviso de foto borrosa no usa `role="status"`/`aria-live="polite"`, así que no se anuncia a lectores de pantalla. Es coherente con el nivel de accesibilidad actual del resto del componente, pero mejorable — encaja de forma natural en la línea de accesibilidad de la Fase 11.
+
 ## Verificación
 
 - `npx tsc -b`.
