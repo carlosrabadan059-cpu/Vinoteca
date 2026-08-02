@@ -28,7 +28,9 @@ export default function WineCardList({ wine, index, onClick }: Props) {
         cursor: 'pointer',
         animation: `cardIn ${t.animation.durationBase} ease both`,
         animationDelay: `${index * t.animation.cardStagger}ms`,
-      }}
+        contentVisibility: 'auto',
+        containIntrinsicSize: '0 90px',
+      } as React.CSSProperties}
     >
       {/* Thumbnail */}
       <div style={{
@@ -43,6 +45,8 @@ export default function WineCardList({ wine, index, onClick }: Props) {
           <img
             src={wine.imagen_frontal_url}
             alt={wine.nombre}
+            loading="lazy"
+            decoding="async"
             style={{ width: '100%', height: '100%', objectFit: 'contain', filter: t.imageFilters.wineLabel }}
           />
         ) : (

@@ -35,7 +35,12 @@ export default function TastingCard({ tasting, wineName, onClick }: TastingCardP
     <div
       onClick={onClick}
       className="flex items-center gap-3 rounded-xl p-3 cursor-pointer active:opacity-75 transition-opacity"
-      style={{ background: theme.colors.surface, border: `1px solid ${theme.colors.borderSubtle}` }}
+      style={{
+        background: theme.colors.surface,
+        border: `1px solid ${theme.colors.borderSubtle}`,
+        contentVisibility: 'auto',
+        containIntrinsicSize: '0 76px',
+      } as React.CSSProperties}
     >
       {/* Badge puntuación */}
       <div
