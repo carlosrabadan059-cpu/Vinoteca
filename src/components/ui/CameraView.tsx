@@ -1,7 +1,7 @@
 import { useEffect, useRef, useReducer, useCallback, useState } from 'react'
 import { theme } from '../../constants/theme'
 import type { CaptureSource } from '../../lib/captureSource'
-import { applyAdjustments } from '../../lib/imageQuality'
+import { applyAdjustments, autoEnhance } from '../../lib/imageQuality'
 
 // ── Máquina de estados ────────────────────────────────────────────────────
 
@@ -16,6 +16,7 @@ type CameraAction =
   | { type: 'REQUEST' }
   | { type: 'STREAM_READY'; stream: MediaStream | null }
   | { type: 'CAPTURE';      dataUrl: string }
+  | { type: 'SET_PREVIEW_IMAGE'; dataUrl: string }
   | { type: 'RETAKE' }
   | { type: 'ERROR';        message: string }
 
@@ -26,6 +27,9 @@ function cameraReducer(state: CameraState, action: CameraAction): CameraState {
     case 'CAPTURE':
       if (state.status !== 'ACTIVE') return state
       return { status: 'PREVIEW', stream: state.stream, dataUrl: action.dataUrl }
+    case 'SET_PREVIEW_IMAGE':
+      if (state.status !== 'PREVIEW') return state
+      return { ...state, dataUrl: action.dataUrl }
     case 'RETAKE':
       if (state.status !== 'PREVIEW') return state
       return { status: 'ACTIVE', stream: state.stream }
@@ -105,6 +109,7 @@ export default function CameraView({
       const dataUrl = await source.captureFrame(videoRef.current, angle)
       setPreviewRotation(0)
       setBrightness(0)
+      setEnhanced(false)
       dispatch({ type: 'CAPTURE', dataUrl })
     } catch (err) {
       const error = err instanceof Error ? err : new Error(String(err))
@@ -116,6 +121,8 @@ export default function CameraView({
   const [previewRotation, setPreviewRotation] = useState(0)
   const [brightness,      setBrightness]      = useState(0)
   const [confirming,      setConfirming]      = useState(false)
+  const [enhanced,        setEnhanced]        = useState(false)
+  const [enhancing,       setEnhancing]       = useState(false)
 
   const handleConfirm = useCallback(async () => {
     if (state.status !== 'PREVIEW' || confirming) return
@@ -143,10 +150,23 @@ export default function CameraView({
     setPreviewRotation(r => (r + 180) % 360)
   }, [])
 
+  const handleEnhance = useCallback(async () => {
+    if (state.status !== 'PREVIEW' || enhanced || enhancing || confirming) return
+    setEnhancing(true)
+    try {
+      const improved = await autoEnhance(state.dataUrl)
+      dispatch({ type: 'SET_PREVIEW_IMAGE', dataUrl: improved })
+      setEnhanced(true)
+    } finally {
+      setEnhancing(false)
+    }
+  }, [state, enhanced, enhancing, confirming])
+
   const handleRetake = useCallback(() => {
     setPreviewRotation(0)
     setBrightness(0)
     setConfirming(false)
+    setEnhanced(false)
     dispatch({ type: 'RETAKE' })
   }, [])
 
@@ -281,6 +301,26 @@ export default function CameraView({
             >
               {brightness > 0 ? `+${brightness}` : brightness}
             </span>
+
+            <button
+              onClick={handleEnhance}
+              disabled={enhanced || enhancing || confirming}
+              className="flex items-center gap-1.5 rounded-full disabled:opacity-40"
+              style={{
+                flexShrink:  0,
+                padding:     '6px 12px',
+                fontSize:    '0.65rem',
+                color:       enhanced ? theme.colors.gold : theme.colors.cream,
+                background:  'rgba(255,255,255,0.06)',
+                border:      `1px solid ${enhanced ? theme.colors.gold : theme.colors.border}`,
+                WebkitTapHighlightColor: 'transparent',
+              }}
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/>
+              </svg>
+              {enhancing ? 'Mejorando…' : enhanced ? 'Mejorada' : 'Auto-mejorar'}
+            </button>
           </div>
         )}
 
