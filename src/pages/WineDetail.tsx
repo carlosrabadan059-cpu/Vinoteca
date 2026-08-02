@@ -311,6 +311,9 @@ export default function WineDetail() {
           <div ref={menuRef} style={{ position: 'relative' }}>
             <button
               onClick={() => setMenuOpen(o => !o)}
+              aria-label="Más opciones"
+              aria-haspopup="true"
+              aria-expanded={menuOpen}
               style={{
                 width: 34, height: 34, borderRadius: '50%',
                 background: 'rgba(13,6,8,0.52)', backdropFilter: 'blur(10px)',

@@ -250,6 +250,7 @@ export default function Bodega() {
                   <button
                     key={v}
                     aria-pressed={s.view === v}
+                    aria-label={v === 'grid' ? 'Vista cuadrícula' : 'Vista lista'}
                     onClick={() => s.setView(v)}
                     style={{
                       background: s.view === v ? t.colors.surface2 : 'none',

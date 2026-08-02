@@ -52,6 +52,17 @@ button, input {
   font-family: inherit;
 }
 
+/*
+ * Indicador de foco de teclado. Varios inputs usan la utilidad outline-none
+ * de Tailwind sin ningún sustituto visual — sin esta regla quedan sin
+ * indicador de foco alguno al navegar con teclado. !important porque debe
+ * ganar siempre a outline-none, sin depender de dónde caiga en la cascada.
+ */
+:focus-visible {
+  outline: 2px solid var(--color-gold) !important;
+  outline-offset: 2px;
+}
+
 .spinner {
   width: 36px;
   height: 36px;

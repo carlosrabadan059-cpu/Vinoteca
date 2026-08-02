@@ -62,7 +62,7 @@ export const theme = {
     // Textos
     cream:  '#F5F0E8',   // texto principal, títulos
     text:   '#E8E0D8',   // texto body estándar
-    muted:  '#7A6266',   // texto secundario, placeholders
+    muted:  '#9E7F84',   // texto secundario, placeholders — ≥4.5:1 sobre bg/surface/surface2 (WCAG AA)
     muted2: '#4A3438',   // texto terciario, separadores, hints
     muted3: '#5A4448',   // chips de tipo/región en lista
 

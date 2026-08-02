@@ -218,6 +218,8 @@ export default function CameraView({
 
         {state.status === 'PREVIEW' && isBlurry && (
           <div
+            role="status"
+            aria-live="polite"
             className="absolute flex items-center gap-2 rounded-full px-3 py-2"
             style={{
               top: 16, left: '50%', transform: 'translateX(-50%)',
