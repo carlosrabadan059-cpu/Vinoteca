@@ -32,7 +32,7 @@ Ver también [`docs/auth-architecture.md`](auth-architecture.md) para la arquite
 ### Flujo de autenticación
 
 - **Login / registro / logout**: ya existían (`src/store/authStore.ts`), sin cambios de comportamiento.
-- **Verificación de email**: `Register.tsx` ya mostraba el mensaje "revisa tu correo" tras `signUp`; falta activar **Confirm email** en el dashboard de Supabase (Authentication → Providers → Email) — no configurable vía migración SQL.
+- **Verificación de email**: `Register.tsx` muestra el mensaje "revisa tu correo" tras `signUp`. **Confirm email** activado en el dashboard de Supabase (Authentication → Providers → Email) — no configurable vía migración SQL; implementado y probado con éxito (2026-08-02).
 - **Recuperar contraseña**: `authStore.requestPasswordReset(email)` (usa `resetPasswordForEmail`, redirige a `/restablecer`) + página `src/pages/ForgotPassword.tsx`.
 - **Cambio de contraseña**: `authStore.updatePassword(password)` (usa `auth.updateUser`), usado tanto en `src/pages/ResetPassword.tsx` (tras el enlace de recuperación) como en `src/pages/Ajustes.tsx` (ya logueado).
 - **`last_login_at`**: `authStore.login()` actualiza `profiles.last_login_at` tras un login exitoso, en segundo plano (no bloquea el login si falla).
@@ -72,6 +72,6 @@ Navegación: `src/components/ui/Layout.tsx` sustituye el botón de logout del he
 
 Ver sección "Explícitamente fuera de alcance" en [`docs/auth-architecture.md`](auth-architecture.md): Premium, Family/bodega compartida, panel de administración, pagos, gestión de dispositivos, preferencias avanzadas de IA/cámara.
 
-Pasos manuales pendientes en el dashboard de Supabase (no automatizables vía migración):
-- Activar "Confirm email" en Authentication → Providers → Email.
-- Verificar plantillas de email de recuperación de contraseña (idioma, remitente).
+Pasos manuales en el dashboard de Supabase (no automatizables vía migración):
+- ✅ "Confirm email" activado en Authentication → Providers → Email (2026-08-02).
+- Verificar plantillas de email de recuperación de contraseña (idioma, remitente) — pendiente.

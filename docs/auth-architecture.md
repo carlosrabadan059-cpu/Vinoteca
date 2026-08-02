@@ -57,7 +57,7 @@ Sin cambios de esquema. Cuelgan de `user_id = auth.uid()`, con RLS que aísla co
 ## Flujo de autenticación
 
 1. **Registro** (`Register.tsx` → `authStore.register`) → `supabase.auth.signUp`. Trigger `on_auth_user_created` en `auth.users` crea automáticamente `profiles` + `user_settings` con sus valores por defecto.
-2. **Verificación de email** (pendiente de activar en el dashboard) → el usuario confirma desde el correo antes de poder iniciar sesión.
+2. **Verificación de email** (activada en el dashboard, Fase 9) → el usuario confirma desde el correo antes de poder iniciar sesión.
 3. **Login** (`Login.tsx` → `authStore.login`) → `signInWithPassword`, y actualiza `profiles.last_login_at` en segundo plano.
 4. **Recuperar contraseña**: `ForgotPassword.tsx` → `authStore.requestPasswordReset` → `resetPasswordForEmail` → email con enlace a `/restablecer` → `ResetPassword.tsx` → `authStore.updatePassword` → `auth.updateUser({ password })`.
 5. **Cambio de contraseña ya logueado**: mismo `authStore.updatePassword`, invocado desde `Ajustes.tsx`.

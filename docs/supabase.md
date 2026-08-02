@@ -33,7 +33,7 @@ Vinoteca usa **email + contraseña** (`signInWithPassword` / `signUp`).
 - Al arrancar la app, `useAuth` llama a `supabase.auth.getSession()` para restaurar la sesión existente.
 - La suscripción `onAuthStateChange` mantiene el store sincronizado con cualquier cambio posterior (login, logout, expiración).
 
-**Nota:** La confirmación de email (`Confirm email`) debe estar **desactivada** en el dashboard de Supabase para que el registro funcione sin paso de validación de correo.
+**Nota:** La confirmación de email (`Confirm email`) está **activada** en el dashboard de Supabase (Fase 9, gestión de usuarios) — tras `signUp` el usuario debe confirmar desde el correo antes de poder iniciar sesión. `Register.tsx` muestra el mensaje "revisa tu correo" en ese paso.
 
 ## Tablas accedidas
 
@@ -119,4 +119,4 @@ Descarga una imagen desde cualquier URL y la convierte a data URL (base64). Usad
 - **URL:** Visible en `Settings → API → Project URL`
 - **Anon key:** Visible en `Settings → API → Project API keys → anon public`
 - **Service role key:** Solo para n8n (entorno Portainer), nunca en el cliente
-- **Email confirm:** Desactivar en `Authentication → Providers → Email → Confirm email`
+- **Email confirm:** Activado en `Authentication → Providers → Email → Confirm email` (Fase 9)
