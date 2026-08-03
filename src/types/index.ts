@@ -17,6 +17,12 @@ export interface Wine {
   volumen: string | null
   imagen_frontal_url: string | null
   imagen_trasera_url: string | null
+  // "Foto de estudio" — mejora de imagen con IA
+  imagen_original_url:    string | null
+  image_version:          string
+  image_style:            string | null
+  image_source:           string | null
+  image_processing_state: string
   qr_fuente: string | null
   wine_uid: string | null
   created_at: string
