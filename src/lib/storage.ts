@@ -16,10 +16,22 @@ export const storage = { get, set, remove }
 
 // ── Supabase Storage ─────────────────────────────────────────────────────────
 
+function getDataUrlMimeType(dataUrl: string): string {
+  const match = dataUrl.match(/^data:(image\/[^;]+);base64,/)
+  return match ? match[1] : 'image/jpeg'
+}
+
+function getExtensionForMimeType(mimeType: string): string {
+  if (mimeType === 'image/png') return 'png'
+  if (mimeType === 'image/jpeg') return 'jpg'
+  return 'jpg'
+}
+
 function dataUrlToBlob(dataUrl: string): Blob {
+  const mimeType = getDataUrlMimeType(dataUrl)
   const base64 = dataUrl.replace(/^data:image\/[^;]+;base64,/, '')
   const bytes  = Uint8Array.from(atob(base64), c => c.charCodeAt(0))
-  return new Blob([bytes], { type: 'image/jpeg' })
+  return new Blob([bytes], { type: mimeType })
 }
 
 const TEN_YEARS_SECONDS = 60 * 60 * 24 * 365 * 10
@@ -42,11 +54,13 @@ export async function uploadWineImage(
   side: string
 ): Promise<string> {
   const blob = dataUrlToBlob(dataUrl)
-  const path = `${userId}/${wineId}/${side}.jpg`
+  const mimeType = getDataUrlMimeType(dataUrl)
+  const extension = getExtensionForMimeType(mimeType)
+  const path = `${userId}/${wineId}/${side}.${extension}`
 
   const { error: uploadError } = await supabase.storage
     .from('wine-labels')
-    .upload(path, blob, { contentType: 'image/jpeg', upsert: true })
+    .upload(path, blob, { contentType: mimeType, upsert: true })
 
   if (uploadError) throw uploadError
 

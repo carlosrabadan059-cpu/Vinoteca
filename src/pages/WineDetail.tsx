@@ -768,7 +768,7 @@ export default function WineDetail() {
 
       <Modal
         open={previewPhotoUrl !== null}
-        onClose={handleCancelPreview}
+        onClose={() => { if (!improvingPhoto) handleCancelPreview() }}
         title="Vista previa"
       >
         {previewPhotoUrl && (
