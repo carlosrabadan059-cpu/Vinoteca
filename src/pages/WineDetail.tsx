@@ -11,7 +11,8 @@ import { useWines } from '../hooks/useWines'
 import { useTastings } from '../hooks/useTastings'
 import { useCamera } from '../hooks/useCamera'
 import { getUserMediaSource } from '../lib/captureSource'
-import { uploadWineImage } from '../lib/storage'
+import { callImprovePhoto } from '../lib/n8n'
+import { uploadWineImage, fetchImageAsDataUrl } from '../lib/storage'
 import { useToastStore } from '../store/toastStore'
 import { useAuthStore } from '../store/authStore'
 import { theme } from '../constants/theme'
@@ -180,7 +181,10 @@ export default function WineDetail() {
   const [photoSourceOpen, setPhotoSourceOpen] = useState(false)
   const [showCamera,      setShowCamera]      = useState(false)
   const [uploadingPhoto,  setUploadingPhoto]  = useState(false)
+  const [improvingPhoto,  setImprovingPhoto]  = useState(false)
+  const [previewPhotoUrl, setPreviewPhotoUrl] = useState<string | null>(null)
   const menuRef = useRef<HTMLDivElement>(null)
+  const prevProcessingStateRef = useRef<string>('original')
 
   const cameraSource = useMemo(() => getUserMediaSource(), [showCamera])
 
@@ -230,13 +234,21 @@ export default function WineDetail() {
     }
   }
 
-  async function savePhoto(dataUrl: string) {
+  async function savePhoto(dataUrl: string, source: 'camera' | 'gallery') {
     if (!wine || !user || uploadingPhoto) return
     setUploadingPhoto(true)
     try {
-      const url = await uploadWineImage(dataUrl, user.id, wine.id, 'frontal')
-      await updateWine(wine.id, { imagen_frontal_url: url })
-      setWine(w => (w ? { ...w, imagen_frontal_url: url } : w))
+      const url = await uploadWineImage(dataUrl, user.id, wine.id, 'original')
+      const fields = {
+        imagen_frontal_url:     url,
+        imagen_original_url:    url,
+        image_version:          'original',
+        image_style:            null,
+        image_source:           source,
+        image_processing_state: 'original',
+      }
+      await updateWine(wine.id, fields)
+      setWine(w => (w ? { ...w, ...fields } : w))
       toast.show('Foto actualizada')
     } catch {
       toast.show('Error al subir la foto', 'error')
@@ -248,14 +260,76 @@ export default function WineDetail() {
   async function handleCameraCapture(dataUrl: string) {
     setShowCamera(false)
     const compressed = await compressImage(dataUrl)
-    await savePhoto(compressed)
+    await savePhoto(compressed, 'camera')
   }
 
   async function handleGalleryPick() {
     const raw = await pickFromGallery()
     if (!raw) return
     const compressed = await compressImage(raw)
-    await savePhoto(compressed)
+    await savePhoto(compressed, 'gallery')
+  }
+
+  async function handleImprovePhoto() {
+    if (!wine || !user || improvingPhoto) return
+    setImprovingPhoto(true)
+    prevProcessingStateRef.current = wine.image_processing_state
+    try {
+      let originalUrl = wine.imagen_original_url
+
+      // Backfill: vinos de antes de esta funcionalidad (p. ej. creados por Scan.tsx)
+      // no tienen imagen_original_url — hay que crearlo antes de procesar.
+      if (!originalUrl) {
+        if (!wine.imagen_frontal_url) throw new Error('El vino no tiene foto')
+        const currentDataUrl = await fetchImageAsDataUrl(wine.imagen_frontal_url)
+        originalUrl = await uploadWineImage(currentDataUrl, user.id, wine.id, 'original')
+        await updateWine(wine.id, { imagen_original_url: originalUrl })
+        setWine(w => (w ? { ...w, imagen_original_url: originalUrl } : w))
+      }
+
+      await updateWine(wine.id, { image_processing_state: 'processing' })
+      setWine(w => (w ? { ...w, image_processing_state: 'processing' } : w))
+
+      const { imageDataUrl } = await callImprovePhoto(originalUrl)
+      setPreviewPhotoUrl(imageDataUrl)
+    } catch {
+      await updateWine(wine.id, { image_processing_state: 'failed' })
+      setWine(w => (w ? { ...w, image_processing_state: 'failed' } : w))
+      toast.show('No se pudo mejorar la fotografía', 'error')
+    } finally {
+      setImprovingPhoto(false)
+    }
+  }
+
+  async function handleCancelPreview() {
+    setPreviewPhotoUrl(null)
+    if (!wine) return
+    const restored = prevProcessingStateRef.current
+    await updateWine(wine.id, { image_processing_state: restored })
+    setWine(w => (w ? { ...w, image_processing_state: restored } : w))
+  }
+
+  async function handleConfirmPreview() {
+    if (!wine || !user || !previewPhotoUrl || improvingPhoto) return
+    setImprovingPhoto(true)
+    try {
+      const url = await uploadWineImage(previewPhotoUrl, user.id, wine.id, `studio-${Date.now()}`)
+      const fields = {
+        imagen_frontal_url:     url,
+        image_version:          'studio_v1',
+        image_style:            'PHOTO_STYLE_STUDIO_V1',
+        image_source:           'ai_studio',
+        image_processing_state: 'completed',
+      }
+      await updateWine(wine.id, fields)
+      setWine(w => (w ? { ...w, ...fields } : w))
+      setPreviewPhotoUrl(null)
+      toast.show('Fotografía mejorada')
+    } catch {
+      toast.show('No se pudo guardar la fotografía', 'error')
+    } finally {
+      setImprovingPhoto(false)
+    }
   }
 
   // Últimas 3 catas (excluye consumos rápidos para el rating)
@@ -403,6 +477,17 @@ export default function WineDetail() {
                   </svg>
                   {wine.imagen_frontal_url ? 'Cambiar foto' : 'Añadir foto'}
                 </button>
+                {wine.imagen_frontal_url && (
+                  <button
+                    style={{ width: '100%', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 8, padding: '12px 16px', color: theme.colors.gold, fontSize: '0.85rem', background: 'none', border: 'none', cursor: 'pointer', minHeight: 48, borderTop: `1px solid ${theme.colors.border}` }}
+                    onClick={() => { setMenuOpen(false); handleImprovePhoto() }}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+                    </svg>
+                    Foto de estudio
+                  </button>
+                )}
                 <button
                   style={{ width: '100%', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 8, padding: '12px 16px', color: '#E05050', fontSize: '0.85rem', background: 'none', border: 'none', cursor: 'pointer', minHeight: 48, borderTop: `1px solid ${theme.colors.border}` }}
                   onClick={() => { setMenuOpen(false); setDeleteOpen(true) }}
@@ -663,6 +748,44 @@ export default function WineDetail() {
           <Spinner />
         </div>
       )}
+
+      {improvingPhoto && !previewPhotoUrl && (
+        <div style={{
+          position: 'fixed', inset: 0, zIndex: 60,
+          background: 'rgba(13,6,8,0.6)',
+          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12,
+        }}>
+          <Spinner />
+          <p style={{ color: theme.colors.cream, fontSize: '0.85rem', textAlign: 'center', padding: '0 24px' }}>
+            Mejorando fotografía…<br />
+            <span style={{ color: theme.colors.muted, fontSize: '0.75rem' }}>Esto puede tardar unos segundos.</span>
+          </p>
+        </div>
+      )}
+
+      <Modal
+        open={previewPhotoUrl !== null}
+        onClose={handleCancelPreview}
+        title="Vista previa"
+      >
+        {previewPhotoUrl && (
+          <>
+            <img
+              src={previewPhotoUrl}
+              alt="Vista previa de la foto mejorada"
+              style={{ width: '100%', borderRadius: 12, background: '#110809' }}
+            />
+            <div style={{ display: 'flex', gap: 12, marginTop: 12 }}>
+              <Button variant="secondary" className="flex-1" onClick={handleCancelPreview} disabled={improvingPhoto}>
+                Cancelar
+              </Button>
+              <Button className="flex-1" loading={improvingPhoto} onClick={handleConfirmPreview}>
+                Usar esta fotografía
+              </Button>
+            </div>
+          </>
+        )}
+      </Modal>
     </Layout>
   )
 }
