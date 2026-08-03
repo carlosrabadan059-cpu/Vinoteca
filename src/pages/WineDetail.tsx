@@ -747,6 +747,7 @@ export default function WineDetail() {
           position: 'fixed', inset: 0, zIndex: 60,
           background: 'rgba(13,6,8,0.6)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
+          WebkitTransform: 'translateZ(0)', transform: 'translateZ(0)',
         }}>
           <Spinner />
         </div>
@@ -757,6 +758,7 @@ export default function WineDetail() {
           position: 'fixed', inset: 0, zIndex: 60,
           background: 'rgba(13,6,8,0.6)',
           display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12,
+          WebkitTransform: 'translateZ(0)', transform: 'translateZ(0)',
         }}>
           <Spinner />
           <p style={{ color: theme.colors.cream, fontSize: '0.85rem', textAlign: 'center', padding: '0 24px' }}>
