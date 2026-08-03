@@ -311,26 +311,30 @@ export default function WineDetail() {
   return (
     <Layout>
       {/* ── 1. Hero ─────────────────────────────────────────────────────────── */}
-      <div style={{ position: 'relative', height: 238, overflow: 'hidden', background: '#110809' }}>
-        {wine.imagen_frontal_url ? (
-          <img
-            src={wine.imagen_frontal_url}
-            alt={wine.nombre}
-            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 40%', opacity: 0.85 }}
-          />
-        ) : (
-          <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke={theme.colors.border} strokeWidth="0.75" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M8 22h8M12 11v11M5 3h14l-2 7a5 5 0 0 1-10 0L5 3z" />
-            </svg>
-          </div>
-        )}
+      {/* Nota: el recorte de la imagen vive en un div interno propio, no en este contenedor exterior —
+          si no, un overflow:hidden aquí recortaría el menú "⋯" en cuanto tuviera más de 2 opciones. */}
+      <div style={{ position: 'relative', height: 238 }}>
+        <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', background: '#110809' }}>
+          {wine.imagen_frontal_url ? (
+            <img
+              src={wine.imagen_frontal_url}
+              alt={wine.nombre}
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 40%', opacity: 0.85 }}
+            />
+          ) : (
+            <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke={theme.colors.border} strokeWidth="0.75" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M8 22h8M12 11v11M5 3h14l-2 7a5 5 0 0 1-10 0L5 3z" />
+              </svg>
+            </div>
+          )}
 
-        {/* Gradiente */}
-        <div style={{
-          position: 'absolute', inset: 0,
-          background: 'linear-gradient(to bottom,rgba(13,6,8,0.40) 0%,rgba(13,6,8,0.05) 25%,rgba(13,6,8,0.72) 62%,#0D0608 100%)',
-        }} />
+          {/* Gradiente */}
+          <div style={{
+            position: 'absolute', inset: 0,
+            background: 'linear-gradient(to bottom,rgba(13,6,8,0.40) 0%,rgba(13,6,8,0.05) 25%,rgba(13,6,8,0.72) 62%,#0D0608 100%)',
+          }} />
+        </div>
 
         {/* Top controls */}
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 16px', zIndex: 10 }}>
