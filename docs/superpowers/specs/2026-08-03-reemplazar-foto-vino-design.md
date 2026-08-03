@@ -20,13 +20,12 @@ Nueva entrada en el menú "⋯" de `WineDetail.tsx` (el mismo menú que hoy solo
 
 ### Flujo de captura
 
-Al tocar "Cambiar foto" se abre `CameraView` con el mismo patrón que ya usa `Scan.tsx` (`cameraTarget`-style: render condicional al activarse un estado local `replacingPhoto`):
+Al tocar la entrada del menú se muestra un pequeño selector con dos opciones — **"Hacer foto"** y **"Desde galería"** — porque en `Scan.tsx` esa elección no vive dentro de `CameraView.tsx` (que no tiene botón de galería propio), sino en una pantalla previa que decide entre abrir la cámara en vivo o `useCamera().pickFromGallery()` directamente. Aquí no hace falta replicar la pantalla-hero completa de `Scan.tsx` (con visor de fondo, botón de disparo grande, etc.) — basta un selector ligero con las dos opciones, coherente con el resto de acciones puntuales de `WineDetail.tsx`.
 
-- `source={getUserMediaSource()}`
-- `hint="Centra la etiqueta frontal"`
-- Incluye automáticamente todo lo que `CameraView` ya trae: slider de brillo, "Auto-mejorar", detector de foto borrosa, y el botón "Desde galería" (vía `useCamera().pickFromGallery`) como alternativa a la cámara en vivo.
+- **"Hacer foto"** → abre `CameraView` (`source={getUserMediaSource()}`, `hint="Centra la etiqueta frontal"`), con todo lo que ya trae: slider de brillo, "Auto-mejorar", detector de foto borrosa. Al confirmar con "Usar foto" (que ya actúa como paso de confirmación explícito — no se añade un modal adicional) se recibe el `dataUrl` en `onCapture`.
+- **"Desde galería"** → `useCamera().pickFromGallery()` directamente, sin pasar por `CameraView`; si el usuario cancela el selector de archivos, la función devuelve `null` y no se hace nada.
 
-Al confirmar con "Usar foto" (que ya actúa como paso de confirmación explícito — no se añade un modal adicional):
+En ambos casos, una vez se tiene el `dataUrl` de la foto elegida:
 
 1. `compressImage(dataUrl)` — el mismo helper de `src/hooks/useCamera.ts` que usa `Scan.tsx` (corrige orientación EXIF, redimensiona a 1200px de ancho máximo). Mismo pipeline técnico, mismas especificaciones de imagen que una foto añadida al crear el vino.
 2. `uploadWineImage(dataUrl, user.id, wine.id, 'frontal')` (`src/lib/storage.ts`) — ya usa `upsert: true`, así que sobreescribe el archivo existente en el bucket `wine-labels` sin dejar basura ni requerir un borrado previo.
