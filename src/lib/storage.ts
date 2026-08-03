@@ -39,7 +39,7 @@ export async function uploadWineImage(
   dataUrl: string,
   userId: string,
   wineId: string,
-  side: 'frontal' | 'trasera'
+  side: string
 ): Promise<string> {
   const blob = dataUrlToBlob(dataUrl)
   const path = `${userId}/${wineId}/${side}.jpg`
