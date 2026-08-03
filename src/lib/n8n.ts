@@ -195,3 +195,11 @@ export async function callStatsInsight(
 ): Promise<{ insight: string }> {
   return post<{ insight: string }>('vinoteca/stats/insight', stats)
 }
+
+export async function callImprovePhoto(
+  imagenOriginalUrl: string
+): Promise<{ imageDataUrl: string }> {
+  return post<{ imageDataUrl: string }>('vinoteca/wine/improve-photo', {
+    imagen_original_url: imagenOriginalUrl,
+  })
+}
