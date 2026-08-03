@@ -1,14 +1,19 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Layout from '../components/ui/Layout'
 import Modal from '../components/ui/Modal'
 import Button from '../components/ui/Button'
 import Spinner from '../components/ui/Spinner'
+import CameraView from '../components/ui/CameraView'
 import WineForm from '../components/wine/WineForm'
 import ConsumoQuickForm from '../components/wine/ConsumoQuickForm'
 import { useWines } from '../hooks/useWines'
 import { useTastings } from '../hooks/useTastings'
+import { useCamera } from '../hooks/useCamera'
+import { getUserMediaSource } from '../lib/captureSource'
+import { uploadWineImage } from '../lib/storage'
 import { useToastStore } from '../store/toastStore'
+import { useAuthStore } from '../store/authStore'
 import { theme } from '../constants/theme'
 import type { Tasting, Wine } from '../types'
 
@@ -161,16 +166,23 @@ export default function WineDetail() {
 
   const { getWine, updateWine, deleteWine } = useWines()
   const { tastings, loading: tastingsLoading } = useTastings(id)
+  const { user } = useAuthStore()
+  const { pickFromGallery, compressImage } = useCamera()
 
-  const [wine,        setWine]        = useState<Wine | null>(null)
-  const [loadingWine, setLoadingWine] = useState(true)
-  const [menuOpen,    setMenuOpen]    = useState(false)
-  const [editOpen,    setEditOpen]    = useState(false)
-  const [deleteOpen,  setDeleteOpen]  = useState(false)
-  const [consumoOpen, setConsumoOpen] = useState(false)
-  const [saving,      setSaving]      = useState(false)
-  const [deleting,    setDeleting]    = useState(false)
+  const [wine,           setWine]           = useState<Wine | null>(null)
+  const [loadingWine,    setLoadingWine]    = useState(true)
+  const [menuOpen,       setMenuOpen]       = useState(false)
+  const [editOpen,       setEditOpen]       = useState(false)
+  const [deleteOpen,     setDeleteOpen]     = useState(false)
+  const [consumoOpen,    setConsumoOpen]    = useState(false)
+  const [saving,         setSaving]         = useState(false)
+  const [deleting,       setDeleting]       = useState(false)
+  const [photoSourceOpen, setPhotoSourceOpen] = useState(false)
+  const [showCamera,      setShowCamera]      = useState(false)
+  const [uploadingPhoto,  setUploadingPhoto]  = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
+
+  const cameraSource = useMemo(() => getUserMediaSource(), [showCamera])
 
   useEffect(() => {
     if (!id) return
@@ -216,6 +228,34 @@ export default function WineDetail() {
       toast.show('Error al eliminar el vino', 'error')
       setDeleting(false)
     }
+  }
+
+  async function savePhoto(dataUrl: string) {
+    if (!wine || !user) return
+    setUploadingPhoto(true)
+    try {
+      const url = await uploadWineImage(dataUrl, user.id, wine.id, 'frontal')
+      const updated = await updateWine(wine.id, { imagen_frontal_url: url })
+      setWine(updated)
+      toast.show('Foto actualizada')
+    } catch {
+      toast.show('Error al subir la foto', 'error')
+    } finally {
+      setUploadingPhoto(false)
+    }
+  }
+
+  async function handleCameraCapture(dataUrl: string) {
+    setShowCamera(false)
+    const compressed = await compressImage(dataUrl)
+    await savePhoto(compressed)
+  }
+
+  async function handleGalleryPick() {
+    const raw = await pickFromGallery()
+    if (!raw) return
+    const compressed = await compressImage(raw)
+    await savePhoto(compressed)
   }
 
   // Últimas 3 catas (excluye consumos rápidos para el rating)
@@ -345,6 +385,16 @@ export default function WineDetail() {
                     Web oficial
                   </a>
                 )}
+                <button
+                  style={{ width: '100%', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 8, padding: '12px 16px', color: theme.colors.cream, fontSize: '0.85rem', background: 'none', border: 'none', cursor: 'pointer', minHeight: 48, borderTop: `1px solid ${theme.colors.border}` }}
+                  onClick={() => { setMenuOpen(false); setPhotoSourceOpen(true) }}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                    <circle cx="12" cy="13" r="4" />
+                  </svg>
+                  {wine.imagen_frontal_url ? 'Cambiar foto' : 'Añadir foto'}
+                </button>
                 <button
                   style={{ width: '100%', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 8, padding: '12px 16px', color: '#E05050', fontSize: '0.85rem', background: 'none', border: 'none', cursor: 'pointer', minHeight: 48, borderTop: `1px solid ${theme.colors.border}` }}
                   onClick={() => { setMenuOpen(false); setDeleteOpen(true) }}
@@ -570,6 +620,41 @@ export default function WineDetail() {
           </Button>
         </div>
       </Modal>
+
+      <Modal
+        open={photoSourceOpen}
+        onClose={() => setPhotoSourceOpen(false)}
+        title={wine.imagen_frontal_url ? 'Cambiar foto' : 'Añadir foto'}
+      >
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <Button variant="secondary" onClick={() => { setPhotoSourceOpen(false); setShowCamera(true) }}>
+            Hacer foto
+          </Button>
+          <Button variant="secondary" onClick={() => { setPhotoSourceOpen(false); handleGalleryPick() }}>
+            Desde galería
+          </Button>
+        </div>
+      </Modal>
+
+      {showCamera && (
+        <CameraView
+          source={cameraSource}
+          hint="Centra la etiqueta frontal"
+          onCapture={handleCameraCapture}
+          onCancel={() => setShowCamera(false)}
+          onError={() => { setShowCamera(false); toast.show('No se pudo acceder a la cámara', 'error') }}
+        />
+      )}
+
+      {uploadingPhoto && (
+        <div style={{
+          position: 'fixed', inset: 0, zIndex: 60,
+          background: 'rgba(13,6,8,0.6)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}>
+          <Spinner />
+        </div>
+      )}
     </Layout>
   )
 }
