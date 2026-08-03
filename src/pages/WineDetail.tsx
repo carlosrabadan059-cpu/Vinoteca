@@ -231,15 +231,23 @@ export default function WineDetail() {
   }
 
   async function savePhoto(dataUrl: string) {
-    if (!wine || !user) return
+    if (!wine || !user || uploadingPhoto) return
     setUploadingPhoto(true)
     try {
-      const url = await uploadWineImage(dataUrl, user.id, wine.id, 'frontal')
-      const updated = await updateWine(wine.id, { imagen_frontal_url: url })
-      setWine(updated)
-      toast.show('Foto actualizada')
-    } catch {
-      toast.show('Error al subir la foto', 'error')
+      let url: string
+      try {
+        url = await uploadWineImage(dataUrl, user.id, wine.id, 'frontal')
+      } catch {
+        toast.show('Error al subir la foto', 'error')
+        return
+      }
+      try {
+        const updated = await updateWine(wine.id, { imagen_frontal_url: url })
+        setWine(updated)
+        toast.show('Foto actualizada')
+      } catch {
+        toast.show('La foto se subió pero no se pudo guardar, inténtalo de nuevo', 'error')
+      }
     } finally {
       setUploadingPhoto(false)
     }
