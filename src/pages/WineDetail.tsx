@@ -337,7 +337,11 @@ export default function WineDetail() {
         </div>
 
         {/* Top controls */}
-        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 16px', zIndex: 10 }}>
+        {/* zIndex más alto que "Identidad" (abajo): el menú "⋯" ahora puede extenderse por debajo
+            de donde antes lo recortaba el overflow:hidden del hero, y con el mismo z-index que
+            "Identidad" el título del vino (que va después en el DOM) ganaba el empate y se pintaba
+            encima del propio menú. */}
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 16px', zIndex: 15 }}>
           <button
             onClick={() => navigate('/bodega')}
             style={{
