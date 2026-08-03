@@ -482,7 +482,7 @@ export const KEYFRAMES_CSS = `
   }
   @keyframes pageFade {
     from { opacity: 0; transform: translateY(6px); }
-    to   { opacity: 1; transform: translateY(0); }
+    to   { opacity: 1; transform: none; }
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
