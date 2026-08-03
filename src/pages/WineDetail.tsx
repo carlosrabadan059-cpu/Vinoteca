@@ -185,6 +185,7 @@ export default function WineDetail() {
   const [previewPhotoUrl, setPreviewPhotoUrl] = useState<string | null>(null)
   const menuRef = useRef<HTMLDivElement>(null)
   const prevProcessingStateRef = useRef<string>('original')
+  const improvingPhotoRef = useRef(false)
 
   const cameraSource = useMemo(() => getUserMediaSource(), [showCamera])
 
@@ -271,7 +272,8 @@ export default function WineDetail() {
   }
 
   async function handleImprovePhoto() {
-    if (!wine || !user || improvingPhoto) return
+    if (!wine || !user || improvingPhotoRef.current) return
+    improvingPhotoRef.current = true
     setImprovingPhoto(true)
     prevProcessingStateRef.current = wine.image_processing_state
     try {
@@ -297,6 +299,7 @@ export default function WineDetail() {
       setWine(w => (w ? { ...w, image_processing_state: 'failed' } : w))
       toast.show('No se pudo mejorar la fotografía', 'error')
     } finally {
+      improvingPhotoRef.current = false
       setImprovingPhoto(false)
     }
   }
