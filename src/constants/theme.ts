@@ -481,8 +481,8 @@ export const KEYFRAMES_CSS = `
     to   { transform: rotate(360deg); }
   }
   @keyframes pageFade {
-    from { opacity: 0; transform: translateY(6px); }
-    to   { opacity: 1; transform: none; }
+    from { opacity: 0; }
+    to   { opacity: 1; }
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
