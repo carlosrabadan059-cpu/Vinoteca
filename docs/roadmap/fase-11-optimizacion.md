@@ -49,7 +49,7 @@ Preparar Vinoteca para uso intensivo: rendimiento, modo offline completo, sincro
 
 ## Pendiente
 
-- Validación masiva de OCR con etiquetas reales (desbloqueará el pipeline V1.4 congelado) — el único de los cinco subsistemas del alcance sin empezar.
+- Validación masiva de OCR con etiquetas reales (desbloqueará el pipeline V1.4 congelado) — el único de los cinco subsistemas del alcance sin empezar. Nota (2026-08-04): ya hay 17 vinos registrados en producción vía el flujo normal de la app — uso real informal del pipeline, pero no sustituye una validación masiva deliberada con métricas de acierto.
 - Verificación manual en el dispositivo de las cuatro líneas ya implementadas (rendimiento, offline, accesibilidad, animaciones) — ver sección "Verificación manual pendiente" más abajo.
 - `muted2`/`muted3` sin auditar en contraste (ver nota de accesibilidad arriba).
 
