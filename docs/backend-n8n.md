@@ -189,6 +189,15 @@ async function post<T>(path: string, body: unknown): Promise<T>
 
 ---
 
+### 7. Wine Identify
+
+**Ruta:** `POST /webhook/vinoteca/wine/identify`
+**Función cliente:** `callWineIdentify(campos, userId)`
+
+**Descripción:** V1.4 del pipeline de identificación — normaliza nombre/bodega/añada extraídos por OCR, genera el `wine_uid` canónico, y consulta `wines` en Supabase para detectar si el vino ya está registrado (por `wine_uid`, o como fallback por nombre+bodega+añada / nombre+añada). Es el único workflow que llama directamente a la API REST de Supabase (ver "Credenciales requeridas" arriba).
+
+---
+
 ## Tipo `WineCollection`
 
 Subconjunto de `Wine` enviado al Sommelier para contextualizar las respuestas:
@@ -219,8 +228,12 @@ Se trunca a los primeros 50 vinos de la bodega (`wines.slice(0, 50)`).
 ### Variables de entorno en Portainer
 
 ```
-SUPABASE_URL=https://<proyecto>.supabase.co
-SUPABASE_SERVICE_KEY=<service_role_key>
+VINOTECA_SUPABASE_URL=https://<proyecto>.supabase.co
+VINOTECA_SUPABASE_SERVICE_KEY=<service_role_key>
 ```
 
-La service key permite a n8n leer y escribir en Supabase sin restricciones RLS, necesario para los flujos de scan/identificar.
+Ya declaradas en el `docker-compose.yml` del stack de n8n (servicio `n8n`), junto con `N8N_BLOCK_ENV_ACCESS_IN_NODE=false` (necesario para que los Code nodes puedan leer `$env`).
+
+La service key permite a n8n leer y escribir en Supabase sin restricciones RLS. Actualmente el único workflow que la usa es **Wine Identify** (`vinoteca/wine/identify`, ver más abajo), en el nodo de código "Build Stub Response", que hace `GET /rest/v1/wines` para buscar coincidencias de un vino ya registrado.
+
+**2026-08-16:** hasta esta fecha, la service_role key estaba escrita en texto plano dentro del código del nodo (visible en cualquier export/backup del workflow). Se movió a `$env.VINOTECA_SUPABASE_URL` / `$env.VINOTECA_SUPABASE_SERVICE_KEY` — el nodo ahora falla explícitamente si esas variables no están presentes, en vez de degradarse en silencio.
