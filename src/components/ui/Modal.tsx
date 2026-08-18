@@ -49,8 +49,9 @@ export default function Modal({ open, onClose, title, children }: ModalProps) {
           maxWidth:     480,
           maxHeight:    '85dvh',
           height:       'auto',
+          overflow:     'hidden',
           borderRadius: '20px 20px 20px 20px',
-          marginBottom: 16,
+          marginBottom: 'calc(16px + env(safe-area-inset-bottom, 0px))',
           transform:    animated ? 'translateY(0)' : 'translateY(110%)',
           transition:   'transform 300ms cubic-bezier(0.32, 0.72, 0, 1)',
         }}
@@ -61,7 +62,7 @@ export default function Modal({ open, onClose, title, children }: ModalProps) {
             <h2 className="text-lg font-semibold" style={{ color: theme.colors.cream }}>{title}</h2>
           </div>
         )}
-        <div style={{ overflowY: 'auto', WebkitOverflowScrolling: 'touch', padding: '1rem 1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <div style={{ flex: '1 1 auto', minHeight: 0, overflowY: 'auto', WebkitOverflowScrolling: 'touch', padding: '1rem 1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           {children}
         </div>
       </div>
