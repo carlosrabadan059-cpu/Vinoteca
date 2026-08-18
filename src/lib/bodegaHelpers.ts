@@ -15,7 +15,7 @@ export interface Suggestion {
 
 // ── Constantes de presentación ────────────────────────────────────────────────
 
-export const TIPOS = ['Tinto', 'Blanco', 'Rosado', 'Espumoso', 'Dulce'] as const
+export const TIPOS = ['Tinto', 'Blanco', 'Rosado', 'Espumoso', 'Dulce', 'Fortificado', 'Naranja'] as const
 
 export const SORT_OPTIONS: { key: SortKey; label: string }[] = [
   { key: 'created_at_desc',   label: 'Añadidos recientemente' },
