@@ -701,7 +701,12 @@ export default function WineDetail() {
         <WineForm initialData={wine} onSubmit={handleUpdate} loading={saving} editMode onCancel={() => setEditOpen(false)} />
       </Modal>
 
-      <ConsumoQuickForm open={consumoOpen} wineId={wine.id} onClose={() => setConsumoOpen(false)} />
+      <ConsumoQuickForm
+        open={consumoOpen}
+        wineId={wine.id}
+        onClose={() => setConsumoOpen(false)}
+        onSaved={() => getWine(wine.id).then(w => { if (w) setWine(w) })}
+      />
 
       <Modal open={deleteOpen} onClose={() => setDeleteOpen(false)} title="Eliminar vino">
         <p style={{ fontSize: '0.875rem', color: theme.colors.muted }}>

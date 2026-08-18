@@ -293,8 +293,8 @@ export default function NuevaCata() {
   const initialWineId   = params.get('wineId') ?? ''
   const toast           = useToastStore()
 
-  const { createTasting }      = useTastings()
-  const { getWine, loadWines } = useWines()
+  const { createTasting }                    = useTastings()
+  const { getWine, loadWines, consumeBottle } = useWines()
   const { wines: allWines }    = useWineStore()
 
   const [wine,    setWine]    = useState<Wine | null>(null)
@@ -364,6 +364,7 @@ export default function NuevaCata() {
         es_consumo_rapido: true,
         ...buildMetaPayload(),
       })
+      if (meta.botella_terminada) await consumeBottle(wine.id)
       toast.show('Consumo guardado')
       navigate(`/catas/${tasting.id}`, { replace: true })
     } catch {
@@ -388,6 +389,7 @@ export default function NuevaCata() {
         es_consumo_rapido: false,
         ...buildMetaPayload(),
       })
+      if (meta.botella_terminada) await consumeBottle(wine.id)
       toast.show('Cata guardada')
       navigate(`/catas/${tasting.id}`, { replace: true })
     } catch {

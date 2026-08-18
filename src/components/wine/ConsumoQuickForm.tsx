@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Modal from '../ui/Modal'
 import Button from '../ui/Button'
 import { useTastings } from '../../hooks/useTastings'
+import { useWines } from '../../hooks/useWines'
 import { useToastStore } from '../../store/toastStore'
 import { theme } from '../../constants/theme'
 
@@ -18,6 +19,7 @@ function today() {
 
 export default function ConsumoQuickForm({ open, wineId, onClose, onSaved }: ConsumoQuickFormProps) {
   const { createTasting } = useTastings()
+  const { consumeBottle } = useWines()
   const toast             = useToastStore()
 
   const [fecha,             setFecha]            = useState(today)
@@ -47,6 +49,7 @@ export default function ConsumoQuickForm({ open, wineId, onClose, onSaved }: Con
         ocasion:           ocasion.trim() || null,
         lugar:             lugar.trim()   || null,
       })
+      if (botellaTerminada) await consumeBottle(wineId)
       toast.show('Consumo registrado')
       handleClose()
       onSaved?.()

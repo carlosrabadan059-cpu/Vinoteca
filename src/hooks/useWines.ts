@@ -315,6 +315,14 @@ export function useWines() {
     }
   }
 
+  async function consumeBottle(id: string): Promise<Wine | null> {
+    const wine = await getWine(id)
+    if (!wine) return null
+
+    const num_botellas = Math.max(0, wine.num_botellas - 1)
+    return updateWine(id, { num_botellas, consumido: num_botellas === 0 })
+  }
+
   async function deleteWine(id: string): Promise<void> {
     const store = useWineStore.getState()
     const prev  = store.wines.find(w => w.id === id)
@@ -370,5 +378,5 @@ export function useWines() {
     return (data ?? []) as Wine[]
   }
 
-  return { wines, loading, status, error, loadWines, createWine, listWines, getWine, updateWine, deleteWine, searchWines }
+  return { wines, loading, status, error, loadWines, createWine, listWines, getWine, updateWine, consumeBottle, deleteWine, searchWines }
 }
