@@ -115,7 +115,7 @@ function FieldRow({
     <div style={{
       display: 'grid',
       gridTemplateColumns: '108px 1fr auto',
-      alignItems: 'center',
+      alignItems: 'start',
       padding: '0 16px',
       minHeight: 50,
       gap: 8,
@@ -156,6 +156,48 @@ const emptyValueStyle: React.CSSProperties = {
   color: theme.colors.muted,
   opacity: 0.45,
   fontStyle: 'italic',
+}
+
+// ── Auto-growing text field ───────────────────────────────────────────────────
+// Textarea de una línea que crece verticalmente con el contenido, para que un
+// nombre, URL u otro texto largo se pueda leer y editar completo en vez de
+// quedar recortado en una caja de una sola línea con scroll horizontal.
+function AutoField({
+  value, onChange, placeholder, style, inputMode,
+}: {
+  value:        string
+  onChange:     (v: string) => void
+  placeholder?: string
+  style:        React.CSSProperties
+  inputMode?:   'text' | 'url' | 'search'
+}) {
+  const ref = useRef<HTMLTextAreaElement>(null)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    el.style.height = 'auto'
+    el.style.height = el.scrollHeight + 'px'
+  }, [value])
+
+  return (
+    <textarea
+      ref={ref}
+      rows={1}
+      value={value}
+      onChange={e => onChange(e.target.value)}
+      placeholder={placeholder}
+      inputMode={inputMode}
+      style={{
+        ...style,
+        resize:     'none',
+        overflow:   'hidden',
+        whiteSpace: 'pre-wrap',
+        wordBreak:  'break-word',
+        lineHeight: 1.4,
+      }}
+    />
+  )
 }
 
 // ── Sub-section divider ───────────────────────────────────────────────────────
@@ -345,17 +387,17 @@ export default function WineForm({ initialData, onSubmit, loading, identifyConfi
         {/* Nombre */}
         <div style={{
           display: 'grid', gridTemplateColumns: '108px 1fr auto',
-          alignItems: 'center', padding: '0 16px', minHeight: 54,
+          alignItems: 'start', padding: '0 16px', minHeight: 54,
           gap: 8, borderTop: `1px solid ${theme.colors.border}`, marginTop: 10,
           background: nombreError ? 'rgba(211,47,47,0.05)' : 'transparent',
         }}>
           <label style={{ fontSize: '0.75rem', color: nombreError ? '#E07070' : theme.colors.muted, padding: '13px 0', whiteSpace: 'nowrap' }}>
             Nombre <span style={{ color: theme.colors.gold, fontSize: '0.65rem' }}>✦</span>
           </label>
-          <input
+          <AutoField
             style={{ ...fieldValueStyle, fontSize: '1rem', fontWeight: 600, ...(nombreError ? { caretColor: '#E07070' } : {}) }}
             value={data.nombre ?? ''}
-            onChange={e => set('nombre', e.target.value)}
+            onChange={v => set('nombre', v)}
             placeholder="Nombre del vino"
           />
           <FieldStatusBadge status={isManual ? 'empty' : st('nombre')} />
@@ -367,7 +409,7 @@ export default function WineForm({ initialData, onSubmit, loading, identifyConfi
         )}
 
         <FieldRow label="Bodega" status={isManual ? undefined : st('bodega')}>
-          <input style={data.bodega ? fieldValueStyle : emptyValueStyle} value={data.bodega ?? ''} onChange={e => set('bodega', e.target.value || null)} placeholder="—" />
+          <AutoField style={data.bodega ? fieldValueStyle : emptyValueStyle} value={data.bodega ?? ''} onChange={v => set('bodega', v || null)} placeholder="—" />
         </FieldRow>
         <FieldRow label="Añada" status={isManual ? undefined : st('anada')}>
           <input
@@ -383,10 +425,10 @@ export default function WineForm({ initialData, onSubmit, loading, identifyConfi
           />
         </FieldRow>
         <FieldRow label="Región" status={isManual ? undefined : st('region')}>
-          <input style={data.region ? fieldValueStyle : emptyValueStyle} value={data.region ?? ''} onChange={e => set('region', e.target.value || null)} placeholder="—" />
+          <AutoField style={data.region ? fieldValueStyle : emptyValueStyle} value={data.region ?? ''} onChange={v => set('region', v || null)} placeholder="—" />
         </FieldRow>
         <FieldRow label="DO / IGP" status={isManual ? undefined : st('denominacion')}>
-          <input style={data.denominacion ? fieldValueStyle : emptyValueStyle} value={data.denominacion ?? ''} onChange={e => set('denominacion', e.target.value || null)} placeholder="Sin especificar" />
+          <AutoField style={data.denominacion ? fieldValueStyle : emptyValueStyle} value={data.denominacion ?? ''} onChange={v => set('denominacion', v || null)} placeholder="Sin especificar" />
         </FieldRow>
       </div>
 
@@ -423,22 +465,22 @@ export default function WineForm({ initialData, onSubmit, loading, identifyConfi
           <FieldStatusBadge status={isManual ? 'empty' : st('tipo')} />
         </div>
         <FieldRow label="Uva" status={isManual ? undefined : st('uva')}>
-          <input style={data.uva ? fieldValueStyle : emptyValueStyle} value={data.uva ?? ''} onChange={e => set('uva', e.target.value || null)} placeholder="—" />
+          <AutoField style={data.uva ? fieldValueStyle : emptyValueStyle} value={data.uva ?? ''} onChange={v => set('uva', v || null)} placeholder="—" />
         </FieldRow>
         <FieldRow label="Crianza" status={isManual ? undefined : st('crianza')}>
-          <input style={data.crianza ? fieldValueStyle : emptyValueStyle} value={data.crianza ?? ''} onChange={e => set('crianza', e.target.value || null)} placeholder="—" />
+          <AutoField style={data.crianza ? fieldValueStyle : emptyValueStyle} value={data.crianza ?? ''} onChange={v => set('crianza', v || null)} placeholder="—" />
         </FieldRow>
         <FieldRow label="Alcohol" status={isManual ? undefined : st('alcohol')}>
-          <input style={data.alcohol ? fieldValueStyle : emptyValueStyle} value={data.alcohol ?? ''} onChange={e => set('alcohol', e.target.value || null)} placeholder="Ej: 14,5%" />
+          <AutoField style={data.alcohol ? fieldValueStyle : emptyValueStyle} value={data.alcohol ?? ''} onChange={v => set('alcohol', v || null)} placeholder="Ej: 14,5%" />
         </FieldRow>
         <FieldRow label="T. servicio" status={isManual ? undefined : st('temp_servicio')}>
-          <input style={data.temp_servicio ? fieldValueStyle : emptyValueStyle} value={data.temp_servicio ?? ''} onChange={e => set('temp_servicio', e.target.value || null)} placeholder="Ej: 16–18 °C" />
+          <AutoField style={data.temp_servicio ? fieldValueStyle : emptyValueStyle} value={data.temp_servicio ?? ''} onChange={v => set('temp_servicio', v || null)} placeholder="Ej: 16–18 °C" />
         </FieldRow>
         <FieldRow label="Volumen" status={isManual ? undefined : st('volumen')}>
-          <input style={data.volumen ? fieldValueStyle : emptyValueStyle} value={data.volumen ?? ''} onChange={e => set('volumen', e.target.value || null)} placeholder="Ej: 75 cl" />
+          <AutoField style={data.volumen ? fieldValueStyle : emptyValueStyle} value={data.volumen ?? ''} onChange={v => set('volumen', v || null)} placeholder="Ej: 75 cl" />
         </FieldRow>
         <FieldRow label="Contiene" status={isManual ? undefined : st('contiene')}>
-          <input style={data.contiene ? fieldValueStyle : emptyValueStyle} value={data.contiene ?? ''} onChange={e => set('contiene', e.target.value || null)} placeholder="Ej: sulfitos" />
+          <AutoField style={data.contiene ? fieldValueStyle : emptyValueStyle} value={data.contiene ?? ''} onChange={v => set('contiene', v || null)} placeholder="Ej: sulfitos" />
         </FieldRow>
       </Section>
 
@@ -475,7 +517,7 @@ export default function WineForm({ initialData, onSubmit, loading, identifyConfi
           </div>
         ) : (
           <FieldRow label="Web bodega">
-            <input style={data.url_bodega ? fieldValueStyle : emptyValueStyle} value={data.url_bodega ?? ''} onChange={e => set('url_bodega', e.target.value || null)} placeholder="—" inputMode="url" />
+            <AutoField style={data.url_bodega ? fieldValueStyle : emptyValueStyle} value={data.url_bodega ?? ''} onChange={v => set('url_bodega', v || null)} placeholder="—" inputMode="url" />
           </FieldRow>
         )}
 
