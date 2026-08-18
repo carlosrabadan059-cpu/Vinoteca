@@ -131,6 +131,10 @@ export function useBodegaState(): BodegaState {
   const [fabHidden, setFabHidden] = useState(false)
   const t = theme
 
+  // Descarta respuestas de load() obsoletas (p.ej. loadMore sin filtrar
+  // resolviendo después de que un cambio de filtro ya reseteó la lista)
+  const requestIdRef = useRef(0)
+
   // Recargar al cambiar filtros
   useEffect(() => {
     load(0, true)
@@ -187,6 +191,7 @@ export function useBodegaState(): BodegaState {
   }, [loadMore, hasMore])
 
   async function load(pageNum: number, reset: boolean) {
+    const requestId = ++requestIdRef.current
     if (reset) { setLoading(true); setPage(0) }
     else         setLoadingMore(true)
     try {
@@ -200,14 +205,17 @@ export function useBodegaState(): BodegaState {
         page:      pageNum,
         sort:      sortBy,
       })
+      if (requestId !== requestIdRef.current) return // respuesta obsoleta, descartar
       setWines(prev => reset ? results : [...prev, ...results])
       setHasMore(results.length === PAGE_SIZE)
       if (!reset) setPage(pageNum)
     } catch { /* datos locales siguen visibles */ }
     finally {
-      setLoading(false)
-      setLoadingMore(false)
-      setRefreshing(false)
+      if (requestId === requestIdRef.current) {
+        setLoading(false)
+        setLoadingMore(false)
+        setRefreshing(false)
+      }
     }
   }
 
