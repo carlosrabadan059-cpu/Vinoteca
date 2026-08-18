@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { theme } from '../../constants/theme'
 import type { Wine } from '../../types'
-import Button from '../ui/Button'
 
 interface WineFormProps {
   initialData:         Partial<Wine>
@@ -599,15 +598,23 @@ export default function WineForm({ initialData, onSubmit, loading, identifyConfi
       {/* ── Submit ────────────────────────────────────────────────────────── */}
       <div style={{ padding: '4px 14px 0', display: 'flex', gap: 10 }}>
         {onCancel && (
-          <Button
+          <button
             type="button"
-            variant="secondary"
-            className="flex-1"
             disabled={loading}
             onClick={onCancel}
+            style={{
+              flex: 1, padding: 17,
+              borderRadius: theme.radius.full,
+              background: 'transparent',
+              color: theme.colors.cream, border: `1px solid ${theme.colors.muted}`,
+              fontFamily: 'inherit', fontSize: '0.92rem', fontWeight: 600, letterSpacing: '0.03em',
+              cursor: loading ? 'not-allowed' : 'pointer',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              opacity: loading ? 0.6 : 1, transition: 'opacity 0.15s',
+            }}
           >
             Cancelar
-          </Button>
+          </button>
         )}
         <button
           type="submit"
