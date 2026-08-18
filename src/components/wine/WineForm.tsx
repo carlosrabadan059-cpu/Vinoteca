@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { theme } from '../../constants/theme'
 import type { Wine } from '../../types'
+import Button from '../ui/Button'
 
 interface WineFormProps {
   initialData:         Partial<Wine>
@@ -9,6 +10,7 @@ interface WineFormProps {
   identifyConfidence?: number   // 0–1; drives the global chip
   imageUrl?:           string   // miniatura en el resumen
   editMode?:           boolean  // true cuando se edita un vino existente
+  onCancel?:           () => void  // si se pasa, muestra un botón "Cancelar" junto al de guardar
 }
 
 // ── Field status ──────────────────────────────────────────────────────────────
@@ -202,7 +204,7 @@ function ConfChip({ confidence, manual }: { confidence: number | undefined; manu
 }
 
 // ── Main component ────────────────────────────────────────────────────────────
-export default function WineForm({ initialData, onSubmit, loading, identifyConfidence, imageUrl, editMode }: WineFormProps) {
+export default function WineForm({ initialData, onSubmit, loading, identifyConfidence, imageUrl, editMode, onCancel }: WineFormProps) {
   const normalize = (d: Partial<Wine>): Partial<Wine> => ({
     num_botellas: 1,
     favorito:     false,
@@ -595,12 +597,24 @@ export default function WineForm({ initialData, onSubmit, loading, identifyConfi
       </Section>
 
       {/* ── Submit ────────────────────────────────────────────────────────── */}
-      <div style={{ padding: '4px 14px 0' }}>
+      <div style={{ padding: '4px 14px 0', display: 'flex', gap: 10 }}>
+        {onCancel && (
+          <Button
+            type="button"
+            variant="secondary"
+            className="flex-1"
+            disabled={loading}
+            onClick={onCancel}
+          >
+            Cancelar
+          </Button>
+        )}
         <button
           type="submit"
           disabled={loading || (attempted && nombreVacio)}
           style={{
-            width: '100%', padding: 17,
+            flex: onCancel ? 1 : undefined,
+            width: onCancel ? undefined : '100%', padding: 17,
             borderRadius: theme.radius.full,
             background: loading ? theme.colors.surface2 : theme.colors.primary,
             color: theme.colors.cream, border: 'none',
