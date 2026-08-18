@@ -2,7 +2,7 @@
 
 ## Estado
 
-🚧 En desarrollo — 4 de 5 subsistemas implementados (2026-08-02); queda la validación masiva de OCR
+🚧 En desarrollo — 5 de 5 subsistemas implementados; OCR dado por validado informalmente (2026-08-19, ver Decisiones técnicas). Queda la verificación manual en dispositivo de las 4 líneas de 2026-08-02.
 
 ---
 
@@ -44,12 +44,12 @@ Preparar Vinoteca para uso intensivo: rendimiento, modo offline completo, sincro
 - ✅ `processOperation`/`syncQueue` consolidados en `src/lib/syncQueue.ts` (2026-08-02) — `main.tsx` y `useSync.ts` ya no duplican la lógica
 - ✅ `ChatBubble` de `src/components/wine/` era código muerto (nadie lo importaba) — eliminado (2026-08-02); la versión activa sigue en `src/components/ui/ChatBubble.tsx`
 - ~~TastingChat hace llamada directa a OpenAI~~ — ya resuelto desde antes de esta fase (commit `011a94b`), `TastingChat.tsx` usa `callSommelierChat` (n8n) igual que el resto de features de IA. Nota eliminada por estar desactualizada.
+- ✅ **OCR — validación dada por buena informalmente** (2026-08-19): no se llegó a montar la validación masiva estructurada planificada (muestra deliberada + métricas de acierto), pero el pipeline lleva **28 vinos reales registrados sin incidencias** en uso normal de la app (17 confirmados el 2026-08-04 + 11 más el 2026-08-19). Decisión del usuario: dar la fase por validada con esta evidencia de uso real en vez de construir la validación masiva aparte.
 
 ---
 
 ## Pendiente
 
-- Validación masiva de OCR con etiquetas reales (desbloqueará el pipeline V1.4 congelado) — el único de los cinco subsistemas del alcance sin empezar. Nota (2026-08-04): ya hay 17 vinos registrados en producción vía el flujo normal de la app — uso real informal del pipeline, pero no sustituye una validación masiva deliberada con métricas de acierto.
 - Verificación manual en el dispositivo de las cuatro líneas ya implementadas (rendimiento, offline, accesibilidad, animaciones) — ver sección "Verificación manual pendiente" más abajo.
 - `muted2`/`muted3` sin auditar en contraste (ver nota de accesibilidad arriba).
 
@@ -64,4 +64,4 @@ Preparar Vinoteca para uso intensivo: rendimiento, modo offline completo, sincro
 
 ## Criterio de finalización
 
-La app funciona fluida con 500+ vinos, opera en modo offline y el pipeline OCR ha sido validado con colección real.
+La app funciona fluida con 500+ vinos, opera en modo offline y el pipeline OCR ha sido validado con colección real — ✅ cumplido informalmente (28 vinos reales sin incidencias, 2026-08-19; ver Decisiones técnicas).
