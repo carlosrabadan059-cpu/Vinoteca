@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { theme } from '../../constants/theme'
 
 interface ModalProps {
@@ -32,7 +33,7 @@ export default function Modal({ open, onClose, title, children }: ModalProps) {
 
   if (!visible) return null
 
-  return (
+  return createPortal(
     <div
       className="fixed inset-0 z-50 flex items-end justify-center"
       style={{
@@ -66,6 +67,7 @@ export default function Modal({ open, onClose, title, children }: ModalProps) {
           {children}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }
