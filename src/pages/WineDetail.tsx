@@ -238,8 +238,10 @@ export default function WineDetail() {
   async function savePhoto(dataUrl: string, source: 'camera' | 'gallery') {
     if (!wine || !user || uploadingPhoto) return
     setUploadingPhoto(true)
+    let uploadedUrl: string | null = null
     try {
       const url = await uploadWineImage(dataUrl, user.id, wine.id, 'original')
+      uploadedUrl = url
       const fields = {
         imagen_frontal_url:     url,
         imagen_original_url:    url,
@@ -250,12 +252,16 @@ export default function WineDetail() {
       }
       await updateWine(wine.id, fields)
       setWine(w => (w ? { ...w, ...fields } : w))
-      toast.show('Foto actualizada')
     } catch {
       toast.show('Error al subir la foto', 'error')
     } finally {
       setUploadingPhoto(false)
     }
+
+    // Una foto nueva (de cámara o galería) se trata igual que la de un vino nuevo:
+    // pasa por el mismo procesado de estudio con IA. Solo procesa la imagen —
+    // nunca busca datos del vino (eso solo ocurre en el alta desde Scan.tsx).
+    if (uploadedUrl) await runImprovePhoto(uploadedUrl, 'original')
   }
 
   async function handleCameraCapture(dataUrl: string) {
@@ -271,11 +277,33 @@ export default function WineDetail() {
     await savePhoto(compressed, 'gallery')
   }
 
-  async function handleImprovePhoto() {
+  // Núcleo reutilizable del procesado de estudio con IA: solo toma una URL de
+  // imagen y devuelve una vista previa — nunca consulta datos del vino.
+  // Lo usan tanto el botón manual "Foto de estudio" como el guardado automático
+  // de una foto nueva/cambiada en savePhoto().
+  async function runImprovePhoto(originalUrl: string, prevState?: string) {
     if (!wine || !user || improvingPhotoRef.current) return
     improvingPhotoRef.current = true
     setImprovingPhoto(true)
-    prevProcessingStateRef.current = wine.image_processing_state
+    prevProcessingStateRef.current = prevState ?? wine.image_processing_state
+    try {
+      await updateWine(wine.id, { image_processing_state: 'processing' })
+      setWine(w => (w ? { ...w, image_processing_state: 'processing' } : w))
+
+      const { imageDataUrl } = await callImprovePhoto(originalUrl)
+      setPreviewPhotoUrl(imageDataUrl)
+    } catch {
+      await updateWine(wine.id, { image_processing_state: 'failed' })
+      setWine(w => (w ? { ...w, image_processing_state: 'failed' } : w))
+      toast.show('No se pudo mejorar la fotografía', 'error')
+    } finally {
+      improvingPhotoRef.current = false
+      setImprovingPhoto(false)
+    }
+  }
+
+  async function handleImprovePhoto() {
+    if (!wine || !user || improvingPhotoRef.current) return
     try {
       let originalUrl = wine.imagen_original_url
 
@@ -289,18 +317,11 @@ export default function WineDetail() {
         setWine(w => (w ? { ...w, imagen_original_url: originalUrl } : w))
       }
 
-      await updateWine(wine.id, { image_processing_state: 'processing' })
-      setWine(w => (w ? { ...w, image_processing_state: 'processing' } : w))
-
-      const { imageDataUrl } = await callImprovePhoto(originalUrl)
-      setPreviewPhotoUrl(imageDataUrl)
+      await runImprovePhoto(originalUrl)
     } catch {
       await updateWine(wine.id, { image_processing_state: 'failed' })
       setWine(w => (w ? { ...w, image_processing_state: 'failed' } : w))
       toast.show('No se pudo mejorar la fotografía', 'error')
-    } finally {
-      improvingPhotoRef.current = false
-      setImprovingPhoto(false)
     }
   }
 
