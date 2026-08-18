@@ -569,7 +569,7 @@ export default function Bodega() {
           onClick={() => navigate('/scan')}
           aria-label="Añadir vino mediante cámara"
           style={{
-            position: 'fixed', bottom: t.sizes.fabBottomOffset, right: 16,
+            position: 'fixed', bottom: `calc(${t.sizes.fabBottomOffset}px + env(safe-area-inset-bottom, 0px))`, right: 16,
             width: t.sizes.fabSize, height: t.sizes.fabSize, borderRadius: '50%',
             background: t.colors.primary, color: t.colors.cream,
             border: 'none', cursor: 'pointer',
