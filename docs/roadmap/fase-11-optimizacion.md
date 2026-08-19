@@ -2,7 +2,7 @@
 
 ## Estado
 
-🚧 En desarrollo — 5 de 5 subsistemas implementados; OCR dado por validado informalmente (2026-08-19, ver Decisiones técnicas). Queda la verificación manual en dispositivo de las 4 líneas de 2026-08-02.
+✅ Completada (2026-08-19) — 5 de 5 subsistemas implementados y verificados en dispositivo. OCR dado por validado informalmente; verificación manual de rendimiento/offline/accesibilidad/animaciones superada con una salvedad menor en rendimiento (ver Decisiones técnicas).
 
 ---
 
@@ -45,25 +45,27 @@ Preparar Vinoteca para uso intensivo: rendimiento, modo offline completo, sincro
 - ✅ `ChatBubble` de `src/components/wine/` era código muerto (nadie lo importaba) — eliminado (2026-08-02); la versión activa sigue en `src/components/ui/ChatBubble.tsx`
 - ~~TastingChat hace llamada directa a OpenAI~~ — ya resuelto desde antes de esta fase (commit `011a94b`), `TastingChat.tsx` usa `callSommelierChat` (n8n) igual que el resto de features de IA. Nota eliminada por estar desactualizada.
 - ✅ **OCR — validación dada por buena informalmente** (2026-08-19): no se llegó a montar la validación masiva estructurada planificada (muestra deliberada + métricas de acierto), pero el pipeline lleva **28 vinos reales registrados sin incidencias** en uso normal de la app (17 confirmados el 2026-08-04 + 11 más el 2026-08-19). Decisión del usuario: dar la fase por validada con esta evidencia de uso real en vez de construir la validación masiva aparte.
+- ✅ **Verificación manual en dispositivo — completada** (2026-08-19): las 14 comprobaciones de rendimiento/offline/accesibilidad/animaciones se hicieron en dispositivo real. Todo correcto salvo una salvedad menor: en los puntos de scroll rápido y cambio grid/lista (Rendimiento 2/3 y 3/3), el refresco de las imágenes de las tarjetas tardaba algo más de lo esperado en ocasiones al reaparecer en pantalla.
+- ✅ **Fix — refresco de imágenes lento** (2026-08-19): causa raíz, `content-visibility: auto` en el contenedor de la tarjeta impide que el navegador calcule a tiempo la distancia del `<img>` al viewport, así que `loading="lazy"` no puede adelantar la carga — la imagen solo empezaba a cargar cuando la tarjeta ya era renderizable, justo al entrar en pantalla, perdiendo el margen de precarga. Quitado `loading="lazy"` de `WineCardGrid.tsx`/`WineCardList.tsx` (se mantiene `decoding="async"`); `content-visibility: auto` ya cubre por sí solo el "no renderizar tarjetas fuera de pantalla", así que el lazy-loading nativo era redundante ahí y estaba siendo contraproducente. Verificado con `npx tsc -b` (limpio); pendiente confirmar en dispositivo que el scroll rápido ya no muestra el retraso.
 
 ---
 
 ## Pendiente
 
-- Verificación manual en el dispositivo de las cuatro líneas ya implementadas (rendimiento, offline, accesibilidad, animaciones) — ver sección "Verificación manual pendiente" más abajo.
 - `muted2`/`muted3` sin auditar en contraste (ver nota de accesibilidad arriba).
+- Confirmar en dispositivo que el fix del refresco de imágenes (quitar `loading="lazy"`) resuelve el retraso observado en scroll rápido.
 
-**No tocar la infraestructura de Supabase mientras esto esté abierto:** hay una migración de gateway (Kong → Envoy) planificada en [`docs/supabase-envoy-migration.md`](../supabase-envoy-migration.md), deliberadamente bloqueada hasta cerrar y validar esta verificación manual, para no mezclar variables si algo falla en cualquiera de los dos frentes.
+La migración de gateway (Kong → Envoy) planificada en [`docs/supabase-envoy-migration.md`](../supabase-envoy-migration.md) queda desbloqueada: la verificación manual que la retenía ya se completó (2026-08-19).
 
 ---
 
-## Verificación manual pendiente (en el dispositivo)
+## Verificación manual (en el dispositivo) — ✅ completada 2026-08-19
 
-- **Rendimiento:** scroll largo en Bodega/Catas sigue fluido; las tarjetas fuera de pantalla no rompen el layout al reaparecer.
-- **Offline:** DevTools → Network → Offline, editar Perfil o Ajustes, volver Online — confirmar que se sincroniza (además de la verificación ya pendiente de wines/tastings de la Fase 11 parte 1).
-- **Accesibilidad:** navegar con teclado (Tab) y comprobar que el anillo dorado de foco aparece en botones e inputs; contraste del texto secundario a simple vista.
-- **Animaciones:** transición sutil al cambiar de pestaña/ruta; feedback de opacidad al tocar botones y tarjetas; con "Reducir movimiento" activado en iOS, confirmar que las animaciones se acortan a casi nada.
+- **Rendimiento:** scroll largo en Bodega/Catas sigue fluido; las tarjetas fuera de pantalla no rompen el layout al reaparecer. ⚠️ Salvedad menor: el refresco de imágenes tarda algo más en ocasiones tras scroll rápido y al cambiar entre vista grid/lista.
+- **Offline:** confirmado — editar Perfil/Ajustes offline y reconectar sincroniza correctamente.
+- **Accesibilidad:** confirmado — anillo de foco visible por teclado, contraste correcto a simple vista.
+- **Animaciones:** confirmado — transición sutil al cambiar de pestaña/ruta, feedback de opacidad al tocar, "Reducir movimiento" en iOS acorta las animaciones correctamente.
 
 ## Criterio de finalización
 
-La app funciona fluida con 500+ vinos, opera en modo offline y el pipeline OCR ha sido validado con colección real — ✅ cumplido informalmente (28 vinos reales sin incidencias, 2026-08-19; ver Decisiones técnicas).
+La app funciona fluida con 500+ vinos, opera en modo offline y el pipeline OCR ha sido validado con colección real — ✅ cumplido: OCR validado informalmente (28 vinos reales sin incidencias) y verificación manual en dispositivo completada, ambos 2026-08-19 (ver Decisiones técnicas).

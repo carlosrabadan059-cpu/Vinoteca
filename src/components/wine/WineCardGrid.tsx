@@ -36,7 +36,6 @@ export default function WineCardGrid({ wine, index, onClick }: Props) {
           <img
             src={wine.imagen_frontal_url}
             alt={wine.nombre}
-            loading="lazy"
             decoding="async"
             style={{ width: '100%', height: '100%', objectFit: 'contain', filter: t.imageFilters.wineLabel }}
           />
