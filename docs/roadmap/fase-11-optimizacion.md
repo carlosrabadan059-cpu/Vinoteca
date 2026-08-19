@@ -53,6 +53,8 @@ Preparar Vinoteca para uso intensivo: rendimiento, modo offline completo, sincro
 - Verificación manual en el dispositivo de las cuatro líneas ya implementadas (rendimiento, offline, accesibilidad, animaciones) — ver sección "Verificación manual pendiente" más abajo.
 - `muted2`/`muted3` sin auditar en contraste (ver nota de accesibilidad arriba).
 
+**No tocar la infraestructura de Supabase mientras esto esté abierto:** hay una migración de gateway (Kong → Envoy) planificada en [`docs/supabase-envoy-migration.md`](../supabase-envoy-migration.md), deliberadamente bloqueada hasta cerrar y validar esta verificación manual, para no mezclar variables si algo falla en cualquiera de los dos frentes.
+
 ---
 
 ## Verificación manual pendiente (en el dispositivo)

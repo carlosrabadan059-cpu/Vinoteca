@@ -139,3 +139,7 @@ Descarga una imagen desde cualquier URL y la convierte a data URL (base64). Usad
 Cada ruta de Kong (`rest-v1`, `auth-v1`, `graphql-v1`, etc.) tiene un plugin `acl` con un `allow:` (p.ej. `admin`, `anon`). Para que una API key funcione, el `consumer` correspondiente en el bloque `consumers:` necesita **tanto** `keyauth_credentials` (la key) **como** `acls: - group: <nombre>` (la pertenencia al grupo) — faltar el segundo bloque hace que Kong acepte la key pero rechace la petición igualmente, con `403 "You cannot consume this service"`. Se encontró y corrigió el 2026-08-19: los consumers `anon`, `service_role` y `DASHBOARD` no tenían `acls:` asignado (causa desconocida, probablemente una regeneración de `kong.yml` que no preservó ese bloque). Backup previo al fix: `volumes/api/kong.yml.bak3`.
 
 `kong.yml` no se usa directamente — se monta como `temp.yml` y `kong-entrypoint.sh` sustituye las variables (`$SUPABASE_ANON_KEY`, etc.) generando el `kong.yml` real en `/usr/local/kong/kong.yml` dentro del contenedor en cada arranque. Cambios en `kong.yml` requieren `docker compose up -d --force-recreate kong` para aplicarse.
+
+### Pendiente: migrar Kong → Envoy
+
+Supabase ofrece ahora Envoy como gateway self-hosted oficial, que elimina de raíz la clase de bug de arriba (no depende de un `acls:` separado que pueda desincronizarse). Plan detallado en [`docs/supabase-envoy-migration.md`](supabase-envoy-migration.md) — bloqueado hasta cerrar la verificación manual pendiente de la Fase 11.
