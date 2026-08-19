@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../store/authStore'
 import { theme } from '../constants/theme'
+import PasswordInput from '../components/ui/PasswordInput'
 
 export default function ResetPassword() {
   const { updatePassword } = useAuthStore()
@@ -43,33 +44,19 @@ export default function ResetPassword() {
         </h1>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-          <input
-            type="password"
+          <PasswordInput
             placeholder="Nueva contraseña"
             value={password}
             onChange={e => setPassword(e.target.value)}
             required
             minLength={6}
-            className="w-full px-4 py-3 rounded-xl outline-none text-base"
-            style={{
-              background: theme.colors.surface,
-              color:      theme.colors.cream,
-              border:     `1px solid ${theme.colors.border}`,
-            }}
           />
-          <input
-            type="password"
+          <PasswordInput
             placeholder="Confirmar contraseña"
             value={confirm}
             onChange={e => setConfirm(e.target.value)}
             required
             minLength={6}
-            className="w-full px-4 py-3 rounded-xl outline-none text-base"
-            style={{
-              background: theme.colors.surface,
-              color:      theme.colors.cream,
-              border:     `1px solid ${theme.colors.border}`,
-            }}
           />
 
           {error && (

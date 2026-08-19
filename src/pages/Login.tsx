@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import { useAuthStore } from '../store/authStore'
 import { theme } from '../constants/theme'
+import PasswordInput from '../components/ui/PasswordInput'
 
 export default function Login() {
   const { session, loading: authLoading, login } = useAuthStore()
@@ -102,18 +103,11 @@ export default function Login() {
               border:     `1px solid ${theme.colors.border}`,
             }}
           />
-          <input
-            type="password"
+          <PasswordInput
             placeholder="Contraseña"
             value={password}
             onChange={e => setPassword(e.target.value)}
             required
-            className="w-full px-4 py-3 rounded-xl outline-none text-base"
-            style={{
-              background: theme.colors.surface,
-              color:      theme.colors.cream,
-              border:     `1px solid ${theme.colors.border}`,
-            }}
           />
 
           {error && (

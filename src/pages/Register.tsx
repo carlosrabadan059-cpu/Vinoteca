@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import { useAuthStore } from '../store/authStore'
 import { theme } from '../constants/theme'
+import PasswordInput from '../components/ui/PasswordInput'
 
 export default function Register() {
   const { session, loading: authLoading, register } = useAuthStore()
@@ -64,14 +65,11 @@ export default function Register() {
           className="w-full px-4 py-3 rounded-xl outline-none text-base"
           style={{ background: theme.colors.surface, color: theme.colors.cream, border: '1px solid #3A2A2E' }}
         />
-        <input
-          type="password"
+        <PasswordInput
           placeholder="Contraseña (mín. 6 caracteres)"
           value={password}
           onChange={e => setPassword(e.target.value)}
           required
-          className="w-full px-4 py-3 rounded-xl outline-none text-base"
-          style={{ background: theme.colors.surface, color: theme.colors.cream, border: '1px solid #3A2A2E' }}
         />
 
         {error && (

@@ -2,6 +2,7 @@ import { useState, useEffect, type FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Layout from '../components/ui/Layout'
 import Spinner from '../components/ui/Spinner'
+import PasswordInput from '../components/ui/PasswordInput'
 import { useSettings } from '../hooks/useSettings'
 import { useAuthStore } from '../store/authStore'
 import { theme } from '../constants/theme'
@@ -160,14 +161,11 @@ export default function Ajustes() {
 
             <SectionTitle>Cuenta</SectionTitle>
             <form onSubmit={handlePasswordChange} className="flex flex-col gap-3">
-              <input
-                type="password"
+              <PasswordInput
                 placeholder="Nueva contraseña"
                 value={newPassword}
                 onChange={e => setNewPassword(e.target.value)}
                 minLength={6}
-                className="w-full px-4 py-3 rounded-xl outline-none text-base"
-                style={inputStyle}
               />
               {pwdMessage && (
                 <p className="text-sm" style={{ color: theme.colors.gold }}>{pwdMessage}</p>
