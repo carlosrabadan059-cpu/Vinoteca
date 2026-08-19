@@ -53,6 +53,19 @@ button, input {
 }
 
 /*
+ * iOS Safari hace zoom automático al enfocar un input/select/textarea con
+ * font-size menor de 16px, y no revierte el zoom solo — el usuario tiene que
+ * pellizcar para volver a ver la pantalla completa. Varios campos del tema
+ * usan tamaños más pequeños (12-14px) por diseño; se fuerza 16px solo en el
+ * viewport móvil para evitar el zoom sin tocar el diseño en desktop.
+ */
+@media (max-width: 767px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+/*
  * Indicador de foco de teclado. Varios inputs usan la utilidad outline-none
  * de Tailwind sin ningún sustituto visual — sin esta regla quedan sin
  * indicador de foco alguno al navegar con teclado. !important porque debe
