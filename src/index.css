@@ -27,6 +27,7 @@ body {
   -webkit-font-smoothing: antialiased;
   background: #0D0608;
   color: #F0EBE1;
+  touch-action: manipulation;
 }
 
 .font-serif {
