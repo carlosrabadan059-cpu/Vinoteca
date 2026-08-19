@@ -1,6 +1,6 @@
 # Migración del gateway self-hosted: Kong → Envoy
 
-**Estado:** planificada, no iniciada. **Bloqueada hasta:** cerrar y validar la verificación manual pendiente de la Fase 11 (`docs/roadmap/fase-11-optimizacion.md`) — no tocar la infraestructura de Supabase mientras esa verificación esté en curso, para no mezclar variables si algo falla.
+**Estado:** planificada, no iniciada. **Desbloqueada** (2026-08-19) — la verificación manual de la Fase 11 (`docs/roadmap/fase-11-optimizacion.md`) que la retenía ya se cerró.
 
 ## Por qué
 

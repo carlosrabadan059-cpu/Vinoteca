@@ -19,14 +19,13 @@
 | ✅ Fase 8 | Catas (v0.8.0, 2026-07-09) | [fase-08-catas.md](roadmap/fase-08-catas.md) |
 | ✅ Fase 9 | Estadísticas (2026-07-18) | [fase-09-estadisticas.md](roadmap/fase-09-estadisticas.md) |
 | ✅ Fase 10 | Sommelier IA (2026-08-02) | [fase-10-sommelier-ia.md](roadmap/fase-10-sommelier-ia.md) |
+| ✅ Fase 11 | Optimización (2026-08-19) | [fase-11-optimizacion.md](roadmap/fase-11-optimizacion.md) |
 
 ---
 
 ## Pendientes
 
-| Fase | Nombre | Documento |
-|------|--------|-----------|
-| ⬜ Fase 11 | Optimización | [fase-11-optimizacion.md](roadmap/fase-11-optimizacion.md) |
+*(Ninguna fase numerada pendiente — ver "Congelado" y los documentos de cada fase para cabos sueltos menores)*
 
 ---
 
@@ -47,9 +46,7 @@ Trabajo que no encaja en ninguna fase del roadmap, registrado sin ocupar un núm
 
 | Pipeline | Estado | Motivo |
 |----------|--------|--------|
-| OCR V1.4 (identify + enrich) | ⏸️ Congelado | Pendiente validación con colección real de etiquetas |
-
-No tocar: `Scan.tsx`, workflows n8n `wine/identify` y `wine/enrich`, tipos `IdentifyResponse`/`EnrichResponse`.
+| OCR V1.4 (identify + enrich) | ✅ Validado informalmente (2026-08-19) | 28 vinos reales registrados sin incidencias en uso normal; no se montó la validación masiva estructurada, dada por buena con esta evidencia (ver [fase-11-optimizacion.md](roadmap/fase-11-optimizacion.md)) |
 
 ---
 
