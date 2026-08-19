@@ -67,6 +67,12 @@ export default function AssistantWidget() {
     }
   }
 
+  function handleClose() {
+    setOpen(false)
+    setMessages([])
+    setInput('')
+  }
+
   if (!open) {
     return (
       <button
@@ -113,7 +119,7 @@ export default function AssistantWidget() {
       }}
     >
       <div
-        onClick={() => setOpen(false)}
+        onClick={handleClose}
         style={{ position: 'absolute', inset: 0, background: 'rgba(13,6,8,0.7)' }}
       />
 
@@ -139,7 +145,7 @@ export default function AssistantWidget() {
           </div>
           <button
             type="button"
-            onClick={() => setOpen(false)}
+            onClick={handleClose}
             aria-label="Cerrar ayudante"
             style={{ color: theme.colors.iconMuted, background: 'transparent', border: 'none', lineHeight: 0, padding: 4 }}
           >
