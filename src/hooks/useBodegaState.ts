@@ -161,7 +161,7 @@ export function useBodegaState(): BodegaState {
       const main = document.querySelector('main')
       if (!main || main.scrollTop > 8) return
       const delta = e.changedTouches[0].clientY - touchStartY.current
-      if (delta > 80 && !refreshing) { setRefreshing(true); load(0, true) }
+      if (delta > 80 && !refreshing) { setRefreshing(true); loadRef.current(0, true) }
     }
     window.addEventListener('touchstart', onStart, { passive: true })
     window.addEventListener('touchend',   onEnd,   { passive: true })
@@ -175,8 +175,7 @@ export function useBodegaState(): BodegaState {
   // Infinite scroll
   const loadMore = useCallback(() => {
     if (loadingMore || !hasMore) return
-    load(page + 1, false)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    loadRef.current(page + 1, false)
   }, [page, hasMore, loadingMore])
 
   useEffect(() => {
@@ -218,6 +217,13 @@ export function useBodegaState(): BodegaState {
       }
     }
   }
+
+  // Siempre la versión más reciente de load() (con los filtros actuales) — evita que
+  // loadMore/pull-to-refresh queden atrapados en un closure obsoleto cuando su propio
+  // useCallback no detecta cambios en [page, hasMore, loadingMore] tras cambiar de filtro
+  // (p.ej. page ya estaba en 0 y el nuevo resultado filtrado también llena una página)
+  const loadRef = useRef(load)
+  loadRef.current = load
 
   // Stats client-side
   const totalBotellas = useMemo(
