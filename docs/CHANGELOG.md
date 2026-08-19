@@ -15,6 +15,10 @@ El versionado sigue [Semantic Versioning](https://semver.org/). El proyecto perm
 - Prototipo navegable de la Fase 7 (Gestión de bodega): grid 2 columnas, vista lista con agrupación, búsqueda con sugerencias, panel de filtros completo, indicadores de stock, estados vacíos y skeletons
 - Icono de salir de la app en el header (`Layout.tsx`), con modal de confirmación antes de cerrar sesión
 
+### Fixed
+
+- **App caída en producción tras migrar Supabase a self-hosted (2026-08-19)**: `VITE_SUPABASE_URL` en Vercel quedó vacío, y un cambio de red (rebind de Kong a Tailscale) tumbó silenciosamente el dominio público de la API (`supabase-api.rabadanhouse.space`, 502). De paso se encontró y corrigió un bug preexistente en `kong.yml`: los consumers no tenían grupo ACL asignado, así que ninguna API key habría funcionado contra el self-hosted aunque el resto estuviera bien configurado. Ver [`docs/supabase.md`](supabase.md) para el detalle de la infraestructura resultante.
+
 ---
 
 ## [0.6.0] — 2026-07-06
