@@ -6,6 +6,7 @@ import Toast from './Toast'
 import SyncIndicator from './SyncIndicator'
 import Modal from './Modal'
 import Button from './Button'
+import AssistantWidget from './AssistantWidget'
 
 const tabs = [
   {
@@ -93,6 +94,7 @@ export default function Layout({ children }: LayoutProps) {
       }}
     >
       <Toast />
+      <AssistantWidget />
 
       {/* Header editorial */}
       <header

@@ -97,6 +97,14 @@ export async function callSommelierChat(
   return data.reply
 }
 
+export async function callAyudaChat(
+  messages: ChatMessage[],
+  userMessage: string
+): Promise<string> {
+  const data = await post<{ reply: string }>('vinoteca/ayuda/chat', { messages, userMessage })
+  return data.reply
+}
+
 export async function callMaridaje(
   plato: string,
   wineCollection: WineCollection[],
