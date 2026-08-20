@@ -2,7 +2,7 @@
 
 ## Estado
 
-✅ Completada (2026-08-19) — 5 de 5 subsistemas implementados y verificados en dispositivo. OCR dado por validado informalmente; verificación manual de rendimiento/offline/accesibilidad/animaciones superada con una salvedad menor en rendimiento (ver Decisiones técnicas).
+✅ Completada (2026-08-19) — 5 de 5 subsistemas implementados y verificados en dispositivo. OCR dado por validado informalmente; verificación manual de rendimiento/offline/accesibilidad/animaciones superada con una salvedad menor en rendimiento (ver Decisiones técnicas). Ambos cabos sueltos que quedaban abiertos (refresco de imágenes, contraste `muted2`/`muted3`) se cerraron el 2026-08-20 — no queda nada pendiente de esta fase salvo la migración Envoy, ya fuera de su alcance.
 
 ---
 
@@ -46,16 +46,16 @@ Preparar Vinoteca para uso intensivo: rendimiento, modo offline completo, sincro
 - ~~TastingChat hace llamada directa a OpenAI~~ — ya resuelto desde antes de esta fase (commit `011a94b`), `TastingChat.tsx` usa `callSommelierChat` (n8n) igual que el resto de features de IA. Nota eliminada por estar desactualizada.
 - ✅ **OCR — validación dada por buena informalmente** (2026-08-19): no se llegó a montar la validación masiva estructurada planificada (muestra deliberada + métricas de acierto), pero el pipeline lleva **28 vinos reales registrados sin incidencias** en uso normal de la app (17 confirmados el 2026-08-04 + 11 más el 2026-08-19). Decisión del usuario: dar la fase por validada con esta evidencia de uso real en vez de construir la validación masiva aparte.
 - ✅ **Verificación manual en dispositivo — completada** (2026-08-19): las 14 comprobaciones de rendimiento/offline/accesibilidad/animaciones se hicieron en dispositivo real. Todo correcto salvo una salvedad menor: en los puntos de scroll rápido y cambio grid/lista (Rendimiento 2/3 y 3/3), el refresco de las imágenes de las tarjetas tardaba algo más de lo esperado en ocasiones al reaparecer en pantalla.
-- ✅ **Fix — refresco de imágenes lento** (2026-08-19): causa raíz, `content-visibility: auto` en el contenedor de la tarjeta impide que el navegador calcule a tiempo la distancia del `<img>` al viewport, así que `loading="lazy"` no puede adelantar la carga — la imagen solo empezaba a cargar cuando la tarjeta ya era renderizable, justo al entrar en pantalla, perdiendo el margen de precarga. Quitado `loading="lazy"` de `WineCardGrid.tsx`/`WineCardList.tsx` (se mantiene `decoding="async"`); `content-visibility: auto` ya cubre por sí solo el "no renderizar tarjetas fuera de pantalla", así que el lazy-loading nativo era redundante ahí y estaba siendo contraproducente. Verificado con `npx tsc -b` (limpio); pendiente confirmar en dispositivo que el scroll rápido ya no muestra el retraso.
+- ✅ **Fix — refresco de imágenes lento** (2026-08-19, confirmado en dispositivo 2026-08-20): causa raíz, `content-visibility: auto` en el contenedor de la tarjeta impide que el navegador calcule a tiempo la distancia del `<img>` al viewport, así que `loading="lazy"` no puede adelantar la carga — la imagen solo empezaba a cargar cuando la tarjeta ya era renderizable, justo al entrar en pantalla, perdiendo el margen de precarga. Quitado `loading="lazy"` de `WineCardGrid.tsx`/`WineCardList.tsx` (se mantiene `decoding="async"`); `content-visibility: auto` ya cubre por sí solo el "no renderizar tarjetas fuera de pantalla", así que el lazy-loading nativo era redundante ahí y estaba siendo contraproducente. El usuario confirmó en dispositivo real que el retraso en scroll rápido ya no aparece.
+- ✅ **Auditoría de contraste `muted2`/`muted3`** (2026-08-20, commit `c067323`): ambos tokens rondaban 1.6–2.25:1 de contraste contra `bg`/`surface`/`surface2`, muy por debajo del mínimo WCAG AA de 4.5:1 para texto pequeño (meta región en `WineCardGrid.tsx`, chip tipo/región en `WineCardList.tsx`, pill de sugerencias y hint de swipe en `Bodega.tsx`). Nuevos valores `muted2: #AC7982` y `muted3: #A77E85`, verificados >4.5:1 en el peor caso (fondo `surface2`) contra los tres fondos. Trade-off aceptado: en un fondo tan oscuro, forzar 4.5:1 en varios tonos "apagados" a la vez los comprime cerca de la misma luminosidad que `muted` — no hay margen para mantener tres tonos claramente distintos y cumplir WCAG AA simultáneamente, así que se priorizó legibilidad sobre la sutileza de la jerarquía visual original. Confirmado visualmente por el usuario antes de publicar.
 
 ---
 
 ## Pendiente
 
-- `muted2`/`muted3` sin auditar en contraste (ver nota de accesibilidad arriba).
-- Confirmar en dispositivo que el fix del refresco de imágenes (quitar `loading="lazy"`) resuelve el retraso observado en scroll rápido.
+*(Ningún cabo suelto de esta fase — los dos últimos, refresco de imágenes y contraste `muted2`/`muted3`, se cerraron el 2026-08-20, ver Decisiones técnicas)*
 
-La migración de gateway (Kong → Envoy) planificada en [`docs/supabase-envoy-migration.md`](../supabase-envoy-migration.md) queda desbloqueada: la verificación manual que la retenía ya se completó (2026-08-19).
+La migración de gateway (Kong → Envoy) planificada en [`docs/supabase-envoy-migration.md`](../supabase-envoy-migration.md) queda desbloqueada: la verificación manual que la retenía ya se completó (2026-08-19). Es la única pieza de trabajo abierta relacionada con esta fase, y se deja deliberadamente para una ventana de tiempo más amplia por tocar producción — estimación ~45–90 min si no hay sorpresas, hasta 2.5 h con el riesgo conocido de las asymmetric keys (ver el propio documento, sección "Comprobaciones previas").
 
 ---
 
