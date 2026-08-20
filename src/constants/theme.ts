@@ -63,8 +63,8 @@ export const theme = {
     cream:  '#F5F0E8',   // texto principal, títulos
     text:   '#E8E0D8',   // texto body estándar
     muted:  '#9E7F84',   // texto secundario, placeholders — ≥4.5:1 sobre bg/surface/surface2 (WCAG AA)
-    muted2: '#4A3438',   // texto terciario, separadores, hints
-    muted3: '#5A4448',   // chips de tipo/región en lista
+    muted2: '#AC7982',   // texto terciario, separadores, hints — ≥4.5:1 sobre bg/surface/surface2 (WCAG AA)
+    muted3: '#A77E85',   // chips de tipo/región en lista — ≥4.5:1 sobre bg/surface/surface2 (WCAG AA)
 
     // Fondos especiales de componente
     imageBg:      '#110809',  // fondo interior de thumbnail/zona de imagen de botella
