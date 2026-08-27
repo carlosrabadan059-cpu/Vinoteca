@@ -167,6 +167,7 @@ export function useWines() {
       alcohol:            data.alcohol       ?? null,
       crianza:            data.crianza       ?? null,
       descripcion:        data.descripcion   ?? null,
+      descripcion_fuente_url: data.descripcion_fuente_url ?? null,
       url_bodega:         data.url_bodega    ?? null,
       temp_servicio:      data.temp_servicio ?? null,
       contiene:           data.contiene      ?? null,

@@ -352,12 +352,12 @@ export default function Scan() {
     }
 
     const wineData: Partial<Wine> = {
-      // Identidad — fuente de verdad
+      // Identidad — fuente de verdad (region/denominacion: identity primero, enrich solo rellena huecos)
       nombre:       identity.nombre       ?? undefined,
       bodega:       identity.bodega       ?? undefined,
       anada:        identity.anada        ?? undefined,
-      region:       identity.region       ?? undefined,
-      denominacion: identity.denominacion ?? undefined,
+      region:       identity.region       ?? (enriched.region?.value       as string | undefined) ?? undefined,
+      denominacion: identity.denominacion ?? (enriched.denominacion?.value as string | undefined) ?? undefined,
       wine_uid:     wineUid               ?? undefined,
       // OCR directo (no cubierto por identidad ni enriched)
       tipo:         scanResult.tipo       ?? undefined,
@@ -371,7 +371,9 @@ export default function Scan() {
       crianza:      (enriched.crianza?.value      as string | undefined) ?? scanResult.crianza      ?? undefined,
       temp_servicio:(enriched.temp_servicio?.value as string | undefined) ?? scanResult.temp_servicio ?? undefined,
       url_bodega:   (enriched.url_bodega?.value   as string | undefined) ?? scanResult.url_bodega   ?? undefined,
-      descripcion:  scanResult.descripcion ?? undefined,
+      descripcion:  (enriched.descripcion?.value  as string | undefined) ?? scanResult.descripcion  ?? undefined,
+      descripcion_fuente_url: (enriched.descripcion?.source_url as string | undefined) || undefined,
+      precio:       (enriched.precio?.value       as number | undefined) ?? undefined,
     }
 
     console.log(`[scan] merge → render formulario. Total: ${elapsed(t0)}`, { fuente_identidad: identifiedAs ? 'identify' : 'ocr_crudo', campos_enriched: Object.keys(enriched) })
