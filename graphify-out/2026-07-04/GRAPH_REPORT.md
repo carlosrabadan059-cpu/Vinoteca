@@ -1,16 +1,16 @@
 # Graph Report - Vinoteca  (2026-07-04)
 
 ## Corpus Check
-- 137 files · ~91,707 words
+- 138 files · ~92,206 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 980 nodes · 1418 edges · 89 communities (75 shown, 14 thin omitted)
+- 988 nodes · 1422 edges · 84 communities (70 shown, 14 thin omitted)
 - Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 42 edges (avg confidence: 0.81)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `7a864229`
+- Built from commit: `f8d1b23f`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -83,7 +83,6 @@
 - [[_COMMUNITY_Community 68|Community 68]]
 - [[_COMMUNITY_Community 69|Community 69]]
 - [[_COMMUNITY_Community 70|Community 70]]
-- [[_COMMUNITY_Community 71|Community 71]]
 - [[_COMMUNITY_Community 72|Community 72]]
 - [[_COMMUNITY_Community 73|Community 73]]
 - [[_COMMUNITY_Community 74|Community 74]]
@@ -93,18 +92,14 @@
 - [[_COMMUNITY_Community 78|Community 78]]
 - [[_COMMUNITY_Community 79|Community 79]]
 - [[_COMMUNITY_Community 80|Community 80]]
-- [[_COMMUNITY_Community 83|Community 83]]
-- [[_COMMUNITY_Community 84|Community 84]]
-- [[_COMMUNITY_Community 85|Community 85]]
 - [[_COMMUNITY_Community 86|Community 86]]
 - [[_COMMUNITY_Community 87|Community 87]]
-- [[_COMMUNITY_Community 89|Community 89]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `Theme` - 41 edges
 2. `Wine` - 30 edges
 3. `useWines()` - 26 edges
-4. `supabase` - 22 edges
+4. `supabase` - 21 edges
 5. `getDB()` - 19 edges
 6. `useAuthStore` - 18 edges
 7. `Tasting` - 18 edges
@@ -117,12 +112,12 @@
   CLAUDE.md → CONTEXT.md
 - `index.html — Punto de entrada HTML` --references--> `favicon.svg — Icono copa de vino`  [EXTRACTED]
   index.html → public/favicon.svg
-- `useSync()` --semantically_similar_to--> `syncQueue Function (main)`  [INFERRED] [semantically similar]
-  src/hooks/useSync.ts → src/main.tsx
 - `TDD Skill` --references--> `Domain Glossary (Vinoteca)`  [EXTRACTED]
   .agents/skills/tdd/SKILL.md → CONTEXT.md
 - `Agent Domain Docs Config` --references--> `CONTEXT.md - Domain Glossary`  [EXTRACTED]
   docs/agents/domain.md → CONTEXT.md
+- `findDuplicateWine()` --semantically_similar_to--> `identifyByWineUid()`  [INFERRED] [semantically similar]
+  src/lib/wineDuplicates.ts → src/lib/wineIdentifier.ts
 
 ## Import Cycles
 - None detected.
@@ -147,27 +142,27 @@
 - **Conjunto de Iconos PWA de la Aplicación** — public_favicon_svg, public_pwa_192, public_pwa_512, public_apple_touch_icon [INFERRED 0.90]
 - **Cadena de Handoffs de Sesiones de Desarrollo** — docs_handoff_2026_06_10, docs_handoff_2026_06_11, docs_handoff_2026_06_12, docs_handoff_2026_06_13, docs_handoff_2026_06_18 [EXTRACTED 0.95]
 
-## Communities (89 total, 14 thin omitted)
+## Communities (84 total, 14 thin omitted)
 
 ### Community 0 - "UI Components & Design System"
-Cohesion: 0.09
-Nodes (15): UI Design System (theme-driven components), Theme, BadgeProps, ButtonProps, CardProps, InputProps, SuggestionChipsProps, DuplicateWineDialogProps (+7 more)
+Cohesion: 0.05
+Nodes (34): Animated Overlay Pattern, Offline-First Sync Pattern, UI Design System (theme-driven components), Theme, compressImage(), pickFile(), useCamera(), SyncState (+26 more)
 
 ### Community 1 - "Offline-First Sync Engine"
-Cohesion: 0.13
-Nodes (30): Offline-First Sync Pattern, Offline-First Sync Pattern, processOperation(), useSync(), clearLocalWines(), clearQueue(), getDB(), getLocalTastings() (+22 more)
+Cohesion: 0.05
+Nodes (74): Offline-First Sync Pattern, useAuth(), useTastings Hook, processOperation(), useSync(), useTastings(), useWines(), WineFilters (+66 more)
 
 ### Community 2 - "Wine & Tasting Data Hooks"
-Cohesion: 0.07
-Nodes (27): BLANCOS, classifyWine(), DULCES, ESPUMOSOS, MES_SHORT, ROSADOS, StatsData, TINTOS (+19 more)
+Cohesion: 0.36
+Nodes (11): ADR: AI Assistants via n8n, ADR: Scan Workflow via n8n, Asistente de Cata, Bodega (User Wine Cellar), Cata (Tasting Session), n8n Webhook Pattern, Scan Workflow (n8n), Sommelier (AI Assistant) (+3 more)
 
 ### Community 3 - "n8n AI Integration Layer"
-Cohesion: 0.16
-Nodes (15): useAuth(), dataUrlToBlob(), storage, uploadWineImage(), supabase, supabaseAnonKey, supabaseUrl, DuplicateResult (+7 more)
+Cohesion: 0.22
+Nodes (8): Further Notes, Implementation Decisions, Out of Scope, Problem Statement, Process, Solution, Testing Decisions, User Stories
 
 ### Community 4 - "Package Dependencies"
 Cohesion: 0.05
-Nodes (38): dependencies, idb, react, react-dom, react-router-dom, recharts, @supabase/supabase-js, zustand (+30 more)
+Nodes (37): dependencies, idb, react, react-dom, react-router-dom, recharts, @supabase/supabase-js, zustand (+29 more)
 
 ### Community 5 - "ADRs & Agent Docs"
 Cohesion: 0.17
@@ -178,12 +173,12 @@ Cohesion: 0.06
 Nodes (37): ADR Format, Numbering, Optional sections, Template, What qualifies, When to offer an ADR, CONTEXT.md Format, Rules (+29 more)
 
 ### Community 7 - "Wine Statistics Engine"
-Cohesion: 0.21
-Nodes (10): Sommelier Intent Routing (maridaje/enriquecimiento/chat), buildWineCollection(), detectIntent(), DO_KEYWORDS, extractPlato(), MARIDAJE_KEYWORDS, Sommelier(), SUGGESTIONS (+2 more)
+Cohesion: 0.18
+Nodes (10): 1. Corrección de orientación 180° (retrato invertido), 2. Eliminación completa del QR, 3. Problema de caché PWA (pendiente en el dispositivo del usuario), Estado actual de los archivos clave, Estado del proyecto, Handoff — 2026-07-04, Ideas para la próxima sesión, Lo que se hizo en esta sesión (+2 more)
 
 ### Community 8 - "Scan & Camera Pipeline"
-Cohesion: 0.07
-Nodes (31): App (Root Component), Animated Overlay Pattern, compressImage(), pickFile(), useCamera(), canvas180(), captureFrameFromVideo(), CaptureSource (+23 more)
+Cohesion: 0.05
+Nodes (34): App (Root Component), BLANCOS, classifyWine(), DULCES, ESPUMOSOS, MES_SHORT, ROSADOS, StatsData (+26 more)
 
 ### Community 9 - "TypeScript App Config"
 Cohesion: 0.11
@@ -222,16 +217,16 @@ Cohesion: 0.83
 Nodes (3): capture(), step(), hitl-loop.template.sh script
 
 ### Community 25 - "Package JSON"
-Cohesion: 0.36
-Nodes (11): ADR: AI Assistants via n8n, ADR: Scan Workflow via n8n, Asistente de Cata, Bodega (User Wine Cellar), Cata (Tasting Session), n8n Webhook Pattern, Scan Workflow (n8n), Sommelier (AI Assistant) (+3 more)
+Cohesion: 0.22
+Nodes (9): Invocation, Needs-info template, Quick state override, Reference docs, Resuming a previous session, Roles, Show what needs attention, Triage (+1 more)
 
 ### Community 27 - "README"
 Cohesion: 0.09
 Nodes (19): Red-Green-Refactor Loop, Tracer Bullet Vertical Slice, Deep Modules, Interface Design for Testability, Designing for Mockability, When to Mock, Refactor Candidates, TDD Skill (+11 more)
 
 ### Community 34 - "Community 34"
-Cohesion: 0.16
-Nodes (12): useTastings(), useWines(), fetchImageAsDataUrl(), SectionCardProps, TastingDetail(), WineDetail(), ToastState, useToastStore (+4 more)
+Cohesion: 0.25
+Nodes (8): Directory structure, File format, Naming the file, Out-of-Scope Knowledge Base, Updating or removing out-of-scope files, When to check `.out-of-scope/`, When to write to `.out-of-scope/`, Writing the reason
 
 ### Community 35 - "Community 35"
 Cohesion: 0.09
@@ -242,8 +237,8 @@ Cohesion: 0.10
 Nodes (20): Algoritmo `wine_uid`, Cadena a hashear, Componente `AnalysisProgress`, Detección de duplicados tras el análisis, Fase 1 — Identificar (`callScanIdentificar`), Fase 2 — Analizar (`callScanAnalizar`), Flujo de escaneo — Vinoteca, Guardado final (+12 more)
 
 ### Community 37 - "Community 37"
-Cohesion: 0.15
-Nodes (13): Archivos clave, Bugs corregidos en esta sesión, Commits de esta sesión, Contexto de referencia, Credenciales n8n, Estado del frontend, Flujo de escaneo (funciona end-to-end desde móvil con HTTP), Handoff: Vinoteca — Sesión 2026-06-10 (actualizado) (+5 more)
+Cohesion: 0.11
+Nodes (18): Archivos clave, Arquitectura del workflow (8 nodos), Bugs corregidos en esta sesión, Commits de esta sesión, Contexto de referencia, Credenciales n8n, Estado actual del workflow n8n, Estado del frontend (+10 more)
 
 ### Community 38 - "Community 38"
 Cohesion: 0.12
@@ -274,12 +269,12 @@ Cohesion: 0.17
 Nodes (11): Autenticación, Cliente (`src/lib/supabase.ts`), Configuración del proyecto en el dashboard, Consultas representativas, Función `fetchImageAsDataUrl` (`src/lib/storage.ts`), Función `uploadWineImage` (`src/lib/storage.ts`), Row Level Security (RLS), Supabase Storage (+3 more)
 
 ### Community 45 - "Community 45"
-Cohesion: 0.20
-Nodes (8): ChatMessage, ChatBubble(), ChatBubbleProps, inlineFormat(), renderMarkdown(), ChatBubbleProps, TastingChatProps, TastingResult
+Cohesion: 0.09
+Nodes (31): Sommelier Intent Routing (maridaje/enriquecimiento/chat), callEnriquecimiento(), callMaridaje(), callScanAnalizar(), callScanIdentificar(), callSommelierChat(), callStatsInsight(), N8N_BASE (+23 more)
 
 ### Community 46 - "Community 46"
-Cohesion: 0.12
-Nodes (16): Archivos clave, Cambios publicados en esta sesión, Commits de esta sesión, Contexto de referencia, Estado actual, Estado del workflow n8n (`EtTezN27e9tqvOjS`), Flujo actual, Flujo de escaneo (Scan.tsx) (+8 more)
+Cohesion: 0.18
+Nodes (11): Archivos clave, Cambios publicados en esta sesión, Commits de esta sesión, Contexto de referencia, Estado del workflow n8n (`EtTezN27e9tqvOjS`), Flujo actual, Handoff: Vinoteca — Sesión 2026-06-12, Migración Supabase (ya aplicada) (+3 more)
 
 ### Community 47 - "Community 47"
 Cohesion: 0.18
@@ -377,10 +372,6 @@ Nodes (4): Auto-Clarity Exception, Examples, Persistence, Rules
 Cohesion: 0.40
 Nodes (5): Advertencias (falsos positivos, no bloquean), Estado del workflow n8n (`EtTezN27e9tqvOjS`), Flujo, Nodos destacados, Variables de entorno en n8n (configuradas en Portainer)
 
-### Community 71 - "Community 71"
-Cohesion: 0.22
-Nodes (8): Further Notes, Implementation Decisions, Out of Scope, Problem Statement, Process, Solution, Testing Decisions, User Stories
-
 ### Community 72 - "Community 72"
 Cohesion: 0.40
 Nodes (4): Conventions, Issue tracker: GitHub, When a skill says "fetch the relevant ticket", When a skill says "publish to the issue tracker"
@@ -405,49 +396,33 @@ Nodes (3): Expanding the ESLint configuration, React Compiler, React + TypeScrip
 Cohesion: 0.11
 Nodes (17): 1. QA manual de V1.3.2 en iPhone, 2. V1.3.3 — UX polish del scanner, Arquitectura de la cámara, Contexto del proyecto, Estado actual: V1.3.2 completa y publicada, Ficheros clave modificados en V1.3.2, Handoff — Vinoteca V1.3.2 QA + V1.3.3 (2026-06-24), Los tres commits de V1.3.2 (+9 more)
 
-### Community 83 - "Community 83"
-Cohesion: 0.14
-Nodes (16): useTastings Hook, addToQueue(), VinotecaDB, randomUUID(), applyFilter(), Catas(), Filter, FILTERS (+8 more)
-
-### Community 84 - "Community 84"
-Cohesion: 0.20
-Nodes (11): WineFilters, Bodega(), TIPOS, WineSkeleton(), NuevaCata(), useWineStore, WineState, Wine (+3 more)
-
-### Community 85 - "Community 85"
-Cohesion: 0.22
-Nodes (9): Invocation, Needs-info template, Quick state override, Reference docs, Resuming a previous session, Roles, Show what needs attention, Triage (+1 more)
-
 ### Community 86 - "Community 86"
 Cohesion: 0.22
 Nodes (8): Archivos clave, Código front-end relevante, Estado del workflow tras la sesión, Handoff — 2026-06-25, Pendiente / próximos pasos sugeridos, Problema resuelto, Sesión actual, Skills sugeridos para la próxima sesión
 
 ### Community 87 - "Community 87"
-Cohesion: 0.25
-Nodes (8): Directory structure, File format, Naming the file, Out-of-Scope Knowledge Base, Updating or removing out-of-scope files, When to check `.out-of-scope/`, When to write to `.out-of-scope/`, Writing the reason
-
-### Community 89 - "Community 89"
 Cohesion: 0.40
-Nodes (5): Arquitectura del workflow (8 nodos), Estado actual del workflow n8n, Lógica de "Extraer URL Imagen", Pendiente en n8n (acción manual), Prompt de análisis (Preparar Mensajes)
+Nodes (5): Estado actual, Flujo de escaneo (Scan.tsx), useWines.ts (fix `96b4790`), WineDetail.tsx, WineForm.tsx (fix `96b4790`)
 
 ## Knowledge Gaps
-- **530 isolated node(s):** `CameraState`, `CameraAction`, `Step`, `STEPS`, `Sesión actual` (+525 more)
+- **537 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+532 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **14 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Theme` connect `UI Components & Design System` to `Offline-First Sync Engine`, `Wine & Tasting Data Hooks`, `Community 34`, `Wine Statistics Engine`, `Scan & Camera Pipeline`, `Community 45`, `Community 83`, `Community 84`?**
-  _High betweenness centrality (0.015) - this node is a cross-community bridge._
-- **Why does `Wine` connect `Community 84` to `UI Components & Design System`, `Offline-First Sync Engine`, `Wine & Tasting Data Hooks`, `n8n AI Integration Layer`, `Community 34`, `Scan & Camera Pipeline`, `Community 45`, `Community 83`?**
+- **Why does `Theme` connect `UI Components & Design System` to `Scan & Camera Pipeline`, `Offline-First Sync Engine`, `Community 45`?**
+  _High betweenness centrality (0.014) - this node is a cross-community bridge._
+- **Why does `Wine` connect `Offline-First Sync Engine` to `Scan & Camera Pipeline`, `UI Components & Design System`, `Community 45`?**
   _High betweenness centrality (0.005) - this node is a cross-community bridge._
-- **Why does `Domain Glossary (Vinoteca)` connect `ADRs & Agent Docs` to `README`, `Community 71`?**
+- **Why does `Domain Glossary (Vinoteca)` connect `ADRs & Agent Docs` to `n8n AI Integration Layer`, `README`?**
   _High betweenness centrality (0.004) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `getDB()` (e.g. with `useSync()` and `syncQueue Function (main)`) actually correct?**
   _`getDB()` has 2 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `CameraState`, `CameraAction`, `Step` to the rest of the system?**
-  _531 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **What connects `name`, `private`, `version` to the rest of the system?**
+  _538 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `UI Components & Design System` be split into smaller, more focused modules?**
-  _Cohesion score 0.0928030303030303 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05081967213114754 - nodes in this community are weakly interconnected._
 - **Should `Offline-First Sync Engine` be split into smaller, more focused modules?**
-  _Cohesion score 0.12698412698412698 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05067567567567568 - nodes in this community are weakly interconnected._

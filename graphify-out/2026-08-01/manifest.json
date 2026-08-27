@@ -1,0 +1,957 @@
+{
+  ".agents/skills/diagnose/scripts/hitl-loop.template.sh": {
+    "mtime": 1780779953.2814064,
+    "ast_hash": "46a2a00761be2785e59661f0e3c11471",
+    "semantic_hash": "46a2a00761be2785e59661f0e3c11471"
+  },
+  ".claude/settings.json": {
+    "mtime": 1781027311.2695284,
+    "ast_hash": "bfee062c3962c14264fd704e975a6b38",
+    "semantic_hash": "bfee062c3962c14264fd704e975a6b38"
+  },
+  ".claude/settings.local.json": {
+    "mtime": 1781027316.124658,
+    "ast_hash": "7342b0fc996936998344534549833cf3",
+    "semantic_hash": "7342b0fc996936998344534549833cf3"
+  },
+  "eslint.config.js": {
+    "mtime": 1780780144.1054275,
+    "ast_hash": "0355276bc79439afe3c53e3a2470ca1e",
+    "semantic_hash": "0355276bc79439afe3c53e3a2470ca1e"
+  },
+  "package.json": {
+    "mtime": 1783200739.350938,
+    "ast_hash": "142ae6d3a4facd816fc581e5cfb5be98",
+    "semantic_hash": ""
+  },
+  "skills-lock.json": {
+    "mtime": 1780782410.350332,
+    "ast_hash": "c0855a0789ef4add2db5523cb387c355",
+    "semantic_hash": "c0855a0789ef4add2db5523cb387c355"
+  },
+  "src/App.tsx": {
+    "mtime": 1780780387.0817204,
+    "ast_hash": "29be63489ed1861111ab4234654ecc6d",
+    "semantic_hash": "29be63489ed1861111ab4234654ecc6d"
+  },
+  "src/components/ui/AnalysisProgress.tsx": {
+    "mtime": 1782167924.6005065,
+    "ast_hash": "04abcdcfda595a07443591a0b03fffe2",
+    "semantic_hash": "04abcdcfda595a07443591a0b03fffe2"
+  },
+  "src/components/ui/Badge.tsx": {
+    "mtime": 1780783136.8558152,
+    "ast_hash": "3dc1ddda083557ce0add840fb649c445",
+    "semantic_hash": "3dc1ddda083557ce0add840fb649c445"
+  },
+  "src/components/ui/Button.tsx": {
+    "mtime": 1780783129.83135,
+    "ast_hash": "59b82f547d1bf8ef9272e4508d188be7",
+    "semantic_hash": "59b82f547d1bf8ef9272e4508d188be7"
+  },
+  "src/components/ui/Card.tsx": {
+    "mtime": 1780783134.238235,
+    "ast_hash": "47b406c36fd20c6a03b69559ee5b880e",
+    "semantic_hash": "47b406c36fd20c6a03b69559ee5b880e"
+  },
+  "src/components/ui/ChatBubble.tsx": {
+    "mtime": 1781384384.872423,
+    "ast_hash": "ccf7f0a26cbce3e0ad3d08cf8dc74a90",
+    "semantic_hash": "ccf7f0a26cbce3e0ad3d08cf8dc74a90"
+  },
+  "src/components/ui/Input.tsx": {
+    "mtime": 1780783132.0332303,
+    "ast_hash": "3831a8af51f8ba5ac03b34bdff8f244c",
+    "semantic_hash": "3831a8af51f8ba5ac03b34bdff8f244c"
+  },
+  "src/components/ui/Layout.tsx": {
+    "mtime": 1784327465.3497663,
+    "ast_hash": "b87851a578e38d5c7103ba38388f5e2f",
+    "semantic_hash": ""
+  },
+  "src/components/ui/Modal.tsx": {
+    "mtime": 1782241122.1582766,
+    "ast_hash": "c6b26abee3e949f50ee5418404b58138",
+    "semantic_hash": ""
+  },
+  "src/components/ui/Spinner.tsx": {
+    "mtime": 1780783138.1639965,
+    "ast_hash": "e3f9d3e7dfa8b94ad349362935650261",
+    "semantic_hash": "e3f9d3e7dfa8b94ad349362935650261"
+  },
+  "src/components/ui/SuggestionChips.tsx": {
+    "mtime": 1780819069.308195,
+    "ast_hash": "3eb9c0a2002c126d23ab17cd9f233bae",
+    "semantic_hash": "3eb9c0a2002c126d23ab17cd9f233bae"
+  },
+  "src/components/ui/SyncIndicator.tsx": {
+    "mtime": 1781076358.3809397,
+    "ast_hash": "2fbf742955235855bb2811c6c5131bcb",
+    "semantic_hash": "2fbf742955235855bb2811c6c5131bcb"
+  },
+  "src/components/ui/SyncModal.tsx": {
+    "mtime": 1781388514.7603276,
+    "ast_hash": "acab1594d1d275d172061b27f9d4f762",
+    "semantic_hash": "acab1594d1d275d172061b27f9d4f762"
+  },
+  "src/components/ui/Toast.tsx": {
+    "mtime": 1780784555.5522776,
+    "ast_hash": "cd62ff95696d5d00d614df11362f0d71",
+    "semantic_hash": "cd62ff95696d5d00d614df11362f0d71"
+  },
+  "src/components/wine/ChatBubble.tsx": {
+    "mtime": 1780783160.2746286,
+    "ast_hash": "333082e3b61e364bf69767e0e3625a60",
+    "semantic_hash": "333082e3b61e364bf69767e0e3625a60"
+  },
+  "src/components/wine/DuplicateWineDialog.tsx": {
+    "mtime": 1782165651.9288547,
+    "ast_hash": "ef04d58e98e85d7bc45343d1456c8bb2",
+    "semantic_hash": "ef04d58e98e85d7bc45343d1456c8bb2"
+  },
+  "src/components/wine/ImageCapture.tsx": {
+    "mtime": 1780783522.2413235,
+    "ast_hash": "211f3cec10058575cc59f9bfd2cbfc26",
+    "semantic_hash": "211f3cec10058575cc59f9bfd2cbfc26"
+  },
+  "src/components/wine/TastingCard.tsx": {
+    "mtime": 1783614425.8277884,
+    "ast_hash": "be163a89b79d4298ed7996e51631836e",
+    "semantic_hash": ""
+  },
+  "src/components/wine/TastingChat.tsx": {
+    "mtime": 1781385653.6705527,
+    "ast_hash": "90d39bb9c53d0258a125ccc0283d8719",
+    "semantic_hash": "90d39bb9c53d0258a125ccc0283d8719"
+  },
+  "src/components/wine/TastingForm.tsx": {
+    "mtime": 1782241430.8840594,
+    "ast_hash": "2c18c91ecf27b27fb98eefe90eaacfad",
+    "semantic_hash": ""
+  },
+  "src/components/wine/TastingMiniCard.tsx": {
+    "mtime": 1782239655.2850568,
+    "ast_hash": "d3a79fbe887b5a844bb680fc9ae44e33",
+    "semantic_hash": ""
+  },
+  "src/components/wine/WineCard.tsx": {
+    "mtime": 1781127422.064695,
+    "ast_hash": "9de1643f050f03839e53c8e51023b3f0",
+    "semantic_hash": "9de1643f050f03839e53c8e51023b3f0"
+  },
+  "src/components/wine/WineForm.tsx": {
+    "mtime": 1783976414.0714731,
+    "ast_hash": "a44c172ac9371acdfae3665f9815fcda",
+    "semantic_hash": ""
+  },
+  "src/constants/theme.ts": {
+    "mtime": 1783613359.7550862,
+    "ast_hash": "7a6a4e84b64d7fe07ca102bd24a39e1f",
+    "semantic_hash": ""
+  },
+  "src/hooks/useCamera.ts": {
+    "mtime": 1782339173.074624,
+    "ast_hash": "7ff4b6dd65fd7bbd6ca197ddf19c0193",
+    "semantic_hash": ""
+  },
+  "src/hooks/useStats.ts": {
+    "mtime": 1785617145.841306,
+    "ast_hash": "c584e1f2829564ea8977b663c13ffbcf",
+    "semantic_hash": ""
+  },
+  "src/hooks/useSync.ts": {
+    "mtime": 1780820161.8581595,
+    "ast_hash": "7b24ac3bd3165112305f1d7a44773817",
+    "semantic_hash": "7b24ac3bd3165112305f1d7a44773817"
+  },
+  "src/hooks/useTastings.ts": {
+    "mtime": 1782248323.9006853,
+    "ast_hash": "440036a2d3bc0686f3a0b7482a284b81",
+    "semantic_hash": ""
+  },
+  "src/hooks/useWines.ts": {
+    "mtime": 1783612271.1290448,
+    "ast_hash": "c5a67c06780a3c4d79332a5f4ff63bbe",
+    "semantic_hash": ""
+  },
+  "src/lib/idb.ts": {
+    "mtime": 1780820076.2169564,
+    "ast_hash": "9f49e846f6f912bc87a54e522089c5f8",
+    "semantic_hash": "9f49e846f6f912bc87a54e522089c5f8"
+  },
+  "src/lib/n8n.ts": {
+    "mtime": 1785617415.223297,
+    "ast_hash": "c4caa40dadfb964ab918bdf2f2ff0332",
+    "semantic_hash": ""
+  },
+  "src/lib/storage.ts": {
+    "mtime": 1781032670.7695138,
+    "ast_hash": "8319858d739458c22ca7284818a36ff9",
+    "semantic_hash": "8319858d739458c22ca7284818a36ff9"
+  },
+  "src/lib/supabase.ts": {
+    "mtime": 1780780252.7068763,
+    "ast_hash": "354ce10f9e6a887eae1f1a1c1284df75",
+    "semantic_hash": "354ce10f9e6a887eae1f1a1c1284df75"
+  },
+  "src/lib/uuid.ts": {
+    "mtime": 1781110402.6641257,
+    "ast_hash": "bfe9440762422178582b9033426013d8",
+    "semantic_hash": "bfe9440762422178582b9033426013d8"
+  },
+  "src/lib/wineDuplicates.ts": {
+    "mtime": 1782167055.9146664,
+    "ast_hash": "c79af8064d5be52aae54fafbde00ca22",
+    "semantic_hash": "c79af8064d5be52aae54fafbde00ca22"
+  },
+  "src/lib/wineIdentifier.ts": {
+    "mtime": 1783200759.2334247,
+    "ast_hash": "a30bfbd5f2f94ffab713c057cf01a163",
+    "semantic_hash": ""
+  },
+  "src/main.tsx": {
+    "mtime": 1780820183.6563225,
+    "ast_hash": "452a3ec1e2f10f7a5f956200bd0320c4",
+    "semantic_hash": "452a3ec1e2f10f7a5f956200bd0320c4"
+  },
+  "src/pages/Bodega.tsx": {
+    "mtime": 1784358651.2337143,
+    "ast_hash": "13e144b7b3d9a5871a3affd9c51f9d41",
+    "semantic_hash": ""
+  },
+  "src/pages/Catas.tsx": {
+    "mtime": 1783613822.7957685,
+    "ast_hash": "1ab73432a73a32aa0365e9c67c62b658",
+    "semantic_hash": ""
+  },
+  "src/pages/Login.tsx": {
+    "mtime": 1784327357.9301918,
+    "ast_hash": "30c4c6ff794cd3f49b14ab5c33f6123a",
+    "semantic_hash": ""
+  },
+  "src/pages/NuevaCata.tsx": {
+    "mtime": 1783614113.2629673,
+    "ast_hash": "20cbf55fdf40006ac5387f4593585e5c",
+    "semantic_hash": ""
+  },
+  "src/pages/Register.tsx": {
+    "mtime": 1780937119.6052737,
+    "ast_hash": "f452ac969ae23fbb7abbaedd720dd277",
+    "semantic_hash": "f452ac969ae23fbb7abbaedd720dd277"
+  },
+  "src/pages/Scan.tsx": {
+    "mtime": 1784358644.8923771,
+    "ast_hash": "8005a86bb944162b8b5de21280b8ed49",
+    "semantic_hash": ""
+  },
+  "src/pages/Sommelier.tsx": {
+    "mtime": 1781388553.7561572,
+    "ast_hash": "5ac40b9b2ae8e213aa2f2a6c93546d22",
+    "semantic_hash": "5ac40b9b2ae8e213aa2f2a6c93546d22"
+  },
+  "src/pages/Stats.tsx": {
+    "mtime": 1785617904.1720493,
+    "ast_hash": "ace1f6881da4622af7fe1f76d39fa389",
+    "semantic_hash": ""
+  },
+  "src/pages/TastingDetail.tsx": {
+    "mtime": 1783614438.0722008,
+    "ast_hash": "13f551c46cb1db27b2b8f022954c55bd",
+    "semantic_hash": ""
+  },
+  "src/pages/WineDetail.tsx": {
+    "mtime": 1783976159.3974292,
+    "ast_hash": "a24754b8d4a3ffabea75f40cabc05b39",
+    "semantic_hash": ""
+  },
+  "src/router/index.tsx": {
+    "mtime": 1784327479.1704533,
+    "ast_hash": "4ad7e8fbee3f4f312b02014ce252a9f8",
+    "semantic_hash": ""
+  },
+  "src/store/authStore.ts": {
+    "mtime": 1784327318.327906,
+    "ast_hash": "8237a4f0a04fd7ced8e3ae8fb1649775",
+    "semantic_hash": ""
+  },
+  "src/store/syncStore.ts": {
+    "mtime": 1780820168.1220129,
+    "ast_hash": "ec9ac50c24beee3f9a82122cc57f9752",
+    "semantic_hash": "ec9ac50c24beee3f9a82122cc57f9752"
+  },
+  "src/store/tastingStore.ts": {
+    "mtime": 1780785943.5507011,
+    "ast_hash": "7c94316a12f21eed866a0ddcd2ab2a13",
+    "semantic_hash": "7c94316a12f21eed866a0ddcd2ab2a13"
+  },
+  "src/store/toastStore.ts": {
+    "mtime": 1780784549.369607,
+    "ast_hash": "6cfcb746301b7010fa010b6c737bd72d",
+    "semantic_hash": "6cfcb746301b7010fa010b6c737bd72d"
+  },
+  "src/store/wineStore.ts": {
+    "mtime": 1780784534.2794101,
+    "ast_hash": "a3a9166911f44eef5493a03ffb7c5979",
+    "semantic_hash": "a3a9166911f44eef5493a03ffb7c5979"
+  },
+  "src/types/index.ts": {
+    "mtime": 1785602074.3767896,
+    "ast_hash": "f4c380199f693118c908f50df078a134",
+    "semantic_hash": ""
+  },
+  "tsconfig.app.json": {
+    "mtime": 1780780144.1037304,
+    "ast_hash": "136630b5accce1ca50663df229534a26",
+    "semantic_hash": "136630b5accce1ca50663df229534a26"
+  },
+  "tsconfig.json": {
+    "mtime": 1780780144.1052258,
+    "ast_hash": "a3d39fa780ebff65444de257f291ce6c",
+    "semantic_hash": "a3d39fa780ebff65444de257f291ce6c"
+  },
+  "tsconfig.node.json": {
+    "mtime": 1780780144.1032913,
+    "ast_hash": "70bdd0a673bcfc0e828080b306e7c680",
+    "semantic_hash": "70bdd0a673bcfc0e828080b306e7c680"
+  },
+  "vite.config.ts": {
+    "mtime": 1780820268.924748,
+    "ast_hash": "04249738c5ad151f687f0bbacc6f8416",
+    "semantic_hash": "04249738c5ad151f687f0bbacc6f8416"
+  },
+  ".agents/skills/caveman/SKILL.md": {
+    "mtime": 1780779953.2641828,
+    "ast_hash": "d675bd2128851ccb38a88a15fd941986",
+    "semantic_hash": "d675bd2128851ccb38a88a15fd941986"
+  },
+  ".agents/skills/diagnose/SKILL.md": {
+    "mtime": 1780779953.2812233,
+    "ast_hash": "70cd92c9a5219eb8db60629b1bf59949",
+    "semantic_hash": "70cd92c9a5219eb8db60629b1bf59949"
+  },
+  ".agents/skills/frontend-design/LICENSE.txt": {
+    "mtime": 1780782410.3370054,
+    "ast_hash": "2ee41112a44fe7014dce33e26468ba93",
+    "semantic_hash": "2ee41112a44fe7014dce33e26468ba93"
+  },
+  ".agents/skills/frontend-design/SKILL.md": {
+    "mtime": 1780782410.337109,
+    "ast_hash": "06a0520e81f698334258c73ff0de533b",
+    "semantic_hash": "06a0520e81f698334258c73ff0de533b"
+  },
+  ".agents/skills/grill-me/SKILL.md": {
+    "mtime": 1780779953.290425,
+    "ast_hash": "8cb45c74133150e6a00f18b2059aae8c",
+    "semantic_hash": "8cb45c74133150e6a00f18b2059aae8c"
+  },
+  ".agents/skills/grill-with-docs/ADR-FORMAT.md": {
+    "mtime": 1780779953.305063,
+    "ast_hash": "bb327bab674f400796f64b6e2ef5850c",
+    "semantic_hash": "bb327bab674f400796f64b6e2ef5850c"
+  },
+  ".agents/skills/grill-with-docs/CONTEXT-FORMAT.md": {
+    "mtime": 1780779953.305103,
+    "ast_hash": "c2f41ffc931955b2b8d01322273d75fa",
+    "semantic_hash": "c2f41ffc931955b2b8d01322273d75fa"
+  },
+  ".agents/skills/grill-with-docs/SKILL.md": {
+    "mtime": 1780779953.305097,
+    "ast_hash": "8bf29044d7890561fe964b884498ff9e",
+    "semantic_hash": "8bf29044d7890561fe964b884498ff9e"
+  },
+  ".agents/skills/handoff/SKILL.md": {
+    "mtime": 1780779953.3136966,
+    "ast_hash": "df46cb7daa718f1113e3b150dfe22026",
+    "semantic_hash": "df46cb7daa718f1113e3b150dfe22026"
+  },
+  ".agents/skills/improve-codebase-architecture/DEEPENING.md": {
+    "mtime": 1780779953.3561358,
+    "ast_hash": "ebdd48f7e3b0afeb8085d797df543e1a",
+    "semantic_hash": "ebdd48f7e3b0afeb8085d797df543e1a"
+  },
+  ".agents/skills/improve-codebase-architecture/HTML-REPORT.md": {
+    "mtime": 1780779953.3561792,
+    "ast_hash": "1857b55ee9eb301b094922f32d2f73d7",
+    "semantic_hash": "1857b55ee9eb301b094922f32d2f73d7"
+  },
+  ".agents/skills/improve-codebase-architecture/INTERFACE-DESIGN.md": {
+    "mtime": 1780779953.3561423,
+    "ast_hash": "aee2c0695396f8c6432ba5bfe547f195",
+    "semantic_hash": "aee2c0695396f8c6432ba5bfe547f195"
+  },
+  ".agents/skills/improve-codebase-architecture/LANGUAGE.md": {
+    "mtime": 1780779953.356225,
+    "ast_hash": "680627d828b489f96b92d4a2d7fa3bb6",
+    "semantic_hash": "680627d828b489f96b92d4a2d7fa3bb6"
+  },
+  ".agents/skills/improve-codebase-architecture/SKILL.md": {
+    "mtime": 1780779953.3563917,
+    "ast_hash": "b49bc843f32d06bbba85b4ac4b606aa5",
+    "semantic_hash": "b49bc843f32d06bbba85b4ac4b606aa5"
+  },
+  ".agents/skills/prototype/LOGIC.md": {
+    "mtime": 1780779953.3742943,
+    "ast_hash": "d57721452aacaa04caacd0bc7c5c2f49",
+    "semantic_hash": "d57721452aacaa04caacd0bc7c5c2f49"
+  },
+  ".agents/skills/prototype/SKILL.md": {
+    "mtime": 1780779953.374308,
+    "ast_hash": "cff567de82e277cfd0e3b9e12b67cd2c",
+    "semantic_hash": "cff567de82e277cfd0e3b9e12b67cd2c"
+  },
+  ".agents/skills/prototype/UI.md": {
+    "mtime": 1780779953.3745062,
+    "ast_hash": "c1eaad6437c90d5660b2ffc9ff91ffb4",
+    "semantic_hash": "c1eaad6437c90d5660b2ffc9ff91ffb4"
+  },
+  ".agents/skills/setup-matt-pocock-skills/SKILL.md": {
+    "mtime": 1780779953.3960793,
+    "ast_hash": "a9e22edd638f1b2bd5b3e2934eb209c3",
+    "semantic_hash": "a9e22edd638f1b2bd5b3e2934eb209c3"
+  },
+  ".agents/skills/setup-matt-pocock-skills/domain.md": {
+    "mtime": 1780779953.3960984,
+    "ast_hash": "477d9959972912279da5677825ef61c3",
+    "semantic_hash": "477d9959972912279da5677825ef61c3"
+  },
+  ".agents/skills/setup-matt-pocock-skills/issue-tracker-github.md": {
+    "mtime": 1780779953.3961127,
+    "ast_hash": "b3268117bb0bb6b731632d35d6a1369a",
+    "semantic_hash": "b3268117bb0bb6b731632d35d6a1369a"
+  },
+  ".agents/skills/setup-matt-pocock-skills/issue-tracker-gitlab.md": {
+    "mtime": 1780779953.396139,
+    "ast_hash": "e91b1122d99f423b5375142a14b68f76",
+    "semantic_hash": "e91b1122d99f423b5375142a14b68f76"
+  },
+  ".agents/skills/setup-matt-pocock-skills/issue-tracker-local.md": {
+    "mtime": 1780779953.3962924,
+    "ast_hash": "0f479992c0a4fd62a0d1be807f31e132",
+    "semantic_hash": "0f479992c0a4fd62a0d1be807f31e132"
+  },
+  ".agents/skills/setup-matt-pocock-skills/triage-labels.md": {
+    "mtime": 1780779953.3963134,
+    "ast_hash": "22add54cb98451c55b20e6b7992d4a85",
+    "semantic_hash": "22add54cb98451c55b20e6b7992d4a85"
+  },
+  ".agents/skills/tdd/SKILL.md": {
+    "mtime": 1780779953.4174008,
+    "ast_hash": "7ca080c0a0b0986e031fe6a47771d57e",
+    "semantic_hash": "7ca080c0a0b0986e031fe6a47771d57e"
+  },
+  ".agents/skills/tdd/deep-modules.md": {
+    "mtime": 1780779953.4175298,
+    "ast_hash": "fee2c44ab025f43e10ed717bb42cc9c2",
+    "semantic_hash": "fee2c44ab025f43e10ed717bb42cc9c2"
+  },
+  ".agents/skills/tdd/interface-design.md": {
+    "mtime": 1780779953.4175296,
+    "ast_hash": "fc309d957e5735a1ac3d27023842fa1b",
+    "semantic_hash": "fc309d957e5735a1ac3d27023842fa1b"
+  },
+  ".agents/skills/tdd/mocking.md": {
+    "mtime": 1780779953.4175436,
+    "ast_hash": "c5505e8da8f516c7dacebd01c58a4c2c",
+    "semantic_hash": "c5505e8da8f516c7dacebd01c58a4c2c"
+  },
+  ".agents/skills/tdd/refactoring.md": {
+    "mtime": 1780779953.4177136,
+    "ast_hash": "ecbf516d99a591169adce39a8a933f2e",
+    "semantic_hash": "ecbf516d99a591169adce39a8a933f2e"
+  },
+  ".agents/skills/tdd/tests.md": {
+    "mtime": 1780779953.4176106,
+    "ast_hash": "253c991bba867959c0146c72b93a6f6f",
+    "semantic_hash": "253c991bba867959c0146c72b93a6f6f"
+  },
+  ".agents/skills/to-issues/SKILL.md": {
+    "mtime": 1780779953.426236,
+    "ast_hash": "a26ffd48dbf2d0ad29f65369b7dda42e",
+    "semantic_hash": "a26ffd48dbf2d0ad29f65369b7dda42e"
+  },
+  ".agents/skills/to-prd/SKILL.md": {
+    "mtime": 1780779953.4350345,
+    "ast_hash": "ba20c762eb7d815411745c0102e487d6",
+    "semantic_hash": "ba20c762eb7d815411745c0102e487d6"
+  },
+  ".agents/skills/triage/AGENT-BRIEF.md": {
+    "mtime": 1780779953.4489806,
+    "ast_hash": "7f815fa62b523f97710dde414f98e70b",
+    "semantic_hash": "7f815fa62b523f97710dde414f98e70b"
+  },
+  ".agents/skills/triage/OUT-OF-SCOPE.md": {
+    "mtime": 1780779953.4488847,
+    "ast_hash": "d3fcb04f7f250f2d07ce4ccbc3a26c7d",
+    "semantic_hash": "d3fcb04f7f250f2d07ce4ccbc3a26c7d"
+  },
+  ".agents/skills/triage/SKILL.md": {
+    "mtime": 1780779953.448926,
+    "ast_hash": "dafdaa928b34a5c317fd190591c89a65",
+    "semantic_hash": "dafdaa928b34a5c317fd190591c89a65"
+  },
+  ".agents/skills/write-a-skill/SKILL.md": {
+    "mtime": 1780779953.4575438,
+    "ast_hash": "492ef034b4fc9e497cc69b8fed78a742",
+    "semantic_hash": "492ef034b4fc9e497cc69b8fed78a742"
+  },
+  ".agents/skills/zoom-out/SKILL.md": {
+    "mtime": 1780779953.4665425,
+    "ast_hash": "204f114b01386f4a0a8e6c7784266369",
+    "semantic_hash": "204f114b01386f4a0a8e6c7784266369"
+  },
+  "CLAUDE.md": {
+    "mtime": 1785617261.0160382,
+    "ast_hash": "f836c30d96c6ebd6ad0610610c80f1bf",
+    "semantic_hash": ""
+  },
+  "CONTEXT.md": {
+    "mtime": 1780816220.0007086,
+    "ast_hash": "0b992115529b646f293db81d533c6b9f",
+    "semantic_hash": "0b992115529b646f293db81d533c6b9f"
+  },
+  "README.md": {
+    "mtime": 1780780144.103933,
+    "ast_hash": "f6e3faf55d738cf2affe1b44195f27cf",
+    "semantic_hash": "f6e3faf55d738cf2affe1b44195f27cf"
+  },
+  "docs/adr/0001-ai-assistants-via-n8n.md": {
+    "mtime": 1780815577.8186872,
+    "ast_hash": "7b295d8d91eff1873ff7f48128a8ad6d",
+    "semantic_hash": "7b295d8d91eff1873ff7f48128a8ad6d"
+  },
+  "docs/adr/0001-expo-to-vite-pwa.md": {
+    "mtime": 1780780985.22641,
+    "ast_hash": "88dc0dbb9d85a630d3abbea3be7f6e82",
+    "semantic_hash": "88dc0dbb9d85a630d3abbea3be7f6e82"
+  },
+  "docs/adr/0002-scan-workflow-via-n8n.md": {
+    "mtime": 1780816032.2669065,
+    "ast_hash": "c677d804ead2e656b760073678eb6cb3",
+    "semantic_hash": "c677d804ead2e656b760073678eb6cb3"
+  },
+  "docs/agents/domain.md": {
+    "mtime": 1780780309.9408402,
+    "ast_hash": "477d9959972912279da5677825ef61c3",
+    "semantic_hash": "477d9959972912279da5677825ef61c3"
+  },
+  "docs/agents/issue-tracker.md": {
+    "mtime": 1780780302.7410092,
+    "ast_hash": "b3268117bb0bb6b731632d35d6a1369a",
+    "semantic_hash": "b3268117bb0bb6b731632d35d6a1369a"
+  },
+  "docs/agents/triage-labels.md": {
+    "mtime": 1780780305.2257528,
+    "ast_hash": "22add54cb98451c55b20e6b7992d4a85",
+    "semantic_hash": "22add54cb98451c55b20e6b7992d4a85"
+  },
+  "docs/handoff-2026-06-10.md": {
+    "mtime": 1781112608.3159885,
+    "ast_hash": "6c41cdaf76db218f89e7a81827c1dde2",
+    "semantic_hash": "6c41cdaf76db218f89e7a81827c1dde2"
+  },
+  "docs/handoff-2026-06-11.md": {
+    "mtime": 1781205529.8830914,
+    "ast_hash": "7593385a1d5035fa097f4a2c5a7c8a1a",
+    "semantic_hash": "7593385a1d5035fa097f4a2c5a7c8a1a"
+  },
+  "docs/handoff-2026-06-12.md": {
+    "mtime": 1781299656.0209696,
+    "ast_hash": "27f398eba4db61121d7aa6ca9129f2e4",
+    "semantic_hash": "27f398eba4db61121d7aa6ca9129f2e4"
+  },
+  "docs/handoff-2026-06-13.md": {
+    "mtime": 1781383213.1183655,
+    "ast_hash": "35782f76fb8ab0e6e9d91e462110fa42",
+    "semantic_hash": "35782f76fb8ab0e6e9d91e462110fa42"
+  },
+  "docs/handoff-2026-06-18.md": {
+    "mtime": 1781819430.5158658,
+    "ast_hash": "5a5d695b6aafdb870727066765c28103",
+    "semantic_hash": "5a5d695b6aafdb870727066765c28103"
+  },
+  "index.html": {
+    "mtime": 1780853812.427907,
+    "ast_hash": "24b38991200e09234fcfef4096d4daff",
+    "semantic_hash": "24b38991200e09234fcfef4096d4daff"
+  },
+  "public/apple-touch-icon.png": {
+    "mtime": 1781388778.9007504,
+    "ast_hash": "537df0bf7b5c5ea52bd33daa1c42f6c8",
+    "semantic_hash": "537df0bf7b5c5ea52bd33daa1c42f6c8"
+  },
+  "public/bodega-bg.png": {
+    "mtime": 1781029826.6853638,
+    "ast_hash": "c9065ef0cb5e30507770d7592bc3e1d7",
+    "semantic_hash": "c9065ef0cb5e30507770d7592bc3e1d7"
+  },
+  "public/favicon.svg": {
+    "mtime": 1781388759.0308874,
+    "ast_hash": "cc68702d27d5ccb59404e59bafd85dd4",
+    "semantic_hash": "cc68702d27d5ccb59404e59bafd85dd4"
+  },
+  "public/pwa-192x192.png": {
+    "mtime": 1781388778.893533,
+    "ast_hash": "981359e0a214163089ec9268fc46a8dc",
+    "semantic_hash": "981359e0a214163089ec9268fc46a8dc"
+  },
+  "public/pwa-512x512.png": {
+    "mtime": 1781388778.8995883,
+    "ast_hash": "8fa3b91e474080950a53f6a7a02508b0",
+    "semantic_hash": "8fa3b91e474080950a53f6a7a02508b0"
+  },
+  "src/assets/hero.png": {
+    "mtime": 1780780144.1070042,
+    "ast_hash": "aead493361b27e7510691c5d7072dfc1",
+    "semantic_hash": "aead493361b27e7510691c5d7072dfc1"
+  },
+  "src/assets/react.svg": {
+    "mtime": 1780780144.107673,
+    "ast_hash": "f0402b67b6ce880f65666bb49e841696",
+    "semantic_hash": "f0402b67b6ce880f65666bb49e841696"
+  },
+  "src/assets/vite.svg": {
+    "mtime": 1780780144.1074073,
+    "ast_hash": "9960a24288958394ac50e57ff638b036",
+    "semantic_hash": "9960a24288958394ac50e57ff638b036"
+  },
+  "src/components/wine/ConsumoQuickForm.tsx": {
+    "mtime": 1782241139.199702,
+    "ast_hash": "26db79664e68745cda939150cae03f5e",
+    "semantic_hash": ""
+  },
+  "docs/adr/0003-wine-uid-como-identificador-canonico.md": {
+    "mtime": 1782170035.5498745,
+    "ast_hash": "5ae17d57ce6ef9cb01b0908e85aa129c",
+    "semantic_hash": ""
+  },
+  "docs/adr/0004-gpt-solo-si-vino-no-existe.md": {
+    "mtime": 1782170058.1860073,
+    "ast_hash": "6534a69f1cb026a48a2ca4684adbc426",
+    "semantic_hash": ""
+  },
+  "docs/adr/0005-qr-primera-estrategia-identificacion.md": {
+    "mtime": 1782170110.7157376,
+    "ast_hash": "4710acdccd33503220615f83f0bb5384",
+    "semantic_hash": ""
+  },
+  "docs/architecture.md": {
+    "mtime": 1782169514.440873,
+    "ast_hash": "d06d48f2c1d5057b64398b16636a26f7",
+    "semantic_hash": ""
+  },
+  "docs/backend-n8n.md": {
+    "mtime": 1782169589.9820552,
+    "ast_hash": "4cd1d47a76ecf8a6f3f0d6baa05ea8c8",
+    "semantic_hash": ""
+  },
+  "docs/database.md": {
+    "mtime": 1782169626.0413287,
+    "ast_hash": "a48348f6c78aa690f966b3280042c6b5",
+    "semantic_hash": ""
+  },
+  "docs/frontend.md": {
+    "mtime": 1782169557.596742,
+    "ast_hash": "6f7d300cbe888b10a69e88e9b7330923",
+    "semantic_hash": ""
+  },
+  "docs/handoff-2026-06-23.md": {
+    "mtime": 1782242107.2504604,
+    "ast_hash": "ed651b9782c343f0ac3f304321d160bf",
+    "semantic_hash": ""
+  },
+  "docs/roadmap.md": {
+    "mtime": 1785602090.204495,
+    "ast_hash": "82dcf3dddb02dec4136015be9cba9779",
+    "semantic_hash": ""
+  },
+  "docs/scan-flow.md": {
+    "mtime": 1782169733.0606472,
+    "ast_hash": "a5f75fc91fb6c9ee092041c9aebbdc1f",
+    "semantic_hash": ""
+  },
+  "docs/storage.md": {
+    "mtime": 1782169688.32131,
+    "ast_hash": "f52d84227389b522d9d23e4b489c5e0d",
+    "semantic_hash": ""
+  },
+  "docs/supabase.md": {
+    "mtime": 1782169653.604036,
+    "ast_hash": "c2fc9dde5bf083d857040fefe23c6108",
+    "semantic_hash": ""
+  },
+  "src/components/ui/CameraView.tsx": {
+    "mtime": 1783197060.9578338,
+    "ast_hash": "5be9c7e428f073d10aa8cc20abf1fb52",
+    "semantic_hash": ""
+  },
+  "src/lib/captureSource.ts": {
+    "mtime": 1782840788.9901466,
+    "ast_hash": "a54a1d16203b90ce4d908834a6b0d974",
+    "semantic_hash": ""
+  },
+  "docs/qa/V1.3.1a-camera-validation.md": {
+    "mtime": 1782323828.4823852,
+    "ast_hash": "37bc02789e6df7dfda4e1c9442521a82",
+    "semantic_hash": ""
+  },
+  "docs/handoff-2026-06-24.md": {
+    "mtime": 1782326472.5659537,
+    "ast_hash": "01b8ab5944d62917ee01760f05651194",
+    "semantic_hash": ""
+  },
+  "e2e/auth.spec.ts": {
+    "mtime": 1782337160.7130866,
+    "ast_hash": "1d922eb81311d2e553a8c13b6a922142",
+    "semantic_hash": ""
+  },
+  "e2e/bodega.spec.ts": {
+    "mtime": 1782337441.5662544,
+    "ast_hash": "e51feea56c397b202586ef4b9fec00c1",
+    "semantic_hash": ""
+  },
+  "e2e/helpers.ts": {
+    "mtime": 1782337107.8526251,
+    "ast_hash": "39d1f793dd9fc577e8cc3477731ffd65",
+    "semantic_hash": ""
+  },
+  "e2e/navigation.spec.ts": {
+    "mtime": 1782337408.3457768,
+    "ast_hash": "7719372897b5737d56e27087384db890",
+    "semantic_hash": ""
+  },
+  "playwright.config.ts": {
+    "mtime": 1782337387.6093194,
+    "ast_hash": "7e677e7a9f2fab82df8ed95eb90b1759",
+    "semantic_hash": ""
+  },
+  "playwright-report/index.html": {
+    "mtime": 1782338361.5280004,
+    "ast_hash": "3fd7354dfb2274453c7069e2e3b25ea6",
+    "semantic_hash": ""
+  },
+  "docs/handoff-2026-06-25.md": {
+    "mtime": 1782422431.7037177,
+    "ast_hash": "b01cebd9a99c4a26caa56bb99218f281",
+    "semantic_hash": ""
+  },
+  "docs/handoff-2026-07-04.md": {
+    "mtime": 1783204424.0854602,
+    "ast_hash": "f2a082e1a4f6f3869d1163bccc970f8a",
+    "semantic_hash": ""
+  },
+  "docs/handoff-fase6-completa.md": {
+    "mtime": 1783291793.6090255,
+    "ast_hash": "c4f61693d3bf896402b2f0a32f15c6c1",
+    "semantic_hash": ""
+  },
+  "docs/CHANGELOG.md": {
+    "mtime": 1783526628.2507908,
+    "ast_hash": "370fc630f2fbdaa087cf67f4603d7475",
+    "semantic_hash": ""
+  },
+  "docs/decisions/README.md": {
+    "mtime": 1783526585.0466194,
+    "ast_hash": "fc95aaad3996522d61fcba5d2d3b745a",
+    "semantic_hash": ""
+  },
+  "docs/roadmap/fase-01-captura-ocr.md": {
+    "mtime": 1783526447.7791657,
+    "ast_hash": "2f0f89e031d575e3cf6fe1db5c0d4a39",
+    "semantic_hash": ""
+  },
+  "docs/roadmap/fase-02-identificacion.md": {
+    "mtime": 1783526447.7816582,
+    "ast_hash": "92ecfa930cf953aee0d72d73296164c1",
+    "semantic_hash": ""
+  },
+  "docs/roadmap/fase-03-enriquecimiento.md": {
+    "mtime": 1783526478.6304464,
+    "ast_hash": "06796df02542b57196c5685498c40fd9",
+    "semantic_hash": ""
+  },
+  "docs/roadmap/fase-04-wineform.md": {
+    "mtime": 1783526478.6331654,
+    "ast_hash": "d2eb7d9638c2a64a373080fe27cd084b",
+    "semantic_hash": ""
+  },
+  "docs/roadmap/fase-05-ficha-vino.md": {
+    "mtime": 1783526507.2451293,
+    "ast_hash": "40b428c5dfde817a5e57a07a921f4d0d",
+    "semantic_hash": ""
+  },
+  "docs/roadmap/fase-06-schema-coleccion.md": {
+    "mtime": 1783526507.247765,
+    "ast_hash": "4e90ed6ee531aa23e24829548f5feae0",
+    "semantic_hash": ""
+  },
+  "docs/roadmap/fase-07-gestion-bodega.md": {
+    "mtime": 1783526538.5622823,
+    "ast_hash": "6409cb18a406d4ce873bebae11388454",
+    "semantic_hash": ""
+  },
+  "docs/roadmap/fase-08-catas.md": {
+    "mtime": 1783626423.1142557,
+    "ast_hash": "2e201afa27bd402d10201f7198166af4",
+    "semantic_hash": ""
+  },
+  "docs/roadmap/fase-09-estadisticas.md": {
+    "mtime": 1783526573.0193648,
+    "ast_hash": "da8afd8b3f0aafa282d922dd12dd0358",
+    "semantic_hash": ""
+  },
+  "docs/roadmap/fase-10-sommelier-ia.md": {
+    "mtime": 1783526573.0215912,
+    "ast_hash": "9be90c4749b99f555fff2631a379bd1b",
+    "semantic_hash": ""
+  },
+  "docs/roadmap/fase-11-optimizacion.md": {
+    "mtime": 1783526573.0236642,
+    "ast_hash": "9bd5bbf3cb8ddb66942eafa6aae11666",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/plans/2026-07-09-bodega-fase7.md": {
+    "mtime": 1783611194.4109662,
+    "ast_hash": "bfcf312c7be5af4df056b9d9c29b91b0",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-07-09-bodega-fase7-design.md": {
+    "mtime": 1783610040.113368,
+    "ast_hash": "5dfba6467d8bbf9d5501f11e13cdf8ec",
+    "semantic_hash": ""
+  },
+  "docs/handoff-fase7-implementacion.md": {
+    "mtime": 1783611761.371569,
+    "ast_hash": "62d9c79950dbba24e4f87e041be4a28b",
+    "semantic_hash": ""
+  },
+  "src/components/wine/WineCardGrid.tsx": {
+    "mtime": 1783612712.7783642,
+    "ast_hash": "7512adbf613cb60786e5e2cfc5d677dd",
+    "semantic_hash": ""
+  },
+  "src/components/wine/WineCardList.tsx": {
+    "mtime": 1783612716.652091,
+    "ast_hash": "7d06e9f84274c362952102e856dff7f1",
+    "semantic_hash": ""
+  },
+  "src/hooks/useBodegaState.ts": {
+    "mtime": 1783612678.3744988,
+    "ast_hash": "89f0a094db54128a859b50a2094c03fa",
+    "semantic_hash": ""
+  },
+  "src/lib/bodegaHelpers.ts": {
+    "mtime": 1783612423.136077,
+    "ast_hash": "cd68b788fcb27dfa074d2d1a92bd1163",
+    "semantic_hash": ""
+  },
+  "CHANGELOG.md": {
+    "mtime": 1783626408.9609635,
+    "ast_hash": "b380c6ea0c463996b86e5fa9f1f0df46",
+    "semantic_hash": ""
+  },
+  "src/hooks/useCatasState.ts": {
+    "mtime": 1783613797.3224235,
+    "ast_hash": "15af9e9cc4a20265bddd5b88a8d52555",
+    "semantic_hash": ""
+  },
+  "src/lib/catasHelpers.ts": {
+    "mtime": 1783614447.6564279,
+    "ast_hash": "ba62a1ac710365e3caae129a2ea1c84a",
+    "semantic_hash": ""
+  },
+  "src/components/wine/TastingEditForm.tsx": {
+    "mtime": 1783614404.7682712,
+    "ast_hash": "73a02b8c66ed7b5f7729ad85451ff5c4",
+    "semantic_hash": ""
+  },
+  "docs/handoff-fase8-completa.md": {
+    "mtime": 1783626456.7434306,
+    "ast_hash": "567c61d67e6853f68807390315aea57c",
+    "semantic_hash": ""
+  },
+  "src/hooks/useProfile.ts": {
+    "mtime": 1784327328.466349,
+    "ast_hash": "8cc34b433465533011698ac9e9a8427c",
+    "semantic_hash": ""
+  },
+  "src/hooks/useSettings.ts": {
+    "mtime": 1784327334.983841,
+    "ast_hash": "27688a759f894fb72d5b8e320833b206",
+    "semantic_hash": ""
+  },
+  "src/pages/Ajustes.tsx": {
+    "mtime": 1784358717.3677392,
+    "ast_hash": "6def10ce85f5574af92aea42cfd311ed",
+    "semantic_hash": ""
+  },
+  "src/pages/ForgotPassword.tsx": {
+    "mtime": 1784327369.53335,
+    "ast_hash": "f54f8336dc1b5e3ef45da559dbbf64b4",
+    "semantic_hash": ""
+  },
+  "src/pages/Perfil.tsx": {
+    "mtime": 1784327420.345204,
+    "ast_hash": "b642c59d84ece37658e72fb215bf8eae",
+    "semantic_hash": ""
+  },
+  "src/pages/ResetPassword.tsx": {
+    "mtime": 1784327380.0309138,
+    "ast_hash": "88d958a345c5bd91770dd6a8def63cc1",
+    "semantic_hash": ""
+  },
+  "supabase/.temp/linked-project.json": {
+    "mtime": 1784327110.4305296,
+    "ast_hash": "79f4025655e9c133fb67a4aeefba14b6",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20260718000000_baseline.sql": {
+    "mtime": 1784327868.369404,
+    "ast_hash": "3496e6240190b528ccc60e30c43ebe68",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20260718000001_wines_tastings_rls_hardening.sql": {
+    "mtime": 1784327914.3852327,
+    "ast_hash": "69a1ba1b3772fd1b88eb365e7f42a8c3",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20260718000002_profiles_user_settings.sql": {
+    "mtime": 1784326710.3866832,
+    "ast_hash": "832c08d9ba7331b45db699f2145b9d6f",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20260718000003_handle_new_user_trigger.sql": {
+    "mtime": 1784326721.431814,
+    "ast_hash": "49d5c5a0e585df1e717a6e86e9665441",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20260718000004_backfill_profiles_settings.sql": {
+    "mtime": 1784326726.5819738,
+    "ast_hash": "5dc33f35a211976846f3c7bf9a736602",
+    "semantic_hash": ""
+  },
+  "docs/auth-architecture.md": {
+    "mtime": 1785602066.421217,
+    "ast_hash": "acd05062346213de92b6c17c97f3c546",
+    "semantic_hash": ""
+  },
+  "docs/gestion-usuarios-cuentas.md": {
+    "mtime": 1785602033.2006347,
+    "ast_hash": "6d84f7813732112e6bc8f4c1e5f8724d",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-07-18-estadisticas-fase9-design.md": {
+    "mtime": 1785613097.2223198,
+    "ast_hash": "c018bfb0de4667b123810e4eec3fe523",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/plans/2026-07-18-estadisticas-fase9-plan.md": {
+    "mtime": 1785613554.4909112,
+    "ast_hash": "3debadd7288a30da1003e4458fb1314b",
+    "semantic_hash": ""
+  },
+  "src/lib/statsHelpers.ts": {
+    "mtime": 1785617069.886571,
+    "ast_hash": "9c12f3c90f65b609f29f68404fbccd96",
+    "semantic_hash": ""
+  }
+}

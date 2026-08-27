@@ -20,8 +20,8 @@
     "semantic_hash": "0355276bc79439afe3c53e3a2470ca1e"
   },
   "package.json": {
-    "mtime": 1782337119.4950821,
-    "ast_hash": "2c8aa146a80c304c4492266f00702cce",
+    "mtime": 1783200739.350938,
+    "ast_hash": "142ae6d3a4facd816fc581e5cfb5be98",
     "semantic_hash": ""
   },
   "skills-lock.json": {
@@ -185,8 +185,8 @@
     "semantic_hash": "9f49e846f6f912bc87a54e522089c5f8"
   },
   "src/lib/n8n.ts": {
-    "mtime": 1782417981.1921835,
-    "ast_hash": "05dd66e5a867a111e28642fcc829005a",
+    "mtime": 1783200750.8611317,
+    "ast_hash": "0ef70a718bec45ddbafa65713baf2069",
     "semantic_hash": ""
   },
   "src/lib/storage.ts": {
@@ -210,9 +210,9 @@
     "semantic_hash": "c79af8064d5be52aae54fafbde00ca22"
   },
   "src/lib/wineIdentifier.ts": {
-    "mtime": 1782167888.8781824,
-    "ast_hash": "02eaa2ac0a4e509f3b02858b920e4d6d",
-    "semantic_hash": "02eaa2ac0a4e509f3b02858b920e4d6d"
+    "mtime": 1783200759.2334247,
+    "ast_hash": "a30bfbd5f2f94ffab713c057cf01a163",
+    "semantic_hash": ""
   },
   "src/main.tsx": {
     "mtime": 1780820183.6563225,
@@ -737,6 +737,11 @@
   "docs/handoff-2026-06-25.md": {
     "mtime": 1782422431.7037177,
     "ast_hash": "b01cebd9a99c4a26caa56bb99218f281",
+    "semantic_hash": ""
+  },
+  "docs/handoff-2026-07-04.md": {
+    "mtime": 1783200289.5052323,
+    "ast_hash": "3f3a3c779b6f903d990ec61b062a9a2c",
     "semantic_hash": ""
   }
 }
