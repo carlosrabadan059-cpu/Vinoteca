@@ -11,6 +11,7 @@ export interface Wine {
   alcohol: string | null
   crianza: string | null
   descripcion: string | null
+  descripcion_fuente_url?: string | null
   url_bodega: string | null
   temp_servicio: string | null
   contiene: string | null
@@ -151,6 +152,9 @@ export interface EnrichResponse {
     temp_servicio?: FieldTrace
     url_bodega?:   FieldTrace
     imagen_url?:   FieldTrace
+    region?:       FieldTrace
+    denominacion?: FieldTrace
+    descripcion?:  FieldTrace
   }
 }
 
