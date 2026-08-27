@@ -106,7 +106,7 @@ export type SourceType =
   | 'other'
 
 export interface FieldTrace {
-  value:           string | string[] | null
+  value:           string | string[] | number | null
   source:          SourceType
   source_url:      string
   source_priority: 1 | 2 | 3 | 4 | 5 | 6
@@ -155,6 +155,7 @@ export interface EnrichResponse {
     region?:       FieldTrace
     denominacion?: FieldTrace
     descripcion?:  FieldTrace
+    precio?:       FieldTrace
   }
 }
 
