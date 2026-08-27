@@ -372,6 +372,7 @@ export default function Scan() {
       temp_servicio:(enriched.temp_servicio?.value as string | undefined) ?? scanResult.temp_servicio ?? undefined,
       url_bodega:   (enriched.url_bodega?.value   as string | undefined) ?? scanResult.url_bodega   ?? undefined,
       descripcion:  (enriched.descripcion?.value  as string | undefined) ?? scanResult.descripcion  ?? undefined,
+      // || (no ??): source_url del trace() de n8n siempre es '' cuando no hay fuente, nunca null/undefined
       descripcion_fuente_url: (enriched.descripcion?.source_url as string | undefined) || undefined,
       precio:       (enriched.precio?.value       as number | undefined) ?? undefined,
     }
