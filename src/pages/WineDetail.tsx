@@ -609,7 +609,7 @@ export default function WineDetail() {
               Información del vino
             </div>
             {wine.descripcion && (
-              <p style={{ fontSize: '0.84rem', color: theme.colors.cream, lineHeight: 1.65, opacity: 0.88, marginBottom: 4 }}>
+              <p style={{ fontSize: '0.84rem', color: theme.colors.cream, lineHeight: 1.65, opacity: 0.88, marginBottom: wine.descripcion_fuente_url ? 4 : wine.url_bodega ? 10 : 0 }}>
                 {wine.descripcion}
               </p>
             )}
