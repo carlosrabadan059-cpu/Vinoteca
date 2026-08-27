@@ -609,9 +609,21 @@ export default function WineDetail() {
               Información del vino
             </div>
             {wine.descripcion && (
-              <p style={{ fontSize: '0.84rem', color: theme.colors.cream, lineHeight: 1.65, opacity: 0.88, marginBottom: wine.url_bodega ? 10 : 0 }}>
+              <p style={{ fontSize: '0.84rem', color: theme.colors.cream, lineHeight: 1.65, opacity: 0.88, marginBottom: 4 }}>
                 {wine.descripcion}
               </p>
+            )}
+            {wine.descripcion && wine.descripcion_fuente_url && (
+              <a
+                href={wine.descripcion_fuente_url}
+                target="_blank" rel="noopener noreferrer"
+                style={{
+                  display: 'block', fontSize: '0.68rem', color: theme.colors.muted,
+                  textDecoration: 'none', marginBottom: wine.url_bodega ? 10 : 0,
+                }}
+              >
+                Fuente: {wine.descripcion_fuente_url.replace(/^https?:\/\//, '').replace(/\/.*$/, '')}
+              </a>
             )}
             {urlDisplay && (
               <a
