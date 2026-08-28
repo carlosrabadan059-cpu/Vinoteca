@@ -15,3 +15,9 @@ que se reconstruya el equivalente vía MCP a partir de este fichero.
   — estado de `Vinoteca – Scan Analizar` (`NMQZ4zhYw3RjTcLp`) justo antes de eliminar
   la rama de lectura de QR (12 nodos: `20 Preparar Trasera` → … → `Merge QR`, más
   `Merge Datos`). Ver `docs/CHANGELOG.md` para el motivo del borrado.
+- [`vinoteca-scan-analizar-2026-08-28-pre-orquestador.json`](vinoteca-scan-analizar-2026-08-28-pre-orquestador.json)
+  — estado de `Vinoteca – Scan Analizar` (`NMQZ4zhYw3RjTcLp`, 18 nodos,
+  `activeVersionId` `116faae3-3a63-40d5-b080-b51378beb5cc`) justo antes de descomponerlo
+  en un orquestador + sub-workflow. Ver
+  `docs/superpowers/specs/2026-08-28-scan-analizar-orquestador-design.md` para el diseño
+  de la descomposición.
