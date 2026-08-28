@@ -19,6 +19,10 @@ El versionado sigue [Semantic Versioning](https://semver.org/). El proyecto perm
 
 - **App caída en producción tras migrar Supabase a self-hosted (2026-08-19)**: `VITE_SUPABASE_URL` en Vercel quedó vacío, y un cambio de red (rebind de Kong a Tailscale) tumbó silenciosamente el dominio público de la API (`supabase-api.rabadanhouse.space`, 502). De paso se encontró y corrigió un bug preexistente en `kong.yml`: los consumers no tenían grupo ACL asignado, así que ninguna API key habría funcionado contra el self-hosted aunque el resto estuviera bien configurado. Ver [`docs/supabase.md`](supabase.md) para el detalle de la infraestructura resultante.
 
+### Removed
+
+- **Rama de lectura de QR en el workflow n8n `Vinoteca – Scan Analizar`** (13 nodos: `20 Preparar Trasera` → `21 Tiene Trasera` → `Convierte Trasera` → `22 Leer QR` → `23 Tiene QR` → `24 Abrir URL QR` → `Preparar Datos QR` → `25 Analizar Datos QR` → `Parsear Datos QR` / `QR Vacio` → `Merge QR` → `Merge Datos`). El escáner de QR ya se había eliminado del cliente en V1.3 (`@zxing/browser` desinstalado — los QR de etiquetas de vino apuntan mayoritariamente al portal AECOC, no a datos útiles) pero la rama equivalente en el backend n8n nunca se limpió: seguía llamando a un microservicio local de decodificación de QR y a un segundo prompt de OpenAI en cada escaneo con foto trasera, sin que el frontend leyera nada de su resultado (`ScanResult` en `src/lib/n8n.ts` nunca declaró `has_qr`/`qr_fuente`/`certificaciones`/`maridaje`, y `Wine.qr_fuente` nunca se rellenaba desde `Scan.tsx`). La foto trasera en sí no se toca — sigue enviándose a GPT Vision como segunda imagen para OCR. Backup del JSON previo en [`docs/n8n-backups/`](n8n-backups/README.md).
+
 ---
 
 ## [0.6.0] — 2026-07-06
