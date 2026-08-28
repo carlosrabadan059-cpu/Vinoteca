@@ -45,7 +45,7 @@ Permitir al usuario fotografiar la etiqueta de un vino y extraer automáticament
 - GPT-4o Vision para OCR (mejor precisión que Tesseract para etiquetas de vino)
 - Base64 sin prefijo `data:image/...` en las peticiones a n8n
 - Compresión JPEG al 85% antes de enviar
-- Sin ZXing / QR: eliminado en V1.3 porque los QR de etiquetas apuntan al portal AECOC, no a datos útiles
+- Sin ZXing / QR: eliminado en V1.3 porque los QR de etiquetas apuntan al portal AECOC, no a datos útiles — ✅ (2026-08-28) la rama equivalente en el workflow n8n `Vinoteca – Scan Analizar` (lectura de QR de la etiqueta trasera) también se eliminó, quedaba huérfana desde entonces; ver `docs/CHANGELOG.md`
 - Orientación 180°: `window.orientation` no funciona en iOS Safari para portrait invertido → solución: botón manual "Girar"
 
 ---
