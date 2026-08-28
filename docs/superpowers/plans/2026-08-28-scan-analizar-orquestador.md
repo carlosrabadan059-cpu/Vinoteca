@@ -171,6 +171,8 @@ Expected: 6 nodos (`Trigger`, `02 Convertir Frontal`, `03 Quitar Fondo`, `04 Mon
 
 ### Task 3: Verificar el sub-workflow en aislamiento
 
+**Nota de ejecución (descubierto al ejecutar este plan):** la herramienta `mcp__n8n-mcp__execute_workflow` no soporta ejecutar directamente un `Execute Workflow Trigger` — solo Schedule/Webhook/Form/Chat ("Trigger node ... is not supported for MCP execution"). No hay forma de probar este sub-workflow en aislamiento real sin alterar temporalmente su trigger. Se optó por saltar la verificación aislada y confiar en la cobertura equivalente de la Task 5 (Caso B, fallback por microservicio caído, ejercita esta misma ruta del sub-workflow con una ejecución real vía el webhook del orquestador). Los Steps 1-4 de abajo quedan como referencia de lo que se intentó.
+
 **Files:** ninguno.
 
 - [ ] **Step 1: Aprender el shape de entrada exacto de este trigger**
