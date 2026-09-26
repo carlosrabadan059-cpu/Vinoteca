@@ -3,6 +3,7 @@ import Modal from '../ui/Modal'
 import Button from '../ui/Button'
 import { theme } from '../../constants/theme'
 import type { Wine } from '../../types'
+import { useStorageUrl } from '../../hooks/useStorageUrl'
 
 interface DuplicateWineDialogProps {
   mode: 'exact' | 'similar' | null
@@ -13,6 +14,7 @@ interface DuplicateWineDialogProps {
 }
 
 function WineRow({ wine }: { wine: Wine }) {
+  const imageUrl = useStorageUrl(wine.imagen_frontal_url)
   return (
     <div
       className="flex items-center gap-3 rounded-xl overflow-hidden"
@@ -22,9 +24,9 @@ function WineRow({ wine }: { wine: Wine }) {
         className="flex-shrink-0 flex items-center justify-center"
         style={{ width: 52, height: 64, background: '#110809' }}
       >
-        {wine.imagen_frontal_url ? (
+        {imageUrl ? (
           <img
-            src={wine.imagen_frontal_url}
+            src={imageUrl}
             alt={wine.nombre}
             style={{ width: '100%', height: '100%', objectFit: 'contain', opacity: 0.9 }}
           />

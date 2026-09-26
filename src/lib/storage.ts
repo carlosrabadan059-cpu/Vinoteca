@@ -36,8 +36,56 @@ function dataUrlToBlob(dataUrl: string): Blob {
 
 const TEN_YEARS_SECONDS = 60 * 60 * 24 * 365 * 10
 
+// ── Resolución de URLs de Storage ────────────────────────────────────────────
+// En la BD se guardan URLs completas (firmadas o públicas) que incluyen el host
+// de Supabase del momento en que se subió la imagen. Tras migrar de Supabase
+// cloud a self-hosted, esas URLs apuntaban a un proyecto que ya no existe y las
+// imágenes desaparecieron. Al renderizar, cualquier URL de Storage de otro host
+// se reescribe contra el Supabase actual (re-firmándola si es firmada), de modo
+// que una futura migración de host no vuelva a romper las imágenes.
+
+const CURRENT_ORIGIN = new URL(import.meta.env.VITE_SUPABASE_URL as string).origin
+const STORAGE_PATH_RE = /\/storage\/v1\/object\/(sign|public)\/([^/]+)\/([^?]+)/
+
+const signedUrlCache = new Map<string, Promise<string | null>>()
+
+function parseForeignStorageUrl(url: string) {
+  let parsed: URL
+  try { parsed = new URL(url) } catch { return null }
+  if (parsed.origin === CURRENT_ORIGIN) return null
+  const match = parsed.pathname.match(STORAGE_PATH_RE)
+  if (!match) return null
+  const [, kind, bucket, path] = match
+  return { kind: kind as 'sign' | 'public', bucket, path: decodeURIComponent(path), search: parsed.search }
+}
+
+/** Versión síncrona: devuelve la URL utilizable si no hace falta re-firmar, o null si sí. */
+export function resolveStorageUrlSync(url: string): string | null {
+  const foreign = parseForeignStorageUrl(url)
+  if (!foreign) return url
+  if (foreign.kind === 'public') {
+    return `${CURRENT_ORIGIN}/storage/v1/object/public/${foreign.bucket}/${foreign.path}${foreign.search}`
+  }
+  return null
+}
+
+export function resolveStorageUrl(url: string): Promise<string | null> {
+  const sync = resolveStorageUrlSync(url)
+  if (sync) return Promise.resolve(sync)
+  const cached = signedUrlCache.get(url)
+  if (cached) return cached
+
+  const { bucket, path } = parseForeignStorageUrl(url)!
+  const promise = supabase.storage
+    .from(bucket)
+    .createSignedUrl(path, TEN_YEARS_SECONDS)
+    .then(({ data }) => data?.signedUrl ?? null)
+  signedUrlCache.set(url, promise)
+  return promise
+}
+
 export async function fetchImageAsDataUrl(url: string): Promise<string> {
-  const res = await fetch(url)
+  const res = await fetch((await resolveStorageUrl(url)) ?? url)
   const blob = await res.blob()
   return new Promise((resolve, reject) => {
     const reader = new FileReader()

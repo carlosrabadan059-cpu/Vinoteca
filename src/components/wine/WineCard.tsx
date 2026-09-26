@@ -1,5 +1,6 @@
 import { theme } from '../../constants/theme'
 import type { Wine } from '../../types'
+import { useStorageUrl } from '../../hooks/useStorageUrl'
 
 interface WineCardProps {
   wine: Wine
@@ -15,6 +16,7 @@ const TYPE_LABELS: Record<string, string> = {
 }
 
 export default function WineCard({ wine, onClick }: WineCardProps) {
+  const imageUrl = useStorageUrl(wine.imagen_frontal_url)
   const location = [wine.region, wine.denominacion].filter(Boolean).join(' · ')
   const typeLabel = wine.tipo ? (TYPE_LABELS[wine.tipo] ?? wine.tipo) : null
 
@@ -32,9 +34,9 @@ export default function WineCard({ wine, onClick }: WineCardProps) {
         className="w-full relative overflow-hidden"
         style={{ height: 180, background: '#110809' }}
       >
-        {wine.imagen_frontal_url ? (
+        {imageUrl ? (
           <img
-            src={wine.imagen_frontal_url}
+            src={imageUrl}
             alt={wine.nombre}
             className="w-full h-full object-contain"
             style={{ opacity: 0.9 }}

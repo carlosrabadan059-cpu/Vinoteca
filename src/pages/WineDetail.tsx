@@ -17,6 +17,7 @@ import { useToastStore } from '../store/toastStore'
 import { useAuthStore } from '../store/authStore'
 import { theme } from '../constants/theme'
 import type { Tasting, Wine } from '../types'
+import { useStorageUrl } from '../hooks/useStorageUrl'
 
 // ── Stars ────────────────────────────────────────────────────────────────────
 
@@ -171,6 +172,7 @@ export default function WineDetail() {
   const { pickFromGallery, compressImage } = useCamera()
 
   const [wine,           setWine]           = useState<Wine | null>(null)
+  const imageUrl = useStorageUrl(wine?.imagen_frontal_url)
   const [loadingWine,    setLoadingWine]    = useState(true)
   const [menuOpen,       setMenuOpen]       = useState(false)
   const [editOpen,       setEditOpen]       = useState(false)
@@ -413,9 +415,9 @@ export default function WineDetail() {
           si no, un overflow:hidden aquí recortaría el menú "⋯" en cuanto tuviera más de 2 opciones. */}
       <div style={{ position: 'relative', height: 238 }}>
         <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', background: '#110809' }}>
-          {wine.imagen_frontal_url ? (
+          {imageUrl ? (
             <img
-              src={wine.imagen_frontal_url}
+              src={imageUrl}
               alt={wine.nombre}
               style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 40%', opacity: 0.85 }}
             />

@@ -1,5 +1,6 @@
 import theme from '../../constants/theme'
 import type { Wine } from '../../types'
+import { useStorageUrl } from '../../hooks/useStorageUrl'
 
 interface Props {
   wine: Wine
@@ -8,6 +9,7 @@ interface Props {
 }
 
 export default function WineCardList({ wine, index, onClick }: Props) {
+  const imageUrl = useStorageUrl(wine.imagen_frontal_url)
   const t = theme
   const stockNum = wine.num_botellas ?? 0
   const stockLow = stockNum <= 2 && stockNum > 0
@@ -41,9 +43,9 @@ export default function WineCardList({ wine, index, onClick }: Props) {
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         border: `1px solid ${t.colors.border}`,
       }}>
-        {wine.imagen_frontal_url ? (
+        {imageUrl ? (
           <img
-            src={wine.imagen_frontal_url}
+            src={imageUrl}
             alt={wine.nombre}
             decoding="async"
             style={{ width: '100%', height: '100%', objectFit: 'contain', filter: t.imageFilters.wineLabel }}

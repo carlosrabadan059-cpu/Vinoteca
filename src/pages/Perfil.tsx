@@ -2,6 +2,7 @@ import { useState, useEffect, type FormEvent, type ChangeEvent } from 'react'
 import Layout from '../components/ui/Layout'
 import Spinner from '../components/ui/Spinner'
 import { useProfile } from '../hooks/useProfile'
+import { useStorageUrl } from '../hooks/useStorageUrl'
 import { useAuthStore } from '../store/authStore'
 import { supabase } from '../lib/supabase'
 import { theme } from '../constants/theme'
@@ -15,6 +16,7 @@ const inputStyle = {
 export default function Perfil() {
   const { user } = useAuthStore()
   const { profile, loading, updateProfile } = useProfile()
+  const avatarUrl = useStorageUrl(profile?.avatar_url)
   const [displayName, setDisplayName] = useState('')
   const [country, setCountry]         = useState('')
   const [locale, setLocale]           = useState('es')
@@ -84,8 +86,8 @@ export default function Perfil() {
                 className="rounded-full overflow-hidden flex items-center justify-center"
                 style={{ width: 88, height: 88, background: theme.colors.surface2, border: `1px solid ${theme.colors.border}` }}
               >
-                {profile.avatar_url ? (
-                  <img src={profile.avatar_url} alt="" className="w-full h-full object-cover" />
+                {avatarUrl ? (
+                  <img src={avatarUrl} alt="" className="w-full h-full object-cover" />
                 ) : (
                   <span style={{ color: theme.colors.muted, fontSize: '1.5rem' }}>
                     {(profile.display_name || user?.email || '?')[0]?.toUpperCase()}

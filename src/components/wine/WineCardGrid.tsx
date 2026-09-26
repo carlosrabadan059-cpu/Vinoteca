@@ -1,5 +1,6 @@
 import theme from '../../constants/theme'
 import type { Wine } from '../../types'
+import { useStorageUrl } from '../../hooks/useStorageUrl'
 
 interface Props {
   wine: Wine
@@ -8,6 +9,7 @@ interface Props {
 }
 
 export default function WineCardGrid({ wine, index, onClick }: Props) {
+  const imageUrl = useStorageUrl(wine.imagen_frontal_url)
   const t = theme
   const stockNum = wine.num_botellas ?? 0
   const stockState = stockNum === 0 ? 'out' : stockNum <= 2 ? 'low' : 'ok'
@@ -32,9 +34,9 @@ export default function WineCardGrid({ wine, index, onClick }: Props) {
     >
       {/* Zona imagen */}
       <div style={{ position: 'relative', height: t.sizes.cardGridImageHeight, background: t.colors.imageBg, overflow: 'hidden' }}>
-        {wine.imagen_frontal_url ? (
+        {imageUrl ? (
           <img
-            src={wine.imagen_frontal_url}
+            src={imageUrl}
             alt={wine.nombre}
             decoding="async"
             style={{ width: '100%', height: '100%', objectFit: 'contain', filter: t.imageFilters.wineLabel }}
