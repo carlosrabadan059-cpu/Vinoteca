@@ -94,8 +94,8 @@ La carga inicial sigue el patrón: IDB local primero (respuesta inmediata) → S
 
 | Patrón de URL | Estrategia | Cache | TTL |
 |---------------|-----------|-------|-----|
-| `*.supabase.co/rest/v1/*` | NetworkFirst | `supabase-api` | 24h, max 100 entradas |
-| `*.supabase.co/storage/v1/*` | CacheFirst | `supabase-storage` | 7 días, max 200 entradas |
+| `<VITE_SUPABASE_URL>/rest/v1/*` | NetworkFirst | `supabase-api` | 24h, max 100 entradas |
+| `<VITE_SUPABASE_URL>/storage/v1/*` | CacheFirst | `supabase-storage` | 7 días, max 200 entradas |
 | Assets estáticos (js/css/html/png/svg/woff2) | Precache | — | Controlado por SW |
 
 **Manifest:**

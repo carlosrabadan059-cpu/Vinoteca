@@ -139,8 +139,8 @@ Configurado en `vite.config.ts`:
 
 | Recurso | Estrategia | Cache name | TTL / Límite |
 |---------|-----------|------------|-------------|
-| `*.supabase.co/rest/v1/*` | **NetworkFirst** | `supabase-api` | timeout 5s, 24h, 100 entradas |
-| `*.supabase.co/storage/v1/*` | **CacheFirst** | `supabase-storage` | 7 días, 200 entradas |
+| `<VITE_SUPABASE_URL>/rest/v1/*` | **NetworkFirst** | `supabase-api` | timeout 5s, 24h, 100 entradas |
+| `<VITE_SUPABASE_URL>/storage/v1/*` | **CacheFirst** | `supabase-storage` | 7 días, 200 entradas |
 | Assets estáticos (js/css/html/png/svg/woff2) | **Precache** | (SW gestionado) | — |
 
 **NetworkFirst para la API:** intenta la red primero; si no responde en 5s o hay error, sirve desde caché. Permite lecturas offline de datos recientes.

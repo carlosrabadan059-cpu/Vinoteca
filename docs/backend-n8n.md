@@ -228,7 +228,7 @@ Se trunca a los primeros 50 vinos de la bodega (`wines.slice(0, 50)`).
 ### Variables de entorno en Portainer
 
 ```
-VINOTECA_SUPABASE_URL=https://<proyecto>.supabase.co
+VINOTECA_SUPABASE_URL=https://supabase-api.rabadanhouse.space
 VINOTECA_SUPABASE_SERVICE_KEY=<service_role_key>
 ```
 

@@ -11,7 +11,7 @@ VITE_SUPABASE_ANON_KEY=<publishable key o anon key legacy>
 
 Ambas variables están prefijadas con `VITE_` para que Vite las inyecte en el bundle en tiempo de compilación vía `import.meta.env`. `VITE_SUPABASE_URL` en **producción (Vercel)** debe ser `https://supabase-api.rabadanhouse.space` — no confundir con `https://supabase.rabadanhouse.space`, que es el hostname de **Studio** (la UI de administración), no de la API. Usar el de Studio como `VITE_SUPABASE_URL` deja la app sin poder autenticar ni consultar datos.
 
-En **desarrollo local** (`.env`) el proyecto sigue apuntando a Supabase Cloud (`xagsblgwvfitqkzjtwyc.supabase.co`) — no se ha migrado local todavía; solo producción usa el self-hosted.
+En **desarrollo local** (`.env`) también se usa el self-hosted (migrado el 2026-09-26). El proyecto Supabase Cloud antiguo (`xagsblgwvfitqkzjtwyc`) ya no existe — ninguna configuración debe apuntar a `*.supabase.co`.
 
 ## Rutas Cloudflare Tunnel (host `debian`)
 
@@ -115,7 +115,7 @@ uploadWineImage(dataUrl, userId, wineId, side: 'frontal' | 'trasera'): Promise<s
 **Estrategia Workbox para Storage:**
 
 ```
-*.supabase.co/storage/v1/*  →  CacheFirst
+<VITE_SUPABASE_URL>/storage/v1/*  →  CacheFirst
   cacheName: 'supabase-storage'
   maxEntries: 200
   maxAgeSeconds: 604800  (7 días)
