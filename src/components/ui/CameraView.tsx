@@ -1,4 +1,5 @@
 import { useEffect, useRef, useReducer, useCallback, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { theme } from '../../constants/theme'
 import type { CaptureSource } from '../../lib/captureSource'
 import { applyAdjustments, autoEnhance, estimateSharpness, SHARPNESS_THRESHOLD } from '../../lib/imageQuality'
@@ -10,7 +11,7 @@ type CameraState =
   | { status: 'REQUESTING' }
   | { status: 'ACTIVE';  stream: MediaStream | null }
   | { status: 'PREVIEW'; stream: MediaStream | null; dataUrl: string }
-  | { status: 'ERROR';   message: string }
+  | { status: 'ERROR';   message: string; name?: string }
 
 type CameraAction =
   | { type: 'REQUEST' }
@@ -18,7 +19,7 @@ type CameraAction =
   | { type: 'CAPTURE';      dataUrl: string }
   | { type: 'SET_PREVIEW_IMAGE'; dataUrl: string }
   | { type: 'RETAKE' }
-  | { type: 'ERROR';        message: string }
+  | { type: 'ERROR';        message: string; name?: string }
 
 function cameraReducer(state: CameraState, action: CameraAction): CameraState {
   switch (action.type) {
@@ -33,7 +34,7 @@ function cameraReducer(state: CameraState, action: CameraAction): CameraState {
     case 'RETAKE':
       if (state.status !== 'PREVIEW') return state
       return { status: 'ACTIVE', stream: state.stream }
-    case 'ERROR': return { status: 'ERROR', message: action.message }
+    case 'ERROR': return { status: 'ERROR', message: action.message, name: action.name }
     default:      return state
   }
 }
@@ -46,6 +47,21 @@ export interface CameraViewProps {
   onCapture: (dataUrl: string) => void
   onCancel:  () => void
   onError:   (err: Error) => void
+  /**
+   * Cámara del sistema (input capture) cuando getUserMedia falla. Debe lanzarse
+   * desde el toque del usuario: iOS ignora input.click() fuera de un gesto.
+   */
+  onFallback?: () => void
+}
+
+function cameraErrorHint(name?: string): string {
+  if (name === 'NotAllowedError' || name === 'SecurityError')
+    return 'El navegador tiene bloqueado el acceso a la cámara para esta web. En el iPhone: Ajustes → Apps → Safari → Cámara → Permitir (o en Safari, "aA" → Ajustes del sitio web → Cámara).'
+  if (name === 'NotFoundError' || name === 'OverconstrainedError')
+    return 'No se encontró una cámara trasera disponible.'
+  if (name === 'NotReadableError' || name === 'AbortError')
+    return 'La cámara está ocupada por otra app. Ciérrala y vuelve a intentarlo.'
+  return 'Puedes usar la cámara del sistema para hacer la foto.'
 }
 
 // ── Componente ────────────────────────────────────────────────────────────
@@ -56,6 +72,7 @@ export default function CameraView({
   onCapture,
   onCancel,
   onError,
+  onFallback,
 }: CameraViewProps) {
   const [state, dispatch] = useReducer(cameraReducer, { status: 'IDLE' })
   const videoRef  = useRef<HTMLVideoElement>(null)
@@ -75,7 +92,8 @@ export default function CameraView({
       } catch (err) {
         if (cancelled) return
         const error = err instanceof Error ? err : new Error(String(err))
-        dispatch({ type: 'ERROR', message: error.message })
+        console.warn('[camera] getUserMedia falló:', error.name, error.message)
+        dispatch({ type: 'ERROR', message: error.message, name: error.name })
         onError(error)
       }
     }
@@ -186,10 +204,13 @@ export default function CameraView({
 
   // ── Render ───────────────────────────────────────────────────────────────
 
-  return (
+  // Portal a <body>: el contenedor de página de Layout tiene la animación pageFade,
+  // que crea un contexto de apilamiento; dentro de él el visor quedaba por debajo de
+  // la barra de pestañas y esta tapaba el botón de disparo.
+  return createPortal(
     <div
-      className="fixed inset-0 z-50 flex flex-col"
-      style={{ background: theme.colors.dark }}
+      className="fixed inset-0 flex flex-col"
+      style={{ background: theme.colors.dark, zIndex: theme.zIndex.modal }}
     >
       {/* Video / Preview */}
       <div className="relative flex-1 overflow-hidden">
@@ -255,7 +276,19 @@ export default function CameraView({
               No se pudo acceder a la cámara
             </p>
             <p style={{ fontSize: theme.font.sm, color: theme.colors.muted }}>
-              {state.message}
+              {cameraErrorHint(state.name)}
+            </p>
+            {onFallback && (
+              <button
+                onClick={onFallback}
+                className="px-5 py-3 rounded-xl font-semibold"
+                style={{ background: theme.colors.primary, color: theme.colors.cream, fontSize: theme.font.base, border: 'none', cursor: 'pointer' }}
+              >
+                Usar la cámara del sistema
+              </button>
+            )}
+            <p style={{ fontSize: theme.font['2xs'], color: theme.colors.muted, opacity: 0.6 }}>
+              {state.name ? `${state.name}: ` : ''}{state.message}
             </p>
           </div>
         )}
@@ -313,7 +346,7 @@ export default function CameraView({
       {/* Barra inferior */}
       <div
         className="flex-shrink-0 flex flex-col"
-        style={{ background: 'rgba(13,6,8,0.9)', backdropFilter: 'blur(12px)' }}
+        style={{ background: 'rgba(13,6,8,0.9)', backdropFilter: 'blur(12px)', paddingBottom: 'env(safe-area-inset-bottom)' }}
       >
         {state.status === 'PREVIEW' && (
           <div className="flex items-center gap-3 px-6 pt-4">
@@ -442,6 +475,7 @@ export default function CameraView({
         )}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   )
 }
