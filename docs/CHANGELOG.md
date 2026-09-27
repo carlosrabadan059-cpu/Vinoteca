@@ -12,6 +12,8 @@ El versionado sigue [Semantic Versioning](https://semver.org/). El proyecto perm
 
 ### Added
 
+- **Despliegue en Dokploy (2026-09-27).** `Dockerfile` multi-stage (Node 24 build → nginx 1.27) + `docker/nginx.conf` (fallback SPA, caché inmutable en `/assets/`, `no-cache` en `sw.js`/manifest/`index.html` para que el `autoUpdate` de la PWA detecte versiones nuevas) + `.dockerignore`. Las `VITE_*` (`VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`, `VITE_N8N_BASE_URL`) se pasan como **build args** porque Vite las incrusta al compilar; el build falla si falta `VITE_SUPABASE_URL`. Contenedor escucha en el puerto 80.
+
 - Prototipo navegable de la Fase 7 (Gestión de bodega): grid 2 columnas, vista lista con agrupación, búsqueda con sugerencias, panel de filtros completo, indicadores de stock, estados vacíos y skeletons
 - Icono de salir de la app en el header (`Layout.tsx`), con modal de confirmación antes de cerrar sesión
 
