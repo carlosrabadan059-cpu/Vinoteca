@@ -175,8 +175,8 @@
     "semantic_hash": "9f49e846f6f912bc87a54e522089c5f8"
   },
   "src/lib/n8n.ts": {
-    "mtime": 1790619861.8905382,
-    "ast_hash": "a0ac39ae67e4d493274f671c85b668f8",
+    "mtime": 1790622468.2082496,
+    "ast_hash": "eb5ede582610720a40a9fa2e7cd361ee",
     "semantic_hash": ""
   },
   "src/lib/storage.ts": {
@@ -635,8 +635,8 @@
     "semantic_hash": ""
   },
   "docs/backend-n8n.md": {
-    "mtime": 1790621780.2320294,
-    "ast_hash": "34ae8cdd2ec1c84444fcb56ef9f5e177",
+    "mtime": 1790622478.818985,
+    "ast_hash": "ec8d2b5271a05ac8c7cbc73edbc90fe8",
     "semantic_hash": ""
   },
   "docs/database.md": {
@@ -655,8 +655,8 @@
     "semantic_hash": ""
   },
   "docs/roadmap.md": {
-    "mtime": 1790621911.167362,
-    "ast_hash": "24df08ca67d86d05e19c0154aa984c24",
+    "mtime": 1790630468.646544,
+    "ast_hash": "5f3ee737375b73e20ae775e60b4de423",
     "semantic_hash": ""
   },
   "docs/scan-flow.md": {
@@ -740,8 +740,8 @@
     "semantic_hash": ""
   },
   "docs/CHANGELOG.md": {
-    "mtime": 1790620034.9777775,
-    "ast_hash": "22e9c45e07b9acbb8f543cdc3d7bef5e",
+    "mtime": 1790622065.7616858,
+    "ast_hash": "15c75a2c0fae3c3f28cac69734ac0c99",
     "semantic_hash": ""
   },
   "docs/decisions/README.md": {
@@ -1347,6 +1347,11 @@
   "docs/roadmap/idea-rag-curso-sommelier.md": {
     "mtime": 1790620966.9894888,
     "ast_hash": "a4f1bc501d4d94cd088d6a5dc8085663",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20260928140000_hardening_advisors.sql": {
+    "mtime": 1790622380.83763,
+    "ast_hash": "d27093160f278222248d55665f5777e3",
     "semantic_hash": ""
   }
 }

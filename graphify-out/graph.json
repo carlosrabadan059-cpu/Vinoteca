@@ -2483,7 +2483,7 @@
       "source_file": "src/components/ui/Modal.tsx",
       "source_location": "L1",
       "id": "ui_modal",
-      "community": 106,
+      "community": 125,
       "norm_label": "modal.tsx"
     },
     {
@@ -2492,7 +2492,7 @@
       "source_file": "src/components/ui/Modal.tsx",
       "source_location": "L5",
       "id": "ui_modal_modalprops",
-      "community": 106,
+      "community": 125,
       "norm_label": "modalprops"
     },
     {
@@ -2501,7 +2501,7 @@
       "source_file": "src/components/ui/Modal.tsx",
       "source_location": "L12",
       "id": "ui_modal_modal",
-      "community": 106,
+      "community": 125,
       "norm_label": "modal()"
     },
     {
@@ -2591,7 +2591,7 @@
       "source_file": "src/components/ui/SuggestionChips.tsx",
       "source_location": "L1",
       "id": "ui_suggestionchips",
-      "community": 123,
+      "community": 106,
       "norm_label": "suggestionchips.tsx"
     },
     {
@@ -2600,7 +2600,7 @@
       "source_file": "src/components/ui/SuggestionChips.tsx",
       "source_location": "L3",
       "id": "ui_suggestionchips_suggestionchipsprops",
-      "community": 123,
+      "community": 106,
       "norm_label": "suggestionchipsprops"
     },
     {
@@ -2609,7 +2609,7 @@
       "source_file": "src/components/ui/SuggestionChips.tsx",
       "source_location": "L8",
       "id": "ui_suggestionchips_suggestionchips",
-      "community": 123,
+      "community": 106,
       "norm_label": "suggestionchips()"
     },
     {
@@ -2690,7 +2690,7 @@
       "source_file": "src/components/ui/Toast.tsx",
       "source_location": "L1",
       "id": "ui_toast",
-      "community": 213,
+      "community": 181,
       "norm_label": "toast.tsx"
     },
     {
@@ -2699,7 +2699,7 @@
       "source_file": "src/components/ui/Toast.tsx",
       "source_location": "L4",
       "id": "ui_toast_toast",
-      "community": 213,
+      "community": 181,
       "norm_label": "toast()"
     },
     {
@@ -2708,7 +2708,7 @@
       "source_file": "src/components/wine/ConsumoQuickForm.tsx",
       "source_location": "L1",
       "id": "wine_consumoquickform",
-      "community": 213,
+      "community": 34,
       "norm_label": "consumoquickform.tsx"
     },
     {
@@ -2717,7 +2717,7 @@
       "source_file": "src/components/wine/ConsumoQuickForm.tsx",
       "source_location": "L9",
       "id": "wine_consumoquickform_consumoquickformprops",
-      "community": 213,
+      "community": 34,
       "norm_label": "consumoquickformprops"
     },
     {
@@ -2726,7 +2726,7 @@
       "source_file": "src/components/wine/ConsumoQuickForm.tsx",
       "source_location": "L16",
       "id": "wine_consumoquickform_today",
-      "community": 213,
+      "community": 34,
       "norm_label": "today()"
     },
     {
@@ -2735,7 +2735,7 @@
       "source_file": "src/components/wine/ConsumoQuickForm.tsx",
       "source_location": "L20",
       "id": "wine_consumoquickform_consumoquickform",
-      "community": 213,
+      "community": 34,
       "norm_label": "consumoquickform()"
     },
     {
@@ -2771,7 +2771,7 @@
       "source_file": "src/components/wine/DuplicateWineDialog.tsx",
       "source_location": "L78",
       "id": "wine_duplicatewinedialog_duplicatewinedialog",
-      "community": 34,
+      "community": 182,
       "norm_label": "duplicatewinedialog()"
     },
     {
@@ -2825,7 +2825,7 @@
       "source_file": "src/components/wine/JournalSheetForm.tsx",
       "source_location": "L25",
       "id": "wine_journalsheetform_tutorstate",
-      "community": 123,
+      "community": 213,
       "norm_label": "tutorstate"
     },
     {
@@ -3077,7 +3077,7 @@
       "source_file": "src/components/wine/TutorPanel.tsx",
       "source_location": "L1",
       "id": "wine_tutorpanel",
-      "community": 123,
+      "community": 213,
       "norm_label": "tutorpanel.tsx"
     },
     {
@@ -3086,7 +3086,7 @@
       "source_file": "src/components/wine/TutorPanel.tsx",
       "source_location": "L6",
       "id": "wine_tutorpanel_tutorpanelprops",
-      "community": 123,
+      "community": 213,
       "norm_label": "tutorpanelprops"
     },
     {
@@ -3095,7 +3095,7 @@
       "source_file": "src/components/wine/TutorPanel.tsx",
       "source_location": "L20",
       "id": "wine_tutorpanel_plain",
-      "community": 123,
+      "community": 213,
       "norm_label": "plain()"
     },
     {
@@ -3104,7 +3104,7 @@
       "source_file": "src/components/wine/TutorPanel.tsx",
       "source_location": "L22",
       "id": "wine_tutorpanel_heading",
-      "community": 123,
+      "community": 213,
       "norm_label": "heading"
     },
     {
@@ -3113,7 +3113,7 @@
       "source_file": "src/components/wine/TutorPanel.tsx",
       "source_location": "L27",
       "id": "wine_tutorpanel_smallbutton",
-      "community": 123,
+      "community": 213,
       "norm_label": "smallbutton()"
     },
     {
@@ -3122,7 +3122,7 @@
       "source_file": "src/components/wine/TutorPanel.tsx",
       "source_location": "L37",
       "id": "wine_tutorpanel_tutorpanel",
-      "community": 123,
+      "community": 213,
       "norm_label": "tutorpanel()"
     },
     {
@@ -3419,7 +3419,7 @@
       "source_file": "src/hooks/useBodegaState.ts",
       "source_location": "L73",
       "id": "hooks_usebodegastate_usebodegastate",
-      "community": 121,
+      "community": 34,
       "norm_label": "usebodegastate()"
     },
     {
@@ -3500,7 +3500,7 @@
       "source_file": "src/hooks/useGlossary.ts",
       "source_location": "L1",
       "id": "hooks_useglossary",
-      "community": 213,
+      "community": 181,
       "norm_label": "useglossary.ts"
     },
     {
@@ -3509,7 +3509,7 @@
       "source_file": "src/hooks/useGlossary.ts",
       "source_location": "L10",
       "id": "hooks_useglossary_useglossary",
-      "community": 213,
+      "community": 181,
       "norm_label": "useglossary()"
     },
     {
@@ -3599,7 +3599,7 @@
       "source_file": "src/hooks/useStorageUrl.ts",
       "source_location": "L1",
       "id": "hooks_usestorageurl",
-      "community": 182,
+      "community": 101,
       "norm_label": "usestorageurl.ts"
     },
     {
@@ -3680,7 +3680,7 @@
       "source_file": "src/hooks/useWines.ts",
       "source_location": "L41",
       "id": "hooks_usewines_usewines",
-      "community": 121,
+      "community": 34,
       "norm_label": "usewines()"
     },
     {
@@ -3770,7 +3770,7 @@
       "source_file": "src/lib/captureSource.ts",
       "source_location": "L1",
       "id": "lib_capturesource",
-      "community": 125,
+      "community": 112,
       "norm_label": "capturesource.ts"
     },
     {
@@ -3788,7 +3788,7 @@
       "source_file": "src/lib/captureSource.ts",
       "source_location": "L26",
       "id": "lib_capturesource_captureframefromvideo",
-      "community": 125,
+      "community": 112,
       "norm_label": "captureframefromvideo()"
     },
     {
@@ -3797,7 +3797,7 @@
       "source_file": "src/lib/captureSource.ts",
       "source_location": "L64",
       "id": "lib_capturesource_canvas180",
-      "community": 125,
+      "community": 112,
       "norm_label": "canvas180()"
     },
     {
@@ -3851,7 +3851,7 @@
       "source_file": "src/lib/cuadernoHelpers.ts",
       "source_location": "L1",
       "id": "lib_cuadernohelpers",
-      "community": 181,
+      "community": 137,
       "norm_label": "cuadernohelpers.ts"
     },
     {
@@ -3860,7 +3860,7 @@
       "source_file": "src/lib/cuadernoHelpers.ts",
       "source_location": "L10",
       "id": "lib_cuadernohelpers_isincellar",
-      "community": 34,
+      "community": 182,
       "norm_label": "isincellar()"
     },
     {
@@ -3869,7 +3869,7 @@
       "source_file": "src/lib/cuadernoHelpers.ts",
       "source_location": "L16",
       "id": "lib_cuadernohelpers_journaltipo",
-      "community": 181,
+      "community": 137,
       "norm_label": "journaltipo"
     },
     {
@@ -3905,7 +3905,7 @@
       "source_file": "src/lib/cuadernoHelpers.ts",
       "source_location": "L30",
       "id": "lib_cuadernohelpers_splituvas",
-      "community": 181,
+      "community": 137,
       "norm_label": "splituvas()"
     },
     {
@@ -3923,7 +3923,7 @@
       "source_file": "src/lib/cuadernoHelpers.ts",
       "source_location": "L59",
       "id": "lib_cuadernohelpers_journalfacets",
-      "community": 181,
+      "community": 137,
       "norm_label": "journalfacets()"
     },
     {
@@ -3941,7 +3941,7 @@
       "source_file": "src/lib/cuadernoHelpers.ts",
       "source_location": "L89",
       "id": "lib_cuadernohelpers_emptysheet",
-      "community": 181,
+      "community": 137,
       "norm_label": "emptysheet()"
     },
     {
@@ -3950,7 +3950,7 @@
       "source_file": "src/lib/cuadernoHelpers.ts",
       "source_location": "L102",
       "id": "lib_cuadernohelpers_describeboca",
-      "community": 181,
+      "community": 137,
       "norm_label": "describeboca()"
     },
     {
@@ -4166,7 +4166,7 @@
       "source_file": "src/lib/n8n.ts",
       "source_location": "L1",
       "id": "lib_n8n",
-      "community": 123,
+      "community": 213,
       "norm_label": "n8n.ts"
     },
     {
@@ -4175,68 +4175,59 @@
       "source_file": "src/lib/n8n.ts",
       "source_location": "L3",
       "id": "lib_n8n_n8n_base",
-      "community": 123,
+      "community": 213,
       "norm_label": "n8n_base"
-    },
-    {
-      "label": "ScanIdentifyResponse",
-      "file_type": "code",
-      "source_file": "src/lib/n8n.ts",
-      "source_location": "L5",
-      "id": "lib_n8n_scanidentifyresponse",
-      "community": 123,
-      "norm_label": "scanidentifyresponse"
     },
     {
       "label": "ScanResult",
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
-      "source_location": "L9",
+      "source_location": "L5",
       "id": "lib_n8n_scanresult",
-      "community": 123,
+      "community": 213,
       "norm_label": "scanresult"
     },
     {
       "label": "WineCollection",
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
-      "source_location": "L29",
+      "source_location": "L25",
       "id": "lib_n8n_winecollection",
-      "community": 123,
+      "community": 213,
       "norm_label": "winecollection"
     },
     {
       "label": "post()",
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
-      "source_location": "L39",
+      "source_location": "L35",
       "id": "lib_n8n_post",
-      "community": 123,
+      "community": 213,
       "norm_label": "post()"
     },
     {
       "label": "TasteProfile",
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
-      "source_location": "L73",
+      "source_location": "L69",
       "id": "lib_n8n_tasteprofile",
-      "community": 123,
+      "community": 213,
       "norm_label": "tasteprofile"
     },
     {
       "label": "SommelierIntentHint",
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
-      "source_location": "L81",
+      "source_location": "L77",
       "id": "lib_n8n_sommelierintenthint",
-      "community": 123,
+      "community": 213,
       "norm_label": "sommelierintenthint"
     },
     {
       "label": "callSommelierChat()",
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
-      "source_location": "L83",
+      "source_location": "L79",
       "id": "lib_n8n_callsommelierchat",
       "community": 123,
       "norm_label": "callsommelierchat()"
@@ -4245,7 +4236,7 @@
       "label": "callAyudaChat()",
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
-      "source_location": "L100",
+      "source_location": "L96",
       "id": "lib_n8n_callayudachat",
       "community": 123,
       "norm_label": "callayudachat()"
@@ -4254,7 +4245,7 @@
       "label": "TutorSeccion",
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
-      "source_location": "L110",
+      "source_location": "L106",
       "id": "lib_n8n_tutorseccion",
       "community": 181,
       "norm_label": "tutorseccion"
@@ -4263,7 +4254,7 @@
       "label": "TutorNotaPro",
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
-      "source_location": "L113",
+      "source_location": "L109",
       "id": "lib_n8n_tutornotapro",
       "community": 181,
       "norm_label": "tutornotapro"
@@ -4272,43 +4263,43 @@
       "label": "TutorFeedback",
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
-      "source_location": "L119",
+      "source_location": "L115",
       "id": "lib_n8n_tutorfeedback",
-      "community": 123,
+      "community": 213,
       "norm_label": "tutorfeedback"
     },
     {
       "label": "callCataTutor()",
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
-      "source_location": "L130",
+      "source_location": "L126",
       "id": "lib_n8n_callcatatutor",
-      "community": 123,
+      "community": 213,
       "norm_label": "callcatatutor()"
     },
     {
       "label": "callMaridaje()",
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
-      "source_location": "L139",
+      "source_location": "L135",
       "id": "lib_n8n_callmaridaje",
-      "community": 123,
+      "community": 213,
       "norm_label": "callmaridaje()"
     },
     {
       "label": "callEnriquecimiento()",
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
-      "source_location": "L153",
+      "source_location": "L149",
       "id": "lib_n8n_callenriquecimiento",
-      "community": 123,
+      "community": 213,
       "norm_label": "callenriquecimiento()"
     },
     {
       "label": "StatsPayload",
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
-      "source_location": "L165",
+      "source_location": "L161",
       "id": "lib_n8n_statspayload",
       "community": 110,
       "norm_label": "statspayload"
@@ -4317,63 +4308,54 @@
       "label": "stripBase64Prefix()",
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
-      "source_location": "L177",
+      "source_location": "L173",
       "id": "lib_n8n_stripbase64prefix",
-      "community": 123,
+      "community": 213,
       "norm_label": "stripbase64prefix()"
-    },
-    {
-      "label": "callScanIdentificar()",
-      "file_type": "code",
-      "source_file": "src/lib/n8n.ts",
-      "source_location": "L181",
-      "id": "lib_n8n_callscanidentificar",
-      "community": 123,
-      "norm_label": "callscanidentificar()"
     },
     {
       "label": "callScanAnalizar()",
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
-      "source_location": "L189",
+      "source_location": "L177",
       "id": "lib_n8n_callscananalizar",
-      "community": 123,
+      "community": 213,
       "norm_label": "callscananalizar()"
     },
     {
       "label": "callWineIdentify()",
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
-      "source_location": "L202",
+      "source_location": "L190",
       "id": "lib_n8n_callwineidentify",
-      "community": 123,
+      "community": 213,
       "norm_label": "callwineidentify()"
     },
     {
       "label": "callWineEnrich()",
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
-      "source_location": "L216",
+      "source_location": "L204",
       "id": "lib_n8n_callwineenrich",
-      "community": 123,
+      "community": 213,
       "norm_label": "callwineenrich()"
     },
     {
       "label": "callStatsInsight()",
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
-      "source_location": "L232",
+      "source_location": "L220",
       "id": "lib_n8n_callstatsinsight",
-      "community": 123,
+      "community": 213,
       "norm_label": "callstatsinsight()"
     },
     {
       "label": "callImprovePhoto()",
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
-      "source_location": "L238",
+      "source_location": "L226",
       "id": "lib_n8n_callimprovephoto",
-      "community": 123,
+      "community": 213,
       "norm_label": "callimprovephoto()"
     },
     {
@@ -4949,7 +4931,7 @@
       "source_file": "src/pages/Bodega.tsx",
       "source_location": "L1",
       "id": "pages_bodega",
-      "community": 121,
+      "community": 34,
       "norm_label": "bodega.tsx"
     },
     {
@@ -4958,7 +4940,7 @@
       "source_file": "src/pages/Bodega.tsx",
       "source_location": "L15",
       "id": "pages_bodega_filtersection",
-      "community": 121,
+      "community": 34,
       "norm_label": "filtersection()"
     },
     {
@@ -4967,7 +4949,7 @@
       "source_file": "src/pages/Bodega.tsx",
       "source_location": "L28",
       "id": "pages_bodega_filterchip",
-      "community": 121,
+      "community": 34,
       "norm_label": "filterchip()"
     },
     {
@@ -4976,7 +4958,7 @@
       "source_file": "src/pages/Bodega.tsx",
       "source_location": "L51",
       "id": "pages_bodega_shimmerstyle",
-      "community": 121,
+      "community": 34,
       "norm_label": "shimmerstyle"
     },
     {
@@ -4985,7 +4967,7 @@
       "source_file": "src/pages/Bodega.tsx",
       "source_location": "L58",
       "id": "pages_bodega_rendercards",
-      "community": 121,
+      "community": 34,
       "norm_label": "rendercards()"
     },
     {
@@ -4994,7 +4976,7 @@
       "source_file": "src/pages/Bodega.tsx",
       "source_location": "L79",
       "id": "pages_bodega_bodega",
-      "community": 121,
+      "community": 34,
       "norm_label": "bodega()"
     },
     {
@@ -5057,7 +5039,7 @@
       "source_file": "src/pages/Glosario.tsx",
       "source_location": "L1",
       "id": "pages_glosario",
-      "community": 213,
+      "community": 181,
       "norm_label": "glosario.tsx"
     },
     {
@@ -5066,7 +5048,7 @@
       "source_file": "src/pages/Glosario.tsx",
       "source_location": "L13",
       "id": "pages_glosario_categorias",
-      "community": 213,
+      "community": 181,
       "norm_label": "categorias"
     },
     {
@@ -5075,7 +5057,7 @@
       "source_file": "src/pages/Glosario.tsx",
       "source_location": "L22",
       "id": "pages_glosario_glosario",
-      "community": 213,
+      "community": 181,
       "norm_label": "glosario()"
     },
     {
@@ -5201,7 +5183,7 @@
       "source_file": "src/pages/NuevaCata.tsx",
       "source_location": "L614",
       "id": "pages_nuevacata_winebanner",
-      "community": 34,
+      "community": 182,
       "norm_label": "winebanner()"
     },
     {
@@ -5813,7 +5795,7 @@
       "source_file": "src/store/toastStore.ts",
       "source_location": "L1",
       "id": "store_toaststore",
-      "community": 213,
+      "community": 181,
       "norm_label": "toaststore.ts"
     },
     {
@@ -5822,7 +5804,7 @@
       "source_file": "src/store/toastStore.ts",
       "source_location": "L3",
       "id": "store_toaststore_toaststate",
-      "community": 213,
+      "community": 181,
       "norm_label": "toaststate"
     },
     {
@@ -5831,7 +5813,7 @@
       "source_file": "src/store/toastStore.ts",
       "source_location": "L12",
       "id": "store_toaststore_usetoaststore",
-      "community": 213,
+      "community": 181,
       "norm_label": "usetoaststore"
     },
     {
@@ -5840,7 +5822,7 @@
       "source_file": "src/store/wineStore.ts",
       "source_location": "L1",
       "id": "store_winestore",
-      "community": 121,
+      "community": 34,
       "norm_label": "winestore.ts"
     },
     {
@@ -5849,7 +5831,7 @@
       "source_file": "src/store/wineStore.ts",
       "source_location": "L4",
       "id": "store_winestore_winestate",
-      "community": 121,
+      "community": 34,
       "norm_label": "winestate"
     },
     {
@@ -5858,7 +5840,7 @@
       "source_file": "src/store/wineStore.ts",
       "source_location": "L18",
       "id": "store_winestore_usewinestore",
-      "community": 121,
+      "community": 34,
       "norm_label": "usewinestore"
     },
     {
@@ -5894,7 +5876,7 @@
       "source_file": "src/types/index.ts",
       "source_location": "L69",
       "id": "types_index_tastingfinal",
-      "community": 181,
+      "community": 137,
       "norm_label": "tastingfinal"
     },
     {
@@ -5903,7 +5885,7 @@
       "source_file": "src/types/index.ts",
       "source_location": "L72",
       "id": "types_index_glossarycategoria",
-      "community": 213,
+      "community": 181,
       "norm_label": "glossarycategoria"
     },
     {
@@ -5984,7 +5966,7 @@
       "source_file": "src/types/index.ts",
       "source_location": "L148",
       "id": "types_index_identifyresponse",
-      "community": 85,
+      "community": 213,
       "norm_label": "identifyresponse"
     },
     {
@@ -5993,7 +5975,7 @@
       "source_file": "src/types/index.ts",
       "source_location": "L164",
       "id": "types_index_enrichresponse",
-      "community": 85,
+      "community": 213,
       "norm_label": "enrichresponse"
     },
     {
@@ -9260,7 +9242,7 @@
       "source_file": ".agents/skills/tdd/tests.md",
       "source_location": "L1",
       "id": "users_carlosrabadan_antigravity_vinoteca_agents_skills_tdd_tests_md",
-      "community": 27,
+      "community": 230,
       "norm_label": "tests.md"
     },
     {
@@ -9269,7 +9251,7 @@
       "source_file": ".agents/skills/tdd/tests.md",
       "source_location": "L1",
       "id": "tdd_tests_good_and_bad_tests",
-      "community": 27,
+      "community": 230,
       "norm_label": "good and bad tests"
     },
     {
@@ -9278,7 +9260,7 @@
       "source_file": ".agents/skills/tdd/tests.md",
       "source_location": "L3",
       "id": "tdd_tests_good_tests",
-      "community": 27,
+      "community": 230,
       "norm_label": "good tests"
     },
     {
@@ -9287,7 +9269,7 @@
       "source_file": ".agents/skills/tdd/tests.md",
       "source_location": "L25",
       "id": "tdd_tests_bad_tests",
-      "community": 27,
+      "community": 230,
       "norm_label": "bad tests"
     },
     {
@@ -9764,7 +9746,7 @@
       "source_file": ".agents/skills/write-a-skill/SKILL.md",
       "source_location": "L1",
       "id": "users_carlosrabadan_antigravity_vinoteca_agents_skills_write_a_skill_skill_md",
-      "community": 27,
+      "community": 228,
       "norm_label": "skill.md"
     },
     {
@@ -9773,7 +9755,7 @@
       "source_file": ".agents/skills/write-a-skill/SKILL.md",
       "source_location": "L6",
       "id": "write_a_skill_skill_writing_skills",
-      "community": 27,
+      "community": 228,
       "norm_label": "writing skills"
     },
     {
@@ -9782,7 +9764,7 @@
       "source_file": ".agents/skills/write-a-skill/SKILL.md",
       "source_location": "L8",
       "id": "write_a_skill_skill_process",
-      "community": 27,
+      "community": 228,
       "norm_label": "process"
     },
     {
@@ -9791,7 +9773,7 @@
       "source_file": ".agents/skills/write-a-skill/SKILL.md",
       "source_location": "L26",
       "id": "write_a_skill_skill_skill_structure",
-      "community": 27,
+      "community": 228,
       "norm_label": "skill structure"
     },
     {
@@ -9800,7 +9782,7 @@
       "source_file": ".agents/skills/write-a-skill/SKILL.md",
       "source_location": "L37",
       "id": "write_a_skill_skill_skill_md_template",
-      "community": 27,
+      "community": 228,
       "norm_label": "skill.md template"
     },
     {
@@ -9809,7 +9791,7 @@
       "source_file": ".agents/skills/write-a-skill/SKILL.md",
       "source_location": "L60",
       "id": "write_a_skill_skill_description_requirements",
-      "community": 27,
+      "community": 228,
       "norm_label": "description requirements"
     },
     {
@@ -9818,7 +9800,7 @@
       "source_file": ".agents/skills/write-a-skill/SKILL.md",
       "source_location": "L90",
       "id": "write_a_skill_skill_when_to_add_scripts",
-      "community": 27,
+      "community": 228,
       "norm_label": "when to add scripts"
     },
     {
@@ -9827,7 +9809,7 @@
       "source_file": ".agents/skills/write-a-skill/SKILL.md",
       "source_location": "L100",
       "id": "write_a_skill_skill_when_to_split_files",
-      "community": 27,
+      "community": 228,
       "norm_label": "when to split files"
     },
     {
@@ -9836,7 +9818,7 @@
       "source_file": ".agents/skills/write-a-skill/SKILL.md",
       "source_location": "L108",
       "id": "write_a_skill_skill_review_checklist",
-      "community": 27,
+      "community": 228,
       "norm_label": "review checklist"
     },
     {
@@ -10853,7 +10835,7 @@
       "source_file": "docs/agents/issue-tracker.md",
       "source_location": "L1",
       "id": "users_carlosrabadan_antigravity_vinoteca_docs_agents_issue_tracker_md",
-      "community": 228,
+      "community": 5,
       "norm_label": "issue-tracker.md"
     },
     {
@@ -10862,7 +10844,7 @@
       "source_file": "docs/agents/issue-tracker.md",
       "source_location": "L1",
       "id": "agents_issue_tracker_issue_tracker_github",
-      "community": 228,
+      "community": 5,
       "norm_label": "issue tracker: github"
     },
     {
@@ -10871,7 +10853,7 @@
       "source_file": "docs/agents/issue-tracker.md",
       "source_location": "L5",
       "id": "agents_issue_tracker_conventions",
-      "community": 228,
+      "community": 5,
       "norm_label": "conventions"
     },
     {
@@ -10880,7 +10862,7 @@
       "source_file": "docs/agents/issue-tracker.md",
       "source_location": "L16",
       "id": "agents_issue_tracker_when_a_skill_says_publish_to_the_issue_tracker",
-      "community": 228,
+      "community": 5,
       "norm_label": "when a skill says \"publish to the issue tracker\""
     },
     {
@@ -10889,7 +10871,7 @@
       "source_file": "docs/agents/issue-tracker.md",
       "source_location": "L20",
       "id": "agents_issue_tracker_when_a_skill_says_fetch_the_relevant_ticket",
-      "community": 228,
+      "community": 5,
       "norm_label": "when a skill says \"fetch the relevant ticket\""
     },
     {
@@ -10898,7 +10880,7 @@
       "source_file": "docs/agents/triage-labels.md",
       "source_location": "L1",
       "id": "users_carlosrabadan_antigravity_vinoteca_docs_agents_triage_labels_md",
-      "community": 5,
+      "community": 71,
       "norm_label": "triage-labels.md"
     },
     {
@@ -10907,7 +10889,7 @@
       "source_file": "docs/agents/triage-labels.md",
       "source_location": "L1",
       "id": "agents_triage_labels_triage_labels",
-      "community": 5,
+      "community": 71,
       "norm_label": "triage labels"
     },
     {
@@ -11208,19 +11190,19 @@
       "norm_label": "3. sommelier \u2014 enriquecimiento"
     },
     {
-      "label": "4. Scan \u2014 Identificar",
+      "label": "4. Scan \u2014 Identificar (archivado)",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
       "source_location": "L100",
-      "id": "docs_backend_n8n_4_scan_identificar",
+      "id": "docs_backend_n8n_4_scan_identificar_archivado",
       "community": 39,
-      "norm_label": "4. scan \u2014 identificar"
+      "norm_label": "4. scan \u2014 identificar (archivado)"
     },
     {
       "label": "5. Scan \u2014 Analizar",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L126",
+      "source_location": "L128",
       "id": "docs_backend_n8n_5_scan_analizar",
       "community": 39,
       "norm_label": "5. scan \u2014 analizar"
@@ -11229,7 +11211,7 @@
       "label": "6. Stats \u2014 Insight",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L165",
+      "source_location": "L167",
       "id": "docs_backend_n8n_6_stats_insight",
       "community": 39,
       "norm_label": "6. stats \u2014 insight"
@@ -11238,7 +11220,7 @@
       "label": "7. Wine Identify",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L192",
+      "source_location": "L194",
       "id": "docs_backend_n8n_7_wine_identify",
       "community": 39,
       "norm_label": "7. wine identify"
@@ -11247,7 +11229,7 @@
       "label": "8. Cata \u2014 Tutor",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L201",
+      "source_location": "L203",
       "id": "docs_backend_n8n_8_cata_tutor",
       "community": 39,
       "norm_label": "8. cata \u2014 tutor"
@@ -11256,7 +11238,7 @@
       "label": "Tipo `WineCollection`",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L231",
+      "source_location": "L233",
       "id": "docs_backend_n8n_tipo_winecollection",
       "community": 39,
       "norm_label": "tipo `winecollection`"
@@ -11265,7 +11247,7 @@
       "label": "Credenciales requeridas (setup manual en n8n)",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L249",
+      "source_location": "L251",
       "id": "docs_backend_n8n_credenciales_requeridas_setup_manual_en_n8n",
       "community": 39,
       "norm_label": "credenciales requeridas (setup manual en n8n)"
@@ -11274,7 +11256,7 @@
       "label": "Header Auth para proteger los webhooks",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L251",
+      "source_location": "L253",
       "id": "docs_backend_n8n_header_auth_para_proteger_los_webhooks",
       "community": 39,
       "norm_label": "header auth para proteger los webhooks"
@@ -11283,7 +11265,7 @@
       "label": "Variables de entorno en Portainer",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L258",
+      "source_location": "L260",
       "id": "docs_backend_n8n_variables_de_entorno_en_portainer",
       "community": 39,
       "norm_label": "variables de entorno en portainer"
@@ -13485,10 +13467,28 @@
       "norm_label": "pendientes"
     },
     {
+      "label": "Cabos sueltos",
+      "file_type": "document",
+      "source_file": "docs/roadmap.md",
+      "source_location": "L32",
+      "id": "docs_roadmap_cabos_sueltos",
+      "community": 62,
+      "norm_label": "cabos sueltos"
+    },
+    {
+      "label": "Mejoras opcionales",
+      "file_type": "document",
+      "source_file": "docs/roadmap.md",
+      "source_location": "L54",
+      "id": "docs_roadmap_mejoras_opcionales",
+      "community": 62,
+      "norm_label": "mejoras opcionales"
+    },
+    {
       "label": "Fuera de numeraci\u00f3n",
       "file_type": "document",
       "source_file": "docs/roadmap.md",
-      "source_location": "L40",
+      "source_location": "L69",
       "id": "docs_roadmap_fuera_de_numeraci\u00f3n",
       "community": 62,
       "norm_label": "fuera de numeracion"
@@ -13497,7 +13497,7 @@
       "label": "Congelado",
       "file_type": "document",
       "source_file": "docs/roadmap.md",
-      "source_location": "L53",
+      "source_location": "L82",
       "id": "docs_roadmap_congelado",
       "community": 62,
       "norm_label": "congelado"
@@ -13506,7 +13506,7 @@
       "label": "Principios arquitect\u00f3nicos",
       "file_type": "document",
       "source_file": "docs/roadmap.md",
-      "source_location": "L61",
+      "source_location": "L90",
       "id": "docs_roadmap_principios_arquitect\u00f3nicos",
       "community": 62,
       "norm_label": "principios arquitectonicos"
@@ -17418,6 +17418,33 @@
       "norm_label": "testing"
     },
     {
+      "label": "ScanIdentifyResponse",
+      "file_type": "code",
+      "source_file": "src/lib/n8n.ts",
+      "source_location": "L5",
+      "community": 213,
+      "norm_label": "scanidentifyresponse",
+      "id": "lib_n8n_scanidentifyresponse"
+    },
+    {
+      "label": "callScanIdentificar()",
+      "file_type": "code",
+      "source_file": "src/lib/n8n.ts",
+      "source_location": "L181",
+      "community": 213,
+      "norm_label": "callscanidentificar()",
+      "id": "lib_n8n_callscanidentificar"
+    },
+    {
+      "label": "4. Scan \u2014 Identificar",
+      "file_type": "document",
+      "source_file": "docs/backend-n8n.md",
+      "source_location": "L100",
+      "community": 39,
+      "norm_label": "4. scan \u2014 identificar",
+      "id": "docs_backend_n8n_4_scan_identificar"
+    },
+    {
       "label": "settings.local.json",
       "file_type": "code",
       "source_file": ".claude/settings.local.json",
@@ -19091,7 +19118,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/tdd/tests.md",
       "source_location": "L1",
-      "community": 27,
+      "community": 230,
       "norm_label": "tests.md",
       "id": "tdd_tests"
     },
@@ -19145,7 +19172,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/write-a-skill/SKILL.md",
       "source_location": "L1",
-      "community": 27,
+      "community": 228,
       "norm_label": "skill.md",
       "id": "write_a_skill_skill"
     },
@@ -19235,7 +19262,7 @@
       "file_type": "document",
       "source_file": "docs/agents/triage-labels.md",
       "source_location": "L1",
-      "community": 5,
+      "community": 71,
       "norm_label": "triage-labels.md",
       "id": "agents_triage_labels"
     },
@@ -19446,7 +19473,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 85,
+      "community": 34,
       "norm_label": "wines_local idb store",
       "id": "lib_idb_wines_local"
     },
@@ -19901,7 +19928,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
+      "community": 71,
       "norm_label": "claude.md - project instructions",
       "id": "root_claude_md"
     },
@@ -19953,7 +19980,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
+      "community": 71,
       "norm_label": "agent domain docs config",
       "id": "agents_domain_md"
     },
@@ -32553,17 +32580,6 @@
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "pages_scan",
-      "target": "lib_n8n_callscanidentificar"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Scan.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_scan",
       "target": "lib_n8n_callscananalizar"
     },
     {
@@ -34908,6 +34924,17 @@
       "weight": 1.0,
       "source": "pages_resetpassword_resetpassword",
       "target": "store_authstore_useauthstore"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Scan.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_scan",
+      "target": "lib_n8n_callscanidentificar"
     },
     {
       "relation": "contains",
@@ -42582,6 +42609,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/backend-n8n.md",
+      "source_location": "L100",
+      "weight": 1.0,
+      "source": "docs_backend_n8n_endpoints",
+      "target": "docs_backend_n8n_4_scan_identificar_archivado",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/backend-n8n.md",
       "source_location": "L126",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -45111,6 +45148,26 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "docs/roadmap.md",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "docs_roadmap_pendientes",
+      "target": "docs_roadmap_cabos_sueltos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/roadmap.md",
+      "source_location": "L54",
+      "weight": 1.0,
+      "source": "docs_roadmap_pendientes",
+      "target": "docs_roadmap_mejoras_opcionales",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "docs/roadmap/fase-01-captura-ocr.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -46754,9 +46811,9 @@
       "source_file": "docs/roadmap/fase-13-tutor-cata.md",
       "source_location": "L38",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "roadmap_fase_13_tutor_cata_fase_13_tutor_de_cata_y_glosario_v3_1",
-      "target": "roadmap_fase_13_tutor_cata_rendimiento_y_ajustes_2026_09_28",
-      "confidence_score": 1.0
+      "target": "roadmap_fase_13_tutor_cata_rendimiento_y_ajustes_2026_09_28"
     },
     {
       "relation": "contains",
@@ -46774,9 +46831,9 @@
       "source_file": "docs/roadmap/idea-rag-curso-sommelier.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "roadmap_idea_rag_curso_sommelier",
-      "target": "roadmap_idea_rag_curso_sommelier_idea_rag_con_el_curso_de_sommelier",
-      "confidence_score": 1.0
+      "target": "roadmap_idea_rag_curso_sommelier_idea_rag_con_el_curso_de_sommelier"
     },
     {
       "relation": "contains",
@@ -46784,9 +46841,9 @@
       "source_file": "docs/roadmap/idea-rag-curso-sommelier.md",
       "source_location": "L29",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "roadmap_idea_rag_curso_sommelier_idea_rag_con_el_curso_de_sommelier",
-      "target": "roadmap_idea_rag_curso_sommelier_convertir_los_pdf_a_markdown",
-      "confidence_score": 1.0
+      "target": "roadmap_idea_rag_curso_sommelier_convertir_los_pdf_a_markdown"
     },
     {
       "relation": "contains",
@@ -46794,9 +46851,9 @@
       "source_file": "docs/roadmap/idea-rag-curso-sommelier.md",
       "source_location": "L43",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "roadmap_idea_rag_curso_sommelier_idea_rag_con_el_curso_de_sommelier",
-      "target": "roadmap_idea_rag_curso_sommelier_dise\u00f1o_propuesto_para_cuando_se_retome",
-      "confidence_score": 1.0
+      "target": "roadmap_idea_rag_curso_sommelier_dise\u00f1o_propuesto_para_cuando_se_retome"
     },
     {
       "relation": "contains",
@@ -46804,9 +46861,9 @@
       "source_file": "docs/roadmap/idea-rag-curso-sommelier.md",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "roadmap_idea_rag_curso_sommelier_idea_rag_con_el_curso_de_sommelier",
-      "target": "roadmap_idea_rag_curso_sommelier_estado",
-      "confidence_score": 1.0
+      "target": "roadmap_idea_rag_curso_sommelier_estado"
     },
     {
       "relation": "contains",
@@ -46814,9 +46871,9 @@
       "source_file": "docs/roadmap/idea-rag-curso-sommelier.md",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "roadmap_idea_rag_curso_sommelier_idea_rag_con_el_curso_de_sommelier",
-      "target": "roadmap_idea_rag_curso_sommelier_material",
-      "confidence_score": 1.0
+      "target": "roadmap_idea_rag_curso_sommelier_material"
     },
     {
       "relation": "contains",
@@ -46824,9 +46881,9 @@
       "source_file": "docs/roadmap/idea-rag-curso-sommelier.md",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "roadmap_idea_rag_curso_sommelier_idea_rag_con_el_curso_de_sommelier",
-      "target": "roadmap_idea_rag_curso_sommelier_objetivo",
-      "confidence_score": 1.0
+      "target": "roadmap_idea_rag_curso_sommelier_objetivo"
     },
     {
       "relation": "contains",
@@ -46834,9 +46891,9 @@
       "source_file": "docs/roadmap/idea-rag-curso-sommelier.md",
       "source_location": "L54",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "roadmap_idea_rag_curso_sommelier_idea_rag_con_el_curso_de_sommelier",
-      "target": "roadmap_idea_rag_curso_sommelier_salvedad",
-      "confidence_score": 1.0
+      "target": "roadmap_idea_rag_curso_sommelier_salvedad"
     },
     {
       "relation": "contains",
@@ -46844,9 +46901,9 @@
       "source_file": "docs/roadmap/idea-rag-curso-sommelier.md",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "roadmap_idea_rag_curso_sommelier_material",
-      "target": "roadmap_idea_rag_curso_sommelier_qu\u00e9_temas_incluir",
-      "confidence_score": 1.0
+      "target": "roadmap_idea_rag_curso_sommelier_qu\u00e9_temas_incluir"
     },
     {
       "relation": "contains",
@@ -50962,5 +51019,5 @@
       "source_file": "docs/handoff-2026-06-18.md"
     }
   ],
-  "built_at_commit": "b17a043dc6fb4940e61b06aee0dddb54d3b3a876"
+  "built_at_commit": "fdb1524694495c58847b8efddfeb2878a9a959e7"
 }

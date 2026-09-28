@@ -635,8 +635,8 @@
     "semantic_hash": ""
   },
   "docs/backend-n8n.md": {
-    "mtime": 1790620032.8029218,
-    "ast_hash": "ac28d0a828d0f5e6df3a8328b28b74a9",
+    "mtime": 1790621780.2320294,
+    "ast_hash": "34ae8cdd2ec1c84444fcb56ef9f5e177",
     "semantic_hash": ""
   },
   "docs/database.md": {
@@ -655,8 +655,8 @@
     "semantic_hash": ""
   },
   "docs/roadmap.md": {
-    "mtime": 1790620034.9775813,
-    "ast_hash": "1d1ee816173b1c659d2b7b1ad7c7fc0c",
+    "mtime": 1790621911.167362,
+    "ast_hash": "24df08ca67d86d05e19c0154aa984c24",
     "semantic_hash": ""
   },
   "docs/scan-flow.md": {
@@ -1315,8 +1315,8 @@
     "semantic_hash": ""
   },
   "docs/roadmap/fase-12-cuaderno-catas.md": {
-    "mtime": 1790586218.592266,
-    "ast_hash": "d6f717a3d714c1aae01f5b0fb1620805",
+    "mtime": 1790621911.1678586,
+    "ast_hash": "32d04ddf301434d86deec0695e547042",
     "semantic_hash": ""
   },
   "src/components/wine/TutorPanel.tsx": {
@@ -1340,8 +1340,13 @@
     "semantic_hash": ""
   },
   "docs/roadmap/fase-13-tutor-cata.md": {
-    "mtime": 1790620033.8396127,
-    "ast_hash": "30d0f8144c35c9ce1d9484d5f162df7e",
+    "mtime": 1790621911.1680639,
+    "ast_hash": "13ff4f0224d84d90c1e96b2379f2b44a",
+    "semantic_hash": ""
+  },
+  "docs/roadmap/idea-rag-curso-sommelier.md": {
+    "mtime": 1790620966.9894888,
+    "ast_hash": "a4f1bc501d4d94cd088d6a5dc8085663",
     "semantic_hash": ""
   }
 }
