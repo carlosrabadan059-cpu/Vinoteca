@@ -9,6 +9,7 @@ import { useWines } from '../hooks/useWines'
 import { useSommelier } from '../hooks/useSommelier'
 import { theme } from '../constants/theme'
 import type { ChatMessage } from '../types'
+import { isInCellar } from '../lib/cuadernoHelpers'
 import type { WineCollection } from '../lib/n8n'
 
 const SUGGESTIONS = [
@@ -51,7 +52,8 @@ const DO_KEYWORDS = [
 ]
 
 function buildWineCollection(wines: ReturnType<typeof useWineStore.getState>['wines']): WineCollection[] {
-  return wines.slice(0, 50).map(w => ({
+  // Solo la bodega: la IA no debe proponer abrir un vino bebido fuera
+  return wines.filter(isInCellar).slice(0, 50).map(w => ({
     id:           w.id,
     nombre:       w.nombre,
     bodega:       w.bodega,

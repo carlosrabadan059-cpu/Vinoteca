@@ -2,13 +2,16 @@ import { useState, useEffect, useRef } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import Layout from '../components/ui/Layout'
 import TastingChat from '../components/wine/TastingChat'
+import JournalSheetForm from '../components/wine/JournalSheetForm'
 import Spinner from '../components/ui/Spinner'
 import { useTastings } from '../hooks/useTastings'
 import { useWines } from '../hooks/useWines'
 import { useWineStore } from '../store/wineStore'
 import { useToastStore } from '../store/toastStore'
 import { theme } from '../constants/theme'
-import type { Wine } from '../types'
+import { isInCellar, emptySheet } from '../lib/cuadernoHelpers'
+import type { JournalSheetData } from '../lib/cuadernoHelpers'
+import type { ChatMessage, Wine } from '../types'
 import type { TastingResult } from '../components/wine/TastingChat'
 
 type TastingMode = 'completa' | 'rapido'
@@ -34,7 +37,7 @@ interface ModeSelectorProps {
 function ModeSelector({ mode, onChange }: ModeSelectorProps) {
   const t = theme
   const options: { id: TastingMode; emoji: string; label: string; sub: string }[] = [
-    { id: 'completa', emoji: '🍷', label: 'Cata completa',   sub: 'Guiada por IA, análisis detallado' },
+    { id: 'completa', emoji: '📓', label: 'Ficha de cata',   sub: 'Vista, nariz, boca y valoración' },
     { id: 'rapido',   emoji: '⚡', label: 'Consumo rápido', sub: 'Solo puntuación y nota breve' },
   ]
   return (
@@ -73,11 +76,12 @@ function ModeSelector({ mode, onChange }: ModeSelectorProps) {
 // ── Sección de metadatos colapsable ─────────────────────────────────────────
 
 interface MetaSectionProps {
-  meta:     Meta
-  onChange: (m: Meta) => void
+  meta:           Meta
+  onChange:       (m: Meta) => void
+  showBottleDone: boolean
 }
 
-function MetaSection({ meta, onChange }: MetaSectionProps) {
+function MetaSection({ meta, onChange, showBottleDone }: MetaSectionProps) {
   const [open, setOpen] = useState(false)
   const t = theme
 
@@ -157,8 +161,8 @@ function MetaSection({ meta, onChange }: MetaSectionProps) {
             />
           </div>
 
-          {/* Botella terminada */}
-          <button
+          {/* Botella terminada — solo vinos de la bodega */}
+          {showBottleDone && <button
             onClick={() => set('botella_terminada', !meta.botella_terminada)}
             className="flex items-center gap-3 rounded-xl px-3 py-3 w-full text-left"
             style={{
@@ -183,7 +187,7 @@ function MetaSection({ meta, onChange }: MetaSectionProps) {
                 border: `2px solid ${meta.botella_terminada ? t.colors.primaryBorder : t.colors.borderSubtle}`,
               }}
             />
-          </button>
+          </button>}
         </div>
       )}
     </div>
@@ -303,6 +307,11 @@ export default function NuevaCata() {
   const [query,   setQuery]   = useState('')
   const [open,    setOpen]    = useState(false)
   const [mode,    setMode]    = useState<TastingMode>('completa')
+  // Ficha guiada; el chat IA es una ayuda opcional que la prerrellena
+  const [sheet,       setSheet]       = useState<JournalSheetData>(() => emptySheet(todayISO()))
+  const [sheetKey,    setSheetKey]    = useState(0)
+  const [aiOpen,      setAiOpen]      = useState(false)
+  const [chatHistory, setChatHistory] = useState<ChatMessage[]>([])
   const [meta,    setMeta]    = useState<Meta>({
     fecha:             todayISO(),
     lugar:             '',
@@ -364,7 +373,7 @@ export default function NuevaCata() {
         es_consumo_rapido: true,
         ...buildMetaPayload(),
       })
-      if (meta.botella_terminada) await consumeBottle(wine.id)
+      if (meta.botella_terminada && isInCellar(wine)) await consumeBottle(wine.id)
       toast.show('Consumo guardado')
       navigate(`/catas/${tasting.id}`, { replace: true })
     } catch {
@@ -373,24 +382,40 @@ export default function NuevaCata() {
     }
   }
 
-  // Cata completa: viene del TastingChat
-  async function handleComplete(data: TastingResult) {
+  // El chat IA terminó: prerrellenar la ficha y volver a ella
+  function handleAiComplete(data: TastingResult) {
+    setSheet(prev => ({
+      ...prev,
+      puntuacion:        data.puntuacion        ?? prev.puntuacion,
+      notas_cata:        data.notas_cata        ?? prev.notas_cata,
+      aroma:             data.aroma             ?? prev.aroma,
+      color_descripcion: data.color_descripcion ?? prev.color_descripcion,
+      maridaje:          data.maridaje          ?? prev.maridaje,
+    }))
+    setChatHistory(data.chat_history)
+    setSheetKey(k => k + 1)
+    setAiOpen(false)
+    toast.show('Ficha rellenada con la IA — revísala antes de guardar')
+  }
+
+  // Ficha de cata guiada
+  async function handleSheetSave(data: JournalSheetData) {
     if (!wine) return
     setSaving(true)
     try {
+      const inCellar = isInCellar(wine)
       const tasting = await createTasting({
         wine_id:           wine.id,
-        puntuacion:        data.puntuacion,
-        notas_cata:        data.notas_cata,
-        aroma:             data.aroma,
-        color_descripcion: data.color_descripcion,
-        maridaje:          data.maridaje,
-        chat_history:      data.chat_history,
+        ...data,
+        lugar:             data.lugar?.trim()     || null,
+        ocasion:           data.ocasion?.trim()   || null,
+        con_quien:         data.con_quien?.trim() || null,
+        botella_terminada: inCellar && data.botella_terminada,
+        chat_history:      chatHistory,
         es_consumo_rapido: false,
-        ...buildMetaPayload(),
       })
-      if (meta.botella_terminada) await consumeBottle(wine.id)
-      toast.show('Cata guardada')
+      if (inCellar && data.botella_terminada) await consumeBottle(wine.id)
+      toast.show('Guardada en tu cuaderno')
       navigate(`/catas/${tasting.id}`, { replace: true })
     } catch {
       toast.show('Error al guardar la cata', 'error')
@@ -415,7 +440,7 @@ export default function NuevaCata() {
           className="flex-1 font-semibold truncate"
           style={{ color: t.colors.cream, fontSize: t.font.lg }}
         >
-          Nueva cata
+          Nueva página del cuaderno
         </h1>
       </div>
 
@@ -426,8 +451,22 @@ export default function NuevaCata() {
             <div className="flex justify-center py-12"><Spinner /></div>
           ) : (
             <>
+              <button
+                onClick={() => navigate('/scan?destino=cuaderno')}
+                className="flex items-center gap-3 rounded-xl px-3 py-3 text-left"
+                style={{ background: t.colors.primary + '22', border: `1px solid ${t.colors.primaryBorder}` }}
+              >
+                <span style={{ fontSize: '1.5rem' }}>📷</span>
+                <div>
+                  <p style={{ fontSize: t.font.sm, fontWeight: 600, color: t.colors.cream }}>Vino de fuera</p>
+                  <p style={{ fontSize: t.font.xs, color: t.colors.muted }}>
+                    Fotografía la etiqueta de un vino que no está en tu bodega
+                  </p>
+                </div>
+              </button>
+
               <p className="text-sm" style={{ color: t.colors.muted }}>
-                ¿Qué vino vas a catar hoy?
+                …o elige uno de tu bodega o de tu cuaderno:
               </p>
 
               <div ref={dropRef} style={{ position: 'relative' }}>
@@ -487,6 +526,7 @@ export default function NuevaCata() {
                             <p className="text-xs truncate" style={{ color: t.colors.muted }}>{w.bodega}</p>
                           )}
                         </div>
+                        {!isInCellar(w) && <CellarBadge />}
                       </button>
                     ))}
                   </div>
@@ -506,24 +546,46 @@ export default function NuevaCata() {
         </div>
       )}
 
-      {/* Fase 2: metadatos + selector de modo */}
-      {wine && mode === 'completa' && !saving && (
-        <div className="flex flex-col px-4 pb-6" style={{ flex: 1, minHeight: 0 }}>
-          {/* Banner vino */}
+      {/* Fase 2: ficha guiada (chat IA opcional) */}
+      {wine && mode === 'completa' && (
+        <div className="flex flex-col px-4 pb-24" style={{ flex: 1, minHeight: 0 }}>
           <WineBanner wine={wine} onClear={() => setWine(null)} />
 
-          {/* Metadatos colapsables */}
-          <div className="mb-4">
-            <MetaSection meta={meta} onChange={setMeta} />
-          </div>
-
-          {/* Selector de modo */}
           <div className="mb-4">
             <ModeSelector mode={mode} onChange={setMode} />
           </div>
 
-          {/* Chat de cata completa */}
-          <TastingChat wine={wine} onComplete={handleComplete} />
+          {aiOpen ? (
+            <>
+              <button
+                onClick={() => setAiOpen(false)}
+                className="self-start mb-3"
+                style={{ fontSize: t.font.sm, color: t.colors.gold, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+              >
+                ← Volver a la ficha
+              </button>
+              <TastingChat wine={wine} onComplete={handleAiComplete} completeLabel="Pasar a la ficha" />
+            </>
+          ) : (
+            <>
+              <button
+                onClick={() => setAiOpen(true)}
+                className="flex items-center gap-2 rounded-xl px-3 py-2 mb-4"
+                style={{ background: t.colors.surface, border: `1px solid ${t.colors.borderSubtle}`, color: t.colors.text, fontSize: t.font.sm, cursor: 'pointer' }}
+              >
+                <span>✨</span> Ayúdame con la IA
+                <span style={{ marginLeft: 'auto', fontSize: t.font.xs, color: t.colors.muted }}>te guía y rellena la ficha</span>
+              </button>
+              <JournalSheetForm
+                key={sheetKey}
+                initial={sheet}
+                showBottleDone={isInCellar(wine)}
+                saving={saving}
+                onSubmit={handleSheetSave}
+                wine={wine}
+              />
+            </>
+          )}
         </div>
       )}
 
@@ -533,7 +595,7 @@ export default function NuevaCata() {
           <WineBanner wine={wine} onClear={() => setWine(null)} />
 
           {/* Metadatos colapsables */}
-          <MetaSection meta={meta} onChange={setMeta} />
+          <MetaSection meta={meta} onChange={setMeta} showBottleDone={isInCellar(wine)} />
 
           {/* Selector de modo */}
           <ModeSelector mode={mode} onChange={setMode} />
@@ -543,13 +605,6 @@ export default function NuevaCata() {
         </div>
       )}
 
-      {/* Guardando cata completa */}
-      {wine && saving && mode === 'completa' && (
-        <div className="flex flex-col items-center gap-3 py-16">
-          <Spinner />
-          <p className="text-sm" style={{ color: t.colors.muted }}>Guardando cata…</p>
-        </div>
-      )}
     </Layout>
   )
 }
@@ -572,9 +627,22 @@ function WineBanner({ wine, onClear }: { wine: Wine; onClear: () => void }) {
           <p className="text-xs truncate" style={{ color: t.colors.muted }}>{wine.bodega}</p>
         )}
       </div>
+      {!isInCellar(wine) && <CellarBadge />}
       <button onClick={onClear} className="text-xs flex-shrink-0" style={{ color: t.colors.muted }}>
         cambiar
       </button>
     </div>
+  )
+}
+
+function CellarBadge() {
+  const t = theme
+  return (
+    <span
+      className="flex-shrink-0 px-2 py-0.5 rounded-full"
+      style={{ fontSize: t.font['2xs'], letterSpacing: '0.08em', textTransform: 'uppercase', color: t.colors.muted, border: `1px solid ${t.colors.borderSubtle}` }}
+    >
+      De fuera
+    </span>
   )
 }

@@ -3,6 +3,7 @@ import Modal from '../ui/Modal'
 import Button from '../ui/Button'
 import { theme } from '../../constants/theme'
 import type { Wine } from '../../types'
+import { isInCellar } from '../../lib/cuadernoHelpers'
 import { useStorageUrl } from '../../hooks/useStorageUrl'
 
 interface DuplicateWineDialogProps {
@@ -11,6 +12,8 @@ interface DuplicateWineDialogProps {
   similarWines: Wine[]
   onSaveAnyway: () => void
   onCancel: () => void
+  /** Si el duplicado exacto es un vino de fuera (cuaderno), ofrece pasarlo a la bodega. */
+  onMoveToCellar?: (wine: Wine) => void
 }
 
 function WineRow({ wine }: { wine: Wine }) {
@@ -78,15 +81,21 @@ export default function DuplicateWineDialog({
   similarWines,
   onSaveAnyway,
   onCancel,
+  onMoveToCellar,
 }: DuplicateWineDialogProps) {
   const navigate = useNavigate()
   const isExact = mode === 'exact'
+  const exactIsJournal = isExact && exactDuplicate !== null && !isInCellar(exactDuplicate)
 
-  const title = isExact
+  const title = exactIsJournal
+    ? 'Este vino ya está en tu cuaderno'
+    : isExact
     ? 'Este vino ya está en tu bodega'
     : 'Hemos encontrado vinos parecidos'
 
-  const subtitle = isExact
+  const subtitle = exactIsJournal
+    ? 'Lo tienes anotado como vino de fuera. Si lo has comprado, pásalo a tu bodega.'
+    : isExact
     ? 'Ya tienes guardado este vino con la misma bodega y la misma añada.'
     : 'No hemos podido confirmar la añada.'
 
@@ -115,6 +124,11 @@ export default function DuplicateWineDialog({
       <div className="flex flex-col gap-2 pb-2">
         {isExact ? (
           <>
+            {exactIsJournal && onMoveToCellar && (
+              <Button variant="primary" className="w-full" onClick={() => onMoveToCellar(exactDuplicate!)}>
+                Pasar a mi bodega
+              </Button>
+            )}
             <Button
               variant="primary"
               className="w-full"

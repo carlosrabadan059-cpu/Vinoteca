@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useSyncStore } from '../../store/syncStore'
 import { useSync } from '../../hooks/useSync'
 import { getQueue } from '../../lib/idb'
+import { discardOperations } from '../../lib/syncQueue'
 import { useToastStore } from '../../store/toastStore'
 import { theme } from '../../constants/theme'
 import type { SyncOperation } from '../../types'
@@ -51,6 +52,21 @@ export default function SyncModal({ open, onClose }: Props) {
   }, [pendingCount, open, ops.length, showToast, onClose])
 
   if (!open) return null
+
+  async function handleDiscard(ids: string[]) {
+    const msg = ids.length === 1
+      ? '¿Descartar este cambio? No se enviará al servidor y se perderá.'
+      : `¿Descartar los ${ids.length} cambios pendientes? No se enviarán al servidor y se perderán.`
+    if (!window.confirm(msg)) return
+    // Quitar de la lista antes de vaciar la cola: si no, el efecto de "cola vacía"
+    // mostraría "Todo sincronizado" aunque no se haya enviado nada
+    setOps(prev => prev.filter(o => !ids.includes(o.id)))
+    await discardOperations(ids)
+    const remaining = await getQueue()
+    setOps(remaining)
+    showToast('Cambios descartados')
+    if (remaining.length === 0) onClose()
+  }
 
   async function handleSync() {
     await syncToSupabase()
@@ -131,9 +147,27 @@ export default function SyncModal({ open, onClose }: Props) {
                 >
                   {ACTION_LABEL[op.action]}
                 </span>
+                <button
+                  onClick={() => handleDiscard([op.id])}
+                  disabled={isSyncing}
+                  aria-label={`Descartar ${itemName(op)}`}
+                  style={{ background: 'none', border: 'none', color: theme.colors.muted, cursor: 'pointer', fontSize: '0.9rem', padding: '0 2px' }}
+                >
+                  ✕
+                </button>
               </div>
             ))}
           </div>
+        )}
+
+        {ops.length > 1 && (
+          <button
+            onClick={() => handleDiscard(ops.map(o => o.id))}
+            disabled={isSyncing}
+            style={{ background: 'none', border: 'none', color: theme.colors.error, fontSize: '0.75rem', cursor: 'pointer', padding: 0, marginBottom: 12 }}
+          >
+            Descartar todos los cambios
+          </button>
         )}
 
         <div style={{ display: 'flex', gap: 10 }}>

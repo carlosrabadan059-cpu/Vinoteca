@@ -105,6 +105,37 @@ export async function callAyudaChat(
   return data.reply
 }
 
+// ── Tutor de cata (vinoteca-cata-tutor) ──────────────────────────────────────
+
+export type TutorSeccion = 'vista' | 'nariz' | 'boca'
+
+/** Extracto de una nota de cata encontrada con Brave Search. */
+export interface TutorNotaPro {
+  titulo: string
+  url:    string
+  texto:  string
+}
+
+export interface TutorFeedback {
+  valoracion:      string
+  falta:           string[]
+  version_pro:     string
+  terminos:        { termino: string; definicion: string }[]
+  comparacion_pro: string | null
+  siguiente:       string
+  /** Se devuelven para reenviarlas en las demás secciones: una búsqueda por cata. */
+  notasPro:        TutorNotaPro[]
+}
+
+export async function callCataTutor(payload: {
+  seccion:   TutorSeccion
+  respuesta: string
+  wine:      Pick<import('../types').Wine, 'nombre' | 'bodega' | 'anada' | 'tipo' | 'uva' | 'region' | 'denominacion' | 'crianza'>
+  notasPro:  TutorNotaPro[]
+}): Promise<TutorFeedback> {
+  return post<TutorFeedback>('vinoteca/cata/tutor', payload)
+}
+
 export async function callMaridaje(
   plato: string,
   wineCollection: WineCollection[],

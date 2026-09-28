@@ -16,6 +16,13 @@ function renderMarkdown(text: string): React.ReactNode[] {
       continue
     }
 
+    // Separador: --- / *** / ___
+    if (/^\s*([-*_])\1{2,}\s*$/.test(line)) {
+      nodes.push(<div key={`hr-${i}`} style={{ height: 1, background: `${theme.colors.gold}30`, margin: '6px 0' }} />)
+      i++
+      continue
+    }
+
     // Heading: ## or ###
     if (/^#{1,3}\s/.test(line)) {
       const content = line.replace(/^#{1,3}\s/, '')

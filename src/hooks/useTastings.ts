@@ -129,6 +129,13 @@ export function useTastings(wineId?: string) {
       botella_terminada: data.botella_terminada ?? false,
       ocasion:           data.ocasion           ?? null,
       lugar:             data.lugar             ?? null,
+      dulzor:            data.dulzor            ?? null,
+      acidez:            data.acidez            ?? null,
+      tanino:            data.tanino            ?? null,
+      cuerpo:            data.cuerpo            ?? null,
+      final:             data.final             ?? null,
+      con_quien:         data.con_quien         ?? null,
+      foto_url:          data.foto_url          ?? null,
     }
 
     // 1. Persistir localmente + UI optimista

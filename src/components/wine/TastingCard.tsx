@@ -4,6 +4,8 @@ import type { Tasting } from '../../types'
 interface TastingCardProps {
   tasting: Tasting
   wineName: string
+  /** Vino de fuera: bebido pero no está en la bodega */
+  fromOutside?: boolean
   onClick?: () => void
 }
 
@@ -20,7 +22,7 @@ function scoreColor(score: number | null): string {
   return theme.colors.cream
 }
 
-export default function TastingCard({ tasting, wineName, onClick }: TastingCardProps) {
+export default function TastingCard({ tasting, wineName, fromOutside = false, onClick }: TastingCardProps) {
   const fecha = new Date(tasting.fecha).toLocaleDateString('es-ES', {
     day:   'numeric',
     month: 'short',
@@ -63,8 +65,11 @@ export default function TastingCard({ tasting, wineName, onClick }: TastingCardP
             {wineName}
           </p>
           <TypeBadge rapid={tasting.es_consumo_rapido} />
+          {fromOutside && <OutsideBadge />}
         </div>
-        <p className="text-xs" style={{ color: theme.colors.muted }}>{fecha}</p>
+        <p className="text-xs" style={{ color: theme.colors.muted }}>
+          {fecha}{tasting.lugar ? ` · ${tasting.lugar}` : ''}
+        </p>
         {preview && (
           <p className="text-xs mt-0.5 line-clamp-2" style={{ color: theme.colors.muted }}>
             {preview}
@@ -72,6 +77,20 @@ export default function TastingCard({ tasting, wineName, onClick }: TastingCardP
         )}
       </div>
     </div>
+  )
+}
+
+function OutsideBadge() {
+  return (
+    <span
+      className="flex-shrink-0 rounded-full px-1.5 py-0.5"
+      style={{
+        fontSize: theme.font['2xs'], letterSpacing: '0.06em', textTransform: 'uppercase',
+        color: theme.colors.muted, border: `1px solid ${theme.colors.borderSubtle}`,
+      }}
+    >
+      De fuera
+    </span>
   )
 }
 

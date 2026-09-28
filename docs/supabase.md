@@ -129,7 +129,7 @@ Descarga una imagen desde cualquier URL y la convierte a data URL (base64). Usad
 
 ## Configuración del proyecto (self-hosted)
 
-- **URL / Anon key:** vía MCP (`mcp__supabase__get_project_url` / `get_publishable_keys`) o `/srv/docker/supabase/.env` en el host `debian` (`ANON_KEY`, `SUPABASE_PUBLISHABLE_KEY`)
+- **URL / Anon key:** vía MCP (`mcp__supabase-selfhosted__get_project_url` / `get_publishable_keys` — el servidor del `.mcp.json` se llama `supabase-selfhosted` para no chocar con el `supabase` global, que apunta a Supabase Cloud para otros proyectos) o `/srv/docker/supabase/.env` en el host `debian` (`ANON_KEY`, `SUPABASE_PUBLISHABLE_KEY`)
 - **Service role key:** solo para n8n (entorno Portainer), nunca en el cliente
 - **Email confirm:** activado (heredado de la config de Cloud tras la migración)
 - **Studio (UI admin):** `https://supabase.rabadanhouse.space` (Dashboard user/pass en `.env`: `DASHBOARD_USERNAME` / `DASHBOARD_PASSWORD`)

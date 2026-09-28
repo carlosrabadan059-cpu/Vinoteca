@@ -18,6 +18,7 @@ import { useAuthStore } from '../store/authStore'
 import { theme } from '../constants/theme'
 import type { Tasting, Wine } from '../types'
 import { useStorageUrl } from '../hooks/useStorageUrl'
+import { isInCellar } from '../lib/cuadernoHelpers'
 
 // ── Stars ────────────────────────────────────────────────────────────────────
 
@@ -166,7 +167,7 @@ export default function WineDetail() {
   const navigate = useNavigate()
   const toast    = useToastStore()
 
-  const { getWine, updateWine, deleteWine } = useWines()
+  const { getWine, updateWine, deleteWine, addToCellar } = useWines()
   const { tastings, loading: tastingsLoading } = useTastings(id)
   const { user } = useAuthStore()
   const { pickFromGallery, compressImage } = useCamera()
@@ -177,6 +178,9 @@ export default function WineDetail() {
   const [menuOpen,       setMenuOpen]       = useState(false)
   const [editOpen,       setEditOpen]       = useState(false)
   const [deleteOpen,     setDeleteOpen]     = useState(false)
+  const [buyOpen,        setBuyOpen]        = useState(false)
+  const [buyBotellas,    setBuyBotellas]    = useState('1')
+  const [buyPrecio,      setBuyPrecio]      = useState('')
   const [consumoOpen,    setConsumoOpen]    = useState(false)
   const [saving,         setSaving]         = useState(false)
   const [deleting,       setDeleting]       = useState(false)
@@ -224,13 +228,48 @@ export default function WineDetail() {
     }
   }
 
+  // Vino de fuera → bodega ("Lo he comprado")
+  async function handleBuy() {
+    if (!wine) return
+    setSaving(true)
+    try {
+      const precio = buyPrecio.trim() ? parseFloat(buyPrecio.replace(',', '.')) : null
+      const updated = await addToCellar(wine.id, {
+        num_botellas: Math.max(1, parseInt(buyBotellas, 10) || 1),
+        precio:       precio !== null && !isNaN(precio) ? precio : wine.precio,
+        fecha_compra: new Date().toISOString().slice(0, 10),
+      })
+      setWine(updated)
+      setBuyOpen(false)
+      toast.show('Añadido a tu bodega')
+    } catch {
+      toast.show('Error al añadir a la bodega', 'error')
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  // Sacar de la bodega conservando las catas (el FK borra catas en cascada)
+  async function handleRemoveFromCellar() {
+    if (!wine) return
+    setDeleting(true)
+    try {
+      await updateWine(wine.id, { en_bodega: false, num_botellas: 0 })
+      toast.show('Quitado de tu bodega — sus catas siguen en el cuaderno')
+      navigate('/bodega', { replace: true })
+    } catch {
+      toast.show('Error al quitar el vino', 'error')
+      setDeleting(false)
+    }
+  }
+
   async function handleDelete() {
     if (!wine) return
     setDeleting(true)
     try {
       await deleteWine(wine.id)
-      toast.show('Vino eliminado de tu bodega', 'error')
-      navigate('/bodega', { replace: true })
+      toast.show(isInCellar(wine) ? 'Vino eliminado de tu bodega' : 'Vino eliminado de tu cuaderno', 'error')
+      navigate(isInCellar(wine) ? '/bodega' : '/catas', { replace: true })
     } catch {
       toast.show('Error al eliminar el vino', 'error')
       setDeleting(false)
@@ -555,6 +594,16 @@ export default function WineDetail() {
       {/* ── Cuerpo ──────────────────────────────────────────────────────────── */}
       <div style={{ background: theme.colors.dark, paddingBottom: 110 }}>
 
+        {/* ── Vino de fuera (cuaderno) ─────────────────────────────────────── */}
+        {!isInCellar(wine) && (
+          <div style={{ margin: '14px 16px 0', padding: '10px 12px', borderRadius: theme.radius.md, background: theme.colors.surface, border: `1px solid ${theme.colors.borderSubtle}` }}>
+            <p style={{ fontSize: theme.font.sm, color: theme.colors.cream, fontWeight: 600 }}>No está en tu bodega</p>
+            <p style={{ fontSize: theme.font.xs, color: theme.colors.muted, marginTop: 2 }}>
+              Lo tienes en tu cuaderno como vino bebido fuera.
+            </p>
+          </div>
+        )}
+
         {/* ── 2. Acciones ─────────────────────────────────────────────────── */}
         <div style={{ display: 'flex', gap: 7, padding: '14px 16px 0' }}>
           <button
@@ -564,10 +613,10 @@ export default function WineDetail() {
             Catar
           </button>
           <button
-            onClick={() => setConsumoOpen(true)}
+            onClick={() => isInCellar(wine) ? setConsumoOpen(true) : setBuyOpen(true)}
             style={{ flex: 1, padding: '11px 10px', borderRadius: 999, background: 'transparent', color: theme.colors.cream, fontSize: '0.83rem', fontWeight: 500, border: `1px solid ${theme.colors.border}`, cursor: 'pointer' }}
           >
-            Consumir
+            {isInCellar(wine) ? 'Consumir' : 'Lo he comprado'}
           </button>
           <button
             onClick={() => setEditOpen(true)}
@@ -724,10 +773,12 @@ export default function WineDetail() {
         </div>
 
         {/* ── 7. Mi colección (colapsable) ────────────────────────────────── */}
-        <div style={{ padding: '18px 16px 0' }}>
-          <div style={{ height: 1, background: theme.colors.border, marginBottom: 18 }} />
-          <ColeccionPanel wine={wine} />
-        </div>
+        {isInCellar(wine) && (
+          <div style={{ padding: '18px 16px 0' }}>
+            <div style={{ height: 1, background: theme.colors.border, marginBottom: 18 }} />
+            <ColeccionPanel wine={wine} />
+          </div>
+        )}
 
       </div>
 
@@ -744,16 +795,61 @@ export default function WineDetail() {
       />
 
       <Modal open={deleteOpen} onClose={() => setDeleteOpen(false)} title="Eliminar vino">
-        <p style={{ fontSize: '0.875rem', color: theme.colors.muted }}>
-          ¿Eliminar <span style={{ color: theme.colors.cream }}>{wine.nombre}</span> de tu bodega? Esta acción no se puede deshacer.
+        {isInCellar(wine) && tastings.length > 0 ? (
+          <>
+            <p style={{ fontSize: '0.875rem', color: theme.colors.muted }}>
+              <span style={{ color: theme.colors.cream }}>{wine.nombre}</span> tiene {tastings.length} {tastings.length === 1 ? 'cata' : 'catas'} en tu cuaderno.
+              Puedes quitarlo de la bodega y conservarlas, o eliminarlo todo.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 8 }}>
+              <Button className="w-full" loading={deleting} onClick={handleRemoveFromCellar}>
+                Quitar de la bodega (conservar catas)
+              </Button>
+              <Button className="w-full" style={{ background: theme.colors.errorStrong, color: theme.colors.cream }} disabled={deleting} onClick={handleDelete}>
+                Eliminar vino y catas
+              </Button>
+              <Button variant="ghost" className="w-full" onClick={() => setDeleteOpen(false)} disabled={deleting}>
+                Cancelar
+              </Button>
+            </div>
+          </>
+        ) : (
+          <>
+            <p style={{ fontSize: '0.875rem', color: theme.colors.muted }}>
+              ¿Eliminar <span style={{ color: theme.colors.cream }}>{wine.nombre}</span>
+              {isInCellar(wine) ? ' de tu bodega' : ` y sus ${tastings.length} ${tastings.length === 1 ? 'cata' : 'catas'} del cuaderno`}? Esta acción no se puede deshacer.
+            </p>
+            <div style={{ display: 'flex', gap: 12, marginTop: 8 }}>
+              <Button variant="secondary" className="flex-1" onClick={() => setDeleteOpen(false)} disabled={deleting}>
+                Cancelar
+              </Button>
+              <Button className="flex-1" style={{ background: theme.colors.errorStrong, color: theme.colors.cream }} loading={deleting} onClick={handleDelete}>
+                Eliminar
+              </Button>
+            </div>
+          </>
+        )}
+      </Modal>
+
+      <Modal open={buyOpen} onClose={() => setBuyOpen(false)} title="Añadir a mi bodega">
+        <p style={{ fontSize: '0.875rem', color: theme.colors.muted, marginTop: -4 }}>
+          <span style={{ color: theme.colors.cream }}>{wine.nombre}</span> pasará de tu cuaderno a tu bodega. Sus catas se mantienen.
         </p>
-        <div style={{ display: 'flex', gap: 12, marginTop: 8 }}>
-          <Button variant="secondary" className="flex-1" onClick={() => setDeleteOpen(false)} disabled={deleting}>
-            Cancelar
-          </Button>
-          <Button className="flex-1" style={{ background: '#D32F2F', color: theme.colors.cream }} loading={deleting} onClick={handleDelete}>
-            Eliminar
-          </Button>
+        <div style={{ display: 'flex', gap: 12 }}>
+          <label style={{ flex: 1, fontSize: theme.font.xs, color: theme.colors.muted }}>
+            Botellas
+            <input type="number" min={1} inputMode="numeric" value={buyBotellas} onChange={e => setBuyBotellas(e.target.value)}
+              style={{ display: 'block', width: '100%', marginTop: 4, padding: '8px 10px', borderRadius: theme.radius.md, background: theme.colors.surface, color: theme.colors.cream, border: `1px solid ${theme.colors.borderSubtle}` }} />
+          </label>
+          <label style={{ flex: 1, fontSize: theme.font.xs, color: theme.colors.muted }}>
+            Precio (€, opcional)
+            <input type="text" inputMode="decimal" value={buyPrecio} onChange={e => setBuyPrecio(e.target.value)} placeholder={wine.precio != null ? String(wine.precio) : '—'}
+              style={{ display: 'block', width: '100%', marginTop: 4, padding: '8px 10px', borderRadius: theme.radius.md, background: theme.colors.surface, color: theme.colors.cream, border: `1px solid ${theme.colors.borderSubtle}` }} />
+          </label>
+        </div>
+        <div style={{ display: 'flex', gap: 12, marginTop: 8, paddingBottom: 8 }}>
+          <Button variant="secondary" className="flex-1" onClick={() => setBuyOpen(false)} disabled={saving}>Cancelar</Button>
+          <Button className="flex-1" loading={saving} onClick={handleBuy}>Añadir</Button>
         </div>
       </Modal>
 

@@ -12,6 +12,7 @@ import Scan         from '../pages/Scan'
 import Catas        from '../pages/Catas'
 import NuevaCata    from '../pages/NuevaCata'
 import TastingDetail from '../pages/TastingDetail'
+import Glosario     from '../pages/Glosario'
 import Sommelier    from '../pages/Sommelier'
 import Stats        from '../pages/Stats'
 import Perfil       from '../pages/Perfil'
@@ -49,6 +50,7 @@ export const router = createBrowserRouter([
       { path: '/catas',        element: <Catas /> },
       { path: '/catas/nueva',  element: <NuevaCata /> },
       { path: '/catas/:id',    element: <TastingDetail /> },
+      { path: '/glosario',     element: <Glosario /> },
       { path: '/sommelier',    element: <Sommelier /> },
       { path: '/stats',        element: <Stats /> },
       { path: '/perfil',       element: <Perfil /> },

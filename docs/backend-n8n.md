@@ -198,6 +198,36 @@ async function post<T>(path: string, body: unknown): Promise<T>
 
 ---
 
+### 8. Cata — Tutor
+
+**Ruta:** `POST /webhook/vinoteca/cata/tutor`
+**Workflow:** `vinoteca-cata-tutor` (id `z7XSxU1hF5lZwX7H`, carpeta Proyecto Vinoteca)
+**Función cliente:** `callCataTutor({ seccion, respuesta, wine, notasPro })`
+
+**Request:**
+```typescript
+{
+  seccion:   'vista' | 'nariz' | 'boca'
+  respuesta: string          // lo que ha escrito el usuario; en boca, las escalas en palabras (describeBoca)
+  wine:      { nombre, bodega, anada, tipo, uva, region, denominacion, crianza }
+  notasPro:  TutorNotaPro[]  // [] en la primera revisión de la cata; luego, las que devolvió n8n
+}
+```
+
+**Response:**
+```typescript
+{
+  valoracion: string; falta: string[]; version_pro: string
+  terminos: { termino: string; definicion: string }[]
+  comparacion_pro: string | null; siguiente: string
+  notasPro: { titulo: string; url: string; texto: string }[]
+}
+```
+
+**Flujo:** Normalize Input → si `notasPro` viene vacío, **Brave Search** (HTTP Request con la credencial `Brave Search account`, tipo `braveSearchApi`; `Accept: application/json` obligatorio o Brave responde 422) → extraer título/URL/extracto → agente «Tutor de Cata» (`gpt-4o-mini` + Structured Output Parser; con `Combo_n8n` tardaba 20–24 s y ahora unos 3 s)  → `Normalize Feedback` (Code: arregla claves con tilde como `definición`, que el modelo a veces devuelve) → Respond. Si Brave falla, sigue sin notas (`onError: continueRegularOutput`). El cliente reenvía `notasPro` en las demás secciones para hacer **una sola búsqueda por cata**.
+
+---
+
 ## Tipo `WineCollection`
 
 Subconjunto de `Wine` enviado al Sommelier para contextualizar las respuestas:

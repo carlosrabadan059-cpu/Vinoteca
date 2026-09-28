@@ -10,6 +10,7 @@ interface WineFormProps {
   imageUrl?:           string   // miniatura en el resumen
   editMode?:           boolean  // true cuando se edita un vino existente
   onCancel?:           () => void  // si se pasa, muestra un botón "Cancelar" junto al de guardar
+  variant?:            'bodega' | 'cuaderno'  // cuaderno: vino de fuera, sin datos de colección
 }
 
 // ── Field status ──────────────────────────────────────────────────────────────
@@ -245,7 +246,7 @@ function ConfChip({ confidence, manual }: { confidence: number | undefined; manu
 }
 
 // ── Main component ────────────────────────────────────────────────────────────
-export default function WineForm({ initialData, onSubmit, loading, identifyConfidence, imageUrl, editMode, onCancel }: WineFormProps) {
+export default function WineForm({ initialData, onSubmit, loading, identifyConfidence, imageUrl, editMode, onCancel, variant = 'bodega' }: WineFormProps) {
   const normalize = (d: Partial<Wine>): Partial<Wine> => ({
     num_botellas: 1,
     favorito:     false,
@@ -521,6 +522,7 @@ export default function WineForm({ initialData, onSubmit, loading, identifyConfi
           </FieldRow>
         )}
 
+        {variant !== 'cuaderno' && (<>
         <SubDivider label="Mi colección" />
         {/* Espacio reservado: valoración ★, fecha compra, favorito, consumido (Fases 8–9) */}
 
@@ -611,6 +613,8 @@ export default function WineForm({ initialData, onSubmit, loading, identifyConfi
           />
         </FieldRow>
 
+        </>)}
+
         {/* Observaciones */}
         <div style={{
           display: 'flex', flexDirection: 'column',
@@ -687,7 +691,7 @@ export default function WineForm({ initialData, onSubmit, loading, identifyConfi
                 <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
                 <polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>
               </svg>
-              {editMode ? 'Guardar' : 'Añadir a mi bodega'}
+              {editMode ? 'Guardar' : variant === 'cuaderno' ? 'Continuar a la cata' : 'Añadir a mi bodega'}
             </>
           )}
         </button>

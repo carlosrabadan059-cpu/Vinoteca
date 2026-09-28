@@ -20,12 +20,20 @@
 | ✅ Fase 9 | Estadísticas (2026-07-18) | [fase-09-estadisticas.md](roadmap/fase-09-estadisticas.md) |
 | ✅ Fase 10 | Sommelier IA (2026-08-02) | [fase-10-sommelier-ia.md](roadmap/fase-10-sommelier-ia.md) |
 | ✅ Fase 11 | Optimización (2026-08-19) | [fase-11-optimizacion.md](roadmap/fase-11-optimizacion.md) |
+| ✅ Fase 12 | Cuaderno de catas — V3 (2026-09-28) | [fase-12-cuaderno-catas.md](roadmap/fase-12-cuaderno-catas.md) |
+| ✅ Fase 13 | Tutor de cata y glosario — V3.1 (2026-09-28) | [fase-13-tutor-cata.md](roadmap/fase-13-tutor-cata.md) |
 
 ---
 
 ## Pendientes
 
 *(Ninguna fase numerada pendiente — ver "Congelado" y los documentos de cada fase para cabos sueltos menores)*
+
+Ideas documentadas, sin empezar:
+
+| Fecha | Idea | Documento |
+|-------|------|-----------|
+| 2026-09-28 | RAG con el curso de sommelier (PDF → ¿Markdown? → pgvector) para el tutor, el glosario y el sommelier | [idea-rag-curso-sommelier.md](roadmap/idea-rag-curso-sommelier.md) |
 
 ---
 

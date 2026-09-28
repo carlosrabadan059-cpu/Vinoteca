@@ -35,6 +35,8 @@ export interface Wine {
   fecha_compra: string | null
   favorito:     boolean
   consumido:    boolean
+  // V3 — Cuaderno: false = "vino de fuera" (bebido pero no en la bodega)
+  en_bodega:    boolean
 }
 
 export interface Tasting {
@@ -54,6 +56,29 @@ export interface Tasting {
   botella_terminada: boolean
   ocasion:           string | null
   lugar:             string | null
+  // V3 — Ficha guiada del cuaderno (Vista = color_descripcion, Nariz = aroma)
+  dulzor:            number | null   // 1–5
+  acidez:            number | null   // 1–5
+  tanino:            number | null   // 1–5
+  cuerpo:            number | null   // 1–5
+  final:             TastingFinal | null
+  con_quien:         string | null
+  foto_url:          string | null
+}
+
+export type TastingFinal = 'corto' | 'medio' | 'largo'
+
+/** Sección de la ficha que revisa el tutor de cata; 'general' = añadido a mano. */
+export type GlossaryCategoria = 'vista' | 'nariz' | 'boca' | 'general'
+
+export interface GlossaryTerm {
+  id:          string
+  user_id:     string
+  termino:     string
+  definicion:  string
+  categoria:   GlossaryCategoria
+  wine_id:     string | null
+  created_at:  string
 }
 
 export interface ChatMessage {

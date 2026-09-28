@@ -13,6 +13,7 @@ import { useWineStore } from '../store/wineStore'
 import { useAuthStore } from '../store/authStore'
 import { useSyncStore } from '../store/syncStore'
 import { findDuplicateWine, generateWineUid } from '../lib/wineDuplicates'
+import { isInCellar } from '../lib/cuadernoHelpers'
 import type { Wine, SyncOperation } from '../types'
 
 export type SortKey =
@@ -102,6 +103,7 @@ export function useWines() {
       .from('wines')
       .select('*', page === 0 ? { count: 'exact' } : undefined)
       .eq('user_id', user.id)
+      .eq('en_bodega', true)
       .order(column, { ascending })
       .range(from, to)
 
@@ -189,6 +191,7 @@ export function useWines() {
       fecha_compra:       data.fecha_compra ?? null,
       favorito:           data.favorito     ?? false,
       consumido:          data.consumido    ?? false,
+      en_bodega:          data.en_bodega    ?? true,
     }
 
     // Generar wine_uid estable antes de persistir
@@ -239,7 +242,7 @@ export function useWines() {
 
       const wineWithImages: Wine = { ...wine, imagen_frontal_url: imagenFrontalUrl, imagen_trasera_url: imagenTraseraUrl }
 
-      setStatus('Guardando en tu bodega...')
+      setStatus(wine.en_bodega ? 'Guardando en tu bodega...' : 'Guardando en tu cuaderno...')
       const { error: dbError } = await supabase.from('wines').insert(wineWithImages)
       if (dbError) throw dbError
 
@@ -319,9 +322,20 @@ export function useWines() {
   async function consumeBottle(id: string): Promise<Wine | null> {
     const wine = await getWine(id)
     if (!wine) return null
+    // Un vino de fuera no tiene botellas que descontar
+    if (!isInCellar(wine)) return wine
 
     const num_botellas = Math.max(0, wine.num_botellas - 1)
     return updateWine(id, { num_botellas, consumido: num_botellas === 0 })
+  }
+
+  /** "Lo he comprado": pasa un vino del cuaderno (de fuera) a la bodega. */
+  async function addToCellar(
+    id: string,
+    data: Pick<Partial<Wine>, 'num_botellas' | 'precio' | 'fecha_compra' | 'ubicacion'> = {}
+  ): Promise<Wine> {
+    const num_botellas = data.num_botellas ?? 1
+    return updateWine(id, { ...data, num_botellas, en_bodega: true, consumido: num_botellas === 0 })
   }
 
   async function deleteWine(id: string): Promise<void> {
@@ -379,5 +393,5 @@ export function useWines() {
     return (data ?? []) as Wine[]
   }
 
-  return { wines, loading, status, error, loadWines, createWine, listWines, getWine, updateWine, consumeBottle, deleteWine, searchWines }
+  return { wines, loading, status, error, loadWines, createWine, listWines, getWine, updateWine, consumeBottle, addToCellar, deleteWine, searchWines }
 }

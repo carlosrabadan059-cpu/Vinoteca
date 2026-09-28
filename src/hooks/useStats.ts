@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react'
 import { supabase } from '../lib/supabase'
 import { useAuthStore } from '../store/authStore'
 import type { Wine, Tasting } from '../types'
+import { isInCellar } from '../lib/cuadernoHelpers'
 import {
   computeValorEstimado,
   computeTotalBotellas,
@@ -56,19 +57,21 @@ export function useStats() {
 
       const wines    = (winesRes.data    ?? []) as Wine[]
       const tastings = (tastingsRes.data ?? []) as Tasting[]
+      // Inventario = solo la bodega; las catas cuentan todo lo bebido (también fuera)
+      const cellar   = wines.filter(isInCellar)
 
       setStats({
-        totalVinos:         wines.length,
-        totalBotellas:      computeTotalBotellas(wines),
-        valorEstimado:      computeValorEstimado(wines),
+        totalVinos:         cellar.length,
+        totalBotellas:      computeTotalBotellas(cellar),
+        valorEstimado:      computeValorEstimado(cellar),
         totalCatas:         tastings.length,
         puntuacionMedia:    computePuntuacionMedia(tastings),
         mejorVino:          computeMejorVino(wines, tastings),
-        distribucionTipos:  computeDistribucionTipos(wines),
-        topRegiones:        computeDistribucionPorCampo(wines, 'region', 'Sin región'),
-        distribucionUva:    computeDistribucionPorCampo(wines, 'uva', 'Sin uva especificada'),
-        distribucionBodega: computeDistribucionPorCampo(wines, 'bodega', 'Sin bodega'),
-        distribucionAnadas: computeDistribucionAnadas(wines),
+        distribucionTipos:  computeDistribucionTipos(cellar),
+        topRegiones:        computeDistribucionPorCampo(cellar, 'region', 'Sin región'),
+        distribucionUva:    computeDistribucionPorCampo(cellar, 'uva', 'Sin uva especificada'),
+        distribucionBodega: computeDistribucionPorCampo(cellar, 'bodega', 'Sin bodega'),
+        distribucionAnadas: computeDistribucionAnadas(cellar),
         evolucionCatas:     buildEvolucion(tastings),
       })
     } catch (e) {

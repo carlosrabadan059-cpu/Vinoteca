@@ -5,6 +5,9 @@ import Spinner from '../components/ui/Spinner'
 import WineForm from '../components/wine/WineForm'
 import AnalysisProgress from '../components/ui/AnalysisProgress'
 import DuplicateWineDialog from '../components/wine/DuplicateWineDialog'
+import Modal from '../components/ui/Modal'
+import Button from '../components/ui/Button'
+import { isInCellar } from '../lib/cuadernoHelpers'
 import CameraView from '../components/ui/CameraView'
 import { callScanAnalizar, callWineIdentify, callWineEnrich } from '../lib/n8n'
 import { useWines } from '../hooks/useWines'
@@ -129,7 +132,9 @@ export default function Scan() {
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
   const isManual = searchParams.get('manual') === '1'
-  const { createWine, loading: saving, status: saveStatus } = useWines()
+  // destino=cuaderno: vino de fuera — se identifica igual pero no entra en la bodega
+  const toJournal = searchParams.get('destino') === 'cuaderno'
+  const { createWine, getWine, addToCellar, loading: saving, status: saveStatus } = useWines()
   const { takePhoto, pickFromGallery, compressImage } = useCamera()
   const { user } = useAuthStore()
 
@@ -153,6 +158,8 @@ export default function Scan() {
   const [dupExact,       setDupExact]       = useState<Wine | null>(null)
   const [dupSimilar,     setDupSimilar]     = useState<Wine[]>([])
   const pendingSaveRef = useRef<{ data: Partial<Wine> } | null>(null)
+  // Escaneo en modo bodega de un vino que ya está en el cuaderno (de fuera)
+  const [journalMatch, setJournalMatch] = useState<Wine | null>(null)
 
   const analysisRef  = useRef<Promise<unknown> | null>(null)
 
@@ -311,9 +318,17 @@ export default function Scan() {
 
         if (identified.exists) {
           const navId = identified.wine_id ?? wineUid
-          console.log(`[scan] vino existente — navegando. Total: ${elapsed(t0)}`, { navId })
+          console.log(`[scan] vino existente — navegando. Total: ${elapsed(t0)}`, { navId, toJournal })
           setAnalyzing(false)
-          navigate(`/bodega/${navId}`)
+          // identify no devuelve en_bodega: se relee el vino para decidir
+          const existing = identified.wine_id ? await getWine(identified.wine_id) : null
+          if (toJournal && existing) {
+            navigate(`/catas/nueva?wineId=${existing.id}`)
+          } else if (!toJournal && existing && !isInCellar(existing)) {
+            setJournalMatch(existing)
+          } else {
+            navigate(`/bodega/${navId}`)
+          }
           return
         }
       } catch (err) {
@@ -389,16 +404,19 @@ export default function Scan() {
     try {
       setStep('done')
       const wine = await createWine(
-        data,
+        toJournal ? { ...data, en_bodega: false, num_botellas: 0 } : data,
         { frontal: studioUrl ?? frontImage ?? undefined },
         { skipDuplicateCheck }
       )
+      const next = toJournal ? `/catas/nueva?wineId=${wine.id}` : `/bodega/${wine.id}`
       if (wine.synced_at === null) {
         showToast('Guardado localmente, se sincronizará cuando tengas conexión', 'yellow', 4000)
-        setTimeout(() => navigate(`/bodega/${wine.id}`), 2000)
+        setTimeout(() => navigate(next), 2000)
+      } else if (toJournal) {
+        navigate(next)
       } else {
         showToast('¡Vino guardado en tu bodega!', 'green', 2500)
-        setTimeout(() => navigate(`/bodega/${wine.id}`), 1200)
+        setTimeout(() => navigate(next), 1200)
       }
     } catch (err) {
       const errMsg = err instanceof Error ? err.message : ''
@@ -410,6 +428,12 @@ export default function Scan() {
           { nombre: data.nombre ?? null, bodega: data.bodega ?? null, anada: data.anada ?? null },
           user.id
         )
+        // Cuaderno: si el vino ya existe (en la bodega o de fuera), se reutiliza
+        if (toJournal && errMsg === 'DUPLICATE_WINE' && exactDuplicate) {
+          pendingSaveRef.current = null
+          navigate(`/catas/nueva?wineId=${exactDuplicate.id}`)
+          return
+        }
         setDupExact(exactDuplicate)
         setDupSimilar(similarWines)
         setDupMode(errMsg === 'DUPLICATE_WINE' ? 'exact' : 'similar')
@@ -428,6 +452,15 @@ export default function Scan() {
       handleSave(pendingSaveRef.current.data, true)
       pendingSaveRef.current = null
     }
+  }
+
+  async function moveToCellar(wine: Wine) {
+    const updated = await addToCellar(wine.id, { num_botellas: 1 })
+    setJournalMatch(null)
+    setDupMode(null)
+    pendingSaveRef.current = null
+    showToast('¡Añadido a tu bodega!', 'green', 2000)
+    setTimeout(() => navigate(`/bodega/${updated.id}`), 800)
   }
 
   function handleDupCancel() {
@@ -576,6 +609,7 @@ export default function Scan() {
               loading={saving}
               identifyConfidence={identifyConfidence}
               imageUrl={studioUrl ?? frontImage ?? undefined}
+              variant={toJournal ? 'cuaderno' : 'bodega'}
             />
           )}
         </div>
@@ -622,7 +656,25 @@ export default function Scan() {
         similarWines={dupSimilar}
         onSaveAnyway={handleDupSaveAnyway}
         onCancel={handleDupCancel}
+        onMoveToCellar={moveToCellar}
       />
+
+      <Modal open={journalMatch !== null} onClose={() => setJournalMatch(null)} title="Ya está en tu cuaderno">
+        <p style={{ fontSize: theme.font.sm, color: theme.colors.muted, marginTop: -4 }}>
+          {journalMatch?.nombre}{journalMatch?.anada ? ` ${journalMatch.anada}` : ''} lo tienes anotado como vino de fuera. ¿Lo has comprado?
+        </p>
+        <div className="flex flex-col gap-2 pb-2">
+          <Button variant="primary" className="w-full" onClick={() => journalMatch && moveToCellar(journalMatch)}>
+            Añadir a mi bodega
+          </Button>
+          <Button variant="secondary" className="w-full" onClick={() => journalMatch && navigate(`/bodega/${journalMatch.id}`)}>
+            Ver ficha
+          </Button>
+          <Button variant="ghost" className="w-full" onClick={() => setJournalMatch(null)}>
+            Cancelar
+          </Button>
+        </div>
+      </Modal>
 
       {cameraTarget && (
         <CameraView
@@ -634,9 +686,13 @@ export default function Scan() {
             handleImageReady(compressed, cameraTarget)
           }}
           onCancel={() => setCameraTarget(null)}
-          onError={() => {
+          // Sin fallback automático: iOS bloquea input.click() fuera de un gesto,
+          // así que la cámara del sistema se ofrece como botón en el visor
+          onError={() => {}}
+          onFallback={() => {
+            const target = cameraTarget
             setCameraTarget(null)
-            handleCameraFallback(cameraTarget)
+            handleCameraFallback(target)
           }}
         />
       )}

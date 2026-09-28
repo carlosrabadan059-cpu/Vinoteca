@@ -5,10 +5,13 @@ import Modal from '../components/ui/Modal'
 import Button from '../components/ui/Button'
 import Spinner from '../components/ui/Spinner'
 import TastingEditForm from '../components/wine/TastingEditForm'
+import ChatBubble from '../components/ui/ChatBubble'
 import { useTastings } from '../hooks/useTastings'
 import { useWines } from '../hooks/useWines'
 import { useToastStore } from '../store/toastStore'
 import { theme } from '../constants/theme'
+import { useStorageUrl } from '../hooks/useStorageUrl'
+import { BOCA_ESCALAS, FINAL_OPCIONES, isInCellar } from '../lib/cuadernoHelpers'
 import type { Tasting, Wine } from '../types'
 
 function ScoreBadge({ score }: { score: number | null }) {
@@ -49,6 +52,38 @@ function SectionCard({ icon, title, content }: SectionCardProps) {
   )
 }
 
+/** Escalas de boca en lectura (puntos rellenos, estilo cuaderno). */
+function BocaCard({ tasting }: { tasting: Tasting }) {
+  const escalas = BOCA_ESCALAS.filter(e => tasting[e.key] !== null)
+  const final = FINAL_OPCIONES.find(f => f.id === tasting.final)?.label
+  if (escalas.length === 0 && !final) return null
+  return (
+    <div className="rounded-xl p-4 flex flex-col gap-2" style={{ background: theme.colors.surface, border: `1px solid ${theme.colors.borderSubtle}` }}>
+      <p className="text-xs font-semibold" style={{ color: theme.colors.muted }}>👄 Boca</p>
+      {escalas.map(e => (
+        <div key={e.key} className="flex items-center justify-between">
+          <span className="text-sm" style={{ color: theme.colors.cream }}>{e.label}</span>
+          <div className="flex gap-1.5" aria-label={`${e.label}: ${tasting[e.key]} de 5`}>
+            {[1, 2, 3, 4, 5].map(n => (
+              <span key={n} style={{
+                width: 12, height: 12, borderRadius: '50%',
+                background: n <= (tasting[e.key] ?? 0) ? theme.colors.gold : 'transparent',
+                border: `1.5px solid ${n <= (tasting[e.key] ?? 0) ? theme.colors.gold : theme.colors.borderSubtle}`,
+              }} />
+            ))}
+          </div>
+        </div>
+      ))}
+      {final && (
+        <div className="flex items-center justify-between">
+          <span className="text-sm" style={{ color: theme.colors.cream }}>Final</span>
+          <span className="text-sm" style={{ color: theme.colors.gold }}>{final}</span>
+        </div>
+      )}
+    </div>
+  )
+}
+
 export default function TastingDetail() {
   const { id }     = useParams<{ id: string }>()
   const navigate   = useNavigate()
@@ -64,6 +99,7 @@ export default function TastingDetail() {
   const [deleteOpen,   setDeleteOpen]   = useState(false)
   const [deleting,     setDeleting]     = useState(false)
   const [chatExpanded, setChatExpanded] = useState(false)
+  const wineImage = useStorageUrl(wine?.imagen_frontal_url)
 
   useEffect(() => {
     if (!id) return
@@ -106,8 +142,10 @@ export default function TastingDetail() {
       tasting.puntuacion !== null ? `⭐ Puntuación: ${tasting.puntuacion}/100` : '',
       tasting.color_descripcion ? `🎨 Color: ${tasting.color_descripcion}` : '',
       tasting.aroma ? `👃 Aroma: ${tasting.aroma}` : '',
-      tasting.notas_cata ? `👄 Boca: ${tasting.notas_cata}` : '',
+      tasting.final ? `👄 Final: ${tasting.final}` : '',
+      tasting.notas_cata ? `📝 Notas: ${tasting.notas_cata}` : '',
       tasting.maridaje ? `🍽️ Maridaje: ${tasting.maridaje}` : '',
+      [tasting.lugar, tasting.con_quien && `con ${tasting.con_quien}`].filter(Boolean).join(' · '),
     ].filter(Boolean).join('\n')
 
     const copyToClipboard = (text: string) => {
@@ -203,6 +241,7 @@ export default function TastingDetail() {
             tasting={tasting}
             onSave={handleEdit}
             onCancel={() => setEditing(false)}
+            wine={wine}
           />
         </div>
       )}
@@ -229,7 +268,7 @@ export default function TastingDetail() {
                   border:        `1px solid ${tasting.es_consumo_rapido ? theme.colors.warningBorder : theme.colors.primaryBorder}`,
                 }}
               >
-                {tasting.es_consumo_rapido ? '⚡ Rápido' : '🍷 Cata completa'}
+                {tasting.es_consumo_rapido ? '⚡ Rápido' : '📓 Ficha de cata'}
               </span>
             </div>
             {tasting.puntuacion !== null && (
@@ -250,23 +289,37 @@ export default function TastingDetail() {
             className="flex items-center gap-3 rounded-xl px-3 py-3 no-underline active:opacity-75"
             style={{ background: theme.colors.surface, border: `1px solid ${theme.colors.gold}40` }}
           >
-            <span style={{ fontSize: '1.5rem' }}>🍾</span>
+            {wineImage
+              ? <img src={wineImage} alt="" style={{ width: 44, height: 56, objectFit: 'contain', borderRadius: theme.radius.sm, background: theme.colors.imageBg, flexShrink: 0 }} />
+              : <span style={{ fontSize: '1.5rem' }}>🍾</span>}
             <div className="flex-1 min-w-0">
               <p className="font-semibold text-sm truncate" style={{ color: theme.colors.cream }}>
                 {wine.nombre}{wine.anada ? ` · ${wine.anada}` : ''}
               </p>
-              {wine.bodega && (
-                <p className="text-xs truncate" style={{ color: theme.colors.muted }}>{wine.bodega}</p>
-              )}
+              <p className="text-xs truncate" style={{ color: theme.colors.muted }}>
+                {[wine.bodega, wine.region].filter(Boolean).join(' · ')}
+              </p>
+              <p className="text-xs" style={{ color: isInCellar(wine) ? theme.colors.gold : theme.colors.muted, marginTop: 2 }}>
+                {isInCellar(wine) ? 'En tu bodega' : 'De fuera · no está en tu bodega'}
+              </p>
             </div>
             <span style={{ color: theme.colors.muted, fontSize: '1rem' }}>›</span>
           </Link>
         ) : null}
 
-        {/* Secciones */}
-        <SectionCard icon="🎨" title="Color"    content={tasting.color_descripcion} />
-        <SectionCard icon="👃" title="Aroma"    content={tasting.aroma} />
-        <SectionCard icon="👄" title="Boca"     content={tasting.notas_cata} />
+        {/* Contexto: dónde, con quién, ocasión */}
+        {(tasting.lugar || tasting.con_quien || tasting.ocasion) && (
+          <p className="text-sm" style={{ color: theme.colors.muted }}>
+            {[tasting.lugar && `📍 ${tasting.lugar}`, tasting.con_quien && `👥 ${tasting.con_quien}`, tasting.ocasion && `🎉 ${tasting.ocasion}`]
+              .filter(Boolean).join('   ')}
+          </p>
+        )}
+
+        {/* Página del cuaderno: Vista, Nariz, Boca, Notas, Maridaje */}
+        <SectionCard icon="🎨" title="Vista"    content={tasting.color_descripcion} />
+        <SectionCard icon="👃" title="Nariz"    content={tasting.aroma} />
+        <BocaCard tasting={tasting} />
+        <SectionCard icon="📝" title="Notas"    content={tasting.notas_cata} />
         <SectionCard icon="🍽️" title="Maridaje" content={tasting.maridaje} />
 
         {/* Chat history */}
@@ -277,7 +330,7 @@ export default function TastingDetail() {
               onClick={() => setChatExpanded(e => !e)}
             >
               <span className="text-sm font-semibold" style={{ color: theme.colors.cream }}>
-                💬 Ver conversación ({tasting.chat_history.length} mensajes)
+                💬 Ver conversación ({tasting.chat_history.length - 1} mensajes)
               </span>
               <span style={{ color: theme.colors.muted }}>{chatExpanded ? '▲' : '▼'}</span>
             </button>
@@ -285,27 +338,13 @@ export default function TastingDetail() {
             {chatExpanded && (
               <div className="px-4 pb-4 flex flex-col gap-2 border-t" style={{ borderColor: theme.colors.borderSubtle }}>
                 <div style={{ height: 12 }} />
-                {tasting.chat_history.map((msg, i) => {
-                  const isUser = msg.role === 'user'
+                {/* El primer mensaje es la apertura automática con instrucciones: no se muestra */}
+                {tasting.chat_history.slice(1).map((msg, i) => {
                   const content = msg.role === 'assistant'
                     ? msg.content.split('CATA_COMPLETA')[0].trim()
                     : msg.content
                   if (!content) return null
-                  return (
-                    <div key={i} className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}>
-                      <div
-                        className="max-w-xs rounded-2xl px-3 py-2 text-sm leading-relaxed"
-                        style={{
-                          background: isUser ? theme.colors.primary : theme.colors.borderSubtle,
-                          color:      theme.colors.cream,
-                          borderBottomRightRadius: isUser ? 4 : undefined,
-                          borderBottomLeftRadius:  isUser ? undefined : 4,
-                        }}
-                      >
-                        {content}
-                      </div>
-                    </div>
-                  )
+                  return <ChatBubble key={i} message={{ ...msg, content }} />
                 })}
               </div>
             )}
