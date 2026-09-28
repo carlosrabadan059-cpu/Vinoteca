@@ -27,7 +27,36 @@
 
 ## Pendientes
 
-*(Ninguna fase numerada pendiente — ver "Congelado" y los documentos de cada fase para cabos sueltos menores)*
+*(Ninguna fase numerada pendiente.)* Estado a 2026-09-28: la V3 (cuaderno) y la V3.1 (tutor y glosario) están en producción en Dokploy (`dd04f31`).
+
+### Cabos sueltos
+
+Por prioridad. Ninguno bloquea el uso de la app.
+
+| # | Tarea | Por qué | Quién |
+|---|-------|---------|-------|
+| 1 | Confirmar en el `.env` de Supabase `SITE_URL=https://vinoteca.rabadanhouse.space` y `ADDITIONAL_REDIRECT_URLS=https://vinoteca.rabadanhouse.space/restablecer`, y recrear el servicio `auth` | Sin esto, los correos de recuperar contraseña pueden apuntar a la URL antigua de Vercel | Carlos |
+| 2 | ~~Avisos de seguridad de Supabase~~ ✅ 2026-09-28 | Revocado `EXECUTE` de `handle_new_user()` y `protect_profile_role_plan()` a `anon`/`authenticated` y `pg_trgm` movido al esquema `extensions` (migración `20260928140000_hardening_advisors.sql`). El linter ya no da avisos | — |
+| 3 | Hacer Omniroute resistente a cortes de luz: fijar la versión o crear una imagen con Omniroute ya instalado | Hace `npm install -g` en cada arranque; un corte a medias (`ENOTEMPTY`) lo dejó caído y con él el chat, el sommelier y los workflows que usan `Combo_n8n`. El tutor ya usa `gpt-4o-mini` directo | Claude o Carlos en la Pi5 |
+| 4 | Storage: fotos sin enlazar | Resultó que los binarios estaban en el servidor sin la subcarpeta de versión. Carlos las revisó en una galería y decidió conservar solo las fotos en uso. ✅ Borradas de BD las 25 filas y las 2 de avatares (2026-09-28). ✅ Borrados también del servidor los 25 archivos sueltos y la versión vieja de la frontal de `05f068e1` (2026-09-28). **Pendiente:** subir desde «Cambiar foto» la foto de estudio de El Castro de Valtuille 2025 | Carlos |
+| 5 | ~~Archivar `Vinoteca – Scan Identificar`~~ ✅ 2026-09-28 | Archivado en n8n y eliminado `callScanIdentificar` de `src/lib/n8n.ts` | — |
+| 6 | El trigger `on_auth_user_created` no existe en `auth.users` del self-hosted (la función `handle_new_user()` sí) | Un usuario nuevo no tendría fila en `profiles` ni `user_settings`. No afecta a las 2 cuentas actuales. Se perdió en la migración a self-hosted (el esquema `auth` no se migra con `supabase/migrations`) | Claude, con visto bueno |
+| 7 | Revisar en uso real la calidad de `gpt-4o-mini` en el tutor | A veces atribuye una frase a la fuente equivocada o dice que algo «coincide» cuando el usuario no lo mencionó ([fase-13](roadmap/fase-13-tutor-cata.md)) | Carlos, usándolo |
+
+**Comando ejecutado para el punto 4** (en `debian`, 2026-09-28; se conserva como referencia). Borra solo los `original.jpg` y `studio-*.png` que son archivos sueltos (las fotos válidas están dentro de su carpeta de versión) y la versión antigua suelta de la frontal de `05f068e1`:
+
+```bash
+cd /srv/docker/supabase/volumes/storage/wine-labels/d2bae57d-a469-44a9-8921-ddd3d6e1436b
+find . -maxdepth 2 -type f \( -name 'original.jpg' -o -name 'studio-*.png' \) -print -delete
+rm -v 05f068e1-1232-4446-8a51-bdf1544c84e5/frontal.jpg/490b31fc-f3ec-4361-9911-71ed9589a14e
+```
+
+### Mejoras opcionales
+
+- **Cuaderno:** captura de una foto propia de la cata (`tastings.foto_url` ya existe; ahora la página usa la foto del vino). Lista de deseos, exportar a PDF, glosario y tabla de añadas ([fase-12](roadmap/fase-12-cuaderno-catas.md)).
+- **Tutor:** añadir términos a mano al glosario (la categoría `general` ya existe); guardar la corrección junto a la cata; mostrar el texto a medida que se genera (streaming).
+- **Otros vinos con 0 botellas:** Torre De Oña, Servilio Crianza y Nauda se quedan en la bodega como historial (decidido por Carlos); Moses nº 5 y Habla Nº34 y Nº36 se pasaron a vinos de fuera.
+- Los avisos de lint anteriores a la V3 siguen ahí; los archivos nuevos están limpios.
 
 Ideas documentadas, sin empezar:
 

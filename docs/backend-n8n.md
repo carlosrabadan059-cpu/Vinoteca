@@ -97,10 +97,12 @@ async function post<T>(path: string, body: unknown): Promise<T>
 
 ---
 
-### 4. Scan — Identificar
+### 4. Scan — Identificar (archivado)
+
+> **Archivado el 2026-09-28.** La app dejó de llamarlo cuando la identificación pasó a `Wine Identify` (§7); el workflow `Vinoteca – Scan Identificar` está archivado en n8n y `callScanIdentificar` se eliminó de `src/lib/n8n.ts`. Se conserva la descripción como referencia histórica.
 
 **Ruta:** `POST /webhook/vinoteca/scan/identificar`  
-**Función cliente:** `callScanIdentificar(frontImageDataUrl, userId)`
+**Función cliente:** ~~`callScanIdentificar(frontImageDataUrl, userId)`~~ (eliminada)
 
 **Request:**
 ```typescript
