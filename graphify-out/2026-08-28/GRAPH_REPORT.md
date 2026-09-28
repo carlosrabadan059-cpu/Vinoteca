@@ -1,16 +1,16 @@
-# Graph Report - Vinoteca  (2026-08-27)
+# Graph Report - Vinoteca  (2026-08-28)
 
 ## Corpus Check
-- 241 files · ~177,410 words
+- 246 files · ~190,175 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1692 nodes · 2294 edges · 136 communities (122 shown, 14 thin omitted)
+- 2005 nodes · 2563 edges · 219 communities (143 shown, 76 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 33 edges (avg confidence: 0.79)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `f732e6cd`
+- Built from commit: `3fa4d4f1`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -138,33 +138,116 @@
 - [[_COMMUNITY_Community 125|Community 125]]
 - [[_COMMUNITY_Community 129|Community 129]]
 - [[_COMMUNITY_Community 130|Community 130]]
+- [[_COMMUNITY_Community 131|Community 131]]
 - [[_COMMUNITY_Community 132|Community 132]]
 - [[_COMMUNITY_Community 133|Community 133]]
+- [[_COMMUNITY_Community 134|Community 134]]
+- [[_COMMUNITY_Community 135|Community 135]]
 - [[_COMMUNITY_Community 136|Community 136]]
+- [[_COMMUNITY_Community 137|Community 137]]
 - [[_COMMUNITY_Community 138|Community 138]]
+- [[_COMMUNITY_Community 139|Community 139]]
+- [[_COMMUNITY_Community 140|Community 140]]
+- [[_COMMUNITY_Community 141|Community 141]]
 - [[_COMMUNITY_Community 142|Community 142]]
+- [[_COMMUNITY_Community 143|Community 143]]
+- [[_COMMUNITY_Community 144|Community 144]]
+- [[_COMMUNITY_Community 145|Community 145]]
+- [[_COMMUNITY_Community 146|Community 146]]
+- [[_COMMUNITY_Community 147|Community 147]]
+- [[_COMMUNITY_Community 148|Community 148]]
+- [[_COMMUNITY_Community 149|Community 149]]
+- [[_COMMUNITY_Community 150|Community 150]]
+- [[_COMMUNITY_Community 151|Community 151]]
+- [[_COMMUNITY_Community 152|Community 152]]
+- [[_COMMUNITY_Community 153|Community 153]]
+- [[_COMMUNITY_Community 154|Community 154]]
+- [[_COMMUNITY_Community 155|Community 155]]
+- [[_COMMUNITY_Community 156|Community 156]]
+- [[_COMMUNITY_Community 157|Community 157]]
+- [[_COMMUNITY_Community 158|Community 158]]
+- [[_COMMUNITY_Community 159|Community 159]]
+- [[_COMMUNITY_Community 160|Community 160]]
+- [[_COMMUNITY_Community 161|Community 161]]
+- [[_COMMUNITY_Community 162|Community 162]]
+- [[_COMMUNITY_Community 163|Community 163]]
+- [[_COMMUNITY_Community 164|Community 164]]
+- [[_COMMUNITY_Community 165|Community 165]]
+- [[_COMMUNITY_Community 166|Community 166]]
+- [[_COMMUNITY_Community 167|Community 167]]
+- [[_COMMUNITY_Community 168|Community 168]]
+- [[_COMMUNITY_Community 169|Community 169]]
+- [[_COMMUNITY_Community 170|Community 170]]
+- [[_COMMUNITY_Community 171|Community 171]]
+- [[_COMMUNITY_Community 172|Community 172]]
+- [[_COMMUNITY_Community 173|Community 173]]
+- [[_COMMUNITY_Community 174|Community 174]]
+- [[_COMMUNITY_Community 175|Community 175]]
+- [[_COMMUNITY_Community 176|Community 176]]
+- [[_COMMUNITY_Community 177|Community 177]]
+- [[_COMMUNITY_Community 178|Community 178]]
+- [[_COMMUNITY_Community 179|Community 179]]
+- [[_COMMUNITY_Community 180|Community 180]]
+- [[_COMMUNITY_Community 181|Community 181]]
+- [[_COMMUNITY_Community 182|Community 182]]
+- [[_COMMUNITY_Community 183|Community 183]]
+- [[_COMMUNITY_Community 184|Community 184]]
+- [[_COMMUNITY_Community 185|Community 185]]
+- [[_COMMUNITY_Community 186|Community 186]]
+- [[_COMMUNITY_Community 187|Community 187]]
+- [[_COMMUNITY_Community 188|Community 188]]
+- [[_COMMUNITY_Community 189|Community 189]]
+- [[_COMMUNITY_Community 190|Community 190]]
+- [[_COMMUNITY_Community 191|Community 191]]
+- [[_COMMUNITY_Community 192|Community 192]]
+- [[_COMMUNITY_Community 193|Community 193]]
+- [[_COMMUNITY_Community 194|Community 194]]
+- [[_COMMUNITY_Community 195|Community 195]]
+- [[_COMMUNITY_Community 196|Community 196]]
+- [[_COMMUNITY_Community 197|Community 197]]
+- [[_COMMUNITY_Community 198|Community 198]]
+- [[_COMMUNITY_Community 199|Community 199]]
+- [[_COMMUNITY_Community 200|Community 200]]
+- [[_COMMUNITY_Community 201|Community 201]]
+- [[_COMMUNITY_Community 202|Community 202]]
+- [[_COMMUNITY_Community 203|Community 203]]
+- [[_COMMUNITY_Community 204|Community 204]]
+- [[_COMMUNITY_Community 205|Community 205]]
+- [[_COMMUNITY_Community 206|Community 206]]
+- [[_COMMUNITY_Community 207|Community 207]]
+- [[_COMMUNITY_Community 208|Community 208]]
+- [[_COMMUNITY_Community 209|Community 209]]
+- [[_COMMUNITY_Community 210|Community 210]]
+- [[_COMMUNITY_Community 211|Community 211]]
+- [[_COMMUNITY_Community 212|Community 212]]
+- [[_COMMUNITY_Community 213|Community 213]]
+- [[_COMMUNITY_Community 214|Community 214]]
+- [[_COMMUNITY_Community 215|Community 215]]
+- [[_COMMUNITY_Community 216|Community 216]]
+- [[_COMMUNITY_Community 217|Community 217]]
+- [[_COMMUNITY_Community 218|Community 218]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `Theme` - 45 edges
 2. `Wine` - 42 edges
 3. `useAuthStore` - 33 edges
 4. `useWines()` - 32 edges
-5. `Tasting` - 25 edges
-6. `supabase` - 24 edges
-7. `getDB()` - 19 edges
-8. `compilerOptions` - 18 edges
-9. `useTastings()` - 17 edges
-10. `compilerOptions` - 17 edges
+5. `connections` - 29 edges
+6. `Tasting` - 25 edges
+7. `supabase` - 24 edges
+8. `getDB()` - 19 edges
+9. `compilerOptions` - 18 edges
+10. `workflow` - 17 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `CLAUDE.md - Project Instructions` --references--> `CONTEXT.md - Domain Glossary`  [INFERRED]
   CLAUDE.md → CONTEXT.md
+- `useSync()` --semantically_similar_to--> `syncQueue Function (main)`  [INFERRED] [semantically similar]
+  src/hooks/useSync.ts → src/main.tsx
 - `TDD Skill` --references--> `Domain Glossary (Vinoteca)`  [EXTRACTED]
   .agents/skills/tdd/SKILL.md → CONTEXT.md
 - `Agent Domain Docs Config` --references--> `CONTEXT.md - Domain Glossary`  [EXTRACTED]
   docs/agents/domain.md → CONTEXT.md
-- `DuplicateResult` --references--> `Wine`  [EXTRACTED]
-  src/lib/wineDuplicates.ts → src/types/index.ts
 - `useAuthStore` --references--> `Wine`  [INFERRED]
   src/store/authStore.ts → src/types/index.ts
 
@@ -191,11 +274,11 @@
 - **Conjunto de Iconos PWA de la Aplicación** — public_favicon_svg, public_pwa_192, public_pwa_512, public_apple_touch_icon [INFERRED 0.90]
 - **Cadena de Handoffs de Sesiones de Desarrollo** — docs_handoff_2026_06_10, docs_handoff_2026_06_11, docs_handoff_2026_06_12, docs_handoff_2026_06_13, docs_handoff_2026_06_18 [EXTRACTED 0.95]
 
-## Communities (136 total, 14 thin omitted)
+## Communities (219 total, 76 thin omitted)
 
 ### Community 0 - "UI Components & Design System"
 Cohesion: 0.09
-Nodes (23): [0.1.0] — 2026-06-10, [0.2.0] — 2026-06-18, [0.3.0] — 2026-06-25, [0.4.0] — 2026-07-04, [0.5.0] — 2026-07-05, [0.6.0] — 2026-07-06, Added, Added (+15 more)
+Nodes (25): [0.1.0] — 2026-06-10, [0.2.0] — 2026-06-18, [0.3.0] — 2026-06-25, [0.4.0] — 2026-07-04, [0.5.0] — 2026-07-05, [0.6.0] — 2026-07-06, Added, Added (+17 more)
 
 ### Community 1 - "Community 1"
 Cohesion: 0.18
@@ -242,8 +325,8 @@ Cohesion: 0.31
 Nodes (7): Generación de imagen studio con gpt-image-1, Workflow n8n: Vinoteca Scan Analizar (EtTezN27e9tqvOjS), Fixes para Safari iOS (polyfill randomUUID, webkit scroll), Flujo de Escaneo de Etiqueta (4 pasos), SerpAPI Fallback para imagen de vino, Migración Supabase — 7 columnas nuevas en wines, Supabase Storage Bucket wine-labels con RLS
 
 ### Community 12 - "Skills Lock Registry"
-Cohesion: 0.25
-Nodes (7): computedHash, skillPath, source, sourceType, skills, frontend-design, version
+Cohesion: 0.11
+Nodes (17): computedHash, skillPath, source, sourceType, skills, frontend-design, supabase, supabase-postgres-best-practices (+9 more)
 
 ### Community 13 - "Frontend Design & Prototyping"
 Cohesion: 0.05
@@ -266,16 +349,16 @@ Cohesion: 0.80
 Nodes (3): capture(), step(), hitl-loop.template.sh script
 
 ### Community 25 - "Community 25"
-Cohesion: 0.09
-Nodes (12): ColorKey, FontSizeKey, RadiusKey, Theme, BadgeProps, ButtonProps, CardProps, InputProps (+4 more)
+Cohesion: 0.16
+Nodes (6): ToastState, useToastStore, ModalProps, Toast(), ConsumoQuickForm(), ConsumoQuickFormProps
 
 ### Community 27 - "README"
 Cohesion: 0.07
 Nodes (19): Red-Green-Refactor Loop, Tracer Bullet Vertical Slice, Deep Modules, Interface Design for Testability, Designing for Mockability, When to Mock, Refactor Candidates, TDD Skill (+11 more)
 
 ### Community 34 - "Community 34"
-Cohesion: 0.19
-Nodes (7): SectionCardProps, SpinnerProps, EditFields, scoreColor(), TastingEditForm(), TastingEditFormProps, toFields()
+Cohesion: 0.42
+Nodes (8): processOperation(), supabase, findDuplicateWine(), generateWineUid(), normalizeWineText(), identifyByWineUid(), IdentifyResult, syncQueue Function (main)
 
 ### Community 35 - "Community 35"
 Cohesion: 0.08
@@ -458,8 +541,8 @@ Cohesion: 0.18
 Nodes (9): Alcance, Criterio de finalización, Decisiones de diseño, Decisiones técnicas, Estado, Fase 2 — Identificación (V1.4), Funcionalidades, Objetivo (+1 more)
 
 ### Community 85 - "Community 85"
-Cohesion: 0.06
-Nodes (70): Offline-First Sync Pattern, useTastings Hook, processOperation(), useSync(), WineFilters, addToQueue(), clearLocalWines(), clearQueue() (+62 more)
+Cohesion: 0.18
+Nodes (19): Offline-First Sync Pattern, useSync(), getQueue(), getQueueCount(), removeFromQueue(), updateQueueItem(), processOperation(), syncQueue() (+11 more)
 
 ### Community 86 - "Community 86"
 Cohesion: 0.20
@@ -522,8 +605,8 @@ Cohesion: 0.22
 Nodes (8): Directory structure, File format, Naming the file, Out-of-Scope Knowledge Base, Updating or removing out-of-scope files, When to check `.out-of-scope/`, When to write to `.out-of-scope/`, Writing the reason
 
 ### Community 101 - "Community 101"
-Cohesion: 0.18
-Nodes (6): ToastState, useToastStore, ModalProps, Toast(), ConsumoQuickForm(), ConsumoQuickFormProps
+Cohesion: 0.11
+Nodes (17): buildTasteProfile(), TasteProfile, classifyWine(), DuplicateResult, WineDetail(), FieldTrace, Profile, SourceType (+9 more)
 
 ### Community 102 - "Community 102"
 Cohesion: 0.20
@@ -566,8 +649,8 @@ Cohesion: 0.18
 Nodes (10): Decisiones tomadas, Estado del proyecto, Flujo de autenticación, Handoff — Fase 9: Gestión de usuarios y cuentas, Limpieza, Migraciones (`supabase/migrations/`), Pendiente / fuera de alcance, Perfil y ajustes (+2 more)
 
 ### Community 112 - "Community 112"
-Cohesion: 0.19
-Nodes (13): compressImage(), pickFile(), useCamera(), getUserMediaSource(), BarrelHero(), CameraButton(), Scan(), Step (+5 more)
+Cohesion: 0.20
+Nodes (11): canvas180(), captureFrameFromVideo(), CaptureSource, applyAdjustments(), autoEnhance(), estimateSharpness(), ImageAdjustments, loadImage() (+3 more)
 
 ### Community 113 - "Community 113"
 Cohesion: 0.36
@@ -590,8 +673,8 @@ Cohesion: 0.29
 Nodes (6): Fase 9 — Estadísticas: Implementation Plan, Task 1: Extraer helpers puros a `src/lib/statsHelpers.ts`, Task 2: Reescribir `src/hooks/useStats.ts` como orquestador fino, Task 3: Ampliar `StatsPayload` en `src/lib/n8n.ts`, Task 4: Rediseñar `src/pages/Stats.tsx`, Task 5: Verificación manual y cierre de la fase
 
 ### Community 118 - "Community 118"
-Cohesion: 0.33
-Nodes (4): Animated Overlay Pattern, AnalysisProgressProps, PHASES_ANALYZING, PHASES_IDENTIFYING
+Cohesion: 0.12
+Nodes (16): [1.2.0](https://github.com/supabase/agent-skills/compare/v1.1.1...v1.2.0) (2026-06-02), [1.3.0](https://github.com/supabase/agent-skills/compare/v1.2.0...v1.3.0) (2026-06-05), [1.4.0](https://github.com/supabase/agent-skills/compare/v1.3.0...v1.4.0) (2026-07-10), [1.5.0](https://github.com/supabase/agent-skills/compare/supabase-postgres-best-practices-v1.4.0...supabase-postgres-best-practices-v1.5.0) (2026-07-30), [1.6.0](https://github.com/supabase/agent-skills/compare/supabase-postgres-best-practices-v1.5.0...supabase-postgres-best-practices-v1.6.0) (2026-07-30), Bug Fixes, Bug Fixes, Bug Fixes (+8 more)
 
 ### Community 119 - "Community 119"
 Cohesion: 0.22
@@ -602,8 +685,8 @@ Cohesion: 0.20
 Nodes (9): Fase 10 — Sommelier IA — Implementation Plan, Self-Review (ya aplicado por el autor del plan), Task 1: `src/lib/sommelierHelpers.ts` — perfil de gusto, Task 2: `src/hooks/useSommelier.ts` — orquestador, Task 3: Ampliar `src/lib/n8n.ts`, Task 4: Ampliar `detectIntent()` y `sendMessage()` en `Sommelier.tsx`, Task 5: Ampliar el workflow n8n `vinoteca-sommelier-chat`, Task 6: Ampliar el workflow n8n `vinoteca-sommelier-maridaje` (+1 more)
 
 ### Community 121 - "Community 121"
-Cohesion: 0.07
-Nodes (41): BodegaState, CURRENT_YEAR, useBodegaState(), CatasState, useCatasState(), useTastings(), SortKey, useWines() (+33 more)
+Cohesion: 0.17
+Nodes (19): BodegaState, CURRENT_YEAR, useBodegaState(), SortKey, useWines(), getSuggestions(), GROUP_OPTIONS, GroupKey (+11 more)
 
 ### Community 122 - "Community 122"
 Cohesion: 0.22
@@ -618,16 +701,20 @@ Cohesion: 0.40
 Nodes (4): name, organization_id, organization_slug, ref
 
 ### Community 125 - "Community 125"
-Cohesion: 0.20
-Nodes (11): canvas180(), captureFrameFromVideo(), CaptureSource, applyAdjustments(), autoEnhance(), estimateSharpness(), ImageAdjustments, loadImage() (+3 more)
+Cohesion: 0.18
+Nodes (7): Meta, MetaSectionProps, ModeSelectorProps, NuevaCata(), QuickFormProps, TastingMode, todayISO()
 
 ### Community 129 - "Community 129"
-Cohesion: 0.12
-Nodes (20): App (Root Component), injectKeyframes(), useProfile(), useSettings(), Ajustes(), inputStyle, ForgotPassword(), Login() (+12 more)
+Cohesion: 0.13
+Nodes (18): App (Root Component), useProfile(), useSettings(), supabaseAnonKey, supabaseUrl, Ajustes(), inputStyle, ForgotPassword() (+10 more)
 
 ### Community 130 - "Community 130"
 Cohesion: 0.40
 Nodes (4): Conventions, Issue tracker: GitHub, When a skill says "fetch the relevant ticket", When a skill says "publish to the issue tracker"
+
+### Community 131 - "Community 131"
+Cohesion: 0.12
+Nodes (15): 1. Concrete Transformation Patterns, 2. Error-First Structure, 3. Quantified Impact, 4. Self-Contained Examples, 5. Semantic Naming, Code Example Standards, Comments, Impact Level Guidelines (+7 more)
 
 ### Community 132 - "Community 132"
 Cohesion: 0.12
@@ -637,36 +724,116 @@ Nodes (15): 1. Workflow n8n — nodos nuevos entre `Preparar Grounding` y `OpenA
 Cohesion: 0.33
 Nodes (5): Consolidar deuda técnica (Fase 11, parte 1) — Implementation Plan, Self-Review (ya aplicado por el autor del plan), Task 1: Eliminar `src/components/wine/ChatBubble.tsx` (código muerto), Task 2: Extraer `processOperation`/`syncQueue` a `src/lib/syncQueue.ts`, Task 3: Corregir `docs/roadmap/fase-11-optimizacion.md`
 
+### Community 134 - "Community 134"
+Cohesion: 0.12
+Nodes (15): [0.1.3](https://github.com/supabase/agent-skills/compare/v0.1.2...v0.1.3) (2026-06-02), [0.1.4](https://github.com/supabase/agent-skills/compare/v0.1.3...v0.1.4) (2026-06-05), [0.1.5](https://github.com/supabase/agent-skills/compare/v0.1.4...v0.1.5) (2026-07-10), [0.1.6](https://github.com/supabase/agent-skills/compare/v0.1.5...supabase-v0.1.6) (2026-07-30), [0.1.7](https://github.com/supabase/agent-skills/compare/v0.1.6...supabase-v0.1.7) (2026-08-12), Bug Fixes, Bug Fixes, Bug Fixes (+7 more)
+
+### Community 135 - "Community 135"
+Cohesion: 0.19
+Nodes (13): compressImage(), pickFile(), useCamera(), getUserMediaSource(), BarrelHero(), CameraButton(), Scan(), Step (+5 more)
+
 ### Community 136 - "Community 136"
-Cohesion: 0.40
-Nodes (5): Arquitectura del workflow (8 nodos), Estado actual del workflow n8n, Lógica de "Extraer URL Imagen", Pendiente en n8n (acción manual), Prompt de análisis (Preparar Mensajes)
+Cohesion: 0.12
+Nodes (17): main, main, main, main, 01 Recibir Imagen, 03 Quitar Fondo, 10 Preparar GPT, 24 Abrir URL QR (+9 more)
+
+### Community 137 - "Community 137"
+Cohesion: 0.15
+Nodes (18): CatasState, useCatasState(), useTastings(), applyFilter(), FilterKey, FILTERS, VinotecaDB, Catas() (+10 more)
 
 ### Community 138 - "Community 138"
 Cohesion: 0.40
 Nodes (4): ADR 0007 — Ayudante flotante de uso de la app, Consecuencias, Contexto, Decisión
 
+### Community 139 - "Community 139"
+Cohesion: 0.12
+Nodes (15): workflow, active, activeVersionId, createdAt, description, id, isArchived, name (+7 more)
+
+### Community 140 - "Community 140"
+Cohesion: 0.23
+Nodes (15): useTastings Hook, WineFilters, addToQueue(), clearLocalWines(), clearQueue(), getDB(), getLocalTastings(), getLocalWines() (+7 more)
+
+### Community 141 - "Community 141"
+Cohesion: 0.18
+Nodes (10): Core Principles, Debugging, Making and Committing Schema Changes, Option A: Declarative schemas, Option B: Imperative migrations, Reference Guides, Supabase, Supabase CLI (+2 more)
+
 ### Community 142 - "Community 142"
+Cohesion: 0.22
+Nodes (8): Contexto para quien ejecute este plan, Descomponer "Vinoteca – Scan Analizar" en orquestador + sub-workflow — Implementation Plan, Task 1: Backup del workflow activo, Task 2: Construir el sub-workflow "Vinoteca – Scan · Foto de Estudio", Task 3: Verificar el sub-workflow en aislamiento, Task 4: Construir el orquestador "Vinoteca – Scan Analizar v2", Task 5: Verificar el orquestador v2 completo (4 casos), sin tocar el webhook real, Task 6: Corte a producción y documentación
+
+### Community 143 - "Community 143"
+Cohesion: 0.20
+Nodes (9): 1. Query Performance (query), 2. Connection Management (conn), 3. Security & RLS (security), 4. Schema Design (schema), 5. Concurrency & Locking (lock), 6. Data Access Patterns (data), 7. Monitoring & Diagnostics (monitor), 8. Advanced Features (advanced) (+1 more)
+
+### Community 144 - "Community 144"
+Cohesion: 0.33
+Nodes (5): How to Use, References, Rule Categories by Priority, Supabase Postgres Best Practices, When to Apply
+
+### Community 145 - "Community 145"
+Cohesion: 0.12
+Nodes (15): workflow, active, activeVersionId, createdAt, description, id, isArchived, name (+7 more)
+
+### Community 146 - "Community 146"
+Cohesion: 0.33
+Nodes (6): availableInMCP, binaryMode, callerPolicy, executionOrder, timeSavedMode, settings
+
+### Community 147 - "Community 147"
+Cohesion: 0.50
+Nodes (3): Fix suggestion, Source, What happened
+
+### Community 181 - "Community 181"
+Cohesion: 0.11
+Nodes (10): Animated Overlay Pattern, Theme, AnalysisProgressProps, PHASES_ANALYZING, PHASES_IDENTIFYING, ButtonProps, InputProps, TastingForm Component (+2 more)
+
+### Community 182 - "Community 182"
+Cohesion: 0.12
+Nodes (10): ColorKey, FontSizeKey, injectKeyframes(), RadiusKey, BadgeProps, CardProps, Layout(), LayoutProps (+2 more)
+
+### Community 204 - "Community 204"
 Cohesion: 0.40
 Nodes (5): Estado actual, Flujo de escaneo (Scan.tsx), useWines.ts (fix `96b4790`), WineDetail.tsx, WineForm.tsx (fix `96b4790`)
 
+### Community 205 - "Community 205"
+Cohesion: 0.18
+Nodes (10): Alcance, Arquitectura resultante, Contexto, Descomponer "Vinoteca – Scan Analizar" en orquestador + sub-workflow, Diseño, Objetivo, Orquestador — limpiezas incluidas, Plan de migración (+2 more)
+
+### Community 206 - "Community 206"
+Cohesion: 0.13
+Nodes (15): main, main, main, main, main, 01 Recibir Imagen, 02 Convertir Frontal, 03 Quitar Fondo (+7 more)
+
+### Community 207 - "Community 207"
+Cohesion: 0.33
+Nodes (6): availableInMCP, binaryMode, callerPolicy, executionOrder, timeSavedMode, settings
+
+### Community 208 - "Community 208"
+Cohesion: 0.40
+Nodes (5): Arquitectura del workflow (8 nodos), Estado actual del workflow n8n, Lógica de "Extraer URL Imagen", Pendiente en n8n (acción manual), Prompt de análisis (Preparar Mensajes)
+
+### Community 217 - "Community 217"
+Cohesion: 0.19
+Nodes (7): SectionCardProps, SpinnerProps, EditFields, scoreColor(), TastingEditForm(), TastingEditFormProps, toFields()
+
+### Community 218 - "Community 218"
+Cohesion: 0.29
+Nodes (6): dataUrlToBlob(), fetchImageAsDataUrl(), getDataUrlMimeType(), getExtensionForMimeType(), storage, uploadWineImage()
+
 ## Knowledge Gaps
-- **907 isolated node(s):** `UserRole`, `UserPlan`, `SourceType`, `FieldTrace`, `Task 1: Tipos TypeScript` (+902 more)
+- **1099 isolated node(s):** `Added`, `Added`, `Changed`, `Fixed`, `Added` (+1094 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **14 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **76 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Theme` connect `Community 25` to `Community 129`, `Community 34`, `Community 101`, `Community 106`, `Community 110`, `Community 112`, `Community 85`, `Community 118`, `Community 121`, `Community 123`, `Community 125`?**
-  _High betweenness centrality (0.011) - this node is a cross-community bridge._
-- **Why does `Wine` connect `Community 121` to `Community 129`, `Community 34`, `Community 101`, `Community 106`, `Community 110`, `Community 112`, `Community 85`, `Community 25`, `Community 123`?**
-  _High betweenness centrality (0.006) - this node is a cross-community bridge._
-- **Why does `useAuthStore` connect `Community 129` to `Community 101`, `Community 110`, `Community 112`, `Community 85`, `Community 121`, `Community 123`?**
+- **Why does `Theme` connect `Community 181` to `Community 129`, `Community 217`, `Community 101`, `Community 135`, `Community 137`, `Community 106`, `Community 110`, `Community 112`, `Community 85`, `Community 182`, `Community 121`, `Community 123`, `Community 125`, `Community 25`?**
   _High betweenness centrality (0.004) - this node is a cross-community bridge._
-- **What connects `UserRole`, `UserPlan`, `SourceType` to the rest of the system?**
-  _908 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Why does `Wine` connect `Community 101` to `Community 129`, `Community 34`, `Community 217`, `Community 135`, `Community 137`, `Community 106`, `Community 140`, `Community 110`, `Community 181`, `Community 121`, `Community 123`, `Community 125`, `Community 25`?**
+  _High betweenness centrality (0.002) - this node is a cross-community bridge._
+- **Why does `useAuthStore` connect `Community 129` to `Community 101`, `Community 135`, `Community 137`, `Community 140`, `Community 110`, `Community 182`, `Community 121`, `Community 123`, `Community 25`?**
+  _High betweenness centrality (0.002) - this node is a cross-community bridge._
+- **What connects `Added`, `Added`, `Changed` to the rest of the system?**
+  _1100 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `UI Components & Design System` be split into smaller, more focused modules?**
-  _Cohesion score 0.08695652173913043 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.08615384615384615 - nodes in this community are weakly interconnected._
 - **Should `n8n AI Integration Layer` be split into smaller, more focused modules?**
   _Cohesion score 0.09523809523809523 - nodes in this community are weakly interconnected._
 - **Should `Package Dependencies` be split into smaller, more focused modules?**

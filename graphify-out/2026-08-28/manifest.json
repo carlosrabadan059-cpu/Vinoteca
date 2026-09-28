@@ -740,8 +740,8 @@
     "semantic_hash": ""
   },
   "docs/CHANGELOG.md": {
-    "mtime": 1787126638.3495414,
-    "ast_hash": "5fbf09b1cf7656b6360003e57288cc15",
+    "mtime": 1787928747.7287467,
+    "ast_hash": "515791d8c9785008f68b4239ce85debe",
     "semantic_hash": ""
   },
   "docs/decisions/README.md": {
@@ -750,8 +750,8 @@
     "semantic_hash": ""
   },
   "docs/roadmap/fase-01-captura-ocr.md": {
-    "mtime": 1783526447.7791657,
-    "ast_hash": "2f0f89e031d575e3cf6fe1db5c0d4a39",
+    "mtime": 1787905481.2834604,
+    "ast_hash": "4bc94983b732cf949b8c2e44d0e007f4",
     "semantic_hash": ""
   },
   "docs/roadmap/fase-02-identificacion.md": {
@@ -760,8 +760,8 @@
     "semantic_hash": ""
   },
   "docs/roadmap/fase-03-enriquecimiento.md": {
-    "mtime": 1783526478.6304464,
-    "ast_hash": "06796df02542b57196c5685498c40fd9",
+    "mtime": 1787857764.0340717,
+    "ast_hash": "62ceb06fa94abb4a84e06b53d6d51a27",
     "semantic_hash": ""
   },
   "docs/roadmap/fase-04-wineform.md": {
@@ -1257,6 +1257,31 @@
   "docs/superpowers/plans/2026-08-19-wine-enrich-web-search-ampliado-plan.md": {
     "mtime": 1787854492.3970554,
     "ast_hash": "2326f2ba6a763d40a800ca2458c44d66",
+    "semantic_hash": ""
+  },
+  "docs/n8n-backups/vinoteca-scan-analizar-2026-08-28-pre-qr-removal.json": {
+    "mtime": 1787903562.0628023,
+    "ast_hash": "e2b0aa043da58082721cd17b07127248",
+    "semantic_hash": ""
+  },
+  "docs/n8n-backups/README.md": {
+    "mtime": 1787907892.9511425,
+    "ast_hash": "454f4f468bcbe7314f166b1d941126bf",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-08-28-scan-analizar-orquestador-design.md": {
+    "mtime": 1787906946.6529047,
+    "ast_hash": "11fe5ffdba346ba5cf404b5c9b1e45bd",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/plans/2026-08-28-scan-analizar-orquestador.md": {
+    "mtime": 1787908642.2097356,
+    "ast_hash": "90e262836c22ba16ff49a7ce75504c89",
+    "semantic_hash": ""
+  },
+  "docs/n8n-backups/vinoteca-scan-analizar-2026-08-28-pre-orquestador.json": {
+    "mtime": 1787907883.1330814,
+    "ast_hash": "c0cc7b298882960a8bd40395b54e6e84",
     "semantic_hash": ""
   }
 }
