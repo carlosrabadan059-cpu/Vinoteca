@@ -1,7 +1,7 @@
-# Graph Report - Vinoteca  (2026-09-28)
+# Graph Report - Vinoteca  (2026-09-29)
 
 ## Corpus Check
-- 260 files · ~201,737 words
+- 260 files · ~201,761 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `fdb15246`
+- Built from commit: `7c800458`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -366,7 +366,7 @@ Nodes (8): Red-Green-Refactor Loop, Tracer Bullet Vertical Slice, Deep Modules, 
 
 ### Community 34 - "Community 34"
 Cohesion: 0.11
-Nodes (17): useBodegaState(), useWines(), wines_local IDB Store, Bodega(), renderCards(), shimmerStyle, Meta, MetaSectionProps (+9 more)
+Nodes (21): useBodegaState(), useSommelier(), useWines(), wines_local IDB Store, Bodega(), renderCards(), shimmerStyle, buildWineCollection() (+13 more)
 
 ### Community 35 - "Community 35"
 Cohesion: 0.08
@@ -634,7 +634,7 @@ Nodes (3): Decisiones de diseño y técnicas, Decisiones registradas en handoffs
 
 ### Community 106 - "Community 106"
 Cohesion: 0.05
-Nodes (21): Animated Overlay Pattern, ColorKey, FontSizeKey, RadiusKey, Theme, AnalysisProgressProps, PHASES_ANALYZING, PHASES_IDENTIFYING (+13 more)
+Nodes (27): Animated Overlay Pattern, ColorKey, FontSizeKey, RadiusKey, Theme, callAyudaChat(), AnalysisProgressProps, PHASES_ANALYZING (+19 more)
 
 ### Community 107 - "Community 107"
 Cohesion: 0.13
@@ -701,8 +701,8 @@ Cohesion: 0.20
 Nodes (8): Estructura de archivos, Mejoras de calidad de imagen en la captura de cámara — Implementation Plan, Self-Review (ya aplicado por el autor del plan), Task 1: Módulo puro `src/lib/imageQuality.ts`, Task 2: Slider de brillo + rewire de `handleConfirm`, Task 3: Botón "Auto-mejorar", Task 4: Aviso de foto borrosa, Task 5: Verificación manual y registro en el roadmap
 
 ### Community 123 - "Community 123"
-Cohesion: 0.09
-Nodes (23): useSommelier(), callAyudaChat(), callSommelierChat(), buildWineCollection(), COMPARATIVA_KEYWORDS, detectIntent(), DO_KEYWORDS, extractPlato() (+15 more)
+Cohesion: 0.12
+Nodes (13): callSommelierChat(), Meta, MetaSectionProps, ModeSelectorProps, NuevaCata(), QuickFormProps, TastingMode, todayISO() (+5 more)
 
 ### Community 124 - "Community 124"
 Cohesion: 0.53
