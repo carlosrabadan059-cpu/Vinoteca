@@ -134,6 +134,37 @@ Descarga una imagen desde cualquier URL y la convierte a data URL (base64). Usad
 - **Email confirm:** activado (heredado de la config de Cloud tras la migración)
 - **Studio (UI admin):** `https://supabase.rabadanhouse.space` (Dashboard user/pass en `.env`: `DASHBOARD_USERNAME` / `DASHBOARD_PASSWORD`)
 
+### Correos de Auth (SMTP y plantillas)
+
+GoTrue (`supabase-auth`) envía los correos de confirmación de registro, recuperación de contraseña y cambio de email por **Gmail SMTP**.
+
+- **SMTP:** `SMTP_HOST=smtp.gmail.com`, `SMTP_PORT=587`, `SMTP_USER`/`SMTP_ADMIN_EMAIL=carlosrabadan059@gmail.com` y `SMTP_SENDER_NAME=Vinoteca`, en `/srv/docker/supabase/.env`.
+- **`SMTP_PASS` debe ser una contraseña de aplicación de Google** (16 letras, sin espacios; se crea en <https://myaccount.google.com/apppasswords>), no la contraseña de la cuenta. La cuenta tiene verificación en dos pasos y, con la contraseña normal, Gmail rechaza el login con `534 5.7.9 Application-specific password required` y la app muestra «Error sending recovery email». Si se revoca en Google, los correos dejan de salir.
+- **Plantillas HTML:** están en [`public/email/`](../public/email/) y las sirve la propia app (Dokploy). GoTrue las descarga por HTTP al enviar y sustituye las variables Go (`{{ .ConfirmationURL }}`, `{{ .Email }}`, `{{ .NewEmail }}`). Estilos en línea y maquetación con tablas, para que Gmail los respete.
+
+| Correo | Plantilla | Asunto |
+|--------|-----------|--------|
+| Recuperación de contraseña | `recuperar.html` | «Restablece tu contraseña de Vinoteca» |
+| Confirmación de registro | `confirmar.html` | «Confirma tu cuenta de Vinoteca» |
+| Cambio de email | `cambiar-email.html` | «Confirma tu nuevo email de Vinoteca» |
+
+Se configuran en el servicio `auth` de `/srv/docker/supabase/docker-compose.yml` (no en el `.env`, porque el compose no pasa esas variables):
+
+```yaml
+      GOTRUE_MAILER_TEMPLATES_RECOVERY: https://vinoteca.rabadanhouse.space/email/recuperar.html
+      GOTRUE_MAILER_SUBJECTS_RECOVERY: "Restablece tu contraseña de Vinoteca"
+      GOTRUE_MAILER_TEMPLATES_CONFIRMATION: https://vinoteca.rabadanhouse.space/email/confirmar.html
+      GOTRUE_MAILER_SUBJECTS_CONFIRMATION: "Confirma tu cuenta de Vinoteca"
+      GOTRUE_MAILER_TEMPLATES_EMAIL_CHANGE: https://vinoteca.rabadanhouse.space/email/cambiar-email.html
+      GOTRUE_MAILER_SUBJECTS_EMAIL_CHANGE: "Confirma tu nuevo email de Vinoteca"
+```
+
+- **Aplicar cambios** del compose o del `.env`: `docker compose up -d auth`, que recrea el contenedor. `docker compose restart auth` **no** relee la configuración. Comprobación: `docker exec supabase-auth env | grep MAILER_`.
+- **Editar una plantilla:** basta con cambiar el HTML y desplegar la app. GoTrue guarda las plantillas en caché un rato; para verlas al momento, `docker compose up -d auth`.
+- **Si una plantilla no se puede descargar**, GoTrue envía su texto por defecto en inglés. El correo no se pierde.
+- `/email/` está excluido del precache y del `navigateFallback` de la PWA (`vite.config.ts`).
+- Las plantillas de enlace mágico e invitación no están personalizadas; la app no usa esos flujos.
+
 ### Kong (`volumes/api/kong.yml`) — grupos ACL de los consumers
 
 Cada ruta de Kong (`rest-v1`, `auth-v1`, `graphql-v1`, etc.) tiene un plugin `acl` con un `allow:` (p.ej. `admin`, `anon`). Para que una API key funcione, el `consumer` correspondiente en el bloque `consumers:` necesita **tanto** `keyauth_credentials` (la key) **como** `acls: - group: <nombre>` (la pertenencia al grupo) — faltar el segundo bloque hace que Kong acepte la key pero rechace la petición igualmente, con `403 "You cannot consume this service"`. Se encontró y corrigió el 2026-08-19: los consumers `anon`, `service_role` y `DASHBOARD` no tenían `acls:` asignado (causa desconocida, probablemente una regeneración de `kong.yml` que no preservó ese bloque). Backup previo al fix: `volumes/api/kong.yml.bak3`.
