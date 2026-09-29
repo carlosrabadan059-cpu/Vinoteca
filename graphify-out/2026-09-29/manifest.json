@@ -655,8 +655,8 @@
     "semantic_hash": ""
   },
   "docs/roadmap.md": {
-    "mtime": 1790697354.5255022,
-    "ast_hash": "def0e244a4622093df8ba55c704ab1ee",
+    "mtime": 1790701572.067511,
+    "ast_hash": "4380c0444a0bc740e1757c3adadb8664",
     "semantic_hash": ""
   },
   "docs/scan-flow.md": {
@@ -1362,6 +1362,16 @@
   "public/email/recuperar.html": {
     "mtime": 1790699925.5052438,
     "ast_hash": "a12e4722f4fc03f8fa88be9c50e9fb71",
+    "semantic_hash": ""
+  },
+  "public/email/cambiar-email.html": {
+    "mtime": 1790701434.66755,
+    "ast_hash": "1baebe5d8ee4fcf0256233f8250ad5d5",
+    "semantic_hash": ""
+  },
+  "public/email/confirmar.html": {
+    "mtime": 1790701434.6673982,
+    "ast_hash": "b36fca426421658fa843d47dd635cbf4",
     "semantic_hash": ""
   }
 }

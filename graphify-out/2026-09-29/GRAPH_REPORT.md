@@ -5,7 +5,7 @@
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2199 nodes · 2948 edges · 227 communities (151 shown, 76 thin omitted)
+- 2199 nodes · 2948 edges · 228 communities (152 shown, 76 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 34 edges (avg confidence: 0.79)
 - Token cost: 0 input · 0 output
 
@@ -234,6 +234,7 @@
 - [[_COMMUNITY_Community 224|Community 224]]
 - [[_COMMUNITY_Community 225|Community 225]]
 - [[_COMMUNITY_Community 226|Community 226]]
+- [[_COMMUNITY_Community 227|Community 227]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `Theme` - 49 edges
@@ -254,10 +255,10 @@
   .agents/skills/tdd/SKILL.md → CONTEXT.md
 - `Agent Domain Docs Config` --references--> `CONTEXT.md - Domain Glossary`  [EXTRACTED]
   docs/agents/domain.md → CONTEXT.md
+- `Layout()` --calls--> `useAuthStore`  [EXTRACTED]
+  src/components/ui/Layout.tsx → src/store/authStore.ts
 - `DuplicateWineDialogProps` --references--> `Wine`  [EXTRACTED]
   src/components/wine/DuplicateWineDialog.tsx → src/types/index.ts
-- `DuplicateWineDialog()` --calls--> `isInCellar()`  [EXTRACTED]
-  src/components/wine/DuplicateWineDialog.tsx → src/lib/cuadernoHelpers.ts
 
 ## Import Cycles
 - None detected.
@@ -282,7 +283,7 @@
 - **Conjunto de Iconos PWA de la Aplicación** — public_favicon_svg, public_pwa_192, public_pwa_512, public_apple_touch_icon [INFERRED 0.90]
 - **Cadena de Handoffs de Sesiones de Desarrollo** — docs_handoff_2026_06_10, docs_handoff_2026_06_11, docs_handoff_2026_06_12, docs_handoff_2026_06_13, docs_handoff_2026_06_18 [EXTRACTED 0.95]
 
-## Communities (227 total, 76 thin omitted)
+## Communities (228 total, 76 thin omitted)
 
 ### Community 0 - "UI Components & Design System"
 Cohesion: 0.20
@@ -709,12 +710,12 @@ Cohesion: 0.53
 Nodes (4): name, organization_id, organization_slug, ref
 
 ### Community 125 - "Community 125"
-Cohesion: 0.13
-Nodes (13): compressImage(), pickFile(), useCamera(), BarrelHero(), CameraButton(), Scan(), Step, stepIndex() (+5 more)
+Cohesion: 0.16
+Nodes (12): compressImage(), pickFile(), useCamera(), BarrelHero(), CameraButton(), Scan(), Step, stepIndex() (+4 more)
 
 ### Community 129 - "Community 129"
-Cohesion: 0.12
-Nodes (20): App (Root Component), injectKeyframes(), useProfile(), useSettings(), Ajustes(), inputStyle, ForgotPassword(), Login() (+12 more)
+Cohesion: 0.13
+Nodes (17): App (Root Component), useProfile(), useSettings(), Ajustes(), inputStyle, ForgotPassword(), Login(), inputStyle (+9 more)
 
 ### Community 130 - "Community 130"
 Cohesion: 0.20
@@ -785,12 +786,12 @@ Cohesion: 0.60
 Nodes (3): Fix suggestion, Source, What happened
 
 ### Community 181 - "Community 181"
-Cohesion: 0.09
-Nodes (19): isInCellar(), JournalSheetData, Meta, MetaSectionProps, ModeSelectorProps, NuevaCata(), QuickFormProps, TastingMode (+11 more)
+Cohesion: 0.18
+Nodes (10): isInCellar(), Meta, MetaSectionProps, ModeSelectorProps, NuevaCata(), QuickFormProps, TastingMode, todayISO() (+2 more)
 
 ### Community 182 - "Community 182"
-Cohesion: 0.23
-Nodes (9): useGlossary(), CATEGORIAS, Glosario(), ToastState, useToastStore, Toast(), ConsumoQuickForm(), ConsumoQuickFormProps (+1 more)
+Cohesion: 0.11
+Nodes (15): injectKeyframes(), useGlossary(), CATEGORIAS, Glosario(), SectionCardProps, ToastState, useToastStore, Layout() (+7 more)
 
 ### Community 204 - "Community 204"
 Cohesion: 0.40
@@ -856,6 +857,10 @@ Nodes (8): ¿Convertir los PDF a Markdown?, Diseño propuesto (para cuando se re
 Cohesion: 0.40
 Nodes (4): Conventions, Issue tracker: GitHub, When a skill says "fetch the relevant ticket", When a skill says "publish to the issue tracker"
 
+### Community 227 - "Community 227"
+Cohesion: 0.32
+Nodes (7): JournalSheetData, JournalSheetFormProps, EditFields, scoreColor(), TastingEditForm(), TastingEditFormProps, toFields()
+
 ## Knowledge Gaps
 - **1119 isolated node(s):** `PreToolUse`, `allow`, `additionalDirectories`, `id`, `name` (+1114 more)
   These have ≤1 connection - possible missing edges or undocumented components.
@@ -864,12 +869,12 @@ Nodes (4): Conventions, Issue tracker: GitHub, When a skill says "fetch the rele
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Wine` connect `Community 121` to `Community 129`, `Community 101`, `Community 137`, `Community 106`, `Community 110`, `Community 85`, `Community 181`, `Vite PWA Config`, `Community 123`, `Community 125`?**
-  _High betweenness centrality (0.007) - this node is a cross-community bridge._
-- **Why does `Theme` connect `Community 106` to `Community 129`, `Community 34`, `Community 226`, `Community 101`, `Community 137`, `Community 123`, `Community 110`, `Community 112`, `Community 181`, `Community 182`, `Community 85`, `Vite PWA Config`, `Community 121`, `Community 219`, `Community 125`?**
+- **Why does `Wine` connect `Community 121` to `Community 129`, `Community 227`, `Community 101`, `Community 137`, `Community 106`, `Community 110`, `Community 85`, `Community 181`, `Community 182`, `Vite PWA Config`, `Community 123`, `Community 125`?**
+  _High betweenness centrality (0.006) - this node is a cross-community bridge._
+- **Why does `Theme` connect `Community 106` to `Community 129`, `Community 34`, `Community 226`, `Community 227`, `Community 101`, `Community 137`, `Community 123`, `Community 110`, `Community 112`, `Community 181`, `Community 182`, `Community 85`, `Vite PWA Config`, `Community 121`, `Community 219`, `Community 125`?**
   _High betweenness centrality (0.004) - this node is a cross-community bridge._
-- **Why does `Tasting` connect `Community 85` to `Community 137`, `Community 106`, `Community 110`, `Community 181`, `Community 123`, `Community 125`?**
-  _High betweenness centrality (0.003) - this node is a cross-community bridge._
+- **Why does `connections` connect `Community 136` to `Community 139`, `Community 185`, `Community 186`, `Community 187`, `Community 188`, `Community 189`, `Community 190`, `Community 191`, `Community 192`, `Community 193`, `Community 194`, `Community 195`, `Community 196`, `Community 197`, `Community 198`, `Community 199`, `Community 200`, `Community 201`, `Community 202`, `Community 203`, `Community 211`?**
+  _High betweenness centrality (0.002) - this node is a cross-community bridge._
 - **What connects `PreToolUse`, `allow`, `additionalDirectories` to the rest of the system?**
   _1120 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `n8n AI Integration Layer` be split into smaller, more focused modules?**
