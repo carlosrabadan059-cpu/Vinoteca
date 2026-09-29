@@ -35,6 +35,9 @@ export default defineConfig(({ mode }) => {
         },
         workbox: {
           globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
+          // Plantillas de correo de Supabase Auth: las descarga GoTrue, no la PWA
+          globIgnores: ['email/**'],
+          navigateFallbackDenylist: [/^\/email\//],
           runtimeCaching: [
             {
               urlPattern: new RegExp(`^${supabaseOrigin}/rest/v1/`, 'i'),
