@@ -310,8 +310,8 @@
     "semantic_hash": "70bdd0a673bcfc0e828080b306e7c680"
   },
   "vite.config.ts": {
-    "mtime": 1790413457.733686,
-    "ast_hash": "879430d22f1374d5e8bc39ffa09edb5e",
+    "mtime": 1790699918.5183408,
+    "ast_hash": "34dfc846a88caf641d406d404ee52a3a",
     "semantic_hash": ""
   },
   ".agents/skills/caveman/SKILL.md": {
@@ -1357,6 +1357,11 @@
   "supabase/migrations/20260929100000_recreate_on_auth_user_created.sql": {
     "mtime": 1790668042.3124504,
     "ast_hash": "61956080a15047600628bb4de75edc53",
+    "semantic_hash": ""
+  },
+  "public/email/recuperar.html": {
+    "mtime": 1790699925.5052438,
+    "ast_hash": "a12e4722f4fc03f8fa88be9c50e9fb71",
     "semantic_hash": ""
   }
 }
