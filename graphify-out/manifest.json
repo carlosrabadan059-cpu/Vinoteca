@@ -1363,5 +1363,15 @@
     "mtime": 1790699925.5052438,
     "ast_hash": "a12e4722f4fc03f8fa88be9c50e9fb71",
     "semantic_hash": ""
+  },
+  "public/email/cambiar-email.html": {
+    "mtime": 1790701434.66755,
+    "ast_hash": "1baebe5d8ee4fcf0256233f8250ad5d5",
+    "semantic_hash": ""
+  },
+  "public/email/confirmar.html": {
+    "mtime": 1790701434.6673982,
+    "ast_hash": "b36fca426421658fa843d47dd635cbf4",
+    "semantic_hash": ""
   }
 }
