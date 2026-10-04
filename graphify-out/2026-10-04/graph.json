@@ -17346,7 +17346,7 @@
       "label": "Kong (`volumes/api/kong.yml`) \u2014 grupos ACL de los consumers",
       "file_type": "document",
       "source_file": "docs/supabase.md",
-      "source_location": "L169",
+      "source_location": "L168",
       "_origin": "ast",
       "id": "docs_supabase_kong_volumes_api_kong_yml_grupos_acl_de_los_consumers",
       "community": 44,
@@ -17356,7 +17356,7 @@
       "label": "Pendiente: migrar Kong \u2192 Envoy",
       "file_type": "document",
       "source_file": "docs/supabase.md",
-      "source_location": "L175",
+      "source_location": "L174",
       "_origin": "ast",
       "id": "docs_supabase_pendiente_migrar_kong_envoy",
       "community": 44,
@@ -43210,9 +43210,9 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L52",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "docs_changelog_0_6_0_2026_07_06",
-      "target": "docs_changelog_added_52"
+      "target": "docs_changelog_added_52",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -43240,9 +43240,9 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L62",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "docs_changelog_0_6_0_2026_07_06",
-      "target": "docs_changelog_changed_62"
+      "target": "docs_changelog_changed_62",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -43270,9 +43270,9 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L67",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "docs_changelog_0_6_0_2026_07_06",
-      "target": "docs_changelog_fixed_67"
+      "target": "docs_changelog_fixed_67",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -43300,9 +43300,9 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L75",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "docs_changelog_0_5_0_2026_07_05",
-      "target": "docs_changelog_added_75"
+      "target": "docs_changelog_added_75",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -43330,9 +43330,9 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L82",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "docs_changelog_0_5_0_2026_07_05",
-      "target": "docs_changelog_changed_82"
+      "target": "docs_changelog_changed_82",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -43360,9 +43360,9 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L91",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "docs_changelog_0_4_0_2026_07_04",
-      "target": "docs_changelog_added_91"
+      "target": "docs_changelog_added_91",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -43390,9 +43390,9 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L98",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "docs_changelog_0_4_0_2026_07_04",
-      "target": "docs_changelog_changed_98"
+      "target": "docs_changelog_changed_98",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -43400,9 +43400,9 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L102",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "docs_changelog_0_4_0_2026_07_04",
-      "target": "docs_changelog_removed_102"
+      "target": "docs_changelog_removed_102",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -43450,9 +43450,9 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L110",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "docs_changelog_0_3_0_2026_06_25",
-      "target": "docs_changelog_added_110"
+      "target": "docs_changelog_added_110",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -43480,9 +43480,9 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L117",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "docs_changelog_0_3_0_2026_06_25",
-      "target": "docs_changelog_fixed_117"
+      "target": "docs_changelog_fixed_117",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -43510,9 +43510,9 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L125",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "docs_changelog_0_2_0_2026_06_18",
-      "target": "docs_changelog_added_125"
+      "target": "docs_changelog_added_125",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -43540,9 +43540,9 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L137",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "docs_changelog_0_2_0_2026_06_18",
-      "target": "docs_changelog_changed_137"
+      "target": "docs_changelog_changed_137",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -43570,9 +43570,9 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L145",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "docs_changelog_0_1_0_2026_06_10",
-      "target": "docs_changelog_added_145"
+      "target": "docs_changelog_added_145",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -49410,9 +49410,9 @@
       "source_file": "docs/supabase.md",
       "source_location": "L137",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "docs_supabase_configuraci\u00f3n_del_proyecto_self_hosted",
-      "target": "docs_supabase_correos_de_auth_smtp_y_plantillas"
+      "target": "docs_supabase_correos_de_auth_smtp_y_plantillas",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -52908,5 +52908,5 @@
       "source_file": "docs/handoff-2026-06-18.md"
     }
   ],
-  "built_at_commit": "03e8b10ccb7b29900aa20f89743f5f2422e18be0"
+  "built_at_commit": "94fae9ad840268c57589559e1bf021a40a985bef"
 }
