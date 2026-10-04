@@ -153,3 +153,18 @@ Servicios externos:
 | **Supabase** | Auth, PostgreSQL, Storage de imágenes | `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` |
 | **n8n** | Backend AI: escaneo de etiquetas, sommelier, estadísticas | `VITE_N8N_BASE_URL` |
 | **OpenAI** | Usado por n8n internamente (GPT-4o / gpt-image-1) | Credencial en n8n, no en el cliente |
+| **Dokploy** | Hosting de producción de la PWA (`vinoteca-web`, `https://vinoteca.rabadanhouse.space`) | Build del `Dockerfile` (Node 24 → nginx) desde `master`; autodeploy al hacer push |
+
+### Despliegue (Dokploy)
+
+- Panel: `dokploy.rabadanhouse.space`, proyecto `vinoteca`, aplicación `vinoteca-web`. Un push a `master` lanza el build; hay que comprobar en el panel que termina en verde.
+- Las variables `VITE_*` se inyectan en el build (Build-time Arguments o Environment Settings). Cambiarlas exige un nuevo despliegue.
+- La PWA tiene service worker: tras desplegar, puede hacer falta una recarga forzada para ver los cambios.
+
+#### MCP de Dokploy (opcional, no instalado)
+
+Existen servidores MCP de la comunidad para Dokploy (p. ej. `@wyattjoh/dokploy-mcp`, `@sattva/dokploy-mcp`, `@jarciahdz111/dokploy-mcp`; hay también un repo `Dokploy/mcp` cuyo carácter oficial no se ha verificado). Permitirían consultar el estado y los logs de build de `vinoteca-web` desde Claude Code. No está configurado en este proyecto.
+
+- **Configuración típica:** variables `DOKPLOY_URL` (con sufijo `/api`, p. ej. `https://dokploy.rabadanhouse.space/api`) y `DOKPLOY_API_KEY`, generada en Settings → API/Tokens del panel.
+- **Seguridad:** la API key da control sobre **todos** los proyectos de Dokploy, no solo Vinoteca. Guardarla únicamente en el `.mcp.json` local (ya está en `.gitignore`), nunca en el repo.
+- Antes de instalar uno, revisar el código del paquete elegido: es software de terceros con acceso a la infraestructura.
