@@ -100,8 +100,8 @@
     "semantic_hash": "cd62ff95696d5d00d614df11362f0d71"
   },
   "src/components/wine/DuplicateWineDialog.tsx": {
-    "mtime": 1790547376.5227904,
-    "ast_hash": "a79a79453da8393bd78e93a602997ba9",
+    "mtime": 1791101067.6568534,
+    "ast_hash": "9f6a4e2915c15a871028c2f7e4c3288a",
     "semantic_hash": ""
   },
   "src/components/wine/ImageCapture.tsx": {
@@ -110,8 +110,8 @@
     "semantic_hash": "211f3cec10058575cc59f9bfd2cbfc26"
   },
   "src/components/wine/TastingCard.tsx": {
-    "mtime": 1790547376.5231545,
-    "ast_hash": "4de9fee39f95a25ef51d27ab776d43a0",
+    "mtime": 1791101067.6593626,
+    "ast_hash": "28e1c86d3d6010216dd3d0659249a9aa",
     "semantic_hash": ""
   },
   "src/components/wine/TastingChat.tsx": {
@@ -225,8 +225,8 @@
     "semantic_hash": ""
   },
   "src/pages/NuevaCata.tsx": {
-    "mtime": 1790619935.9834132,
-    "ast_hash": "e613dd25fe9ad1d124610e18d4a38ed3",
+    "mtime": 1791101067.6707718,
+    "ast_hash": "27a9907b12a7ddee67a7de5b43fe931e",
     "semantic_hash": ""
   },
   "src/pages/Register.tsx": {
@@ -235,8 +235,8 @@
     "semantic_hash": ""
   },
   "src/pages/Scan.tsx": {
-    "mtime": 1790547376.525504,
-    "ast_hash": "a2816232fe0b204219eb2c28f6b10f3b",
+    "mtime": 1791101067.6679466,
+    "ast_hash": "d24f52c3367a805e80a50e978f43b5e0",
     "semantic_hash": ""
   },
   "src/pages/Sommelier.tsx": {
@@ -250,13 +250,13 @@
     "semantic_hash": ""
   },
   "src/pages/TastingDetail.tsx": {
-    "mtime": 1790619935.9837573,
-    "ast_hash": "a0b988d841ed270bc8bc171dcf4c3e54",
+    "mtime": 1791101067.66269,
+    "ast_hash": "2158634d6d60c9c7efd590dee0871315",
     "semantic_hash": ""
   },
   "src/pages/WineDetail.tsx": {
-    "mtime": 1790547376.5264206,
-    "ast_hash": "55eb145c005f6ba12de49860d7209124",
+    "mtime": 1791101067.665415,
+    "ast_hash": "a0e4110fe71f72b2420c3c3e3095d437",
     "semantic_hash": ""
   },
   "src/router/index.tsx": {
@@ -500,8 +500,8 @@
     "semantic_hash": ""
   },
   "CONTEXT.md": {
-    "mtime": 1790620034.9779189,
-    "ast_hash": "71b9c79eebb3440e9d711b02bb5260a4",
+    "mtime": 1791101075.4391413,
+    "ast_hash": "8f21c0b46874597af752ff7268bf14e9",
     "semantic_hash": ""
   },
   "README.md": {
