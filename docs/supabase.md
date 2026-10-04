@@ -159,6 +159,7 @@ Se configuran en el servicio `auth` de `/srv/docker/supabase/docker-compose.yml`
       GOTRUE_MAILER_SUBJECTS_EMAIL_CHANGE: "Confirma tu nuevo email de Vinoteca"
 ```
 
+- **`API_EXTERNAL_URL` debe ser el host de la API** (`https://supabase-api.rabadanhouse.space`), no el de Studio. GoTrue construye `{{ .ConfirmationURL }}` como `API_EXTERNAL_URL/auth/v1/verify?...`; con el host de Studio (`supabase.rabadanhouse.space`) el enlace de confirmación y de recuperación daba error y la cuenta nunca se confirmaba (detectado el 2026-10-04). `GOTRUE_JWT_ISSUER` está fijado en el compose a `https://supabase.rabadanhouse.space` (el valor histórico) para que cambiar `API_EXTERNAL_URL` no altere el issuer de los tokens ni cierre sesiones. Backups previos: `.env.bak-apiext` y `docker-compose.yml.bak-apiext`.
 - **Aplicar cambios** del compose o del `.env`: `docker compose up -d auth`, que recrea el contenedor. `docker compose restart auth` **no** relee la configuración. Comprobación: `docker exec supabase-auth env | grep MAILER_`.
 - **Editar una plantilla:** basta con cambiar el HTML y desplegar la app. GoTrue guarda las plantillas en caché un rato; para verlas al momento, `docker compose up -d auth`.
 - **Si una plantilla no se puede descargar**, GoTrue envía su texto por defecto en inglés. El correo no se pierde.
