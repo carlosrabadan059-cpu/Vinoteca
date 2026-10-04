@@ -458,7 +458,7 @@ export default function NuevaCata() {
               >
                 <span style={{ fontSize: '1.5rem' }}>📷</span>
                 <div>
-                  <p style={{ fontSize: t.font.sm, fontWeight: 600, color: t.colors.cream }}>Vino de fuera</p>
+                  <p style={{ fontSize: t.font.sm, fontWeight: 600, color: t.colors.cream }}>Vino catado</p>
                   <p style={{ fontSize: t.font.xs, color: t.colors.muted }}>
                     Fotografía la etiqueta de un vino que no está en tu bodega
                   </p>
@@ -642,7 +642,7 @@ function CellarBadge() {
       className="flex-shrink-0 px-2 py-0.5 rounded-full"
       style={{ fontSize: t.font['2xs'], letterSpacing: '0.08em', textTransform: 'uppercase', color: t.colors.muted, border: `1px solid ${t.colors.borderSubtle}` }}
     >
-      De fuera
+      Catado
     </span>
   )
 }

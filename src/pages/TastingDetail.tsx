@@ -300,7 +300,7 @@ export default function TastingDetail() {
                 {[wine.bodega, wine.region].filter(Boolean).join(' · ')}
               </p>
               <p className="text-xs" style={{ color: isInCellar(wine) ? theme.colors.gold : theme.colors.muted, marginTop: 2 }}>
-                {isInCellar(wine) ? 'En tu bodega' : 'De fuera · no está en tu bodega'}
+                {isInCellar(wine) ? 'En tu bodega' : 'Catado · no está en tu bodega'}
               </p>
             </div>
             <span style={{ color: theme.colors.muted, fontSize: '1rem' }}>›</span>

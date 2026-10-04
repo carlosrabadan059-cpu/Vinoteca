@@ -661,7 +661,7 @@ export default function Scan() {
 
       <Modal open={journalMatch !== null} onClose={() => setJournalMatch(null)} title="Ya está en tu cuaderno">
         <p style={{ fontSize: theme.font.sm, color: theme.colors.muted, marginTop: -4 }}>
-          {journalMatch?.nombre}{journalMatch?.anada ? ` ${journalMatch.anada}` : ''} lo tienes anotado como vino de fuera. ¿Lo has comprado?
+          {journalMatch?.nombre}{journalMatch?.anada ? ` ${journalMatch.anada}` : ''} lo tienes anotado como vino catado. ¿Lo has comprado?
         </p>
         <div className="flex flex-col gap-2 pb-2">
           <Button variant="primary" className="w-full" onClick={() => journalMatch && moveToCellar(journalMatch)}>

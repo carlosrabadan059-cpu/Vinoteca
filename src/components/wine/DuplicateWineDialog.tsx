@@ -94,7 +94,7 @@ export default function DuplicateWineDialog({
     : 'Hemos encontrado vinos parecidos'
 
   const subtitle = exactIsJournal
-    ? 'Lo tienes anotado como vino de fuera. Si lo has comprado, pásalo a tu bodega.'
+    ? 'Lo tienes anotado como vino catado. Si lo has comprado, pásalo a tu bodega.'
     : isExact
     ? 'Ya tienes guardado este vino con la misma bodega y la misma añada.'
     : 'No hemos podido confirmar la añada.'

@@ -9,7 +9,7 @@ Domain glossary for the Vinoteca wine-cellar / tasting-notes PWA. All code, issu
 | **Vinoteca** | The app itself; literally "wine cellar" in Spanish | "wine app", "the app" |
 | **Vino** | A wine bottle record (`Wine` type). A vino belongs to one user. | "wine entry", "bottle" |
 | **Bodega** | The user's personal wine cellar — the vinos they own (`en_bodega = true`). The `/bodega` route shows this. | "cellar", "library", "collection", "productor" |
-| **Vino de fuera** | A vino the user drank but does not own (restaurant, a friend's house): `en_bodega = false`, `num_botellas = 0`. It lives only in the Cuaderno until "Lo he comprado" moves it to the Bodega. | "external wine", "wishlist" |
+| **Vino catado** | (UI label; formerly "vino de fuera") A vino the user drank but does not own (restaurant, a friend's house): `en_bodega = false`, `num_botellas = 0`. It lives only in the Cuaderno until "Lo he comprado" moves it to the Bodega. | "external wine", "wishlist", "vino de fuera" (old UI label) |
 | **Cuaderno** | The tasting journal (V3, Moleskine-style): every cata the user has written, of Bodega wines and vinos de fuera. The `/catas` route, tab label "Cuaderno". | "diario", "journal", "log" |
 | **Ficha de cata** | The guided page of a cata in the Cuaderno: cuándo/dónde/con quién, Vista, Nariz, Boca (dulzor, acidez, tanino, cuerpo 1–5 + final), puntuación, maridaje, notas. | "form", "template" |
 | **Productor** | The company or winery that made a vino (`bodega` field on the `Wine` type, e.g. "Vega Sicilia"). | "bodega" (when referring to the maker), "winery" |

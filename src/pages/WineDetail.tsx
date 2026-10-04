@@ -599,7 +599,7 @@ export default function WineDetail() {
           <div style={{ margin: '14px 16px 0', padding: '10px 12px', borderRadius: theme.radius.md, background: theme.colors.surface, border: `1px solid ${theme.colors.borderSubtle}` }}>
             <p style={{ fontSize: theme.font.sm, color: theme.colors.cream, fontWeight: 600 }}>No está en tu bodega</p>
             <p style={{ fontSize: theme.font.xs, color: theme.colors.muted, marginTop: 2 }}>
-              Lo tienes en tu cuaderno como vino bebido fuera.
+              Lo tienes en tu cuaderno como vino catado.
             </p>
           </div>
         )}

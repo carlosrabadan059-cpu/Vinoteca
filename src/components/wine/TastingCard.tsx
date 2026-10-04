@@ -89,7 +89,7 @@ function OutsideBadge() {
         color: theme.colors.muted, border: `1px solid ${theme.colors.borderSubtle}`,
       }}
     >
-      De fuera
+      Catado
     </span>
   )
 }
