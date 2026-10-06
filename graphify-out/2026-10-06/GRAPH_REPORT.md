@@ -1,16 +1,16 @@
-# Graph Report - Vinoteca  (2026-10-04)
+# Graph Report - Vinoteca  (2026-10-06)
 
 ## Corpus Check
-- 261 files · ~203,542 words
+- 261 files · ~204,272 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2201 nodes · 2950 edges · 228 communities (153 shown, 75 thin omitted)
+- 2202 nodes · 2951 edges · 224 communities (149 shown, 75 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 34 edges (avg confidence: 0.79)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `bc1fb16b`
+- Built from commit: `a3653f4e`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -144,7 +144,6 @@
 - [[_COMMUNITY_Community 134|Community 134]]
 - [[_COMMUNITY_Community 135|Community 135]]
 - [[_COMMUNITY_Community 136|Community 136]]
-- [[_COMMUNITY_Community 137|Community 137]]
 - [[_COMMUNITY_Community 138|Community 138]]
 - [[_COMMUNITY_Community 139|Community 139]]
 - [[_COMMUNITY_Community 140|Community 140]]
@@ -220,13 +219,11 @@
 - [[_COMMUNITY_Community 210|Community 210]]
 - [[_COMMUNITY_Community 211|Community 211]]
 - [[_COMMUNITY_Community 212|Community 212]]
-- [[_COMMUNITY_Community 213|Community 213]]
 - [[_COMMUNITY_Community 214|Community 214]]
 - [[_COMMUNITY_Community 215|Community 215]]
 - [[_COMMUNITY_Community 216|Community 216]]
 - [[_COMMUNITY_Community 217|Community 217]]
 - [[_COMMUNITY_Community 218|Community 218]]
-- [[_COMMUNITY_Community 219|Community 219]]
 - [[_COMMUNITY_Community 220|Community 220]]
 - [[_COMMUNITY_Community 221|Community 221]]
 - [[_COMMUNITY_Community 222|Community 222]]
@@ -234,7 +231,6 @@
 - [[_COMMUNITY_Community 224|Community 224]]
 - [[_COMMUNITY_Community 225|Community 225]]
 - [[_COMMUNITY_Community 227|Community 227]]
-- [[_COMMUNITY_Community 230|Community 230]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `Theme` - 49 edges
@@ -249,11 +245,11 @@
 10. `workflow` - 18 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `TDD Skill` --references--> `Domain Glossary (Vinoteca)`  [EXTRACTED]
-  .agents/skills/tdd/SKILL.md → CONTEXT.md
 - `CLAUDE.md - Project Instructions` --references--> `CONTEXT.md - Domain Glossary`  [INFERRED]
   CLAUDE.md → CONTEXT.md
-- `Agent Domain Docs Config` --references--> `Domain Glossary (Vinoteca)`  [EXTRACTED]
+- `TDD Skill` --references--> `Domain Glossary (Vinoteca)`  [EXTRACTED]
+  .agents/skills/tdd/SKILL.md → CONTEXT.md
+- `Agent Domain Docs Config` --references--> `CONTEXT.md - Domain Glossary`  [EXTRACTED]
   docs/agents/domain.md → CONTEXT.md
 - `DuplicateWineDialog()` --calls--> `isInCellar()`  [EXTRACTED]
   src/components/wine/DuplicateWineDialog.tsx → src/lib/cuadernoHelpers.ts
@@ -283,7 +279,7 @@
 - **Conjunto de Iconos PWA de la Aplicación** — public_favicon_svg, public_pwa_192, public_pwa_512, public_apple_touch_icon [INFERRED 0.90]
 - **Cadena de Handoffs de Sesiones de Desarrollo** — docs_handoff_2026_06_10, docs_handoff_2026_06_11, docs_handoff_2026_06_12, docs_handoff_2026_06_13, docs_handoff_2026_06_18 [EXTRACTED 0.95]
 
-## Communities (228 total, 75 thin omitted)
+## Communities (224 total, 75 thin omitted)
 
 ### Community 0 - "UI Components & Design System"
 Cohesion: 0.20
@@ -306,8 +302,8 @@ Cohesion: 0.06
 Nodes (37): dependencies, idb, react, react-dom, react-router-dom, recharts, @supabase/supabase-js, zustand (+29 more)
 
 ### Community 5 - "ADRs & Agent Docs"
-Cohesion: 0.21
-Nodes (7): Conventions, Issue tracker: GitHub, When a skill says "fetch the relevant ticket", When a skill says "publish to the issue tracker", AFK Agent, Domain Glossary (Vinoteca), Ready-for-Agent State
+Cohesion: 0.23
+Nodes (6): Agent Domain Docs Config, Triage Labels, AFK Agent, Domain Glossary (Vinoteca), Ready-for-Agent State, CLAUDE.md - Project Instructions
 
 ### Community 6 - "Developer Skills (Diagnose)"
 Cohesion: 0.06
@@ -358,16 +354,16 @@ Cohesion: 0.80
 Nodes (3): capture(), step(), hitl-loop.template.sh script
 
 ### Community 22 - "Vite PWA Config"
-Cohesion: 0.13
-Nodes (8): FINAL_OPCIONES, SectionCardProps, ToastState, useToastStore, ModalProps, Toast(), ConsumoQuickForm(), ConsumoQuickFormProps
+Cohesion: 0.11
+Nodes (8): Animated Overlay Pattern, fetchImageAsDataUrl(), AnalysisProgressProps, PHASES_ANALYZING, PHASES_IDENTIFYING, ButtonProps, ModalProps, ConsumoQuickFormProps
 
 ### Community 27 - "README"
-Cohesion: 0.15
-Nodes (8): Red-Green-Refactor Loop, Tracer Bullet Vertical Slice, Deep Modules, Interface Design for Testability, Designing for Mockability, When to Mock, Refactor Candidates, TDD Skill
+Cohesion: 0.07
+Nodes (19): Red-Green-Refactor Loop, Tracer Bullet Vertical Slice, Deep Modules, Interface Design for Testability, Designing for Mockability, When to Mock, Refactor Candidates, TDD Skill (+11 more)
 
 ### Community 34 - "Community 34"
-Cohesion: 0.14
-Nodes (24): getUserMediaSource(), callCataTutor(), callEnriquecimiento(), callImprovePhoto(), callMaridaje(), callScanAnalizar(), callScanIdentificar(), callSommelierChat() (+16 more)
+Cohesion: 0.10
+Nodes (29): compressImage(), pickFile(), useCamera(), callCataTutor(), callEnriquecimiento(), callImprovePhoto(), callMaridaje(), callScanAnalizar() (+21 more)
 
 ### Community 35 - "Community 35"
 Cohesion: 0.08
@@ -386,8 +382,8 @@ Cohesion: 0.12
 Nodes (16): Diagnose, Feedback Loop (Diagnose Phase 1), Fix and Regression Test Phase (Diagnose Phase 5), Hypothesise Phase (Diagnose Phase 3), Instrument Phase (Diagnose Phase 4), Iterate on the loop itself, Non-deterministic bugs, Phase 1 — Build a feedback loop (+8 more)
 
 ### Community 39 - "Community 39"
-Cohesion: 0.11
-Nodes (17): 1. Sommelier — Chat libre, 2. Sommelier — Maridaje, 3. Sommelier — Enriquecimiento, 4. Scan — Identificar, 4. Scan — Identificar (archivado), 5. Scan — Analizar, 6. Stats — Insight, 7. Wine Identify (+9 more)
+Cohesion: 0.10
+Nodes (19): 1. Sommelier — Chat libre, 2. Sommelier — Maridaje, 3. Sommelier — Enriquecimiento, 4. Scan — Identificar (archivado), 5. Scan — Analizar, 6. Stats — Insight, 7. Wine Identify, 8. Cata — Tutor (+11 more)
 
 ### Community 40 - "Community 40"
 Cohesion: 0.13
@@ -514,8 +510,8 @@ Cohesion: 0.11
 Nodes (17): Changelog — Vinoteca, Fase 1 — Captura y OCR, Fase 2 — Identificación, Fase 3 — Enriquecimiento, Fase 4 — WineForm y backend Sommelier, Fase 5 — WineForm rediseñado, Fase 6 — WineDetail rediseñado, Fase 7 — Gestión de Bodega (+9 more)
 
 ### Community 71 - "Community 71"
-Cohesion: 0.20
-Nodes (12): ADR: Scan Workflow via n8n, Agent Domain Docs Config, Triage Labels, Asistente de Cata, Bodega (User Wine Cellar), Cata (Tasting Session), Scan Workflow (n8n), Sommelier (AI Assistant) (+4 more)
+Cohesion: 0.33
+Nodes (9): ADR: Scan Workflow via n8n, Asistente de Cata, Bodega (User Wine Cellar), Cata (Tasting Session), Scan Workflow (n8n), Sommelier (AI Assistant), Supabase RLS (Row Level Security), Vino (Wine Record) (+1 more)
 
 ### Community 72 - "Community 72"
 Cohesion: 0.33
@@ -550,8 +546,8 @@ Cohesion: 0.18
 Nodes (9): Alcance, Criterio de finalización, Decisiones de diseño, Decisiones técnicas, Estado, Fase 2 — Identificación (V1.4), Funcionalidades, Objetivo (+1 more)
 
 ### Community 85 - "Community 85"
-Cohesion: 0.07
-Nodes (61): Offline-First Sync Pattern, useTastings Hook, processOperation(), useSync(), WineFilters, addToQueue(), clearLocalWines(), clearQueue() (+53 more)
+Cohesion: 0.08
+Nodes (57): Offline-First Sync Pattern, useTastings Hook, processOperation(), useSync(), WineFilters, addToQueue(), clearLocalWines(), clearQueue() (+49 more)
 
 ### Community 86 - "Community 86"
 Cohesion: 0.20
@@ -614,8 +610,8 @@ Cohesion: 0.22
 Nodes (8): Directory structure, File format, Naming the file, Out-of-Scope Knowledge Base, Updating or removing out-of-scope files, When to check `.out-of-scope/`, When to write to `.out-of-scope/`, Writing the reason
 
 ### Community 101 - "Community 101"
-Cohesion: 0.16
-Nodes (15): useStorageUrl(), renderCards(), shimmerStyle, WineState, Wine, DuplicateWineDialog(), DuplicateWineDialogProps, WineRow() (+7 more)
+Cohesion: 0.32
+Nodes (5): QuickForm(), scoreBg(), scoreColor(), TastingCard(), TastingCardProps
 
 ### Community 102 - "Community 102"
 Cohesion: 0.18
@@ -658,8 +654,8 @@ Cohesion: 0.18
 Nodes (10): Decisiones tomadas, Estado del proyecto, Flujo de autenticación, Handoff — Fase 9: Gestión de usuarios y cuentas, Limpieza, Migraciones (`supabase/migrations/`), Pendiente / fuera de alcance, Perfil y ajustes (+2 more)
 
 ### Community 112 - "Community 112"
-Cohesion: 0.19
-Nodes (13): canvas180(), captureFrameFromVideo(), CaptureSource, applyAdjustments(), autoEnhance(), estimateSharpness(), ImageAdjustments, loadImage() (+5 more)
+Cohesion: 0.18
+Nodes (14): canvas180(), captureFrameFromVideo(), CaptureSource, getUserMediaSource(), applyAdjustments(), autoEnhance(), estimateSharpness(), ImageAdjustments (+6 more)
 
 ### Community 113 - "Community 113"
 Cohesion: 0.36
@@ -694,24 +690,24 @@ Cohesion: 0.18
 Nodes (9): Fase 10 — Sommelier IA — Implementation Plan, Self-Review (ya aplicado por el autor del plan), Task 1: `src/lib/sommelierHelpers.ts` — perfil de gusto, Task 2: `src/hooks/useSommelier.ts` — orquestador, Task 3: Ampliar `src/lib/n8n.ts`, Task 4: Ampliar `detectIntent()` y `sendMessage()` en `Sommelier.tsx`, Task 5: Ampliar el workflow n8n `vinoteca-sommelier-chat`, Task 6: Ampliar el workflow n8n `vinoteca-sommelier-maridaje` (+1 more)
 
 ### Community 121 - "Community 121"
-Cohesion: 0.28
-Nodes (11): BodegaState, CURRENT_YEAR, SortKey, getSuggestions(), GROUP_OPTIONS, GroupKey, groupWines(), SORT_OPTIONS (+3 more)
+Cohesion: 0.11
+Nodes (26): BodegaState, CURRENT_YEAR, useStorageUrl(), SortKey, getSuggestions(), GROUP_OPTIONS, GroupKey, groupWines() (+18 more)
 
 ### Community 122 - "Community 122"
 Cohesion: 0.20
 Nodes (8): Estructura de archivos, Mejoras de calidad de imagen en la captura de cámara — Implementation Plan, Self-Review (ya aplicado por el autor del plan), Task 1: Módulo puro `src/lib/imageQuality.ts`, Task 2: Slider de brillo + rewire de `handleConfirm`, Task 3: Botón "Auto-mejorar", Task 4: Aviso de foto borrosa, Task 5: Verificación manual y registro en el roadmap
 
 ### Community 123 - "Community 123"
-Cohesion: 0.15
-Nodes (15): useSommelier(), WineCollection, buildTasteProfile(), TasteProfile, classifyWine(), buildWineCollection(), COMPARATIVA_KEYWORDS, detectIntent() (+7 more)
+Cohesion: 0.07
+Nodes (24): useSommelier(), callAyudaChat(), WineCollection, buildWineCollection(), COMPARATIVA_KEYWORDS, detectIntent(), DO_KEYWORDS, extractPlato() (+16 more)
 
 ### Community 124 - "Community 124"
 Cohesion: 0.53
 Nodes (4): name, organization_id, organization_slug, ref
 
 ### Community 125 - "Community 125"
-Cohesion: 0.33
-Nodes (6): compressImage(), pickFile(), useCamera(), ImageCapture Component, ImageCapture(), ImageCaptureProps
+Cohesion: 0.40
+Nodes (4): Conventions, Issue tracker: GitHub, When a skill says "fetch the relevant ticket", When a skill says "publish to the issue tracker"
 
 ### Community 129 - "Community 129"
 Cohesion: 0.09
@@ -744,10 +740,6 @@ Nodes (8): Decisiones (tomadas con Carlos, 2026-09-27), Estado, Fase 12 — Cuad
 ### Community 136 - "Community 136"
 Cohesion: 0.12
 Nodes (17): main, main, main, main, 02 Convertir Frontal, 03 Quitar Fondo, 10 Preparar GPT, 24 Abrir URL QR (+9 more)
-
-### Community 137 - "Community 137"
-Cohesion: 0.20
-Nodes (8): Description Requirements, Process, Review Checklist, SKILL.md Template, Skill Structure, When to Add Scripts, When to Split Files, Writing Skills
 
 ### Community 138 - "Community 138"
 Cohesion: 0.33
@@ -786,12 +778,12 @@ Cohesion: 0.60
 Nodes (3): Fix suggestion, Source, What happened
 
 ### Community 181 - "Community 181"
-Cohesion: 0.10
-Nodes (32): useBodegaState(), CatasState, useCatasState(), useTastings(), useWines(), applyFilter(), FilterKey, FILTERS (+24 more)
+Cohesion: 0.09
+Nodes (35): useBodegaState(), CatasState, useCatasState(), useTastings(), useWines(), applyFilter(), FilterKey, FILTERS (+27 more)
 
 ### Community 182 - "Community 182"
-Cohesion: 0.13
-Nodes (16): describeBoca(), JournalSheetData, TutorFeedback, TutorNotaPro, TutorSeccion, SpinnerProps, inputStyle, JournalSheetFormProps (+8 more)
+Cohesion: 0.08
+Nodes (25): useGlossary(), describeBoca(), FINAL_OPCIONES, JournalSheetData, TutorNotaPro, TutorSeccion, CATEGORIAS, Glosario() (+17 more)
 
 ### Community 204 - "Community 204"
 Cohesion: 0.40
@@ -817,10 +809,6 @@ Nodes (5): Arquitectura del workflow (8 nodos), Estado actual del workflow n8n, 
 Cohesion: 0.33
 Nodes (5): ADR 0008 — Cuaderno único y vinos de fuera con `wines.en_bodega`, Alternativas descartadas, Consecuencias, Contexto, Decisión
 
-### Community 213 - "Community 213"
-Cohesion: 0.11
-Nodes (12): callAyudaChat(), ChatMessage, SUGGESTIONS, ChatBubble(), ChatBubbleProps, inlineFormat(), renderMarkdown(), SuggestionChipsProps (+4 more)
-
 ### Community 217 - "Community 217"
 Cohesion: 0.22
 Nodes (8): Decisiones (tomadas con Carlos, 2026-09-28), Estado, Fase 13 — Tutor de cata y glosario (V3.1), Objetivo, Pendiente / fuera de alcance, Piezas, Rendimiento y ajustes (2026-09-28), Verificado
@@ -828,10 +816,6 @@ Nodes (8): Decisiones (tomadas con Carlos, 2026-09-28), Estado, Fase 13 — Tuto
 ### Community 218 - "Community 218"
 Cohesion: 0.29
 Nodes (7): [0.2.0] — 2026-06-18, Added, Added, Added, Changed, Changed, Changed
-
-### Community 219 - "Community 219"
-Cohesion: 0.32
-Nodes (5): QuickForm(), scoreBg(), scoreColor(), TastingCard(), TastingCardProps
 
 ### Community 220 - "Community 220"
 Cohesion: 0.29
@@ -854,33 +838,29 @@ Cohesion: 0.22
 Nodes (8): ¿Convertir los PDF a Markdown?, Diseño propuesto (para cuando se retome), Estado, Idea — RAG con el curso de sommelier, Material, Objetivo, Qué temas incluir, Salvedad
 
 ### Community 225 - "Community 225"
-Cohesion: 0.17
-Nodes (13): useGlossary(), CATEGORIAS, Glosario(), EnrichResponse, FieldTrace, GlossaryCategoria, GlossaryTerm, IdentifyResponse (+5 more)
+Cohesion: 0.36
+Nodes (7): TutorFeedback, TutorState, heading, plain(), smallButton(), TutorPanel(), TutorPanelProps
 
 ### Community 227 - "Community 227"
-Cohesion: 0.11
-Nodes (15): Animated Overlay Pattern, TastingState, useTastingStore, Tasting, AnalysisProgressProps, PHASES_ANALYZING, PHASES_IDENTIFYING, ButtonProps (+7 more)
-
-### Community 230 - "Community 230"
-Cohesion: 0.40
-Nodes (3): Bad Tests, Good and Bad Tests, Good Tests
+Cohesion: 0.13
+Nodes (16): buildTasteProfile(), TasteProfile, classifyWine(), TastingState, useTastingStore, EnrichResponse, FieldTrace, IdentifyResponse (+8 more)
 
 ## Knowledge Gaps
-- **1120 isolated node(s):** `PreToolUse`, `allow`, `additionalDirectories`, `id`, `name` (+1115 more)
+- **1121 isolated node(s):** `Configuración`, `Cliente HTTP (`src/lib/n8n.ts`)`, `Publicar los cambios en n8n`, `1. Sommelier — Chat libre`, `2. Sommelier — Maridaje` (+1116 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **75 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Wine` connect `Community 101` to `Community 129`, `Community 34`, `Community 225`, `Community 227`, `Community 106`, `Community 110`, `Community 85`, `Community 181`, `Vite PWA Config`, `Community 182`, `Community 121`, `Community 213`, `Community 123`?**
+- **Why does `Theme` connect `Community 129` to `Community 225`, `Community 34`, `Community 227`, `Community 101`, `Community 106`, `Community 110`, `Community 112`, `Community 181`, `Community 182`, `Vite PWA Config`, `Community 85`, `Community 121`, `Community 123`?**
   _High betweenness centrality (0.006) - this node is a cross-community bridge._
-- **Why does `Theme` connect `Community 129` to `Community 225`, `Community 34`, `Community 227`, `Community 101`, `Community 106`, `Community 110`, `Community 219`, `Community 112`, `Community 181`, `Vite PWA Config`, `Community 213`, `Community 85`, `Community 182`, `Community 123`, `Community 125`?**
+- **Why does `useAuthStore` connect `Community 129` to `Community 34`, `Community 227`, `Community 110`, `Community 85`, `Community 182`, `Community 181`, `Vite PWA Config`, `Community 121`, `Community 123`?**
   _High betweenness centrality (0.004) - this node is a cross-community bridge._
-- **Why does `connections` connect `Community 136` to `Community 139`, `Community 185`, `Community 186`, `Community 187`, `Community 188`, `Community 189`, `Community 190`, `Community 191`, `Community 192`, `Community 193`, `Community 194`, `Community 195`, `Community 196`, `Community 197`, `Community 198`, `Community 199`, `Community 200`, `Community 201`, `Community 202`, `Community 203`, `Community 211`?**
-  _High betweenness centrality (0.002) - this node is a cross-community bridge._
-- **What connects `PreToolUse`, `allow`, `additionalDirectories` to the rest of the system?**
-  _1121 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Why does `Wine` connect `Community 121` to `Community 129`, `Community 34`, `Community 227`, `Community 106`, `Community 110`, `Community 85`, `Community 181`, `Community 182`, `Vite PWA Config`, `Community 123`?**
+  _High betweenness centrality (0.003) - this node is a cross-community bridge._
+- **What connects `Configuración`, `Cliente HTTP (`src/lib/n8n.ts`)`, `Publicar los cambios en n8n` to the rest of the system?**
+  _1122 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `n8n AI Integration Layer` be split into smaller, more focused modules?**
   _Cohesion score 0.09523809523809523 - nodes in this community are weakly interconnected._
 - **Should `Package Dependencies` be split into smaller, more focused modules?**

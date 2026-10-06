@@ -2359,7 +2359,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_analysisprogress",
-      "community": 226,
+      "community": 22,
       "norm_label": "analysisprogress.tsx"
     },
     {
@@ -2369,7 +2369,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "ui_analysisprogress_analysisprogressprops",
-      "community": 226,
+      "community": 22,
       "norm_label": "analysisprogressprops"
     },
     {
@@ -2379,7 +2379,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "ui_analysisprogress_phases_identifying",
-      "community": 226,
+      "community": 22,
       "norm_label": "phases_identifying"
     },
     {
@@ -2389,7 +2389,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "ui_analysisprogress_phases_analyzing",
-      "community": 226,
+      "community": 22,
       "norm_label": "phases_analyzing"
     },
     {
@@ -2399,7 +2399,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "ui_analysisprogress_analysisprogress",
-      "community": 226,
+      "community": 22,
       "norm_label": "analysisprogress()"
     },
     {
@@ -2409,7 +2409,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_assistantwidget",
-      "community": 22,
+      "community": 123,
       "norm_label": "assistantwidget.tsx"
     },
     {
@@ -2419,7 +2419,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "ui_assistantwidget_suggestions",
-      "community": 22,
+      "community": 123,
       "norm_label": "suggestions"
     },
     {
@@ -2429,7 +2429,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "ui_assistantwidget_sommeliericon",
-      "community": 22,
+      "community": 123,
       "norm_label": "sommeliericon()"
     },
     {
@@ -2439,7 +2439,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "ui_assistantwidget_assistantwidget",
-      "community": 22,
+      "community": 123,
       "norm_label": "assistantwidget()"
     },
     {
@@ -2609,7 +2609,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_chatbubble",
-      "community": 213,
+      "community": 123,
       "norm_label": "chatbubble.tsx"
     },
     {
@@ -2619,7 +2619,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "ui_chatbubble_rendermarkdown",
-      "community": 213,
+      "community": 123,
       "norm_label": "rendermarkdown()"
     },
     {
@@ -2629,7 +2629,7 @@
       "source_location": "L92",
       "_origin": "ast",
       "id": "ui_chatbubble_inlineformat",
-      "community": 213,
+      "community": 123,
       "norm_label": "inlineformat()"
     },
     {
@@ -2639,7 +2639,7 @@
       "source_location": "L118",
       "_origin": "ast",
       "id": "ui_chatbubble_chatbubbleprops",
-      "community": 213,
+      "community": 123,
       "norm_label": "chatbubbleprops"
     },
     {
@@ -2649,7 +2649,7 @@
       "source_location": "L122",
       "_origin": "ast",
       "id": "ui_chatbubble_chatbubble",
-      "community": 213,
+      "community": 123,
       "norm_label": "chatbubble()"
     },
     {
@@ -2659,7 +2659,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_input",
-      "community": 22,
+      "community": 106,
       "norm_label": "input.tsx"
     },
     {
@@ -2669,7 +2669,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "ui_input_inputprops",
-      "community": 22,
+      "community": 106,
       "norm_label": "inputprops"
     },
     {
@@ -2679,7 +2679,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "ui_input_input",
-      "community": 22,
+      "community": 106,
       "norm_label": "input()"
     },
     {
@@ -2819,7 +2819,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_spinner",
-      "community": 129,
+      "community": 182,
       "norm_label": "spinner.tsx"
     },
     {
@@ -2829,7 +2829,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_spinner_spinnerprops",
-      "community": 129,
+      "community": 182,
       "norm_label": "spinnerprops"
     },
     {
@@ -2839,7 +2839,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "ui_spinner_spinner",
-      "community": 129,
+      "community": 182,
       "norm_label": "spinner()"
     },
     {
@@ -2849,7 +2849,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_suggestionchips",
-      "community": 22,
+      "community": 123,
       "norm_label": "suggestionchips.tsx"
     },
     {
@@ -2859,7 +2859,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "ui_suggestionchips_suggestionchipsprops",
-      "community": 22,
+      "community": 123,
       "norm_label": "suggestionchipsprops"
     },
     {
@@ -2869,7 +2869,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "ui_suggestionchips_suggestionchips",
-      "community": 22,
+      "community": 123,
       "norm_label": "suggestionchips()"
     },
     {
@@ -2959,7 +2959,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_toast",
-      "community": 182,
+      "community": 22,
       "norm_label": "toast.tsx"
     },
     {
@@ -2969,7 +2969,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "ui_toast_toast",
-      "community": 182,
+      "community": 22,
       "norm_label": "toast()"
     },
     {
@@ -2979,7 +2979,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "wine_consumoquickform",
-      "community": 182,
+      "community": 22,
       "norm_label": "consumoquickform.tsx"
     },
     {
@@ -2989,7 +2989,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "wine_consumoquickform_consumoquickformprops",
-      "community": 182,
+      "community": 22,
       "norm_label": "consumoquickformprops"
     },
     {
@@ -2999,7 +2999,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "wine_consumoquickform_today",
-      "community": 182,
+      "community": 22,
       "norm_label": "today()"
     },
     {
@@ -3009,7 +3009,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "wine_consumoquickform_consumoquickform",
-      "community": 182,
+      "community": 22,
       "norm_label": "consumoquickform()"
     },
     {
@@ -3019,7 +3019,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "wine_duplicatewinedialog",
-      "community": 101,
+      "community": 121,
       "norm_label": "duplicatewinedialog.tsx"
     },
     {
@@ -3029,7 +3029,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "wine_duplicatewinedialog_duplicatewinedialogprops",
-      "community": 101,
+      "community": 121,
       "norm_label": "duplicatewinedialogprops"
     },
     {
@@ -3039,7 +3039,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "wine_duplicatewinedialog_winerow",
-      "community": 101,
+      "community": 121,
       "norm_label": "winerow()"
     },
     {
@@ -3049,7 +3049,7 @@
       "source_location": "L78",
       "_origin": "ast",
       "id": "wine_duplicatewinedialog_duplicatewinedialog",
-      "community": 101,
+      "community": 121,
       "norm_label": "duplicatewinedialog()"
     },
     {
@@ -3059,7 +3059,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "wine_imagecapture",
-      "community": 125,
+      "community": 34,
       "norm_label": "imagecapture.tsx"
     },
     {
@@ -3069,7 +3069,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "wine_imagecapture_imagecaptureprops",
-      "community": 125,
+      "community": 34,
       "norm_label": "imagecaptureprops"
     },
     {
@@ -3079,7 +3079,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "wine_imagecapture_imagecapture",
-      "community": 125,
+      "community": 34,
       "norm_label": "imagecapture()"
     },
     {
@@ -3109,7 +3109,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "wine_journalsheetform_tutorstate",
-      "community": 225,
+      "community": 123,
       "norm_label": "tutorstate"
     },
     {
@@ -3239,7 +3239,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "wine_tastingchat",
-      "community": 213,
+      "community": 125,
       "norm_label": "tastingchat.tsx"
     },
     {
@@ -3249,7 +3249,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "wine_tastingchat_tastingresult",
-      "community": 213,
+      "community": 125,
       "norm_label": "tastingresult"
     },
     {
@@ -3259,7 +3259,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "wine_tastingchat_tastingchatprops",
-      "community": 213,
+      "community": 125,
       "norm_label": "tastingchatprops"
     },
     {
@@ -3269,7 +3269,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "wine_tastingchat_buildwinesheet",
-      "community": 213,
+      "community": 125,
       "norm_label": "buildwinesheet()"
     },
     {
@@ -3279,7 +3279,7 @@
       "source_location": "L63",
       "_origin": "ast",
       "id": "wine_tastingchat_parsecatacompleta",
-      "community": 213,
+      "community": 125,
       "norm_label": "parsecatacompleta()"
     },
     {
@@ -3289,7 +3289,7 @@
       "source_location": "L76",
       "_origin": "ast",
       "id": "wine_tastingchat_tastingchat",
-      "community": 213,
+      "community": 125,
       "norm_label": "tastingchat()"
     },
     {
@@ -3299,7 +3299,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "wine_tastingeditform",
-      "community": 227,
+      "community": 182,
       "norm_label": "tastingeditform.tsx"
     },
     {
@@ -3309,7 +3309,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "wine_tastingeditform_tastingeditformprops",
-      "community": 227,
+      "community": 182,
       "norm_label": "tastingeditformprops"
     },
     {
@@ -3319,7 +3319,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "wine_tastingeditform_tastingeditform",
-      "community": 227,
+      "community": 182,
       "norm_label": "tastingeditform()"
     },
     {
@@ -3329,7 +3329,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "wine_tastingform",
-      "community": 22,
+      "community": 227,
       "norm_label": "tastingform.tsx"
     },
     {
@@ -3339,7 +3339,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "wine_tastingform_tastingformprops",
-      "community": 22,
+      "community": 227,
       "norm_label": "tastingformprops"
     },
     {
@@ -3349,7 +3349,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "wine_tastingform_tastingform",
-      "community": 22,
+      "community": 227,
       "norm_label": "tastingform()"
     },
     {
@@ -3389,7 +3389,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "wine_tutorpanel",
-      "community": 225,
+      "community": 123,
       "norm_label": "tutorpanel.tsx"
     },
     {
@@ -3399,7 +3399,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "wine_tutorpanel_tutorpanelprops",
-      "community": 225,
+      "community": 123,
       "norm_label": "tutorpanelprops"
     },
     {
@@ -3409,7 +3409,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "wine_tutorpanel_plain",
-      "community": 225,
+      "community": 123,
       "norm_label": "plain()"
     },
     {
@@ -3419,7 +3419,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "wine_tutorpanel_heading",
-      "community": 225,
+      "community": 123,
       "norm_label": "heading"
     },
     {
@@ -3429,7 +3429,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "wine_tutorpanel_smallbutton",
-      "community": 225,
+      "community": 123,
       "norm_label": "smallbutton()"
     },
     {
@@ -3439,7 +3439,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "wine_tutorpanel_tutorpanel",
-      "community": 225,
+      "community": 123,
       "norm_label": "tutorpanel()"
     },
     {
@@ -3449,7 +3449,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "wine_winecard",
-      "community": 101,
+      "community": 121,
       "norm_label": "winecard.tsx"
     },
     {
@@ -3459,7 +3459,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "wine_winecard_winecardprops",
-      "community": 101,
+      "community": 121,
       "norm_label": "winecardprops"
     },
     {
@@ -3469,7 +3469,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "wine_winecard_type_labels",
-      "community": 101,
+      "community": 121,
       "norm_label": "type_labels"
     },
     {
@@ -3479,7 +3479,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "wine_winecard_winecard",
-      "community": 101,
+      "community": 121,
       "norm_label": "winecard()"
     },
     {
@@ -3489,7 +3489,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "wine_winecardgrid",
-      "community": 101,
+      "community": 121,
       "norm_label": "winecardgrid.tsx"
     },
     {
@@ -3499,7 +3499,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "wine_winecardgrid_props",
-      "community": 101,
+      "community": 121,
       "norm_label": "props"
     },
     {
@@ -3509,7 +3509,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "wine_winecardgrid_winecardgrid",
-      "community": 101,
+      "community": 121,
       "norm_label": "winecardgrid()"
     },
     {
@@ -3519,7 +3519,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "wine_winecardlist",
-      "community": 101,
+      "community": 121,
       "norm_label": "winecardlist.tsx"
     },
     {
@@ -3529,7 +3529,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "wine_winecardlist_props",
-      "community": 101,
+      "community": 121,
       "norm_label": "props"
     },
     {
@@ -3539,7 +3539,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "wine_winecardlist_winecardlist",
-      "community": 101,
+      "community": 121,
       "norm_label": "winecardlist()"
     },
     {
@@ -3739,7 +3739,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "hooks_usebodegastate",
-      "community": 121,
+      "community": 101,
       "norm_label": "usebodegastate.ts"
     },
     {
@@ -3749,7 +3749,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "hooks_usebodegastate_current_year",
-      "community": 121,
+      "community": 101,
       "norm_label": "current_year"
     },
     {
@@ -3759,7 +3759,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "hooks_usebodegastate_bodegastate",
-      "community": 121,
+      "community": 101,
       "norm_label": "bodegastate"
     },
     {
@@ -3769,7 +3769,7 @@
       "source_location": "L73",
       "_origin": "ast",
       "id": "hooks_usebodegastate_usebodegastate",
-      "community": 121,
+      "community": 101,
       "norm_label": "usebodegastate()"
     },
     {
@@ -3779,7 +3779,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "hooks_usecamera",
-      "community": 125,
+      "community": 34,
       "norm_label": "usecamera.ts"
     },
     {
@@ -3789,7 +3789,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "hooks_usecamera_pickfile",
-      "community": 125,
+      "community": 34,
       "norm_label": "pickfile()"
     },
     {
@@ -3799,7 +3799,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "hooks_usecamera_readexiforientation",
-      "community": 125,
+      "community": 34,
       "norm_label": "readexiforientation()"
     },
     {
@@ -3809,7 +3809,7 @@
       "source_location": "L63",
       "_origin": "ast",
       "id": "hooks_usecamera_compressimage",
-      "community": 125,
+      "community": 34,
       "norm_label": "compressimage()"
     },
     {
@@ -3819,7 +3819,7 @@
       "source_location": "L95",
       "_origin": "ast",
       "id": "hooks_usecamera_usecamera",
-      "community": 125,
+      "community": 34,
       "norm_label": "usecamera()"
     },
     {
@@ -3969,7 +3969,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "hooks_usestorageurl",
-      "community": 101,
+      "community": 121,
       "norm_label": "usestorageurl.ts"
     },
     {
@@ -3979,7 +3979,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "hooks_usestorageurl_usestorageurl",
-      "community": 101,
+      "community": 121,
       "norm_label": "usestorageurl()"
     },
     {
@@ -4039,7 +4039,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "hooks_usewines_sortkey",
-      "community": 121,
+      "community": 101,
       "norm_label": "sortkey"
     },
     {
@@ -4059,7 +4059,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "hooks_usewines_usewines",
-      "community": 121,
+      "community": 101,
       "norm_label": "usewines()"
     },
     {
@@ -4069,7 +4069,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_bodegahelpers",
-      "community": 121,
+      "community": 101,
       "norm_label": "bodegahelpers.ts"
     },
     {
@@ -4079,7 +4079,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "lib_bodegahelpers_groupkey",
-      "community": 121,
+      "community": 101,
       "norm_label": "groupkey"
     },
     {
@@ -4089,7 +4089,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "lib_bodegahelpers_suggestion",
-      "community": 121,
+      "community": 101,
       "norm_label": "suggestion"
     },
     {
@@ -4099,7 +4099,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "lib_bodegahelpers_tipos",
-      "community": 121,
+      "community": 101,
       "norm_label": "tipos"
     },
     {
@@ -4109,7 +4109,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "lib_bodegahelpers_sort_options",
-      "community": 121,
+      "community": 101,
       "norm_label": "sort_options"
     },
     {
@@ -4119,7 +4119,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "lib_bodegahelpers_group_options",
-      "community": 121,
+      "community": 101,
       "norm_label": "group_options"
     },
     {
@@ -4129,7 +4129,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "lib_bodegahelpers_unique",
-      "community": 121,
+      "community": 101,
       "norm_label": "unique()"
     },
     {
@@ -4139,7 +4139,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "lib_bodegahelpers_getsuggestions",
-      "community": 121,
+      "community": 101,
       "norm_label": "getsuggestions()"
     },
     {
@@ -4149,7 +4149,7 @@
       "source_location": "L69",
       "_origin": "ast",
       "id": "lib_bodegahelpers_groupwines",
-      "community": 121,
+      "community": 101,
       "norm_label": "groupwines()"
     },
     {
@@ -4159,7 +4159,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_capturesource",
-      "community": 219,
+      "community": 112,
       "norm_label": "capturesource.ts"
     },
     {
@@ -4179,7 +4179,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "lib_capturesource_captureframefromvideo",
-      "community": 219,
+      "community": 112,
       "norm_label": "captureframefromvideo()"
     },
     {
@@ -4189,7 +4189,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "lib_capturesource_canvas180",
-      "community": 219,
+      "community": 112,
       "norm_label": "canvas180()"
     },
     {
@@ -4199,7 +4199,7 @@
       "source_location": "L76",
       "_origin": "ast",
       "id": "lib_capturesource_getusermediasource",
-      "community": 219,
+      "community": 112,
       "norm_label": "getusermediasource()"
     },
     {
@@ -4259,7 +4259,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "lib_cuadernohelpers_isincellar",
-      "community": 101,
+      "community": 125,
       "norm_label": "isincellar()"
     },
     {
@@ -4369,7 +4369,7 @@
       "source_location": "L118",
       "_origin": "ast",
       "id": "lib_cuadernohelpers_final_opciones",
-      "community": 101,
+      "community": 22,
       "norm_label": "final_opciones"
     },
     {
@@ -4599,7 +4599,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_n8n",
-      "community": 34,
+      "community": 123,
       "norm_label": "n8n.ts"
     },
     {
@@ -4609,7 +4609,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "lib_n8n_n8n_base",
-      "community": 34,
+      "community": 123,
       "norm_label": "n8n_base"
     },
     {
@@ -4619,7 +4619,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "lib_n8n_scanresult",
-      "community": 34,
+      "community": 123,
       "norm_label": "scanresult"
     },
     {
@@ -4639,7 +4639,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "lib_n8n_post",
-      "community": 34,
+      "community": 123,
       "norm_label": "post()"
     },
     {
@@ -4649,7 +4649,7 @@
       "source_location": "L69",
       "_origin": "ast",
       "id": "lib_n8n_tasteprofile",
-      "community": 34,
+      "community": 123,
       "norm_label": "tasteprofile"
     },
     {
@@ -4659,7 +4659,7 @@
       "source_location": "L77",
       "_origin": "ast",
       "id": "lib_n8n_sommelierintenthint",
-      "community": 34,
+      "community": 123,
       "norm_label": "sommelierintenthint"
     },
     {
@@ -4669,7 +4669,7 @@
       "source_location": "L79",
       "_origin": "ast",
       "id": "lib_n8n_callsommelierchat",
-      "community": 213,
+      "community": 123,
       "norm_label": "callsommelierchat()"
     },
     {
@@ -4679,7 +4679,7 @@
       "source_location": "L96",
       "_origin": "ast",
       "id": "lib_n8n_callayudachat",
-      "community": 22,
+      "community": 123,
       "norm_label": "callayudachat()"
     },
     {
@@ -4709,7 +4709,7 @@
       "source_location": "L115",
       "_origin": "ast",
       "id": "lib_n8n_tutorfeedback",
-      "community": 225,
+      "community": 123,
       "norm_label": "tutorfeedback"
     },
     {
@@ -4719,7 +4719,7 @@
       "source_location": "L126",
       "_origin": "ast",
       "id": "lib_n8n_callcatatutor",
-      "community": 34,
+      "community": 123,
       "norm_label": "callcatatutor()"
     },
     {
@@ -4729,7 +4729,7 @@
       "source_location": "L135",
       "_origin": "ast",
       "id": "lib_n8n_callmaridaje",
-      "community": 34,
+      "community": 123,
       "norm_label": "callmaridaje()"
     },
     {
@@ -4739,7 +4739,7 @@
       "source_location": "L149",
       "_origin": "ast",
       "id": "lib_n8n_callenriquecimiento",
-      "community": 34,
+      "community": 123,
       "norm_label": "callenriquecimiento()"
     },
     {
@@ -4759,7 +4759,7 @@
       "source_location": "L173",
       "_origin": "ast",
       "id": "lib_n8n_stripbase64prefix",
-      "community": 34,
+      "community": 123,
       "norm_label": "stripbase64prefix()"
     },
     {
@@ -4769,7 +4769,7 @@
       "source_location": "L177",
       "_origin": "ast",
       "id": "lib_n8n_callscananalizar",
-      "community": 34,
+      "community": 123,
       "norm_label": "callscananalizar()"
     },
     {
@@ -4779,7 +4779,7 @@
       "source_location": "L190",
       "_origin": "ast",
       "id": "lib_n8n_callwineidentify",
-      "community": 34,
+      "community": 123,
       "norm_label": "callwineidentify()"
     },
     {
@@ -4789,7 +4789,7 @@
       "source_location": "L204",
       "_origin": "ast",
       "id": "lib_n8n_callwineenrich",
-      "community": 34,
+      "community": 123,
       "norm_label": "callwineenrich()"
     },
     {
@@ -4799,7 +4799,7 @@
       "source_location": "L220",
       "_origin": "ast",
       "id": "lib_n8n_callstatsinsight",
-      "community": 34,
+      "community": 123,
       "norm_label": "callstatsinsight()"
     },
     {
@@ -4809,7 +4809,7 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "lib_n8n_callimprovephoto",
-      "community": 34,
+      "community": 123,
       "norm_label": "callimprovephoto()"
     },
     {
@@ -5199,7 +5199,7 @@
       "source_location": "L87",
       "_origin": "ast",
       "id": "lib_storage_fetchimageasdataurl",
-      "community": 101,
+      "community": 22,
       "norm_label": "fetchimageasdataurl()"
     },
     {
@@ -5449,7 +5449,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_bodega",
-      "community": 121,
+      "community": 101,
       "norm_label": "bodega.tsx"
     },
     {
@@ -5459,7 +5459,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "pages_bodega_filtersection",
-      "community": 121,
+      "community": 101,
       "norm_label": "filtersection()"
     },
     {
@@ -5469,7 +5469,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "pages_bodega_filterchip",
-      "community": 121,
+      "community": 101,
       "norm_label": "filterchip()"
     },
     {
@@ -5479,7 +5479,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "pages_bodega_shimmerstyle",
-      "community": 121,
+      "community": 101,
       "norm_label": "shimmerstyle"
     },
     {
@@ -5489,7 +5489,7 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "pages_bodega_rendercards",
-      "community": 121,
+      "community": 101,
       "norm_label": "rendercards()"
     },
     {
@@ -5499,7 +5499,7 @@
       "source_location": "L79",
       "_origin": "ast",
       "id": "pages_bodega_bodega",
-      "community": 121,
+      "community": 101,
       "norm_label": "bodega()"
     },
     {
@@ -5619,7 +5619,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_nuevacata",
-      "community": 213,
+      "community": 125,
       "norm_label": "nuevacata.tsx"
     },
     {
@@ -5629,7 +5629,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "pages_nuevacata_tastingmode",
-      "community": 213,
+      "community": 125,
       "norm_label": "tastingmode"
     },
     {
@@ -5639,7 +5639,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "pages_nuevacata_meta",
-      "community": 213,
+      "community": 125,
       "norm_label": "meta"
     },
     {
@@ -5649,7 +5649,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "pages_nuevacata_todayiso",
-      "community": 213,
+      "community": 125,
       "norm_label": "todayiso()"
     },
     {
@@ -5659,7 +5659,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "pages_nuevacata_modeselectorprops",
-      "community": 213,
+      "community": 125,
       "norm_label": "modeselectorprops"
     },
     {
@@ -5669,7 +5669,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "pages_nuevacata_modeselector",
-      "community": 213,
+      "community": 125,
       "norm_label": "modeselector()"
     },
     {
@@ -5679,7 +5679,7 @@
       "source_location": "L78",
       "_origin": "ast",
       "id": "pages_nuevacata_metasectionprops",
-      "community": 213,
+      "community": 125,
       "norm_label": "metasectionprops"
     },
     {
@@ -5689,7 +5689,7 @@
       "source_location": "L84",
       "_origin": "ast",
       "id": "pages_nuevacata_metasection",
-      "community": 213,
+      "community": 125,
       "norm_label": "metasection()"
     },
     {
@@ -5699,7 +5699,7 @@
       "source_location": "L199",
       "_origin": "ast",
       "id": "pages_nuevacata_quickformprops",
-      "community": 213,
+      "community": 125,
       "norm_label": "quickformprops"
     },
     {
@@ -5719,7 +5719,7 @@
       "source_location": "L294",
       "_origin": "ast",
       "id": "pages_nuevacata_nuevacata",
-      "community": 213,
+      "community": 125,
       "norm_label": "nuevacata()"
     },
     {
@@ -5729,7 +5729,7 @@
       "source_location": "L614",
       "_origin": "ast",
       "id": "pages_nuevacata_winebanner",
-      "community": 101,
+      "community": 125,
       "norm_label": "winebanner()"
     },
     {
@@ -5739,7 +5739,7 @@
       "source_location": "L638",
       "_origin": "ast",
       "id": "pages_nuevacata_cellarbadge",
-      "community": 213,
+      "community": 125,
       "norm_label": "cellarbadge()"
     },
     {
@@ -5819,7 +5819,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_scan",
-      "community": 219,
+      "community": 34,
       "norm_label": "scan.tsx"
     },
     {
@@ -5829,7 +5829,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "pages_scan_step",
-      "community": 219,
+      "community": 34,
       "norm_label": "step"
     },
     {
@@ -5839,7 +5839,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "pages_scan_steps",
-      "community": 219,
+      "community": 34,
       "norm_label": "steps"
     },
     {
@@ -5849,7 +5849,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "pages_scan_stepindex",
-      "community": 219,
+      "community": 34,
       "norm_label": "stepindex()"
     },
     {
@@ -5859,7 +5859,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "pages_scan_barrelhero",
-      "community": 219,
+      "community": 34,
       "norm_label": "barrelhero()"
     },
     {
@@ -5869,7 +5869,7 @@
       "source_location": "L76",
       "_origin": "ast",
       "id": "pages_scan_camerabutton",
-      "community": 219,
+      "community": 34,
       "norm_label": "camerabutton()"
     },
     {
@@ -5879,7 +5879,7 @@
       "source_location": "L131",
       "_origin": "ast",
       "id": "pages_scan_scan",
-      "community": 219,
+      "community": 34,
       "norm_label": "scan()"
     },
     {
@@ -6179,7 +6179,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_tastingdetail",
-      "community": 101,
+      "community": 22,
       "norm_label": "tastingdetail.tsx"
     },
     {
@@ -6189,7 +6189,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "pages_tastingdetail_scorebadge",
-      "community": 101,
+      "community": 22,
       "norm_label": "scorebadge()"
     },
     {
@@ -6199,7 +6199,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "pages_tastingdetail_sectioncardprops",
-      "community": 101,
+      "community": 22,
       "norm_label": "sectioncardprops"
     },
     {
@@ -6209,7 +6209,7 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "pages_tastingdetail_sectioncard",
-      "community": 101,
+      "community": 22,
       "norm_label": "sectioncard()"
     },
     {
@@ -6219,7 +6219,7 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "pages_tastingdetail_bocacard",
-      "community": 101,
+      "community": 22,
       "norm_label": "bocacard()"
     },
     {
@@ -6229,7 +6229,7 @@
       "source_location": "L87",
       "_origin": "ast",
       "id": "pages_tastingdetail_tastingdetail",
-      "community": 101,
+      "community": 125,
       "norm_label": "tastingdetail()"
     },
     {
@@ -6239,7 +6239,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_winedetail",
-      "community": 101,
+      "community": 22,
       "norm_label": "winedetail.tsx"
     },
     {
@@ -6249,7 +6249,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "pages_winedetail_stars",
-      "community": 101,
+      "community": 22,
       "norm_label": "stars()"
     },
     {
@@ -6259,7 +6259,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "pages_winedetail_tastingcard",
-      "community": 101,
+      "community": 22,
       "norm_label": "tastingcard()"
     },
     {
@@ -6269,7 +6269,7 @@
       "source_location": "L80",
       "_origin": "ast",
       "id": "pages_winedetail_coleccionpanel",
-      "community": 101,
+      "community": 22,
       "norm_label": "coleccionpanel()"
     },
     {
@@ -6279,7 +6279,7 @@
       "source_location": "L165",
       "_origin": "ast",
       "id": "pages_winedetail_winedetail",
-      "community": 101,
+      "community": 129,
       "norm_label": "winedetail()"
     },
     {
@@ -6409,7 +6409,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "store_toaststore",
-      "community": 182,
+      "community": 22,
       "norm_label": "toaststore.ts"
     },
     {
@@ -6419,7 +6419,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "store_toaststore_toaststate",
-      "community": 182,
+      "community": 22,
       "norm_label": "toaststate"
     },
     {
@@ -6429,7 +6429,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "store_toaststore_usetoaststore",
-      "community": 182,
+      "community": 22,
       "norm_label": "usetoaststore"
     },
     {
@@ -6459,7 +6459,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "store_winestore_usewinestore",
-      "community": 121,
+      "community": 101,
       "norm_label": "usewinestore"
     },
     {
@@ -6479,7 +6479,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "types_index_wine",
-      "community": 101,
+      "community": 121,
       "norm_label": "wine"
     },
     {
@@ -6529,7 +6529,7 @@
       "source_location": "L84",
       "_origin": "ast",
       "id": "types_index_chatmessage",
-      "community": 213,
+      "community": 125,
       "norm_label": "chatmessage"
     },
     {
@@ -6599,7 +6599,7 @@
       "source_location": "L148",
       "_origin": "ast",
       "id": "types_index_identifyresponse",
-      "community": 34,
+      "community": 227,
       "norm_label": "identifyresponse"
     },
     {
@@ -6609,7 +6609,7 @@
       "source_location": "L164",
       "_origin": "ast",
       "id": "types_index_enrichresponse",
-      "community": 34,
+      "community": 227,
       "norm_label": "enrichresponse"
     },
     {
@@ -10239,7 +10239,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "users_carlosrabadan_antigravity_vinoteca_agents_skills_tdd_tests_md",
-      "community": 230,
+      "community": 213,
       "norm_label": "tests.md"
     },
     {
@@ -10249,7 +10249,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tdd_tests_good_and_bad_tests",
-      "community": 230,
+      "community": 213,
       "norm_label": "good and bad tests"
     },
     {
@@ -10259,7 +10259,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "tdd_tests_good_tests",
-      "community": 230,
+      "community": 213,
       "norm_label": "good tests"
     },
     {
@@ -10269,7 +10269,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "tdd_tests_bad_tests",
-      "community": 230,
+      "community": 213,
       "norm_label": "bad tests"
     },
     {
@@ -12383,10 +12383,30 @@
       "norm_label": "cliente http (`src/lib/n8n.ts`)"
     },
     {
-      "label": "Endpoints",
+      "label": "Modelos de IA: OpenAI directo u Omniroute",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
       "source_location": "L27",
+      "_origin": "ast",
+      "id": "docs_backend_n8n_modelos_de_ia_openai_directo_u_omniroute",
+      "community": 39,
+      "norm_label": "modelos de ia: openai directo u omniroute"
+    },
+    {
+      "label": "Publicar los cambios en n8n",
+      "file_type": "document",
+      "source_file": "docs/backend-n8n.md",
+      "source_location": "L43",
+      "_origin": "ast",
+      "id": "docs_backend_n8n_publicar_los_cambios_en_n8n",
+      "community": 39,
+      "norm_label": "publicar los cambios en n8n"
+    },
+    {
+      "label": "Endpoints",
+      "file_type": "document",
+      "source_file": "docs/backend-n8n.md",
+      "source_location": "L47",
       "_origin": "ast",
       "id": "docs_backend_n8n_endpoints",
       "community": 39,
@@ -12396,7 +12416,7 @@
       "label": "1. Sommelier \u2014 Chat libre",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L29",
+      "source_location": "L49",
       "_origin": "ast",
       "id": "docs_backend_n8n_1_sommelier_chat_libre",
       "community": 39,
@@ -12406,7 +12426,7 @@
       "label": "2. Sommelier \u2014 Maridaje",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L52",
+      "source_location": "L72",
       "_origin": "ast",
       "id": "docs_backend_n8n_2_sommelier_maridaje",
       "community": 39,
@@ -12416,7 +12436,7 @@
       "label": "3. Sommelier \u2014 Enriquecimiento",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L77",
+      "source_location": "L97",
       "_origin": "ast",
       "id": "docs_backend_n8n_3_sommelier_enriquecimiento",
       "community": 39,
@@ -12426,7 +12446,7 @@
       "label": "4. Scan \u2014 Identificar (archivado)",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L100",
+      "source_location": "L120",
       "_origin": "ast",
       "id": "docs_backend_n8n_4_scan_identificar_archivado",
       "community": 39,
@@ -12436,7 +12456,7 @@
       "label": "5. Scan \u2014 Analizar",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L128",
+      "source_location": "L148",
       "_origin": "ast",
       "id": "docs_backend_n8n_5_scan_analizar",
       "community": 39,
@@ -12446,7 +12466,7 @@
       "label": "6. Stats \u2014 Insight",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L167",
+      "source_location": "L187",
       "_origin": "ast",
       "id": "docs_backend_n8n_6_stats_insight",
       "community": 39,
@@ -12456,7 +12476,7 @@
       "label": "7. Wine Identify",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L194",
+      "source_location": "L214",
       "_origin": "ast",
       "id": "docs_backend_n8n_7_wine_identify",
       "community": 39,
@@ -12466,7 +12486,7 @@
       "label": "8. Cata \u2014 Tutor",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L203",
+      "source_location": "L223",
       "_origin": "ast",
       "id": "docs_backend_n8n_8_cata_tutor",
       "community": 39,
@@ -12476,7 +12496,7 @@
       "label": "9. Wine Enrich \u2014 web de la bodega (`url_bodega`)",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L233",
+      "source_location": "L253",
       "_origin": "ast",
       "id": "docs_backend_n8n_9_wine_enrich_web_de_la_bodega_url_bodega",
       "community": 39,
@@ -12486,7 +12506,7 @@
       "label": "Tipo `WineCollection`",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L243",
+      "source_location": "L263",
       "_origin": "ast",
       "id": "docs_backend_n8n_tipo_winecollection",
       "community": 39,
@@ -12496,7 +12516,7 @@
       "label": "Credenciales requeridas (setup manual en n8n)",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L261",
+      "source_location": "L281",
       "_origin": "ast",
       "id": "docs_backend_n8n_credenciales_requeridas_setup_manual_en_n8n",
       "community": 39,
@@ -12506,7 +12526,7 @@
       "label": "Header Auth para proteger los webhooks",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L263",
+      "source_location": "L283",
       "_origin": "ast",
       "id": "docs_backend_n8n_header_auth_para_proteger_los_webhooks",
       "community": 39,
@@ -12516,7 +12536,7 @@
       "label": "Variables de entorno en Portainer",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L270",
+      "source_location": "L290",
       "_origin": "ast",
       "id": "docs_backend_n8n_variables_de_entorno_en_portainer",
       "community": 39,
@@ -19367,7 +19387,7 @@
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
       "source_location": "L5",
-      "community": 34,
+      "community": 123,
       "norm_label": "scanidentifyresponse",
       "id": "lib_n8n_scanidentifyresponse"
     },
@@ -19376,18 +19396,9 @@
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
       "source_location": "L181",
-      "community": 34,
+      "community": 123,
       "norm_label": "callscanidentificar()",
       "id": "lib_n8n_callscanidentificar"
-    },
-    {
-      "label": "4. Scan \u2014 Identificar",
-      "file_type": "document",
-      "source_file": "docs/backend-n8n.md",
-      "source_location": "L100",
-      "community": 39,
-      "norm_label": "4. scan \u2014 identificar",
-      "id": "docs_backend_n8n_4_scan_identificar"
     },
     {
       "label": "settings.local.json",
@@ -19637,7 +19648,7 @@
       "file_type": "code",
       "source_file": "src/components/wine/TastingEditForm.tsx",
       "source_location": "L7",
-      "community": 227,
+      "community": 182,
       "norm_label": "editfields",
       "id": "wine_tastingeditform_editfields"
     },
@@ -19646,7 +19657,7 @@
       "file_type": "code",
       "source_file": "src/components/wine/TastingEditForm.tsx",
       "source_location": "L25",
-      "community": 227,
+      "community": 182,
       "norm_label": "tofields()",
       "id": "wine_tastingeditform_tofields"
     },
@@ -19655,7 +19666,7 @@
       "file_type": "code",
       "source_file": "src/components/wine/TastingEditForm.tsx",
       "source_location": "L39",
-      "community": 227,
+      "community": 182,
       "norm_label": "scorecolor()",
       "id": "wine_tastingeditform_scorecolor"
     },
@@ -19676,15 +19687,6 @@
       "community": 62,
       "norm_label": "roadmap.md",
       "id": "volumes_ssd_externo_proyectos_antigravity_vinoteca_docs_roadmap_md"
-    },
-    {
-      "label": "backend-n8n.md",
-      "file_type": "document",
-      "source_file": "docs/backend-n8n.md",
-      "source_location": "L1",
-      "community": 39,
-      "norm_label": "backend-n8n.md",
-      "id": "volumes_ssd_externo_proyectos_antigravity_vinoteca_docs_backend_n8n_md"
     },
     {
       "label": "storage.md",
@@ -21054,7 +21056,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/tdd/tests.md",
       "source_location": "L1",
-      "community": 230,
+      "community": 213,
       "norm_label": "tests.md",
       "id": "tdd_tests"
     },
@@ -21305,7 +21307,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 226,
+      "community": 22,
       "norm_label": "animated overlay pattern",
       "id": "concept_animatedoverlay"
     },
@@ -21318,7 +21320,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 125,
+      "community": 34,
       "norm_label": "imagecapture component",
       "id": "wine_imagecapture_component"
     },
@@ -21331,7 +21333,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 213,
+      "community": 123,
       "norm_label": "tastingchat component",
       "id": "wine_tastingchat_component"
     },
@@ -21344,7 +21346,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 213,
+      "community": 123,
       "norm_label": "tasting_context structured prompt",
       "id": "wine_tastingchat_tasting_context"
     },
@@ -21409,7 +21411,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 85,
+      "community": 101,
       "norm_label": "wines_local idb store",
       "id": "lib_idb_wines_local"
     },
@@ -44469,6 +44471,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/backend-n8n.md",
+      "source_location": "L27",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "docs_backend_n8n_backend_n8n_vinoteca",
+      "target": "docs_backend_n8n_modelos_de_ia_openai_directo_u_omniroute"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/backend-n8n.md",
       "source_location": "L192",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -44479,11 +44491,11 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L1",
+      "source_location": "L43",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "volumes_ssd_externo_proyectos_antigravity_vinoteca_docs_backend_n8n_md",
-      "target": "docs_backend_n8n_backend_n8n_vinoteca"
+      "source": "docs_backend_n8n_modelos_de_ia_openai_directo_u_omniroute",
+      "target": "docs_backend_n8n_publicar_los_cambios_en_n8n"
     },
     {
       "relation": "contains",
@@ -44514,16 +44526,6 @@
       "confidence_score": 1.0,
       "source": "docs_backend_n8n_endpoints",
       "target": "docs_backend_n8n_3_sommelier_enriquecimiento"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "docs/backend-n8n.md",
-      "source_location": "L100",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "docs_backend_n8n_endpoints",
-      "target": "docs_backend_n8n_4_scan_identificar"
     },
     {
       "relation": "contains",
@@ -44581,9 +44583,9 @@
       "source_file": "docs/backend-n8n.md",
       "source_location": "L233",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_backend_n8n_endpoints",
-      "target": "docs_backend_n8n_9_wine_enrich_web_de_la_bodega_url_bodega",
-      "confidence_score": 1.0
+      "target": "docs_backend_n8n_9_wine_enrich_web_de_la_bodega_url_bodega"
     },
     {
       "relation": "contains",
@@ -52949,5 +52951,5 @@
       "source_file": "docs/handoff-2026-06-18.md"
     }
   ],
-  "built_at_commit": "5b344e9cc94d46890237bececaac1883b8fdc9cb"
+  "built_at_commit": "a3653f4e413a62450c74ed241095affadec88b7c"
 }
