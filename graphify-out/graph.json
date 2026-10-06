@@ -2339,7 +2339,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app",
-      "community": 181,
+      "community": 129,
       "norm_label": "app.tsx"
     },
     {
@@ -2349,7 +2349,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_app_app",
-      "community": 181,
+      "community": 129,
       "norm_label": "app()"
     },
     {
@@ -2359,7 +2359,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_analysisprogress",
-      "community": 227,
+      "community": 226,
       "norm_label": "analysisprogress.tsx"
     },
     {
@@ -2369,7 +2369,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "ui_analysisprogress_analysisprogressprops",
-      "community": 227,
+      "community": 226,
       "norm_label": "analysisprogressprops"
     },
     {
@@ -2379,7 +2379,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "ui_analysisprogress_phases_identifying",
-      "community": 227,
+      "community": 226,
       "norm_label": "phases_identifying"
     },
     {
@@ -2389,7 +2389,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "ui_analysisprogress_phases_analyzing",
-      "community": 227,
+      "community": 226,
       "norm_label": "phases_analyzing"
     },
     {
@@ -2399,7 +2399,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "ui_analysisprogress_analysisprogress",
-      "community": 227,
+      "community": 226,
       "norm_label": "analysisprogress()"
     },
     {
@@ -2409,7 +2409,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_assistantwidget",
-      "community": 213,
+      "community": 22,
       "norm_label": "assistantwidget.tsx"
     },
     {
@@ -2419,7 +2419,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "ui_assistantwidget_suggestions",
-      "community": 213,
+      "community": 22,
       "norm_label": "suggestions"
     },
     {
@@ -2429,7 +2429,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "ui_assistantwidget_sommeliericon",
-      "community": 213,
+      "community": 22,
       "norm_label": "sommeliericon()"
     },
     {
@@ -2439,7 +2439,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "ui_assistantwidget_assistantwidget",
-      "community": 213,
+      "community": 22,
       "norm_label": "assistantwidget()"
     },
     {
@@ -2449,7 +2449,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_badge",
-      "community": 129,
+      "community": 22,
       "norm_label": "badge.tsx"
     },
     {
@@ -2459,7 +2459,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "ui_badge_badgeprops",
-      "community": 129,
+      "community": 22,
       "norm_label": "badgeprops"
     },
     {
@@ -2469,7 +2469,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "ui_badge_badge",
-      "community": 129,
+      "community": 22,
       "norm_label": "badge()"
     },
     {
@@ -2479,7 +2479,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_button",
-      "community": 227,
+      "community": 22,
       "norm_label": "button.tsx"
     },
     {
@@ -2489,7 +2489,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "ui_button_buttonprops",
-      "community": 227,
+      "community": 22,
       "norm_label": "buttonprops"
     },
     {
@@ -2499,7 +2499,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "ui_button_button",
-      "community": 227,
+      "community": 22,
       "norm_label": "button()"
     },
     {
@@ -2579,7 +2579,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_card",
-      "community": 129,
+      "community": 22,
       "norm_label": "card.tsx"
     },
     {
@@ -2589,7 +2589,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "ui_card_cardprops",
-      "community": 129,
+      "community": 22,
       "norm_label": "cardprops"
     },
     {
@@ -2599,7 +2599,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "ui_card_card",
-      "community": 129,
+      "community": 22,
       "norm_label": "card()"
     },
     {
@@ -2659,7 +2659,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_input",
-      "community": 106,
+      "community": 22,
       "norm_label": "input.tsx"
     },
     {
@@ -2669,7 +2669,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "ui_input_inputprops",
-      "community": 106,
+      "community": 22,
       "norm_label": "inputprops"
     },
     {
@@ -2679,7 +2679,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "ui_input_input",
-      "community": 106,
+      "community": 22,
       "norm_label": "input()"
     },
     {
@@ -2689,7 +2689,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_layout",
-      "community": 129,
+      "community": 22,
       "norm_label": "layout.tsx"
     },
     {
@@ -2699,7 +2699,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "ui_layout_tabs",
-      "community": 129,
+      "community": 22,
       "norm_label": "tabs"
     },
     {
@@ -2709,7 +2709,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "ui_layout_layoutprops",
-      "community": 129,
+      "community": 22,
       "norm_label": "layoutprops"
     },
     {
@@ -2719,7 +2719,7 @@
       "source_location": "L68",
       "_origin": "ast",
       "id": "ui_layout_layout",
-      "community": 129,
+      "community": 22,
       "norm_label": "layout()"
     },
     {
@@ -2789,7 +2789,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_scaleinput",
-      "community": 129,
+      "community": 22,
       "norm_label": "scaleinput.tsx"
     },
     {
@@ -2799,7 +2799,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "ui_scaleinput_scaleinputprops",
-      "community": 129,
+      "community": 22,
       "norm_label": "scaleinputprops"
     },
     {
@@ -2809,7 +2809,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "ui_scaleinput_scaleinput",
-      "community": 129,
+      "community": 22,
       "norm_label": "scaleinput()"
     },
     {
@@ -2819,7 +2819,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_spinner",
-      "community": 182,
+      "community": 129,
       "norm_label": "spinner.tsx"
     },
     {
@@ -2829,7 +2829,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_spinner_spinnerprops",
-      "community": 182,
+      "community": 129,
       "norm_label": "spinnerprops"
     },
     {
@@ -2839,7 +2839,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "ui_spinner_spinner",
-      "community": 182,
+      "community": 129,
       "norm_label": "spinner()"
     },
     {
@@ -2849,7 +2849,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_suggestionchips",
-      "community": 213,
+      "community": 22,
       "norm_label": "suggestionchips.tsx"
     },
     {
@@ -2859,7 +2859,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "ui_suggestionchips_suggestionchipsprops",
-      "community": 213,
+      "community": 22,
       "norm_label": "suggestionchipsprops"
     },
     {
@@ -2869,7 +2869,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "ui_suggestionchips_suggestionchips",
-      "community": 213,
+      "community": 22,
       "norm_label": "suggestionchips()"
     },
     {
@@ -2959,7 +2959,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_toast",
-      "community": 22,
+      "community": 182,
       "norm_label": "toast.tsx"
     },
     {
@@ -2969,7 +2969,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "ui_toast_toast",
-      "community": 22,
+      "community": 182,
       "norm_label": "toast()"
     },
     {
@@ -2979,7 +2979,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "wine_consumoquickform",
-      "community": 22,
+      "community": 182,
       "norm_label": "consumoquickform.tsx"
     },
     {
@@ -2989,7 +2989,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "wine_consumoquickform_consumoquickformprops",
-      "community": 22,
+      "community": 182,
       "norm_label": "consumoquickformprops"
     },
     {
@@ -2999,7 +2999,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "wine_consumoquickform_today",
-      "community": 22,
+      "community": 182,
       "norm_label": "today()"
     },
     {
@@ -3009,7 +3009,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "wine_consumoquickform_consumoquickform",
-      "community": 22,
+      "community": 182,
       "norm_label": "consumoquickform()"
     },
     {
@@ -3109,7 +3109,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "wine_journalsheetform_tutorstate",
-      "community": 182,
+      "community": 225,
       "norm_label": "tutorstate"
     },
     {
@@ -3159,7 +3159,7 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "wine_journalsheetform_journalsheetform",
-      "community": 225,
+      "community": 182,
       "norm_label": "journalsheetform()"
     },
     {
@@ -3169,7 +3169,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "wine_tastingcard",
-      "community": 219,
+      "community": 227,
       "norm_label": "tastingcard.tsx"
     },
     {
@@ -3179,7 +3179,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "wine_tastingcard_tastingcardprops",
-      "community": 219,
+      "community": 227,
       "norm_label": "tastingcardprops"
     },
     {
@@ -3189,7 +3189,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "wine_tastingcard_scorebg",
-      "community": 219,
+      "community": 227,
       "norm_label": "scorebg()"
     },
     {
@@ -3199,7 +3199,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "wine_tastingcard_scorecolor",
-      "community": 219,
+      "community": 227,
       "norm_label": "scorecolor()"
     },
     {
@@ -3209,7 +3209,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "wine_tastingcard_tastingcard",
-      "community": 219,
+      "community": 227,
       "norm_label": "tastingcard()"
     },
     {
@@ -3219,7 +3219,7 @@
       "source_location": "L83",
       "_origin": "ast",
       "id": "wine_tastingcard_outsidebadge",
-      "community": 219,
+      "community": 227,
       "norm_label": "outsidebadge()"
     },
     {
@@ -3229,7 +3229,7 @@
       "source_location": "L97",
       "_origin": "ast",
       "id": "wine_tastingcard_typebadge",
-      "community": 219,
+      "community": 227,
       "norm_label": "typebadge()"
     },
     {
@@ -3329,7 +3329,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "wine_tastingform",
-      "community": 227,
+      "community": 22,
       "norm_label": "tastingform.tsx"
     },
     {
@@ -3339,7 +3339,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "wine_tastingform_tastingformprops",
-      "community": 227,
+      "community": 22,
       "norm_label": "tastingformprops"
     },
     {
@@ -3349,7 +3349,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "wine_tastingform_tastingform",
-      "community": 227,
+      "community": 22,
       "norm_label": "tastingform()"
     },
     {
@@ -3389,7 +3389,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "wine_tutorpanel",
-      "community": 182,
+      "community": 225,
       "norm_label": "tutorpanel.tsx"
     },
     {
@@ -3399,7 +3399,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "wine_tutorpanel_tutorpanelprops",
-      "community": 182,
+      "community": 225,
       "norm_label": "tutorpanelprops"
     },
     {
@@ -3409,7 +3409,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "wine_tutorpanel_plain",
-      "community": 182,
+      "community": 225,
       "norm_label": "plain()"
     },
     {
@@ -3419,7 +3419,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "wine_tutorpanel_heading",
-      "community": 182,
+      "community": 225,
       "norm_label": "heading"
     },
     {
@@ -3429,7 +3429,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "wine_tutorpanel_smallbutton",
-      "community": 182,
+      "community": 225,
       "norm_label": "smallbutton()"
     },
     {
@@ -3439,7 +3439,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "wine_tutorpanel_tutorpanel",
-      "community": 182,
+      "community": 225,
       "norm_label": "tutorpanel()"
     },
     {
@@ -3679,7 +3679,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "constants_theme",
-      "community": 129,
+      "community": 22,
       "norm_label": "theme.ts"
     },
     {
@@ -3689,7 +3689,7 @@
       "source_location": "L455",
       "_origin": "ast",
       "id": "constants_theme_theme",
-      "community": 129,
+      "community": 22,
       "norm_label": "theme"
     },
     {
@@ -3699,7 +3699,7 @@
       "source_location": "L456",
       "_origin": "ast",
       "id": "constants_theme_colorkey",
-      "community": 129,
+      "community": 22,
       "norm_label": "colorkey"
     },
     {
@@ -3709,7 +3709,7 @@
       "source_location": "L457",
       "_origin": "ast",
       "id": "constants_theme_fontsizekey",
-      "community": 129,
+      "community": 22,
       "norm_label": "fontsizekey"
     },
     {
@@ -3719,7 +3719,7 @@
       "source_location": "L458",
       "_origin": "ast",
       "id": "constants_theme_radiuskey",
-      "community": 129,
+      "community": 22,
       "norm_label": "radiuskey"
     },
     {
@@ -3729,7 +3729,7 @@
       "source_location": "L495",
       "_origin": "ast",
       "id": "constants_theme_injectkeyframes",
-      "community": 129,
+      "community": 22,
       "norm_label": "injectkeyframes()"
     },
     {
@@ -3769,7 +3769,7 @@
       "source_location": "L73",
       "_origin": "ast",
       "id": "hooks_usebodegastate_usebodegastate",
-      "community": 181,
+      "community": 121,
       "norm_label": "usebodegastate()"
     },
     {
@@ -3859,7 +3859,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "hooks_useglossary",
-      "community": 225,
+      "community": 182,
       "norm_label": "useglossary.ts"
     },
     {
@@ -3869,7 +3869,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "hooks_useglossary_useglossary",
-      "community": 225,
+      "community": 182,
       "norm_label": "useglossary()"
     },
     {
@@ -3919,7 +3919,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "hooks_usesommelier",
-      "community": 123,
+      "community": 227,
       "norm_label": "usesommelier.ts"
     },
     {
@@ -4059,7 +4059,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "hooks_usewines_usewines",
-      "community": 181,
+      "community": 121,
       "norm_label": "usewines()"
     },
     {
@@ -4159,7 +4159,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_capturesource",
-      "community": 112,
+      "community": 219,
       "norm_label": "capturesource.ts"
     },
     {
@@ -4179,7 +4179,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "lib_capturesource_captureframefromvideo",
-      "community": 112,
+      "community": 219,
       "norm_label": "captureframefromvideo()"
     },
     {
@@ -4189,7 +4189,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "lib_capturesource_canvas180",
-      "community": 112,
+      "community": 219,
       "norm_label": "canvas180()"
     },
     {
@@ -4199,7 +4199,7 @@
       "source_location": "L76",
       "_origin": "ast",
       "id": "lib_capturesource_getusermediasource",
-      "community": 34,
+      "community": 219,
       "norm_label": "getusermediasource()"
     },
     {
@@ -4259,7 +4259,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "lib_cuadernohelpers_isincellar",
-      "community": 181,
+      "community": 101,
       "norm_label": "isincellar()"
     },
     {
@@ -4369,7 +4369,7 @@
       "source_location": "L118",
       "_origin": "ast",
       "id": "lib_cuadernohelpers_final_opciones",
-      "community": 22,
+      "community": 101,
       "norm_label": "final_opciones"
     },
     {
@@ -4669,7 +4669,7 @@
       "source_location": "L79",
       "_origin": "ast",
       "id": "lib_n8n_callsommelierchat",
-      "community": 34,
+      "community": 213,
       "norm_label": "callsommelierchat()"
     },
     {
@@ -4679,7 +4679,7 @@
       "source_location": "L96",
       "_origin": "ast",
       "id": "lib_n8n_callayudachat",
-      "community": 213,
+      "community": 22,
       "norm_label": "callayudachat()"
     },
     {
@@ -4709,7 +4709,7 @@
       "source_location": "L115",
       "_origin": "ast",
       "id": "lib_n8n_tutorfeedback",
-      "community": 182,
+      "community": 225,
       "norm_label": "tutorfeedback"
     },
     {
@@ -4819,7 +4819,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_sommelierhelpers",
-      "community": 123,
+      "community": 227,
       "norm_label": "sommelierhelpers.ts"
     },
     {
@@ -4829,7 +4829,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "lib_sommelierhelpers_tasteprofile",
-      "community": 123,
+      "community": 227,
       "norm_label": "tasteprofile"
     },
     {
@@ -4839,7 +4839,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "lib_sommelierhelpers_buildtasteprofile",
-      "community": 123,
+      "community": 227,
       "norm_label": "buildtasteprofile()"
     },
     {
@@ -4909,7 +4909,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "lib_statshelpers_classifywine",
-      "community": 123,
+      "community": 227,
       "norm_label": "classifywine()"
     },
     {
@@ -5199,7 +5199,7 @@
       "source_location": "L87",
       "_origin": "ast",
       "id": "lib_storage_fetchimageasdataurl",
-      "community": 85,
+      "community": 101,
       "norm_label": "fetchimageasdataurl()"
     },
     {
@@ -5449,7 +5449,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_bodega",
-      "community": 101,
+      "community": 121,
       "norm_label": "bodega.tsx"
     },
     {
@@ -5459,7 +5459,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "pages_bodega_filtersection",
-      "community": 101,
+      "community": 121,
       "norm_label": "filtersection()"
     },
     {
@@ -5469,7 +5469,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "pages_bodega_filterchip",
-      "community": 101,
+      "community": 121,
       "norm_label": "filterchip()"
     },
     {
@@ -5479,7 +5479,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "pages_bodega_shimmerstyle",
-      "community": 101,
+      "community": 121,
       "norm_label": "shimmerstyle"
     },
     {
@@ -5489,7 +5489,7 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "pages_bodega_rendercards",
-      "community": 101,
+      "community": 121,
       "norm_label": "rendercards()"
     },
     {
@@ -5499,7 +5499,7 @@
       "source_location": "L79",
       "_origin": "ast",
       "id": "pages_bodega_bodega",
-      "community": 181,
+      "community": 121,
       "norm_label": "bodega()"
     },
     {
@@ -5569,7 +5569,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_glosario",
-      "community": 225,
+      "community": 182,
       "norm_label": "glosario.tsx"
     },
     {
@@ -5579,7 +5579,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "pages_glosario_categorias",
-      "community": 225,
+      "community": 182,
       "norm_label": "categorias"
     },
     {
@@ -5589,7 +5589,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "pages_glosario_glosario",
-      "community": 225,
+      "community": 182,
       "norm_label": "glosario()"
     },
     {
@@ -5619,7 +5619,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_nuevacata",
-      "community": 181,
+      "community": 213,
       "norm_label": "nuevacata.tsx"
     },
     {
@@ -5629,7 +5629,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "pages_nuevacata_tastingmode",
-      "community": 181,
+      "community": 213,
       "norm_label": "tastingmode"
     },
     {
@@ -5639,7 +5639,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "pages_nuevacata_meta",
-      "community": 181,
+      "community": 213,
       "norm_label": "meta"
     },
     {
@@ -5649,7 +5649,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "pages_nuevacata_todayiso",
-      "community": 181,
+      "community": 213,
       "norm_label": "todayiso()"
     },
     {
@@ -5659,7 +5659,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "pages_nuevacata_modeselectorprops",
-      "community": 181,
+      "community": 213,
       "norm_label": "modeselectorprops"
     },
     {
@@ -5669,7 +5669,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "pages_nuevacata_modeselector",
-      "community": 181,
+      "community": 213,
       "norm_label": "modeselector()"
     },
     {
@@ -5679,7 +5679,7 @@
       "source_location": "L78",
       "_origin": "ast",
       "id": "pages_nuevacata_metasectionprops",
-      "community": 181,
+      "community": 213,
       "norm_label": "metasectionprops"
     },
     {
@@ -5689,7 +5689,7 @@
       "source_location": "L84",
       "_origin": "ast",
       "id": "pages_nuevacata_metasection",
-      "community": 181,
+      "community": 213,
       "norm_label": "metasection()"
     },
     {
@@ -5699,7 +5699,7 @@
       "source_location": "L199",
       "_origin": "ast",
       "id": "pages_nuevacata_quickformprops",
-      "community": 181,
+      "community": 213,
       "norm_label": "quickformprops"
     },
     {
@@ -5709,7 +5709,7 @@
       "source_location": "L204",
       "_origin": "ast",
       "id": "pages_nuevacata_quickform",
-      "community": 219,
+      "community": 227,
       "norm_label": "quickform()"
     },
     {
@@ -5719,7 +5719,7 @@
       "source_location": "L294",
       "_origin": "ast",
       "id": "pages_nuevacata_nuevacata",
-      "community": 181,
+      "community": 213,
       "norm_label": "nuevacata()"
     },
     {
@@ -5729,7 +5729,7 @@
       "source_location": "L614",
       "_origin": "ast",
       "id": "pages_nuevacata_winebanner",
-      "community": 181,
+      "community": 101,
       "norm_label": "winebanner()"
     },
     {
@@ -5739,7 +5739,7 @@
       "source_location": "L638",
       "_origin": "ast",
       "id": "pages_nuevacata_cellarbadge",
-      "community": 181,
+      "community": 213,
       "norm_label": "cellarbadge()"
     },
     {
@@ -5819,7 +5819,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_scan",
-      "community": 34,
+      "community": 219,
       "norm_label": "scan.tsx"
     },
     {
@@ -5829,7 +5829,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "pages_scan_step",
-      "community": 34,
+      "community": 219,
       "norm_label": "step"
     },
     {
@@ -5839,7 +5839,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "pages_scan_steps",
-      "community": 34,
+      "community": 219,
       "norm_label": "steps"
     },
     {
@@ -5849,7 +5849,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "pages_scan_stepindex",
-      "community": 34,
+      "community": 219,
       "norm_label": "stepindex()"
     },
     {
@@ -5859,7 +5859,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "pages_scan_barrelhero",
-      "community": 34,
+      "community": 219,
       "norm_label": "barrelhero()"
     },
     {
@@ -5869,7 +5869,7 @@
       "source_location": "L76",
       "_origin": "ast",
       "id": "pages_scan_camerabutton",
-      "community": 34,
+      "community": 219,
       "norm_label": "camerabutton()"
     },
     {
@@ -5879,7 +5879,7 @@
       "source_location": "L131",
       "_origin": "ast",
       "id": "pages_scan_scan",
-      "community": 34,
+      "community": 219,
       "norm_label": "scan()"
     },
     {
@@ -6179,7 +6179,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_tastingdetail",
-      "community": 22,
+      "community": 101,
       "norm_label": "tastingdetail.tsx"
     },
     {
@@ -6189,7 +6189,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "pages_tastingdetail_scorebadge",
-      "community": 22,
+      "community": 101,
       "norm_label": "scorebadge()"
     },
     {
@@ -6199,7 +6199,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "pages_tastingdetail_sectioncardprops",
-      "community": 22,
+      "community": 101,
       "norm_label": "sectioncardprops"
     },
     {
@@ -6209,7 +6209,7 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "pages_tastingdetail_sectioncard",
-      "community": 22,
+      "community": 101,
       "norm_label": "sectioncard()"
     },
     {
@@ -6219,7 +6219,7 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "pages_tastingdetail_bocacard",
-      "community": 22,
+      "community": 101,
       "norm_label": "bocacard()"
     },
     {
@@ -6229,7 +6229,7 @@
       "source_location": "L87",
       "_origin": "ast",
       "id": "pages_tastingdetail_tastingdetail",
-      "community": 181,
+      "community": 101,
       "norm_label": "tastingdetail()"
     },
     {
@@ -6239,7 +6239,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_winedetail",
-      "community": 22,
+      "community": 101,
       "norm_label": "winedetail.tsx"
     },
     {
@@ -6249,7 +6249,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "pages_winedetail_stars",
-      "community": 22,
+      "community": 101,
       "norm_label": "stars()"
     },
     {
@@ -6259,7 +6259,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "pages_winedetail_tastingcard",
-      "community": 22,
+      "community": 101,
       "norm_label": "tastingcard()"
     },
     {
@@ -6269,7 +6269,7 @@
       "source_location": "L80",
       "_origin": "ast",
       "id": "pages_winedetail_coleccionpanel",
-      "community": 22,
+      "community": 101,
       "norm_label": "coleccionpanel()"
     },
     {
@@ -6279,7 +6279,7 @@
       "source_location": "L165",
       "_origin": "ast",
       "id": "pages_winedetail_winedetail",
-      "community": 181,
+      "community": 101,
       "norm_label": "winedetail()"
     },
     {
@@ -6309,7 +6309,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "router_index_router",
-      "community": 181,
+      "community": 129,
       "norm_label": "router"
     },
     {
@@ -6409,7 +6409,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "store_toaststore",
-      "community": 22,
+      "community": 182,
       "norm_label": "toaststore.ts"
     },
     {
@@ -6419,7 +6419,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "store_toaststore_toaststate",
-      "community": 22,
+      "community": 182,
       "norm_label": "toaststate"
     },
     {
@@ -6429,7 +6429,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "store_toaststore_usetoaststore",
-      "community": 22,
+      "community": 182,
       "norm_label": "usetoaststore"
     },
     {
@@ -6439,7 +6439,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "store_winestore",
-      "community": 101,
+      "community": 121,
       "norm_label": "winestore.ts"
     },
     {
@@ -6449,7 +6449,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "store_winestore_winestate",
-      "community": 101,
+      "community": 121,
       "norm_label": "winestate"
     },
     {
@@ -6459,7 +6459,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "store_winestore_usewinestore",
-      "community": 181,
+      "community": 121,
       "norm_label": "usewinestore"
     },
     {
@@ -6469,7 +6469,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "types_index",
-      "community": 225,
+      "community": 227,
       "norm_label": "index.ts"
     },
     {
@@ -6499,7 +6499,7 @@
       "source_location": "L69",
       "_origin": "ast",
       "id": "types_index_tastingfinal",
-      "community": 225,
+      "community": 181,
       "norm_label": "tastingfinal"
     },
     {
@@ -6509,7 +6509,7 @@
       "source_location": "L72",
       "_origin": "ast",
       "id": "types_index_glossarycategoria",
-      "community": 225,
+      "community": 182,
       "norm_label": "glossarycategoria"
     },
     {
@@ -6519,7 +6519,7 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "types_index_glossaryterm",
-      "community": 225,
+      "community": 182,
       "norm_label": "glossaryterm"
     },
     {
@@ -6539,7 +6539,7 @@
       "source_location": "L91",
       "_origin": "ast",
       "id": "types_index_userrole",
-      "community": 225,
+      "community": 227,
       "norm_label": "userrole"
     },
     {
@@ -6549,7 +6549,7 @@
       "source_location": "L92",
       "_origin": "ast",
       "id": "types_index_userplan",
-      "community": 225,
+      "community": 227,
       "norm_label": "userplan"
     },
     {
@@ -6559,7 +6559,7 @@
       "source_location": "L94",
       "_origin": "ast",
       "id": "types_index_profile",
-      "community": 85,
+      "community": 227,
       "norm_label": "profile"
     },
     {
@@ -6569,7 +6569,7 @@
       "source_location": "L107",
       "_origin": "ast",
       "id": "types_index_usersettings",
-      "community": 85,
+      "community": 227,
       "norm_label": "usersettings"
     },
     {
@@ -6579,7 +6579,7 @@
       "source_location": "L125",
       "_origin": "ast",
       "id": "types_index_sourcetype",
-      "community": 225,
+      "community": 227,
       "norm_label": "sourcetype"
     },
     {
@@ -6589,7 +6589,7 @@
       "source_location": "L133",
       "_origin": "ast",
       "id": "types_index_fieldtrace",
-      "community": 225,
+      "community": 227,
       "norm_label": "fieldtrace"
     },
     {
@@ -6599,7 +6599,7 @@
       "source_location": "L148",
       "_origin": "ast",
       "id": "types_index_identifyresponse",
-      "community": 225,
+      "community": 34,
       "norm_label": "identifyresponse"
     },
     {
@@ -6609,7 +6609,7 @@
       "source_location": "L164",
       "_origin": "ast",
       "id": "types_index_enrichresponse",
-      "community": 225,
+      "community": 34,
       "norm_label": "enrichresponse"
     },
     {
@@ -12473,10 +12473,20 @@
       "norm_label": "8. cata \u2014 tutor"
     },
     {
-      "label": "Tipo `WineCollection`",
+      "label": "9. Wine Enrich \u2014 web de la bodega (`url_bodega`)",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
       "source_location": "L233",
+      "_origin": "ast",
+      "id": "docs_backend_n8n_9_wine_enrich_web_de_la_bodega_url_bodega",
+      "community": 39,
+      "norm_label": "9. wine enrich \u2014 web de la bodega (`url_bodega`)"
+    },
+    {
+      "label": "Tipo `WineCollection`",
+      "file_type": "document",
+      "source_file": "docs/backend-n8n.md",
+      "source_location": "L243",
       "_origin": "ast",
       "id": "docs_backend_n8n_tipo_winecollection",
       "community": 39,
@@ -12486,7 +12496,7 @@
       "label": "Credenciales requeridas (setup manual en n8n)",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L251",
+      "source_location": "L261",
       "_origin": "ast",
       "id": "docs_backend_n8n_credenciales_requeridas_setup_manual_en_n8n",
       "community": 39,
@@ -12496,7 +12506,7 @@
       "label": "Header Auth para proteger los webhooks",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L253",
+      "source_location": "L263",
       "_origin": "ast",
       "id": "docs_backend_n8n_header_auth_para_proteger_los_webhooks",
       "community": 39,
@@ -12506,7 +12516,7 @@
       "label": "Variables de entorno en Portainer",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L260",
+      "source_location": "L270",
       "_origin": "ast",
       "id": "docs_backend_n8n_variables_de_entorno_en_portainer",
       "community": 39,
@@ -21295,7 +21305,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 227,
+      "community": 226,
       "norm_label": "animated overlay pattern",
       "id": "concept_animatedoverlay"
     },
@@ -21347,7 +21357,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 129,
+      "community": 22,
       "norm_label": "tastingform component",
       "id": "wine_tastingform_component"
     },
@@ -21360,7 +21370,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 129,
+      "community": 22,
       "norm_label": "tastingminicard component",
       "id": "wine_tastingminicard_component"
     },
@@ -21373,7 +21383,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 129,
+      "community": 22,
       "norm_label": "winecard component",
       "id": "wine_winecard_component"
     },
@@ -44569,6 +44579,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/backend-n8n.md",
+      "source_location": "L233",
+      "weight": 1.0,
+      "source": "docs_backend_n8n_endpoints",
+      "target": "docs_backend_n8n_9_wine_enrich_web_de_la_bodega_url_bodega",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/backend-n8n.md",
       "source_location": "L212",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -52929,5 +52949,5 @@
       "source_file": "docs/handoff-2026-06-18.md"
     }
   ],
-  "built_at_commit": "bc1fb16b5a1f63403e9db50a87d22aa026ae0a77"
+  "built_at_commit": "5b344e9cc94d46890237bececaac1883b8fdc9cb"
 }
