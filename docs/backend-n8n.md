@@ -24,6 +24,26 @@ async function post<T>(path: string, body: unknown): Promise<T>
 - **URL construida:** `${N8N_BASE}/webhook/${path}`
 - **Errores:** Lanza `Error` con el status HTTP y el body de texto si `!res.ok`. Lanza `Error` con mensaje `"Timeout en n8n/${path} (30s)"` si la petición es abortada.
 
+## Modelos de IA: OpenAI directo u Omniroute
+
+Los workflows usan dos credenciales de n8n: **«OpenAI Carlos»** (OpenAI directo) y **«OpenAI Omnirouter»** (pasarela compatible con OpenAI en `madrid`, modelo `Combo_n8n`). Solo funcionan con Omniroute los nodos de chat (`lmChatOpenAi` con la API Responses desactivada, que llaman a `/v1/chat/completions`).
+
+| Workflow | Modelo / credencial | Nota |
+|----------|---------------------|------|
+| `sommelier-chat`, `ayuda-chat`, `sommelier-enriquecimiento` | `Combo_n8n` / Omnirouter | |
+| `stats-insight` | `Combo_n8n` / Omnirouter (antes `gpt-5-mini`) | Quita el Markdown (`**`) de la respuesta: la app no lo renderiza |
+| `sommelier-maridaje` | `Combo_n8n` / Omnirouter (antes `gpt-4o`) | Extrae el JSON con regex del primer `{...}` y, si no se puede leer, devuelve el texto; quita el Markdown |
+| `cata-tutor` | `gpt-4o-mini` / OpenAI Carlos | Con `Combo_n8n` tardaba 20–24 s: es interactivo |
+| `Wine Enrich` | `gpt-4o-mini` / OpenAI Carlos | Usa el nodo OpenAI de n8n (API Responses, `/v1/responses`) y es extracción estricta con `null` |
+| `Scan Analizar v2` (visión `gpt-4o`) | OpenAI Carlos | Lee la etiqueta: un combo podría enrutar a un modelo sin visión |
+| `Improve Photo` (`gpt-image-1`) | OpenAI Carlos | Edición de imágenes de OpenAI |
+
+La latencia de `Combo_n8n` varía mucho (de 4 a 20 s en la misma consulta de stats), por eso no se usa en lo interactivo. Para volver un workflow a OpenAI directo basta cambiar la credencial y el modelo del nodo de chat.
+
+### Publicar los cambios en n8n
+
+Editar un workflow (también por el MCP) **solo guarda un borrador**: el webhook de producción sigue ejecutando la **versión activa** hasta que se publica. Ejecutar «manualmente» (o con el MCP) usa el borrador, así que una prueba manual puede salir bien con producción aún en la versión vieja. Tras cambiar un workflow hay que **publicarlo** y comprobar que `activeVersionId` coincide con `versionId`, y probar la URL de producción (`/webhook/...`, no `/webhook-test/...`).
+
 ## Endpoints
 
 ### 1. Sommelier — Chat libre
