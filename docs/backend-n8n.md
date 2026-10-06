@@ -230,6 +230,16 @@ async function post<T>(path: string, body: unknown): Promise<T>
 
 ---
 
+### 9. Wine Enrich — web de la bodega (`url_bodega`)
+
+Workflow `Vinoteca – Wine Enrich` (`rV1BrlPmkUB87jnn`), `POST /webhook/vinoteca/wine/enrich`. Se ejecuta tras cada escaneo y rellena uva, crianza, alcohol, temperatura, descripción, precio y `url_bodega`. Cómo se obtiene la URL de la bodega (revisado el 2026-10-06 tras fallos reales con Remelluri, Macán y Tesalia):
+
+1. **`Brave Search`** busca el vino (alimenta el grounding de OpenAI); **`Brave Search Bodega`** busca solo `"<bodega> bodega sitio web oficial"` (10 resultados). Buscar con el nombre del vino devolvía sobre todo fichas de tiendas, no la web oficial. La búsqueda de la bodega va **encadenada** tras la del vino (no en paralelo) por el límite de peticiones por segundo de Brave.
+2. **`Preparar Grounding`** elige el candidato: descarta agregadores, redes y tiendas conocidas; prefiere el resultado cuyo **dominio contiene el nombre de la bodega** (`remelluri.com`, `pagodecarraovejas.com`); si ninguno coincide, usa el host más repetido entre resultados relevantes; devuelve la **raíz del sitio** (`https://host/`), no una ficha de producto. Si la bodega viene vacía, usa el nombre del vino.
+3. **`Validar Respuesta`** comprueba que el sitio responda (GET con `User-Agent` de navegador, `ignoreHttpStatusErrors`). Cuentan como vivo los 2xx/3xx y también 401/403/429 (la web bloquea bots); un fallo TLS se reintenta sin validar el certificado (`remelluri.com` sirve el certificado de su hosting). Solo se descarta con 404/5xx o error de red. El candidato real tiene **prioridad** sobre la URL que OpenAI recuerda de memoria, que solo se usa si el candidato falla.
+
+Historial del fallo: el chequeo de alcance descartaba webs válidas (sin `User-Agent` muchas dan 403, y `simple: false` no existe en el helper `httpRequest`), y el candidato se elegía por «menciona la bodega», lo que daba tiendas.
+
 ## Tipo `WineCollection`
 
 Subconjunto de `Wine` enviado al Sommelier para contextualizar las respuestas:
