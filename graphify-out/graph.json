@@ -2359,7 +2359,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_analysisprogress",
-      "community": 34,
+      "community": 106,
       "norm_label": "analysisprogress.tsx"
     },
     {
@@ -2369,7 +2369,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "ui_analysisprogress_analysisprogressprops",
-      "community": 34,
+      "community": 106,
       "norm_label": "analysisprogressprops"
     },
     {
@@ -2379,7 +2379,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "ui_analysisprogress_phases_identifying",
-      "community": 34,
+      "community": 106,
       "norm_label": "phases_identifying"
     },
     {
@@ -2389,7 +2389,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "ui_analysisprogress_phases_analyzing",
-      "community": 34,
+      "community": 106,
       "norm_label": "phases_analyzing"
     },
     {
@@ -2399,7 +2399,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "ui_analysisprogress_analysisprogress",
-      "community": 34,
+      "community": 106,
       "norm_label": "analysisprogress()"
     },
     {
@@ -2409,7 +2409,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_assistantwidget",
-      "community": 123,
+      "community": 225,
       "norm_label": "assistantwidget.tsx"
     },
     {
@@ -2419,7 +2419,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "ui_assistantwidget_suggestions",
-      "community": 123,
+      "community": 225,
       "norm_label": "suggestions"
     },
     {
@@ -2429,7 +2429,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "ui_assistantwidget_sommeliericon",
-      "community": 123,
+      "community": 225,
       "norm_label": "sommeliericon()"
     },
     {
@@ -2439,7 +2439,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "ui_assistantwidget_assistantwidget",
-      "community": 123,
+      "community": 225,
       "norm_label": "assistantwidget()"
     },
     {
@@ -2449,7 +2449,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_badge",
-      "community": 129,
+      "community": 106,
       "norm_label": "badge.tsx"
     },
     {
@@ -2459,7 +2459,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "ui_badge_badgeprops",
-      "community": 129,
+      "community": 106,
       "norm_label": "badgeprops"
     },
     {
@@ -2469,7 +2469,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "ui_badge_badge",
-      "community": 129,
+      "community": 106,
       "norm_label": "badge()"
     },
     {
@@ -2479,7 +2479,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_button",
-      "community": 34,
+      "community": 106,
       "norm_label": "button.tsx"
     },
     {
@@ -2489,7 +2489,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "ui_button_buttonprops",
-      "community": 34,
+      "community": 106,
       "norm_label": "buttonprops"
     },
     {
@@ -2499,7 +2499,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "ui_button_button",
-      "community": 34,
+      "community": 106,
       "norm_label": "button()"
     },
     {
@@ -2579,7 +2579,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_card",
-      "community": 129,
+      "community": 106,
       "norm_label": "card.tsx"
     },
     {
@@ -2589,7 +2589,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "ui_card_cardprops",
-      "community": 129,
+      "community": 106,
       "norm_label": "cardprops"
     },
     {
@@ -2599,7 +2599,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "ui_card_card",
-      "community": 129,
+      "community": 106,
       "norm_label": "card()"
     },
     {
@@ -2689,7 +2689,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_layout",
-      "community": 129,
+      "community": 225,
       "norm_label": "layout.tsx"
     },
     {
@@ -2699,7 +2699,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "ui_layout_tabs",
-      "community": 129,
+      "community": 225,
       "norm_label": "tabs"
     },
     {
@@ -2709,7 +2709,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "ui_layout_layoutprops",
-      "community": 129,
+      "community": 225,
       "norm_label": "layoutprops"
     },
     {
@@ -2719,7 +2719,7 @@
       "source_location": "L68",
       "_origin": "ast",
       "id": "ui_layout_layout",
-      "community": 129,
+      "community": 225,
       "norm_label": "layout()"
     },
     {
@@ -2729,7 +2729,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_modal",
-      "community": 22,
+      "community": 225,
       "norm_label": "modal.tsx"
     },
     {
@@ -2739,7 +2739,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "ui_modal_modalprops",
-      "community": 22,
+      "community": 225,
       "norm_label": "modalprops"
     },
     {
@@ -2749,7 +2749,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "ui_modal_modal",
-      "community": 22,
+      "community": 225,
       "norm_label": "modal()"
     },
     {
@@ -2789,7 +2789,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_scaleinput",
-      "community": 129,
+      "community": 106,
       "norm_label": "scaleinput.tsx"
     },
     {
@@ -2799,7 +2799,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "ui_scaleinput_scaleinputprops",
-      "community": 129,
+      "community": 106,
       "norm_label": "scaleinputprops"
     },
     {
@@ -2809,7 +2809,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "ui_scaleinput_scaleinput",
-      "community": 129,
+      "community": 106,
       "norm_label": "scaleinput()"
     },
     {
@@ -2819,7 +2819,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_spinner",
-      "community": 182,
+      "community": 225,
       "norm_label": "spinner.tsx"
     },
     {
@@ -2829,7 +2829,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_spinner_spinnerprops",
-      "community": 182,
+      "community": 225,
       "norm_label": "spinnerprops"
     },
     {
@@ -2839,7 +2839,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "ui_spinner_spinner",
-      "community": 182,
+      "community": 225,
       "norm_label": "spinner()"
     },
     {
@@ -2849,7 +2849,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_suggestionchips",
-      "community": 123,
+      "community": 106,
       "norm_label": "suggestionchips.tsx"
     },
     {
@@ -2859,7 +2859,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "ui_suggestionchips_suggestionchipsprops",
-      "community": 123,
+      "community": 106,
       "norm_label": "suggestionchipsprops"
     },
     {
@@ -2869,7 +2869,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "ui_suggestionchips_suggestionchips",
-      "community": 123,
+      "community": 106,
       "norm_label": "suggestionchips()"
     },
     {
@@ -3089,7 +3089,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "wine_journalsheetform",
-      "community": 182,
+      "community": 123,
       "norm_label": "journalsheetform.tsx"
     },
     {
@@ -3119,7 +3119,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "wine_journalsheetform_sectiontitle",
-      "community": 182,
+      "community": 123,
       "norm_label": "sectiontitle"
     },
     {
@@ -3129,7 +3129,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "wine_journalsheetform_labelstyle",
-      "community": 182,
+      "community": 123,
       "norm_label": "labelstyle"
     },
     {
@@ -3139,7 +3139,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "wine_journalsheetform_inputstyle",
-      "community": 182,
+      "community": 123,
       "norm_label": "inputstyle"
     },
     {
@@ -3149,7 +3149,7 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "wine_journalsheetform_section",
-      "community": 182,
+      "community": 123,
       "norm_label": "section()"
     },
     {
@@ -3169,7 +3169,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "wine_tastingcard",
-      "community": 227,
+      "community": 85,
       "norm_label": "tastingcard.tsx"
     },
     {
@@ -3179,7 +3179,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "wine_tastingcard_tastingcardprops",
-      "community": 227,
+      "community": 85,
       "norm_label": "tastingcardprops"
     },
     {
@@ -3189,7 +3189,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "wine_tastingcard_scorebg",
-      "community": 227,
+      "community": 85,
       "norm_label": "scorebg()"
     },
     {
@@ -3199,7 +3199,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "wine_tastingcard_scorecolor",
-      "community": 227,
+      "community": 85,
       "norm_label": "scorecolor()"
     },
     {
@@ -3209,7 +3209,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "wine_tastingcard_tastingcard",
-      "community": 227,
+      "community": 85,
       "norm_label": "tastingcard()"
     },
     {
@@ -3219,7 +3219,7 @@
       "source_location": "L83",
       "_origin": "ast",
       "id": "wine_tastingcard_outsidebadge",
-      "community": 227,
+      "community": 85,
       "norm_label": "outsidebadge()"
     },
     {
@@ -3229,7 +3229,7 @@
       "source_location": "L97",
       "_origin": "ast",
       "id": "wine_tastingcard_typebadge",
-      "community": 227,
+      "community": 85,
       "norm_label": "typebadge()"
     },
     {
@@ -3239,7 +3239,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "wine_tastingchat",
-      "community": 125,
+      "community": 123,
       "norm_label": "tastingchat.tsx"
     },
     {
@@ -3249,7 +3249,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "wine_tastingchat_tastingresult",
-      "community": 125,
+      "community": 123,
       "norm_label": "tastingresult"
     },
     {
@@ -3259,7 +3259,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "wine_tastingchat_tastingchatprops",
-      "community": 125,
+      "community": 123,
       "norm_label": "tastingchatprops"
     },
     {
@@ -3269,7 +3269,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "wine_tastingchat_buildwinesheet",
-      "community": 125,
+      "community": 123,
       "norm_label": "buildwinesheet()"
     },
     {
@@ -3279,7 +3279,7 @@
       "source_location": "L63",
       "_origin": "ast",
       "id": "wine_tastingchat_parsecatacompleta",
-      "community": 125,
+      "community": 123,
       "norm_label": "parsecatacompleta()"
     },
     {
@@ -3289,7 +3289,7 @@
       "source_location": "L76",
       "_origin": "ast",
       "id": "wine_tastingchat_tastingchat",
-      "community": 125,
+      "community": 123,
       "norm_label": "tastingchat()"
     },
     {
@@ -3329,7 +3329,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "wine_tastingform",
-      "community": 227,
+      "community": 106,
       "norm_label": "tastingform.tsx"
     },
     {
@@ -3339,7 +3339,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "wine_tastingform_tastingformprops",
-      "community": 227,
+      "community": 85,
       "norm_label": "tastingformprops"
     },
     {
@@ -3349,7 +3349,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "wine_tastingform_tastingform",
-      "community": 227,
+      "community": 106,
       "norm_label": "tastingform()"
     },
     {
@@ -3359,7 +3359,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "wine_tastingminicard",
-      "community": 227,
+      "community": 106,
       "norm_label": "tastingminicard.tsx"
     },
     {
@@ -3369,7 +3369,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "wine_tastingminicard_tastingminicardprops",
-      "community": 227,
+      "community": 85,
       "norm_label": "tastingminicardprops"
     },
     {
@@ -3379,7 +3379,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "wine_tastingminicard_tastingminicard",
-      "community": 227,
+      "community": 106,
       "norm_label": "tastingminicard()"
     },
     {
@@ -3679,7 +3679,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "constants_theme",
-      "community": 129,
+      "community": 106,
       "norm_label": "theme.ts"
     },
     {
@@ -3689,7 +3689,7 @@
       "source_location": "L455",
       "_origin": "ast",
       "id": "constants_theme_theme",
-      "community": 129,
+      "community": 106,
       "norm_label": "theme"
     },
     {
@@ -3699,7 +3699,7 @@
       "source_location": "L456",
       "_origin": "ast",
       "id": "constants_theme_colorkey",
-      "community": 129,
+      "community": 106,
       "norm_label": "colorkey"
     },
     {
@@ -3709,7 +3709,7 @@
       "source_location": "L457",
       "_origin": "ast",
       "id": "constants_theme_fontsizekey",
-      "community": 129,
+      "community": 106,
       "norm_label": "fontsizekey"
     },
     {
@@ -3719,7 +3719,7 @@
       "source_location": "L458",
       "_origin": "ast",
       "id": "constants_theme_radiuskey",
-      "community": 129,
+      "community": 106,
       "norm_label": "radiuskey"
     },
     {
@@ -3729,7 +3729,7 @@
       "source_location": "L495",
       "_origin": "ast",
       "id": "constants_theme_injectkeyframes",
-      "community": 129,
+      "community": 225,
       "norm_label": "injectkeyframes()"
     },
     {
@@ -3859,7 +3859,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "hooks_useglossary",
-      "community": 22,
+      "community": 85,
       "norm_label": "useglossary.ts"
     },
     {
@@ -3919,7 +3919,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "hooks_usesommelier",
-      "community": 227,
+      "community": 85,
       "norm_label": "usesommelier.ts"
     },
     {
@@ -3969,7 +3969,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "hooks_usestorageurl",
-      "community": 121,
+      "community": 219,
       "norm_label": "usestorageurl.ts"
     },
     {
@@ -4159,7 +4159,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_capturesource",
-      "community": 112,
+      "community": 34,
       "norm_label": "capturesource.ts"
     },
     {
@@ -4179,7 +4179,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "lib_capturesource_captureframefromvideo",
-      "community": 112,
+      "community": 34,
       "norm_label": "captureframefromvideo()"
     },
     {
@@ -4189,7 +4189,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "lib_capturesource_canvas180",
-      "community": 112,
+      "community": 34,
       "norm_label": "canvas180()"
     },
     {
@@ -4199,7 +4199,7 @@
       "source_location": "L76",
       "_origin": "ast",
       "id": "lib_capturesource_getusermediasource",
-      "community": 112,
+      "community": 34,
       "norm_label": "getusermediasource()"
     },
     {
@@ -4249,7 +4249,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_cuadernohelpers",
-      "community": 182,
+      "community": 181,
       "norm_label": "cuadernohelpers.ts"
     },
     {
@@ -4259,7 +4259,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "lib_cuadernohelpers_isincellar",
-      "community": 125,
+      "community": 121,
       "norm_label": "isincellar()"
     },
     {
@@ -4269,7 +4269,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "lib_cuadernohelpers_journaltipo",
-      "community": 182,
+      "community": 181,
       "norm_label": "journaltipo"
     },
     {
@@ -4309,7 +4309,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "lib_cuadernohelpers_splituvas",
-      "community": 182,
+      "community": 181,
       "norm_label": "splituvas()"
     },
     {
@@ -4329,7 +4329,7 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "lib_cuadernohelpers_journalfacets",
-      "community": 182,
+      "community": 181,
       "norm_label": "journalfacets()"
     },
     {
@@ -4349,7 +4349,7 @@
       "source_location": "L89",
       "_origin": "ast",
       "id": "lib_cuadernohelpers_emptysheet",
-      "community": 125,
+      "community": 181,
       "norm_label": "emptysheet()"
     },
     {
@@ -4359,7 +4359,7 @@
       "source_location": "L102",
       "_origin": "ast",
       "id": "lib_cuadernohelpers_describeboca",
-      "community": 182,
+      "community": 123,
       "norm_label": "describeboca()"
     },
     {
@@ -4369,7 +4369,7 @@
       "source_location": "L118",
       "_origin": "ast",
       "id": "lib_cuadernohelpers_final_opciones",
-      "community": 182,
+      "community": 181,
       "norm_label": "final_opciones"
     },
     {
@@ -4679,7 +4679,7 @@
       "source_location": "L96",
       "_origin": "ast",
       "id": "lib_n8n_callayudachat",
-      "community": 123,
+      "community": 225,
       "norm_label": "callayudachat()"
     },
     {
@@ -4689,7 +4689,7 @@
       "source_location": "L106",
       "_origin": "ast",
       "id": "lib_n8n_tutorseccion",
-      "community": 182,
+      "community": 123,
       "norm_label": "tutorseccion"
     },
     {
@@ -4699,7 +4699,7 @@
       "source_location": "L109",
       "_origin": "ast",
       "id": "lib_n8n_tutornotapro",
-      "community": 182,
+      "community": 123,
       "norm_label": "tutornotapro"
     },
     {
@@ -4819,7 +4819,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_sommelierhelpers",
-      "community": 227,
+      "community": 85,
       "norm_label": "sommelierhelpers.ts"
     },
     {
@@ -4829,7 +4829,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "lib_sommelierhelpers_tasteprofile",
-      "community": 227,
+      "community": 85,
       "norm_label": "tasteprofile"
     },
     {
@@ -4839,7 +4839,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "lib_sommelierhelpers_buildtasteprofile",
-      "community": 227,
+      "community": 85,
       "norm_label": "buildtasteprofile()"
     },
     {
@@ -4909,7 +4909,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "lib_statshelpers_classifywine",
-      "community": 227,
+      "community": 85,
       "norm_label": "classifywine()"
     },
     {
@@ -5079,7 +5079,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_storage",
-      "community": 85,
+      "community": 219,
       "norm_label": "storage.ts"
     },
     {
@@ -5089,7 +5089,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "lib_storage_get",
-      "community": 85,
+      "community": 219,
       "norm_label": "get()"
     },
     {
@@ -5099,7 +5099,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "lib_storage_set",
-      "community": 85,
+      "community": 219,
       "norm_label": "set()"
     },
     {
@@ -5109,7 +5109,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "lib_storage_remove",
-      "community": 85,
+      "community": 219,
       "norm_label": "remove()"
     },
     {
@@ -5119,7 +5119,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "lib_storage_storage",
-      "community": 85,
+      "community": 219,
       "norm_label": "storage"
     },
     {
@@ -5129,7 +5129,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "lib_storage_getdataurlmimetype",
-      "community": 85,
+      "community": 219,
       "norm_label": "getdataurlmimetype()"
     },
     {
@@ -5139,7 +5139,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "lib_storage_getextensionformimetype",
-      "community": 85,
+      "community": 219,
       "norm_label": "getextensionformimetype()"
     },
     {
@@ -5149,7 +5149,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "lib_storage_dataurltoblob",
-      "community": 85,
+      "community": 219,
       "norm_label": "dataurltoblob()"
     },
     {
@@ -5159,7 +5159,7 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "lib_storage_signedurlcache",
-      "community": 85,
+      "community": 219,
       "norm_label": "signedurlcache"
     },
     {
@@ -5169,7 +5169,7 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "lib_storage_parseforeignstorageurl",
-      "community": 85,
+      "community": 219,
       "norm_label": "parseforeignstorageurl()"
     },
     {
@@ -5179,7 +5179,7 @@
       "source_location": "L63",
       "_origin": "ast",
       "id": "lib_storage_resolvestorageurlsync",
-      "community": 85,
+      "community": 219,
       "norm_label": "resolvestorageurlsync()"
     },
     {
@@ -5189,7 +5189,7 @@
       "source_location": "L72",
       "_origin": "ast",
       "id": "lib_storage_resolvestorageurl",
-      "community": 85,
+      "community": 219,
       "norm_label": "resolvestorageurl()"
     },
     {
@@ -5199,7 +5199,7 @@
       "source_location": "L87",
       "_origin": "ast",
       "id": "lib_storage_fetchimageasdataurl",
-      "community": 22,
+      "community": 219,
       "norm_label": "fetchimageasdataurl()"
     },
     {
@@ -5209,7 +5209,7 @@
       "source_location": "L98",
       "_origin": "ast",
       "id": "lib_storage_uploadwineimage",
-      "community": 85,
+      "community": 219,
       "norm_label": "uploadwineimage()"
     },
     {
@@ -5349,7 +5349,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "lib_wineduplicates_duplicateresult",
-      "community": 85,
+      "community": 121,
       "norm_label": "duplicateresult"
     },
     {
@@ -5619,7 +5619,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_nuevacata",
-      "community": 125,
+      "community": 121,
       "norm_label": "nuevacata.tsx"
     },
     {
@@ -5629,7 +5629,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "pages_nuevacata_tastingmode",
-      "community": 125,
+      "community": 121,
       "norm_label": "tastingmode"
     },
     {
@@ -5639,7 +5639,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "pages_nuevacata_meta",
-      "community": 125,
+      "community": 121,
       "norm_label": "meta"
     },
     {
@@ -5649,7 +5649,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "pages_nuevacata_todayiso",
-      "community": 125,
+      "community": 121,
       "norm_label": "todayiso()"
     },
     {
@@ -5659,7 +5659,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "pages_nuevacata_modeselectorprops",
-      "community": 125,
+      "community": 121,
       "norm_label": "modeselectorprops"
     },
     {
@@ -5669,7 +5669,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "pages_nuevacata_modeselector",
-      "community": 125,
+      "community": 121,
       "norm_label": "modeselector()"
     },
     {
@@ -5679,7 +5679,7 @@
       "source_location": "L78",
       "_origin": "ast",
       "id": "pages_nuevacata_metasectionprops",
-      "community": 125,
+      "community": 121,
       "norm_label": "metasectionprops"
     },
     {
@@ -5689,7 +5689,7 @@
       "source_location": "L84",
       "_origin": "ast",
       "id": "pages_nuevacata_metasection",
-      "community": 125,
+      "community": 121,
       "norm_label": "metasection()"
     },
     {
@@ -5699,7 +5699,7 @@
       "source_location": "L199",
       "_origin": "ast",
       "id": "pages_nuevacata_quickformprops",
-      "community": 125,
+      "community": 121,
       "norm_label": "quickformprops"
     },
     {
@@ -5709,7 +5709,7 @@
       "source_location": "L204",
       "_origin": "ast",
       "id": "pages_nuevacata_quickform",
-      "community": 227,
+      "community": 85,
       "norm_label": "quickform()"
     },
     {
@@ -5719,7 +5719,7 @@
       "source_location": "L294",
       "_origin": "ast",
       "id": "pages_nuevacata_nuevacata",
-      "community": 125,
+      "community": 121,
       "norm_label": "nuevacata()"
     },
     {
@@ -5729,7 +5729,7 @@
       "source_location": "L614",
       "_origin": "ast",
       "id": "pages_nuevacata_winebanner",
-      "community": 125,
+      "community": 121,
       "norm_label": "winebanner()"
     },
     {
@@ -5739,7 +5739,7 @@
       "source_location": "L638",
       "_origin": "ast",
       "id": "pages_nuevacata_cellarbadge",
-      "community": 125,
+      "community": 121,
       "norm_label": "cellarbadge()"
     },
     {
@@ -6179,7 +6179,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_tastingdetail",
-      "community": 182,
+      "community": 225,
       "norm_label": "tastingdetail.tsx"
     },
     {
@@ -6189,7 +6189,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "pages_tastingdetail_scorebadge",
-      "community": 182,
+      "community": 225,
       "norm_label": "scorebadge()"
     },
     {
@@ -6199,7 +6199,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "pages_tastingdetail_sectioncardprops",
-      "community": 182,
+      "community": 225,
       "norm_label": "sectioncardprops"
     },
     {
@@ -6209,7 +6209,7 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "pages_tastingdetail_sectioncard",
-      "community": 182,
+      "community": 225,
       "norm_label": "sectioncard()"
     },
     {
@@ -6219,7 +6219,7 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "pages_tastingdetail_bocacard",
-      "community": 182,
+      "community": 225,
       "norm_label": "bocacard()"
     },
     {
@@ -6229,7 +6229,7 @@
       "source_location": "L87",
       "_origin": "ast",
       "id": "pages_tastingdetail_tastingdetail",
-      "community": 125,
+      "community": 121,
       "norm_label": "tastingdetail()"
     },
     {
@@ -6239,7 +6239,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_winedetail",
-      "community": 22,
+      "community": 34,
       "norm_label": "winedetail.tsx"
     },
     {
@@ -6249,7 +6249,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "pages_winedetail_stars",
-      "community": 22,
+      "community": 34,
       "norm_label": "stars()"
     },
     {
@@ -6259,7 +6259,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "pages_winedetail_tastingcard",
-      "community": 22,
+      "community": 34,
       "norm_label": "tastingcard()"
     },
     {
@@ -6269,7 +6269,7 @@
       "source_location": "L80",
       "_origin": "ast",
       "id": "pages_winedetail_coleccionpanel",
-      "community": 22,
+      "community": 34,
       "norm_label": "coleccionpanel()"
     },
     {
@@ -6279,7 +6279,7 @@
       "source_location": "L165",
       "_origin": "ast",
       "id": "pages_winedetail_winedetail",
-      "community": 129,
+      "community": 34,
       "norm_label": "winedetail()"
     },
     {
@@ -6379,7 +6379,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "store_tastingstore",
-      "community": 227,
+      "community": 85,
       "norm_label": "tastingstore.ts"
     },
     {
@@ -6389,7 +6389,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "store_tastingstore_tastingstate",
-      "community": 227,
+      "community": 85,
       "norm_label": "tastingstate"
     },
     {
@@ -6399,7 +6399,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "store_tastingstore_usetastingstore",
-      "community": 227,
+      "community": 85,
       "norm_label": "usetastingstore"
     },
     {
@@ -6469,7 +6469,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "types_index",
-      "community": 227,
+      "community": 85,
       "norm_label": "index.ts"
     },
     {
@@ -6489,7 +6489,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "types_index_tasting",
-      "community": 227,
+      "community": 85,
       "norm_label": "tasting"
     },
     {
@@ -6499,7 +6499,7 @@
       "source_location": "L69",
       "_origin": "ast",
       "id": "types_index_tastingfinal",
-      "community": 227,
+      "community": 181,
       "norm_label": "tastingfinal"
     },
     {
@@ -6509,7 +6509,7 @@
       "source_location": "L72",
       "_origin": "ast",
       "id": "types_index_glossarycategoria",
-      "community": 22,
+      "community": 85,
       "norm_label": "glossarycategoria"
     },
     {
@@ -6519,7 +6519,7 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "types_index_glossaryterm",
-      "community": 22,
+      "community": 85,
       "norm_label": "glossaryterm"
     },
     {
@@ -6529,7 +6529,7 @@
       "source_location": "L84",
       "_origin": "ast",
       "id": "types_index_chatmessage",
-      "community": 125,
+      "community": 123,
       "norm_label": "chatmessage"
     },
     {
@@ -6539,7 +6539,7 @@
       "source_location": "L91",
       "_origin": "ast",
       "id": "types_index_userrole",
-      "community": 227,
+      "community": 85,
       "norm_label": "userrole"
     },
     {
@@ -6549,7 +6549,7 @@
       "source_location": "L92",
       "_origin": "ast",
       "id": "types_index_userplan",
-      "community": 227,
+      "community": 85,
       "norm_label": "userplan"
     },
     {
@@ -6559,7 +6559,7 @@
       "source_location": "L94",
       "_origin": "ast",
       "id": "types_index_profile",
-      "community": 227,
+      "community": 85,
       "norm_label": "profile"
     },
     {
@@ -6569,7 +6569,7 @@
       "source_location": "L107",
       "_origin": "ast",
       "id": "types_index_usersettings",
-      "community": 227,
+      "community": 85,
       "norm_label": "usersettings"
     },
     {
@@ -6579,7 +6579,7 @@
       "source_location": "L125",
       "_origin": "ast",
       "id": "types_index_sourcetype",
-      "community": 227,
+      "community": 85,
       "norm_label": "sourcetype"
     },
     {
@@ -6589,7 +6589,7 @@
       "source_location": "L133",
       "_origin": "ast",
       "id": "types_index_fieldtrace",
-      "community": 227,
+      "community": 85,
       "norm_label": "fieldtrace"
     },
     {
@@ -6599,7 +6599,7 @@
       "source_location": "L148",
       "_origin": "ast",
       "id": "types_index_identifyresponse",
-      "community": 227,
+      "community": 123,
       "norm_label": "identifyresponse"
     },
     {
@@ -6609,7 +6609,7 @@
       "source_location": "L164",
       "_origin": "ast",
       "id": "types_index_enrichresponse",
-      "community": 227,
+      "community": 123,
       "norm_label": "enrichresponse"
     },
     {
@@ -12366,7 +12366,7 @@
       "label": "Configuraci\u00f3n",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L3",
+      "source_location": "L5",
       "_origin": "ast",
       "id": "docs_backend_n8n_configuraci\u00f3n",
       "community": 39,
@@ -12376,7 +12376,7 @@
       "label": "Cliente HTTP (`src/lib/n8n.ts`)",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L13",
+      "source_location": "L15",
       "_origin": "ast",
       "id": "docs_backend_n8n_cliente_http_src_lib_n8n_ts",
       "community": 39,
@@ -12386,7 +12386,7 @@
       "label": "Modelos de IA: OpenAI directo u Omniroute",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L27",
+      "source_location": "L29",
       "_origin": "ast",
       "id": "docs_backend_n8n_modelos_de_ia_openai_directo_u_omniroute",
       "community": 39,
@@ -12396,7 +12396,7 @@
       "label": "Publicar los cambios en n8n",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L43",
+      "source_location": "L45",
       "_origin": "ast",
       "id": "docs_backend_n8n_publicar_los_cambios_en_n8n",
       "community": 39,
@@ -12406,7 +12406,7 @@
       "label": "Endpoints",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L47",
+      "source_location": "L49",
       "_origin": "ast",
       "id": "docs_backend_n8n_endpoints",
       "community": 39,
@@ -12416,7 +12416,7 @@
       "label": "1. Sommelier \u2014 Chat libre",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L49",
+      "source_location": "L51",
       "_origin": "ast",
       "id": "docs_backend_n8n_1_sommelier_chat_libre",
       "community": 39,
@@ -12426,7 +12426,7 @@
       "label": "2. Sommelier \u2014 Maridaje",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L72",
+      "source_location": "L74",
       "_origin": "ast",
       "id": "docs_backend_n8n_2_sommelier_maridaje",
       "community": 39,
@@ -12436,7 +12436,7 @@
       "label": "3. Sommelier \u2014 Enriquecimiento",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L97",
+      "source_location": "L99",
       "_origin": "ast",
       "id": "docs_backend_n8n_3_sommelier_enriquecimiento",
       "community": 39,
@@ -12446,7 +12446,7 @@
       "label": "4. Scan \u2014 Identificar (archivado)",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L120",
+      "source_location": "L122",
       "_origin": "ast",
       "id": "docs_backend_n8n_4_scan_identificar_archivado",
       "community": 39,
@@ -12456,7 +12456,7 @@
       "label": "5. Scan \u2014 Analizar",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L148",
+      "source_location": "L150",
       "_origin": "ast",
       "id": "docs_backend_n8n_5_scan_analizar",
       "community": 39,
@@ -12466,7 +12466,7 @@
       "label": "6. Stats \u2014 Insight",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L187",
+      "source_location": "L189",
       "_origin": "ast",
       "id": "docs_backend_n8n_6_stats_insight",
       "community": 39,
@@ -12476,7 +12476,7 @@
       "label": "7. Wine Identify",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L214",
+      "source_location": "L216",
       "_origin": "ast",
       "id": "docs_backend_n8n_7_wine_identify",
       "community": 39,
@@ -12486,7 +12486,7 @@
       "label": "8. Cata \u2014 Tutor",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L223",
+      "source_location": "L225",
       "_origin": "ast",
       "id": "docs_backend_n8n_8_cata_tutor",
       "community": 39,
@@ -12496,7 +12496,7 @@
       "label": "9. Wine Enrich \u2014 web de la bodega (`url_bodega`)",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L253",
+      "source_location": "L255",
       "_origin": "ast",
       "id": "docs_backend_n8n_9_wine_enrich_web_de_la_bodega_url_bodega",
       "community": 39,
@@ -12506,7 +12506,7 @@
       "label": "Tipo `WineCollection`",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L263",
+      "source_location": "L265",
       "_origin": "ast",
       "id": "docs_backend_n8n_tipo_winecollection",
       "community": 39,
@@ -12516,7 +12516,7 @@
       "label": "Credenciales requeridas (setup manual en n8n)",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L281",
+      "source_location": "L283",
       "_origin": "ast",
       "id": "docs_backend_n8n_credenciales_requeridas_setup_manual_en_n8n",
       "community": 39,
@@ -12526,7 +12526,7 @@
       "label": "Header Auth para proteger los webhooks",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L283",
+      "source_location": "L285",
       "_origin": "ast",
       "id": "docs_backend_n8n_header_auth_para_proteger_los_webhooks",
       "community": 39,
@@ -12536,7 +12536,7 @@
       "label": "Variables de entorno en Portainer",
       "file_type": "document",
       "source_file": "docs/backend-n8n.md",
-      "source_location": "L290",
+      "source_location": "L292",
       "_origin": "ast",
       "id": "docs_backend_n8n_variables_de_entorno_en_portainer",
       "community": 39,
@@ -19383,6 +19383,186 @@
       "norm_label": "testing"
     },
     {
+      "label": "workflows-n8n.md",
+      "file_type": "document",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_workflows_n8n",
+      "community": 125,
+      "norm_label": "workflows-n8n.md"
+    },
+    {
+      "label": "Workflows de n8n \u2014 qu\u00e9 hace cada uno",
+      "file_type": "document",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_workflows_n8n_workflows_de_n8n_qu\u00e9_hace_cada_uno",
+      "community": 125,
+      "norm_label": "workflows de n8n \u2014 que hace cada uno"
+    },
+    {
+      "label": "Vista general",
+      "file_type": "document",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "docs_workflows_n8n_vista_general",
+      "community": 125,
+      "norm_label": "vista general"
+    },
+    {
+      "label": "El escaneo de una botella (workflows 1 a 4)",
+      "file_type": "document",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "docs_workflows_n8n_el_escaneo_de_una_botella_workflows_1_a_4",
+      "community": 125,
+      "norm_label": "el escaneo de una botella (workflows 1 a 4)"
+    },
+    {
+      "label": "Detalle de cada workflow",
+      "file_type": "document",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "docs_workflows_n8n_detalle_de_cada_workflow",
+      "community": 125,
+      "norm_label": "detalle de cada workflow"
+    },
+    {
+      "label": "1. Scan Analizar v2 \u2014 `zgCc5PEDG91zEBW4`",
+      "file_type": "document",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "docs_workflows_n8n_1_scan_analizar_v2_zgcc5pedg91zebw4",
+      "community": 125,
+      "norm_label": "1. scan analizar v2 \u2014 `zgcc5pedg91zebw4`"
+    },
+    {
+      "label": "2. Scan \u00b7 Foto de Estudio \u2014 `TrzbwmC833dJKElJ`",
+      "file_type": "document",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L47",
+      "_origin": "ast",
+      "id": "docs_workflows_n8n_2_scan_foto_de_estudio_trzbwmc833djkelj",
+      "community": 125,
+      "norm_label": "2. scan \u00b7 foto de estudio \u2014 `trzbwmc833djkelj`"
+    },
+    {
+      "label": "3. Wine Identify \u2014 `iiA1ONh56EL3lFju`",
+      "file_type": "document",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L56",
+      "_origin": "ast",
+      "id": "docs_workflows_n8n_3_wine_identify_iia1onh56el3lfju",
+      "community": 125,
+      "norm_label": "3. wine identify \u2014 `iia1onh56el3lfju`"
+    },
+    {
+      "label": "4. Wine Enrich \u2014 `rV1BrlPmkUB87jnn`",
+      "file_type": "document",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L66",
+      "_origin": "ast",
+      "id": "docs_workflows_n8n_4_wine_enrich_rv1brlpmkub87jnn",
+      "community": 125,
+      "norm_label": "4. wine enrich \u2014 `rv1brlpmkub87jnn`"
+    },
+    {
+      "label": "5. Wine Improve Photo \u2014 `2vA9Ze6ARZ6EwlP6`",
+      "file_type": "document",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L77",
+      "_origin": "ast",
+      "id": "docs_workflows_n8n_5_wine_improve_photo_2va9ze6arz6ewlp6",
+      "community": 125,
+      "norm_label": "5. wine improve photo \u2014 `2va9ze6arz6ewlp6`"
+    },
+    {
+      "label": "6. sommelier-chat \u2014 `Yd2Llg4eRLaAD21I`",
+      "file_type": "document",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L86",
+      "_origin": "ast",
+      "id": "docs_workflows_n8n_6_sommelier_chat_yd2llg4erlaad21i",
+      "community": 125,
+      "norm_label": "6. sommelier-chat \u2014 `yd2llg4erlaad21i`"
+    },
+    {
+      "label": "7. sommelier-maridaje \u2014 `yMlzaK784fz1VHzz`",
+      "file_type": "document",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L94",
+      "_origin": "ast",
+      "id": "docs_workflows_n8n_7_sommelier_maridaje_ymlzak784fz1vhzz",
+      "community": 125,
+      "norm_label": "7. sommelier-maridaje \u2014 `ymlzak784fz1vhzz`"
+    },
+    {
+      "label": "8. sommelier-enriquecimiento \u2014 `dUq4iL2FvkIR0Awl`",
+      "file_type": "document",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L102",
+      "_origin": "ast",
+      "id": "docs_workflows_n8n_8_sommelier_enriquecimiento_duq4il2fvkir0awl",
+      "community": 125,
+      "norm_label": "8. sommelier-enriquecimiento \u2014 `duq4il2fvkir0awl`"
+    },
+    {
+      "label": "9. stats-insight \u2014 `ZcK7uQdi8lu3gcpa`",
+      "file_type": "document",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L110",
+      "_origin": "ast",
+      "id": "docs_workflows_n8n_9_stats_insight_zck7uqdi8lu3gcpa",
+      "community": 125,
+      "norm_label": "9. stats-insight \u2014 `zck7uqdi8lu3gcpa`"
+    },
+    {
+      "label": "10. ayuda-chat \u2014 `HX02775Le59A84br`",
+      "file_type": "document",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L118",
+      "_origin": "ast",
+      "id": "docs_workflows_n8n_10_ayuda_chat_hx02775le59a84br",
+      "community": 125,
+      "norm_label": "10. ayuda-chat \u2014 `hx02775le59a84br`"
+    },
+    {
+      "label": "11. cata-tutor \u2014 `z7XSxU1hF5lZwX7H`",
+      "file_type": "document",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L125",
+      "_origin": "ast",
+      "id": "docs_workflows_n8n_11_cata_tutor_z7xsxu1hf5lzwx7h",
+      "community": 125,
+      "norm_label": "11. cata-tutor \u2014 `z7xsxu1hf5lzwx7h`"
+    },
+    {
+      "label": "12. Scan Analizar Previo \u2014 `EtTezN27e9tqvOjS`",
+      "file_type": "document",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L134",
+      "_origin": "ast",
+      "id": "docs_workflows_n8n_12_scan_analizar_previo_ettezn27e9tqvojs",
+      "community": 125,
+      "norm_label": "12. scan analizar previo \u2014 `ettezn27e9tqvojs`"
+    },
+    {
+      "label": "Observaciones pendientes",
+      "file_type": "document",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L138",
+      "_origin": "ast",
+      "id": "docs_workflows_n8n_observaciones_pendientes",
+      "community": 125,
+      "norm_label": "observaciones pendientes"
+    },
+    {
       "label": "ScanIdentifyResponse",
       "file_type": "code",
       "source_file": "src/lib/n8n.ts",
@@ -21307,7 +21487,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 34,
+      "community": 106,
       "norm_label": "animated overlay pattern",
       "id": "concept_animatedoverlay"
     },
@@ -21359,7 +21539,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 129,
+      "community": 106,
       "norm_label": "tastingform component",
       "id": "wine_tastingform_component"
     },
@@ -21372,7 +21552,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 129,
+      "community": 106,
       "norm_label": "tastingminicard component",
       "id": "wine_tastingminicard_component"
     },
@@ -21385,7 +21565,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 129,
+      "community": 106,
       "norm_label": "winecard component",
       "id": "wine_winecard_component"
     },
@@ -51448,6 +51628,176 @@
       "target": "specs_2026_08_28_scan_analizar_orquestador_design_sub_workflow_nuevo_vinoteca_scan_foto_de_estudio"
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "docs_workflows_n8n",
+      "target": "docs_workflows_n8n_workflows_de_n8n_qu\u00e9_hace_cada_uno"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L34",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "docs_workflows_n8n_workflows_de_n8n_qu\u00e9_hace_cada_uno",
+      "target": "docs_workflows_n8n_detalle_de_cada_workflow"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L24",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "docs_workflows_n8n_workflows_de_n8n_qu\u00e9_hace_cada_uno",
+      "target": "docs_workflows_n8n_el_escaneo_de_una_botella_workflows_1_a_4"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L138",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "docs_workflows_n8n_workflows_de_n8n_qu\u00e9_hace_cada_uno",
+      "target": "docs_workflows_n8n_observaciones_pendientes"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "docs_workflows_n8n_workflows_de_n8n_qu\u00e9_hace_cada_uno",
+      "target": "docs_workflows_n8n_vista_general"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L118",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "docs_workflows_n8n_detalle_de_cada_workflow",
+      "target": "docs_workflows_n8n_10_ayuda_chat_hx02775le59a84br"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L125",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "docs_workflows_n8n_detalle_de_cada_workflow",
+      "target": "docs_workflows_n8n_11_cata_tutor_z7xsxu1hf5lzwx7h"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L134",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "docs_workflows_n8n_detalle_de_cada_workflow",
+      "target": "docs_workflows_n8n_12_scan_analizar_previo_ettezn27e9tqvojs"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L36",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "docs_workflows_n8n_detalle_de_cada_workflow",
+      "target": "docs_workflows_n8n_1_scan_analizar_v2_zgcc5pedg91zebw4"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L47",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "docs_workflows_n8n_detalle_de_cada_workflow",
+      "target": "docs_workflows_n8n_2_scan_foto_de_estudio_trzbwmc833djkelj"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L56",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "docs_workflows_n8n_detalle_de_cada_workflow",
+      "target": "docs_workflows_n8n_3_wine_identify_iia1onh56el3lfju"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L66",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "docs_workflows_n8n_detalle_de_cada_workflow",
+      "target": "docs_workflows_n8n_4_wine_enrich_rv1brlpmkub87jnn"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L77",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "docs_workflows_n8n_detalle_de_cada_workflow",
+      "target": "docs_workflows_n8n_5_wine_improve_photo_2va9ze6arz6ewlp6"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L86",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "docs_workflows_n8n_detalle_de_cada_workflow",
+      "target": "docs_workflows_n8n_6_sommelier_chat_yd2llg4erlaad21i"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L94",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "docs_workflows_n8n_detalle_de_cada_workflow",
+      "target": "docs_workflows_n8n_7_sommelier_maridaje_ymlzak784fz1vhzz"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L102",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "docs_workflows_n8n_detalle_de_cada_workflow",
+      "target": "docs_workflows_n8n_8_sommelier_enriquecimiento_duq4il2fvkir0awl"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/workflows-n8n.md",
+      "source_location": "L110",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "docs_workflows_n8n_detalle_de_cada_workflow",
+      "target": "docs_workflows_n8n_9_stats_insight_zck7uqdi8lu3gcpa"
+    },
+    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
@@ -52951,5 +53301,5 @@
       "source_file": "docs/handoff-2026-06-18.md"
     }
   ],
-  "built_at_commit": "985a4d70d3d8ac428bc00646dd201fee6c3d8446"
+  "built_at_commit": "554c89f39cc1eb00fdebe22fe545a1e9c994bd91"
 }

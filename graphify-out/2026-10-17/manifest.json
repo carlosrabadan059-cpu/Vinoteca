@@ -635,8 +635,8 @@
     "semantic_hash": ""
   },
   "docs/backend-n8n.md": {
-    "mtime": 1792264515.3828223,
-    "ast_hash": "4756d1455f517a1dce9a283dc3b53d46",
+    "mtime": 1792265162.316254,
+    "ast_hash": "722a8d6cf23c24d2f8b2d4343d0ccb6b",
     "semantic_hash": ""
   },
   "docs/database.md": {
@@ -1372,6 +1372,11 @@
   "public/email/confirmar.html": {
     "mtime": 1790701434.6673982,
     "ast_hash": "b36fca426421658fa843d47dd635cbf4",
+    "semantic_hash": ""
+  },
+  "docs/workflows-n8n.md": {
+    "mtime": 1792265162.3158836,
+    "ast_hash": "6bc45460c818512671698c8ae2dddc4d",
     "semantic_hash": ""
   }
 }
