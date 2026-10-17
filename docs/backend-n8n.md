@@ -1,5 +1,7 @@
 # Backend n8n — Vinoteca
 
+> Qué hace cada workflow, quién lo llama y su estado: [workflows-n8n.md](workflows-n8n.md).
+
 ## Configuración
 
 n8n está desplegado de forma autónoma en `n8n.rabadanhouse.space` (Portainer/Docker).
