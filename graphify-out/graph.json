@@ -2359,7 +2359,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_analysisprogress",
-      "community": 22,
+      "community": 34,
       "norm_label": "analysisprogress.tsx"
     },
     {
@@ -2369,7 +2369,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "ui_analysisprogress_analysisprogressprops",
-      "community": 22,
+      "community": 34,
       "norm_label": "analysisprogressprops"
     },
     {
@@ -2379,7 +2379,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "ui_analysisprogress_phases_identifying",
-      "community": 22,
+      "community": 34,
       "norm_label": "phases_identifying"
     },
     {
@@ -2389,7 +2389,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "ui_analysisprogress_phases_analyzing",
-      "community": 22,
+      "community": 34,
       "norm_label": "phases_analyzing"
     },
     {
@@ -2399,7 +2399,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "ui_analysisprogress_analysisprogress",
-      "community": 22,
+      "community": 34,
       "norm_label": "analysisprogress()"
     },
     {
@@ -2449,7 +2449,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_badge",
-      "community": 22,
+      "community": 129,
       "norm_label": "badge.tsx"
     },
     {
@@ -2459,7 +2459,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "ui_badge_badgeprops",
-      "community": 22,
+      "community": 129,
       "norm_label": "badgeprops"
     },
     {
@@ -2469,7 +2469,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "ui_badge_badge",
-      "community": 22,
+      "community": 129,
       "norm_label": "badge()"
     },
     {
@@ -2479,7 +2479,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_button",
-      "community": 22,
+      "community": 34,
       "norm_label": "button.tsx"
     },
     {
@@ -2489,7 +2489,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "ui_button_buttonprops",
-      "community": 22,
+      "community": 34,
       "norm_label": "buttonprops"
     },
     {
@@ -2499,7 +2499,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "ui_button_button",
-      "community": 22,
+      "community": 34,
       "norm_label": "button()"
     },
     {
@@ -2579,7 +2579,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_card",
-      "community": 22,
+      "community": 129,
       "norm_label": "card.tsx"
     },
     {
@@ -2589,7 +2589,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "ui_card_cardprops",
-      "community": 22,
+      "community": 129,
       "norm_label": "cardprops"
     },
     {
@@ -2599,7 +2599,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "ui_card_card",
-      "community": 22,
+      "community": 129,
       "norm_label": "card()"
     },
     {
@@ -2689,7 +2689,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_layout",
-      "community": 22,
+      "community": 129,
       "norm_label": "layout.tsx"
     },
     {
@@ -2699,7 +2699,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "ui_layout_tabs",
-      "community": 22,
+      "community": 129,
       "norm_label": "tabs"
     },
     {
@@ -2709,7 +2709,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "ui_layout_layoutprops",
-      "community": 22,
+      "community": 129,
       "norm_label": "layoutprops"
     },
     {
@@ -2719,7 +2719,7 @@
       "source_location": "L68",
       "_origin": "ast",
       "id": "ui_layout_layout",
-      "community": 22,
+      "community": 129,
       "norm_label": "layout()"
     },
     {
@@ -2789,7 +2789,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_scaleinput",
-      "community": 22,
+      "community": 129,
       "norm_label": "scaleinput.tsx"
     },
     {
@@ -2799,7 +2799,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "ui_scaleinput_scaleinputprops",
-      "community": 22,
+      "community": 129,
       "norm_label": "scaleinputprops"
     },
     {
@@ -2809,7 +2809,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "ui_scaleinput_scaleinput",
-      "community": 22,
+      "community": 129,
       "norm_label": "scaleinput()"
     },
     {
@@ -3159,7 +3159,7 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "wine_journalsheetform_journalsheetform",
-      "community": 182,
+      "community": 22,
       "norm_label": "journalsheetform()"
     },
     {
@@ -3679,7 +3679,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "constants_theme",
-      "community": 22,
+      "community": 129,
       "norm_label": "theme.ts"
     },
     {
@@ -3689,7 +3689,7 @@
       "source_location": "L455",
       "_origin": "ast",
       "id": "constants_theme_theme",
-      "community": 22,
+      "community": 129,
       "norm_label": "theme"
     },
     {
@@ -3699,7 +3699,7 @@
       "source_location": "L456",
       "_origin": "ast",
       "id": "constants_theme_colorkey",
-      "community": 22,
+      "community": 129,
       "norm_label": "colorkey"
     },
     {
@@ -3709,7 +3709,7 @@
       "source_location": "L457",
       "_origin": "ast",
       "id": "constants_theme_fontsizekey",
-      "community": 22,
+      "community": 129,
       "norm_label": "fontsizekey"
     },
     {
@@ -3719,7 +3719,7 @@
       "source_location": "L458",
       "_origin": "ast",
       "id": "constants_theme_radiuskey",
-      "community": 22,
+      "community": 129,
       "norm_label": "radiuskey"
     },
     {
@@ -3729,7 +3729,7 @@
       "source_location": "L495",
       "_origin": "ast",
       "id": "constants_theme_injectkeyframes",
-      "community": 22,
+      "community": 129,
       "norm_label": "injectkeyframes()"
     },
     {
@@ -3859,7 +3859,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "hooks_useglossary",
-      "community": 182,
+      "community": 22,
       "norm_label": "useglossary.ts"
     },
     {
@@ -3869,7 +3869,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "hooks_useglossary_useglossary",
-      "community": 182,
+      "community": 22,
       "norm_label": "useglossary()"
     },
     {
@@ -4249,7 +4249,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_cuadernohelpers",
-      "community": 181,
+      "community": 182,
       "norm_label": "cuadernohelpers.ts"
     },
     {
@@ -4269,7 +4269,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "lib_cuadernohelpers_journaltipo",
-      "community": 181,
+      "community": 182,
       "norm_label": "journaltipo"
     },
     {
@@ -4309,7 +4309,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "lib_cuadernohelpers_splituvas",
-      "community": 181,
+      "community": 182,
       "norm_label": "splituvas()"
     },
     {
@@ -4329,7 +4329,7 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "lib_cuadernohelpers_journalfacets",
-      "community": 181,
+      "community": 182,
       "norm_label": "journalfacets()"
     },
     {
@@ -4349,7 +4349,7 @@
       "source_location": "L89",
       "_origin": "ast",
       "id": "lib_cuadernohelpers_emptysheet",
-      "community": 181,
+      "community": 125,
       "norm_label": "emptysheet()"
     },
     {
@@ -4369,7 +4369,7 @@
       "source_location": "L118",
       "_origin": "ast",
       "id": "lib_cuadernohelpers_final_opciones",
-      "community": 22,
+      "community": 182,
       "norm_label": "final_opciones"
     },
     {
@@ -5569,7 +5569,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_glosario",
-      "community": 182,
+      "community": 22,
       "norm_label": "glosario.tsx"
     },
     {
@@ -5579,7 +5579,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "pages_glosario_categorias",
-      "community": 182,
+      "community": 22,
       "norm_label": "categorias"
     },
     {
@@ -5589,7 +5589,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "pages_glosario_glosario",
-      "community": 182,
+      "community": 22,
       "norm_label": "glosario()"
     },
     {
@@ -6179,7 +6179,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_tastingdetail",
-      "community": 22,
+      "community": 182,
       "norm_label": "tastingdetail.tsx"
     },
     {
@@ -6189,7 +6189,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "pages_tastingdetail_scorebadge",
-      "community": 22,
+      "community": 182,
       "norm_label": "scorebadge()"
     },
     {
@@ -6199,7 +6199,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "pages_tastingdetail_sectioncardprops",
-      "community": 22,
+      "community": 182,
       "norm_label": "sectioncardprops"
     },
     {
@@ -6209,7 +6209,7 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "pages_tastingdetail_sectioncard",
-      "community": 22,
+      "community": 182,
       "norm_label": "sectioncard()"
     },
     {
@@ -6219,7 +6219,7 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "pages_tastingdetail_bocacard",
-      "community": 22,
+      "community": 182,
       "norm_label": "bocacard()"
     },
     {
@@ -6499,7 +6499,7 @@
       "source_location": "L69",
       "_origin": "ast",
       "id": "types_index_tastingfinal",
-      "community": 181,
+      "community": 227,
       "norm_label": "tastingfinal"
     },
     {
@@ -6509,7 +6509,7 @@
       "source_location": "L72",
       "_origin": "ast",
       "id": "types_index_glossarycategoria",
-      "community": 182,
+      "community": 22,
       "norm_label": "glossarycategoria"
     },
     {
@@ -6519,7 +6519,7 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "types_index_glossaryterm",
-      "community": 182,
+      "community": 22,
       "norm_label": "glossaryterm"
     },
     {
@@ -21307,7 +21307,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 22,
+      "community": 34,
       "norm_label": "animated overlay pattern",
       "id": "concept_animatedoverlay"
     },
@@ -21359,7 +21359,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 22,
+      "community": 129,
       "norm_label": "tastingform component",
       "id": "wine_tastingform_component"
     },
@@ -21372,7 +21372,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 22,
+      "community": 129,
       "norm_label": "tastingminicard component",
       "id": "wine_tastingminicard_component"
     },
@@ -21385,7 +21385,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 22,
+      "community": 129,
       "norm_label": "winecard component",
       "id": "wine_winecard_component"
     },
@@ -52951,5 +52951,5 @@
       "source_file": "docs/handoff-2026-06-18.md"
     }
   ],
-  "built_at_commit": "a3653f4e413a62450c74ed241095affadec88b7c"
+  "built_at_commit": "985a4d70d3d8ac428bc00646dd201fee6c3d8446"
 }

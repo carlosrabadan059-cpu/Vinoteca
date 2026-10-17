@@ -1,7 +1,7 @@
-# Graph Report - Vinoteca  (2026-10-06)
+# Graph Report - Vinoteca  (2026-10-17)
 
 ## Corpus Check
-- 261 files · ~204,272 words
+- 261 files · ~204,479 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `a3653f4e`
+- Built from commit: `985a4d70`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -252,10 +252,10 @@
   CLAUDE.md → CONTEXT.md
 - `Agent Domain Docs Config` --references--> `Domain Glossary (Vinoteca)`  [EXTRACTED]
   docs/agents/domain.md → CONTEXT.md
-- `Layout()` --calls--> `useAuthStore`  [EXTRACTED]
-  src/components/ui/Layout.tsx → src/store/authStore.ts
 - `DuplicateWineDialog()` --calls--> `isInCellar()`  [EXTRACTED]
   src/components/wine/DuplicateWineDialog.tsx → src/lib/cuadernoHelpers.ts
+- `TastingChatProps` --references--> `Wine`  [EXTRACTED]
+  src/components/wine/TastingChat.tsx → src/types/index.ts
 
 ## Import Cycles
 - None detected.
@@ -355,16 +355,16 @@ Cohesion: 0.80
 Nodes (3): capture(), step(), hitl-loop.template.sh script
 
 ### Community 22 - "Vite PWA Config"
-Cohesion: 0.06
-Nodes (28): Animated Overlay Pattern, ColorKey, FontSizeKey, injectKeyframes(), RadiusKey, Theme, FINAL_OPCIONES, fetchImageAsDataUrl() (+20 more)
+Cohesion: 0.12
+Nodes (13): useGlossary(), fetchImageAsDataUrl(), CATEGORIAS, Glosario(), ToastState, useToastStore, GlossaryCategoria, GlossaryTerm (+5 more)
 
 ### Community 27 - "README"
 Cohesion: 0.15
 Nodes (8): Red-Green-Refactor Loop, Tracer Bullet Vertical Slice, Deep Modules, Interface Design for Testability, Designing for Mockability, When to Mock, Refactor Candidates, TDD Skill
 
 ### Community 34 - "Community 34"
-Cohesion: 0.20
-Nodes (12): compressImage(), pickFile(), useCamera(), BarrelHero(), CameraButton(), Scan(), Step, stepIndex() (+4 more)
+Cohesion: 0.11
+Nodes (17): Animated Overlay Pattern, compressImage(), pickFile(), useCamera(), BarrelHero(), CameraButton(), Scan(), Step (+9 more)
 
 ### Community 35 - "Community 35"
 Cohesion: 0.08
@@ -708,11 +708,11 @@ Nodes (4): name, organization_id, organization_slug, ref
 
 ### Community 125 - "Community 125"
 Cohesion: 0.12
-Nodes (13): isInCellar(), Meta, MetaSectionProps, ModeSelectorProps, NuevaCata(), QuickFormProps, TastingMode, todayISO() (+5 more)
+Nodes (14): emptySheet(), isInCellar(), Meta, MetaSectionProps, ModeSelectorProps, NuevaCata(), QuickFormProps, TastingMode (+6 more)
 
 ### Community 129 - "Community 129"
-Cohesion: 0.14
-Nodes (17): App (Root Component), useProfile(), useSettings(), Ajustes(), inputStyle, ForgotPassword(), Login(), inputStyle (+9 more)
+Cohesion: 0.08
+Nodes (31): App (Root Component), ColorKey, FontSizeKey, injectKeyframes(), RadiusKey, Theme, useProfile(), useSettings() (+23 more)
 
 ### Community 130 - "Community 130"
 Cohesion: 0.20
@@ -783,12 +783,12 @@ Cohesion: 0.60
 Nodes (3): Fix suggestion, Source, What happened
 
 ### Community 181 - "Community 181"
-Cohesion: 0.18
-Nodes (17): CatasState, useCatasState(), useTastings(), applyFilter(), FilterKey, FILTERS, applyJournalFilters(), EMPTY_JOURNAL_FILTERS (+9 more)
+Cohesion: 0.24
+Nodes (12): CatasState, useCatasState(), useTastings(), applyFilter(), FilterKey, FILTERS, applyJournalFilters(), EMPTY_JOURNAL_FILTERS (+4 more)
 
 ### Community 182 - "Community 182"
-Cohesion: 0.11
-Nodes (20): useGlossary(), describeBoca(), JournalSheetData, TutorNotaPro, TutorSeccion, CATEGORIAS, Glosario(), GlossaryCategoria (+12 more)
+Cohesion: 0.10
+Nodes (19): describeBoca(), FINAL_OPCIONES, journalFacets(), JournalSheetData, JournalTipo, splitUvas(), TutorNotaPro, TutorSeccion (+11 more)
 
 ### Community 204 - "Community 204"
 Cohesion: 0.40
@@ -848,7 +848,7 @@ Nodes (8): ¿Convertir los PDF a Markdown?, Diseño propuesto (para cuando se re
 
 ### Community 227 - "Community 227"
 Cohesion: 0.09
-Nodes (21): buildTasteProfile(), TasteProfile, classifyWine(), QuickForm(), TastingState, useTastingStore, EnrichResponse, FieldTrace (+13 more)
+Nodes (22): buildTasteProfile(), TasteProfile, classifyWine(), QuickForm(), TastingState, useTastingStore, EnrichResponse, FieldTrace (+14 more)
 
 ## Knowledge Gaps
 - **1121 isolated node(s):** `PreToolUse`, `allow`, `additionalDirectories`, `id`, `name` (+1116 more)
@@ -858,9 +858,9 @@ Nodes (21): buildTasteProfile(), TasteProfile, classifyWine(), QuickForm(), Tast
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Wine` connect `Community 121` to `Community 129`, `Community 34`, `Community 227`, `Community 101`, `Community 106`, `Community 110`, `Community 85`, `Community 181`, `Vite PWA Config`, `Community 182`, `Community 125`?**
+- **Why does `Wine` connect `Community 121` to `Community 129`, `Community 34`, `Community 227`, `Community 101`, `Community 106`, `Community 110`, `Community 85`, `Community 181`, `Community 182`, `Vite PWA Config`, `Community 125`?**
   _High betweenness centrality (0.006) - this node is a cross-community bridge._
-- **Why does `Theme` connect `Vite PWA Config` to `Community 129`, `Community 34`, `Community 227`, `Community 101`, `Community 106`, `Community 110`, `Community 112`, `Community 181`, `Community 182`, `Community 85`, `Community 121`, `Community 123`, `Community 125`?**
+- **Why does `Theme` connect `Community 129` to `Community 34`, `Community 227`, `Community 101`, `Community 106`, `Community 110`, `Community 112`, `Community 181`, `Vite PWA Config`, `Community 182`, `Community 85`, `Community 121`, `Community 123`, `Community 125`?**
   _High betweenness centrality (0.004) - this node is a cross-community bridge._
 - **Why does `connections` connect `Community 136` to `Community 139`, `Community 185`, `Community 186`, `Community 187`, `Community 188`, `Community 189`, `Community 190`, `Community 191`, `Community 192`, `Community 193`, `Community 194`, `Community 195`, `Community 196`, `Community 197`, `Community 198`, `Community 199`, `Community 200`, `Community 201`, `Community 202`, `Community 203`, `Community 211`?**
   _High betweenness centrality (0.002) - this node is a cross-community bridge._
