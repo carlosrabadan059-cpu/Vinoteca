@@ -16,7 +16,7 @@ npx tsc -b        # type-check only (no test runner configured yet). NOTE: `npx 
 
 ## Architecture
 
-**Stack:** Vite + React 19 + TypeScript, Supabase (auth + DB), OpenAI, React Router v7, vite-plugin-pwa.
+**Stack:** Vite + React 19 + TypeScript, Supabase (auth + DB), n8n (AI, via webhooks), React Router v7, vite-plugin-pwa.
 
 **Routing:** `src/router/index.tsx` defines a `createBrowserRouter` with two layout routes:
 - `AuthLayout` (`/login`, `/register`) — redirects to `/bodega` if already authenticated
@@ -26,7 +26,7 @@ Both layouts read session state from `useAuth` and handle their own loading/redi
 
 **Auth flow:** `src/hooks/useAuth.ts` calls `supabase.auth.getSession()` on mount and subscribes to `onAuthStateChange`. The `session` state drives layout guards. The Supabase client (`src/lib/supabase.ts`) uses `localStorage` for session persistence (browser default).
 
-**OpenAI** (`src/lib/openai.ts`): `askOpenAI(messages, systemPrompt)` wraps `chat.completions.create` with `gpt-4o-mini`. Uses `dangerouslyAllowBrowser: true` — API key is client-side only.
+**AI (n8n)** (`src/lib/n8n.ts`): all AI features go through n8n webhooks (`POST {VITE_N8N_BASE_URL}/webhook/vinoteca/...`); there is no OpenAI key in the client. What each workflow does: [`docs/workflows-n8n.md`](docs/workflows-n8n.md); endpoint formats: [`docs/backend-n8n.md`](docs/backend-n8n.md).
 
 **Offline storage** (`src/lib/storage.ts`): typed `localStorage` wrapper (`get<T>`, `set`, `remove`). Sync logic lives in `src/hooks/useSync.ts` (stub for Phase 1).
 
@@ -43,8 +43,10 @@ Stored in `.env`. Prefixed `VITE_` so Vite injects them at build time via `impor
 ```
 VITE_SUPABASE_URL=
 VITE_SUPABASE_ANON_KEY=
-VITE_OPENAI_API_KEY=
+VITE_N8N_BASE_URL=
 ```
+
+Build-time only (Vite inlines them; nginx serves static files). Dokploy builds from the `Dockerfile`, which declares these three as build args.
 
 ## Agent skills
 
