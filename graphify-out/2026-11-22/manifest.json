@@ -655,8 +655,8 @@
     "semantic_hash": ""
   },
   "docs/roadmap.md": {
-    "mtime": 1795301991.0670295,
-    "ast_hash": "985a408ef366f31664c0b557f065da11",
+    "mtime": 1795375276.626104,
+    "ast_hash": "399351f24a75d0fd3b9c682056c436e0",
     "semantic_hash": ""
   },
   "docs/scan-flow.md": {
@@ -1377,6 +1377,11 @@
   "docs/workflows-n8n.md": {
     "mtime": 1792265162.3158836,
     "ast_hash": "6bc45460c818512671698c8ae2dddc4d",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/20261122120000_storage_delete_wine_labels.sql": {
+    "mtime": 1795375205.4478784,
+    "ast_hash": "d58bd683f176606c022000a9cc78b860",
     "semantic_hash": ""
   }
 }

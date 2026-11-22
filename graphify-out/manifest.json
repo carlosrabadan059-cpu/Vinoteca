@@ -655,8 +655,8 @@
     "semantic_hash": ""
   },
   "docs/roadmap.md": {
-    "mtime": 1795375276.626104,
-    "ast_hash": "399351f24a75d0fd3b9c682056c436e0",
+    "mtime": 1795375795.355209,
+    "ast_hash": "ca8bac0a81e6d369783a286a2cdad500",
     "semantic_hash": ""
   },
   "docs/scan-flow.md": {
@@ -670,8 +670,8 @@
     "semantic_hash": ""
   },
   "docs/supabase.md": {
-    "mtime": 1791100021.818021,
-    "ast_hash": "90029aa43d84673be42068db4daeef2c",
+    "mtime": 1795375790.0058293,
+    "ast_hash": "8c50d6d963ad20715cddd52e086b6497",
     "semantic_hash": ""
   },
   "src/components/ui/CameraView.tsx": {
@@ -740,8 +740,8 @@
     "semantic_hash": ""
   },
   "docs/CHANGELOG.md": {
-    "mtime": 1790701751.8172846,
-    "ast_hash": "cba1ae7b8747815f3ad2bfe07f82d559",
+    "mtime": 1795375790.02981,
+    "ast_hash": "6a52d3321b87626458b5c171e283912c",
     "semantic_hash": ""
   },
   "docs/decisions/README.md": {
