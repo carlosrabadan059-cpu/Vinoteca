@@ -180,8 +180,8 @@
     "semantic_hash": ""
   },
   "src/lib/storage.ts": {
-    "mtime": 1790412713.6950197,
-    "ast_hash": "b6b2093c4eeca89b0f30b9bf692a37ec",
+    "mtime": 1795374801.5807347,
+    "ast_hash": "3f4992fb03c8a2c4b39fc0c6d2b3e04c",
     "semantic_hash": ""
   },
   "src/lib/supabase.ts": {
@@ -255,8 +255,8 @@
     "semantic_hash": ""
   },
   "src/pages/WineDetail.tsx": {
-    "mtime": 1791101067.665415,
-    "ast_hash": "a0e4110fe71f72b2420c3c3e3095d437",
+    "mtime": 1795374801.5809526,
+    "ast_hash": "7ee464e37347436c3db7be4847091af2",
     "semantic_hash": ""
   },
   "src/router/index.tsx": {
@@ -495,8 +495,8 @@
     "semantic_hash": "204f114b01386f4a0a8e6c7784266369"
   },
   "CLAUDE.md": {
-    "mtime": 1785617261.0160384,
-    "ast_hash": "f836c30d96c6ebd6ad0610610c80f1bf",
+    "mtime": 1792266126.4974327,
+    "ast_hash": "be1aea663d632204aecdeafc4d6272eb",
     "semantic_hash": ""
   },
   "CONTEXT.md": {
@@ -655,8 +655,8 @@
     "semantic_hash": ""
   },
   "docs/roadmap.md": {
-    "mtime": 1790701572.067511,
-    "ast_hash": "4380c0444a0bc740e1757c3adadb8664",
+    "mtime": 1795301991.0670295,
+    "ast_hash": "985a408ef366f31664c0b557f065da11",
     "semantic_hash": ""
   },
   "docs/scan-flow.md": {
@@ -995,8 +995,8 @@
     "semantic_hash": ""
   },
   "src/lib/imageQuality.ts": {
-    "mtime": 1785688460.6550317,
-    "ast_hash": "b9851d80d700c06f1249e9382c6c9bc5",
+    "mtime": 1795374801.5805192,
+    "ast_hash": "e92ef8946a6439c6d42662b900997214",
     "semantic_hash": ""
   },
   "docs/superpowers/specs/2026-08-03-reemplazar-foto-vino-design.md": {
