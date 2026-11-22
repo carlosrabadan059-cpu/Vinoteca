@@ -12,7 +12,8 @@ import { useTastings } from '../hooks/useTastings'
 import { useCamera } from '../hooks/useCamera'
 import { getUserMediaSource } from '../lib/captureSource'
 import { callImprovePhoto } from '../lib/n8n'
-import { uploadWineImage, fetchImageAsDataUrl } from '../lib/storage'
+import { uploadWineImage, fetchImageAsDataUrl, removeWineImage } from '../lib/storage'
+import { rotateImage180 } from '../lib/imageQuality'
 import { useToastStore } from '../store/toastStore'
 import { useAuthStore } from '../store/authStore'
 import { theme } from '../constants/theme'
@@ -188,6 +189,7 @@ export default function WineDetail() {
   const [showCamera,      setShowCamera]      = useState(false)
   const [uploadingPhoto,  setUploadingPhoto]  = useState(false)
   const [improvingPhoto,  setImprovingPhoto]  = useState(false)
+  const [rotatingPhoto,   setRotatingPhoto]   = useState(false)
   const [previewPhotoUrl, setPreviewPhotoUrl] = useState<string | null>(null)
   const menuRef = useRef<HTMLDivElement>(null)
   const prevProcessingStateRef = useRef<string>('original')
@@ -363,6 +365,44 @@ export default function WineDetail() {
       await updateWine(wine.id, { image_processing_state: 'failed' })
       setWine(w => (w ? { ...w, image_processing_state: 'failed' } : w))
       toast.show('No se pudo mejorar la fotografía', 'error')
+    }
+  }
+
+  // Gira 180º la foto que ya está guardada (la de la ficha y, si existe, la original
+  // que usa «Foto de estudio»). Sube archivos nuevos —así la URL cambia y no se ve
+  // la imagen vieja en caché— y después borra los antiguos.
+  async function handleRotatePhoto() {
+    if (!wine || !user || !wine.imagen_frontal_url) return
+    if (rotatingPhoto || uploadingPhoto || improvingPhoto) return
+    setRotatingPhoto(true)
+    try {
+      const stamp = Date.now()
+      const oldFrontal  = wine.imagen_frontal_url
+      const oldOriginal = wine.imagen_original_url
+
+      const rotateAndUpload = async (url: string, side: string) =>
+        uploadWineImage(await rotateImage180(await fetchImageAsDataUrl(url)), user.id, wine.id, side)
+
+      const newFrontal = await rotateAndUpload(oldFrontal, `rot-${stamp}`)
+      let fields: Partial<Wine> = { imagen_frontal_url: newFrontal }
+      if (oldOriginal) {
+        const newOriginal = oldOriginal === oldFrontal
+          ? newFrontal
+          : await rotateAndUpload(oldOriginal, `rot-original-${stamp}`)
+        fields = { ...fields, imagen_original_url: newOriginal }
+      }
+
+      await updateWine(wine.id, fields)
+      setWine(w => (w ? { ...w, ...fields } : w))
+      toast.show('Foto girada')
+
+      for (const old of new Set([oldFrontal, oldOriginal])) {
+        if (old) void removeWineImage(old)
+      }
+    } catch {
+      toast.show('No se pudo girar la foto', 'error')
+    } finally {
+      setRotatingPhoto(false)
     }
   }
 
@@ -542,6 +582,18 @@ export default function WineDetail() {
                   </svg>
                   {wine.imagen_frontal_url ? 'Cambiar foto' : 'Añadir foto'}
                 </button>
+                {wine.imagen_frontal_url && (
+                  <button
+                    style={{ width: '100%', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 8, padding: '12px 16px', color: theme.colors.cream, fontSize: '0.85rem', background: 'none', border: 'none', cursor: 'pointer', minHeight: 48, borderTop: `1px solid ${theme.colors.border}`, opacity: rotatingPhoto ? 0.5 : 1 }}
+                    disabled={rotatingPhoto}
+                    onClick={() => { setMenuOpen(false); handleRotatePhoto() }}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="23 4 23 10 17 10" /><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+                    </svg>
+                    Girar foto 180º
+                  </button>
+                )}
                 {wine.imagen_frontal_url && (
                   <button
                     style={{ width: '100%', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 8, padding: '12px 16px', color: theme.colors.gold, fontSize: '0.85rem', background: 'none', border: 'none', cursor: 'pointer', minHeight: 48, borderTop: `1px solid ${theme.colors.border}` }}

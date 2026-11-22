@@ -27,6 +27,25 @@ function loadImage(dataUrl: string): Promise<HTMLImageElement> {
 }
 
 /**
+ * Gira la imagen 180º y devuelve un dataUrl nuevo, con el mismo formato que el original
+ * (PNG se queda en PNG para no perder la transparencia de las fotos de estudio).
+ */
+export async function rotateImage180(dataUrl: string): Promise<string> {
+  const img = await loadImage(dataUrl)
+  const canvas = document.createElement('canvas')
+  canvas.width  = img.width
+  canvas.height = img.height
+  const ctx = canvas.getContext('2d')
+  if (!ctx) throw new Error('No se pudo girar la imagen')
+  ctx.translate(canvas.width, canvas.height)
+  ctx.rotate(Math.PI)
+  ctx.drawImage(img, 0, 0)
+  return dataUrl.startsWith('data:image/png')
+    ? canvas.toDataURL('image/png')
+    : canvas.toDataURL('image/jpeg', JPEG_QUALITY)
+}
+
+/**
  * Estima la nitidez de la imagen como la varianza de un filtro laplaciano
  * sobre una versión reducida en escala de grises. Valores altos = más nitidez.
  * Devuelve 0 si la imagen no se puede analizar.

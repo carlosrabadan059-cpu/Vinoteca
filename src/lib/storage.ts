@@ -95,6 +95,18 @@ export async function fetchImageAsDataUrl(url: string): Promise<string> {
   })
 }
 
+/** Borra de Storage el archivo al que apunta una URL de imagen. Best-effort: nunca lanza. */
+export async function removeWineImage(url: string): Promise<void> {
+  try {
+    const match = new URL(url).pathname.match(STORAGE_PATH_RE)
+    if (!match) return
+    const [, , bucket, path] = match
+    await supabase.storage.from(bucket).remove([decodeURIComponent(path)])
+  } catch {
+    // un archivo viejo que no se pueda borrar no debe romper la operación
+  }
+}
+
 export async function uploadWineImage(
   dataUrl: string,
   userId: string,
