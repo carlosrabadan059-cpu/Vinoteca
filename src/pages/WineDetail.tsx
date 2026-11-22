@@ -335,7 +335,8 @@ export default function WineDetail() {
 
       const { imageDataUrl } = await callImprovePhoto(originalUrl)
       setPreviewPhotoUrl(imageDataUrl)
-    } catch {
+    } catch (err) {
+      console.error('[improve-photo]', err)
       await updateWine(wine.id, { image_processing_state: 'failed' })
       setWine(w => (w ? { ...w, image_processing_state: 'failed' } : w))
       toast.show('No se pudo mejorar la fotografía', 'error')
@@ -361,7 +362,8 @@ export default function WineDetail() {
       }
 
       await runImprovePhoto(originalUrl)
-    } catch {
+    } catch (err) {
+      console.error('[improve-photo]', err)
       await updateWine(wine.id, { image_processing_state: 'failed' })
       setWine(w => (w ? { ...w, image_processing_state: 'failed' } : w))
       toast.show('No se pudo mejorar la fotografía', 'error')

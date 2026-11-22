@@ -32,9 +32,9 @@ export interface WineCollection {
   denominacion: string | null
 }
 
-async function post<T>(path: string, body: unknown): Promise<T> {
+async function post<T>(path: string, body: unknown, timeoutMs = 60_000): Promise<T> {
   const controller = new AbortController()
-  const timer = setTimeout(() => controller.abort(), 60_000)
+  const timer = setTimeout(() => controller.abort(), timeoutMs)
 
   try {
     const res = await fetch(`${N8N_BASE}/webhook/${path}`, {
@@ -58,7 +58,7 @@ async function post<T>(path: string, body: unknown): Promise<T> {
     }
   } catch (err) {
     if (err instanceof Error && err.name === 'AbortError') {
-      throw new Error(`Timeout en n8n/${path} (30s)`)
+      throw new Error(`Timeout en n8n/${path} (${timeoutMs / 1000}s)`)
     }
     throw err
   } finally {
@@ -226,7 +226,8 @@ export async function callStatsInsight(
 export async function callImprovePhoto(
   imagenOriginalUrl: string
 ): Promise<{ imageDataUrl: string }> {
+  // gpt-image-1 a 1024×1536 con input_fidelity high tarda a menudo más de 60 s
   return post<{ imageDataUrl: string }>('vinoteca/wine/improve-photo', {
     imagen_original_url: imagenOriginalUrl,
-  })
+  }, 180_000)
 }
