@@ -15016,7 +15016,7 @@
       "label": "Mejoras opcionales",
       "file_type": "document",
       "source_file": "docs/roadmap.md",
-      "source_location": "L56",
+      "source_location": "L57",
       "_origin": "ast",
       "id": "docs_roadmap_mejoras_opcionales",
       "community": 62,
@@ -15026,7 +15026,7 @@
       "label": "Fuera de numeraci\u00f3n",
       "file_type": "document",
       "source_file": "docs/roadmap.md",
-      "source_location": "L71",
+      "source_location": "L72",
       "_origin": "ast",
       "id": "docs_roadmap_fuera_de_numeraci\u00f3n",
       "community": 62,
@@ -15036,7 +15036,7 @@
       "label": "Congelado",
       "file_type": "document",
       "source_file": "docs/roadmap.md",
-      "source_location": "L85",
+      "source_location": "L86",
       "_origin": "ast",
       "id": "docs_roadmap_congelado",
       "community": 62,
@@ -15046,7 +15046,7 @@
       "label": "Principios arquitect\u00f3nicos",
       "file_type": "document",
       "source_file": "docs/roadmap.md",
-      "source_location": "L93",
+      "source_location": "L94",
       "_origin": "ast",
       "id": "docs_roadmap_principios_arquitect\u00f3nicos",
       "community": 62,
@@ -53417,5 +53417,5 @@
       "source_file": "docs/handoff-2026-06-18.md"
     }
   ],
-  "built_at_commit": "05e4a4be5d39116d14c5ea8417c7dd5c7731f930"
+  "built_at_commit": "4460b8bea824026c01eaa9b4fcf8c87c37a697ce"
 }
