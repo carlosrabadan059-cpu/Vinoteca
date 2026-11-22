@@ -1,7 +1,7 @@
-# Graph Report - Vinoteca  (2026-11-22)
+# Graph Report - Vinoteca  (2026-11-23)
 
 ## Corpus Check
-- 263 files · ~207,134 words
+- 263 files · ~207,215 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `ee7af6e0`
+- Built from commit: `05e4a4be`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -259,8 +259,8 @@
   docs/agents/domain.md → CONTEXT.md
 - `Layout()` --calls--> `useAuthStore`  [EXTRACTED]
   src/components/ui/Layout.tsx → src/store/authStore.ts
-- `DuplicateWineDialogProps` --references--> `Wine`  [EXTRACTED]
-  src/components/wine/DuplicateWineDialog.tsx → src/types/index.ts
+- `TastingChatProps` --references--> `Wine`  [EXTRACTED]
+  src/components/wine/TastingChat.tsx → src/types/index.ts
 
 ## Import Cycles
 - None detected.
@@ -360,8 +360,8 @@ Cohesion: 0.80
 Nodes (3): capture(), step(), hitl-loop.template.sh script
 
 ### Community 22 - "Vite PWA Config"
-Cohesion: 0.09
-Nodes (23): useGlossary(), JournalSheetData, TutorNotaPro, TutorSeccion, CATEGORIAS, Glosario(), ToastState, useToastStore (+15 more)
+Cohesion: 0.11
+Nodes (15): FINAL_OPCIONES, JournalSheetData, TutorNotaPro, TutorSeccion, SectionCardProps, SpinnerProps, inputStyle, JournalSheetFormProps (+7 more)
 
 ### Community 27 - "README"
 Cohesion: 0.07
@@ -617,7 +617,7 @@ Nodes (8): Directory structure, File format, Naming the file, Out-of-Scope Knowl
 
 ### Community 101 - "Community 101"
 Cohesion: 0.19
-Nodes (19): BodegaState, CURRENT_YEAR, useBodegaState(), SortKey, useWines(), getSuggestions(), GROUP_OPTIONS, GroupKey (+11 more)
+Nodes (17): BodegaState, CURRENT_YEAR, useBodegaState(), SortKey, useWines(), getSuggestions(), GROUP_OPTIONS, GroupKey (+9 more)
 
 ### Community 102 - "Community 102"
 Cohesion: 0.18
@@ -636,8 +636,8 @@ Cohesion: 0.40
 Nodes (3): Decisiones de diseño y técnicas, Decisiones registradas en handoffs, Índice
 
 ### Community 106 - "Community 106"
-Cohesion: 0.06
-Nodes (21): Animated Overlay Pattern, ColorKey, FontSizeKey, RadiusKey, Theme, AnalysisProgressProps, PHASES_ANALYZING, PHASES_IDENTIFYING (+13 more)
+Cohesion: 0.07
+Nodes (22): Animated Overlay Pattern, ColorKey, FontSizeKey, injectKeyframes(), RadiusKey, Theme, AnalysisProgressProps, PHASES_ANALYZING (+14 more)
 
 ### Community 107 - "Community 107"
 Cohesion: 0.13
@@ -696,8 +696,8 @@ Cohesion: 0.18
 Nodes (9): Fase 10 — Sommelier IA — Implementation Plan, Self-Review (ya aplicado por el autor del plan), Task 1: `src/lib/sommelierHelpers.ts` — perfil de gusto, Task 2: `src/hooks/useSommelier.ts` — orquestador, Task 3: Ampliar `src/lib/n8n.ts`, Task 4: Ampliar `detectIntent()` y `sendMessage()` en `Sommelier.tsx`, Task 5: Ampliar el workflow n8n `vinoteca-sommelier-chat`, Task 6: Ampliar el workflow n8n `vinoteca-sommelier-maridaje` (+1 more)
 
 ### Community 121 - "Community 121"
-Cohesion: 0.20
-Nodes (11): useProfile(), useStorageUrl(), inputStyle, Perfil(), TYPE_LABELS, WineCard(), WineCardProps, Props (+3 more)
+Cohesion: 0.18
+Nodes (15): useStorageUrl(), isInCellar(), WineBanner(), WineState, Wine, DuplicateWineDialog(), DuplicateWineDialogProps, WineRow() (+7 more)
 
 ### Community 122 - "Community 122"
 Cohesion: 0.20
@@ -716,8 +716,8 @@ Cohesion: 0.11
 Nodes (17): 10. ayuda-chat — `HX02775Le59A84br`, 11. cata-tutor — `z7XSxU1hF5lZwX7H`, 12. Scan Analizar Previo — `EtTezN27e9tqvOjS`, 1. Scan Analizar v2 — `zgCc5PEDG91zEBW4`, 2. Scan · Foto de Estudio — `TrzbwmC833dJKElJ`, 3. Wine Identify — `iiA1ONh56EL3lFju`, 4. Wine Enrich — `rV1BrlPmkUB87jnn`, 5. Wine Improve Photo — `2vA9Ze6ARZ6EwlP6` (+9 more)
 
 ### Community 129 - "Community 129"
-Cohesion: 0.17
-Nodes (13): App (Root Component), useSettings(), Ajustes(), inputStyle, ForgotPassword(), Login(), Register(), ResetPassword() (+5 more)
+Cohesion: 0.15
+Nodes (16): App (Root Component), useProfile(), useSettings(), Ajustes(), inputStyle, ForgotPassword(), Login(), inputStyle (+8 more)
 
 ### Community 130 - "Community 130"
 Cohesion: 0.20
@@ -748,8 +748,8 @@ Cohesion: 0.12
 Nodes (17): main, main, main, main, 02 Convertir Frontal, 03 Quitar Fondo, 10 Preparar GPT, 24 Abrir URL QR (+9 more)
 
 ### Community 137 - "Community 137"
-Cohesion: 0.15
-Nodes (12): isInCellar(), Meta, MetaSectionProps, ModeSelectorProps, NuevaCata(), QuickFormProps, TastingMode, todayISO() (+4 more)
+Cohesion: 0.11
+Nodes (17): useGlossary(), CATEGORIAS, Glosario(), Meta, MetaSectionProps, ModeSelectorProps, NuevaCata(), QuickFormProps (+9 more)
 
 ### Community 138 - "Community 138"
 Cohesion: 0.33
@@ -821,7 +821,7 @@ Nodes (5): ADR 0008 — Cuaderno único y vinos de fuera con `wines.en_bodega`, 
 
 ### Community 213 - "Community 213"
 Cohesion: 0.15
-Nodes (7): injectKeyframes(), FINAL_OPCIONES, SectionCardProps, Layout(), LayoutProps, tabs, ModalProps
+Nodes (4): emptyValueStyle, FieldStatus, fieldValueStyle, WineFormProps
 
 ### Community 217 - "Community 217"
 Cohesion: 0.22
@@ -883,9 +883,9 @@ Nodes (5): Iterate on the loop itself, Non-deterministic bugs, Phase 1 — Build
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Wine` connect `Community 101` to `Community 129`, `Community 34`, `Community 137`, `Community 106`, `Community 110`, `Community 85`, `Community 181`, `Community 213`, `Vite PWA Config`, `Community 121`, `Community 123`?**
+- **Why does `Wine` connect `Community 121` to `Community 129`, `Community 34`, `Community 101`, `Community 137`, `Community 110`, `Community 85`, `Community 181`, `Vite PWA Config`, `Community 213`, `Community 123`?**
   _High betweenness centrality (0.006) - this node is a cross-community bridge._
-- **Why does `Theme` connect `Community 106` to `Community 129`, `Community 34`, `Community 101`, `Community 137`, `Community 110`, `Community 112`, `Community 181`, `Vite PWA Config`, `Community 213`, `Community 85`, `Community 121`, `Community 123`?**
+- **Why does `Theme` connect `Community 106` to `Community 129`, `Community 34`, `Community 101`, `Community 137`, `Community 110`, `Community 112`, `Community 181`, `Vite PWA Config`, `Community 85`, `Community 213`, `Community 121`, `Community 123`?**
   _High betweenness centrality (0.004) - this node is a cross-community bridge._
 - **Why does `connections` connect `Community 136` to `Community 139`, `Community 185`, `Community 186`, `Community 187`, `Community 188`, `Community 189`, `Community 190`, `Community 191`, `Community 192`, `Community 193`, `Community 194`, `Community 195`, `Community 196`, `Community 197`, `Community 198`, `Community 199`, `Community 200`, `Community 201`, `Community 202`, `Community 203`, `Community 211`?**
   _High betweenness centrality (0.002) - this node is a cross-community bridge._

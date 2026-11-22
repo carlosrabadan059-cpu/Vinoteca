@@ -175,8 +175,8 @@
     "semantic_hash": "9f49e846f6f912bc87a54e522089c5f8"
   },
   "src/lib/n8n.ts": {
-    "mtime": 1790622468.2082496,
-    "ast_hash": "eb5ede582610720a40a9fa2e7cd361ee",
+    "mtime": 1795388587.913653,
+    "ast_hash": "2b34d65176fe42d53a7de5296edd92b7",
     "semantic_hash": ""
   },
   "src/lib/storage.ts": {
@@ -255,8 +255,8 @@
     "semantic_hash": ""
   },
   "src/pages/WineDetail.tsx": {
-    "mtime": 1795374801.5809526,
-    "ast_hash": "7ee464e37347436c3db7be4847091af2",
+    "mtime": 1795388587.91415,
+    "ast_hash": "d601c631d067b4428a03d708e043ae01",
     "semantic_hash": ""
   },
   "src/router/index.tsx": {
@@ -635,8 +635,8 @@
     "semantic_hash": ""
   },
   "docs/backend-n8n.md": {
-    "mtime": 1792265162.316254,
-    "ast_hash": "722a8d6cf23c24d2f8b2d4343d0ccb6b",
+    "mtime": 1795388592.508503,
+    "ast_hash": "21a69c8bf99d509f15e76af691c735be",
     "semantic_hash": ""
   },
   "docs/database.md": {
@@ -1375,8 +1375,8 @@
     "semantic_hash": ""
   },
   "docs/workflows-n8n.md": {
-    "mtime": 1792265162.3158836,
-    "ast_hash": "6bc45460c818512671698c8ae2dddc4d",
+    "mtime": 1795388592.5090308,
+    "ast_hash": "73d10fb1adabeb808d6eac0f0bc5bde1",
     "semantic_hash": ""
   },
   "supabase/migrations/20261122120000_storage_delete_wine_labels.sql": {

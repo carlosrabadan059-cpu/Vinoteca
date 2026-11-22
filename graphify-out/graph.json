@@ -2689,7 +2689,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_layout",
-      "community": 213,
+      "community": 106,
       "norm_label": "layout.tsx"
     },
     {
@@ -2699,7 +2699,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "ui_layout_tabs",
-      "community": 213,
+      "community": 106,
       "norm_label": "tabs"
     },
     {
@@ -2709,7 +2709,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "ui_layout_layoutprops",
-      "community": 213,
+      "community": 106,
       "norm_label": "layoutprops"
     },
     {
@@ -2719,7 +2719,7 @@
       "source_location": "L68",
       "_origin": "ast",
       "id": "ui_layout_layout",
-      "community": 213,
+      "community": 106,
       "norm_label": "layout()"
     },
     {
@@ -2729,7 +2729,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_modal",
-      "community": 213,
+      "community": 106,
       "norm_label": "modal.tsx"
     },
     {
@@ -2739,7 +2739,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "ui_modal_modalprops",
-      "community": 213,
+      "community": 106,
       "norm_label": "modalprops"
     },
     {
@@ -2749,7 +2749,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "ui_modal_modal",
-      "community": 213,
+      "community": 106,
       "norm_label": "modal()"
     },
     {
@@ -2959,7 +2959,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_toast",
-      "community": 22,
+      "community": 137,
       "norm_label": "toast.tsx"
     },
     {
@@ -2969,7 +2969,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "ui_toast_toast",
-      "community": 22,
+      "community": 137,
       "norm_label": "toast()"
     },
     {
@@ -2979,7 +2979,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "wine_consumoquickform",
-      "community": 22,
+      "community": 137,
       "norm_label": "consumoquickform.tsx"
     },
     {
@@ -2989,7 +2989,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "wine_consumoquickform_consumoquickformprops",
-      "community": 22,
+      "community": 137,
       "norm_label": "consumoquickformprops"
     },
     {
@@ -2999,7 +2999,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "wine_consumoquickform_today",
-      "community": 22,
+      "community": 137,
       "norm_label": "today()"
     },
     {
@@ -3009,7 +3009,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "wine_consumoquickform_consumoquickform",
-      "community": 22,
+      "community": 137,
       "norm_label": "consumoquickform()"
     },
     {
@@ -3019,7 +3019,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "wine_duplicatewinedialog",
-      "community": 137,
+      "community": 121,
       "norm_label": "duplicatewinedialog.tsx"
     },
     {
@@ -3029,7 +3029,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "wine_duplicatewinedialog_duplicatewinedialogprops",
-      "community": 137,
+      "community": 121,
       "norm_label": "duplicatewinedialogprops"
     },
     {
@@ -3039,7 +3039,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "wine_duplicatewinedialog_winerow",
-      "community": 137,
+      "community": 121,
       "norm_label": "winerow()"
     },
     {
@@ -3049,7 +3049,7 @@
       "source_location": "L78",
       "_origin": "ast",
       "id": "wine_duplicatewinedialog_duplicatewinedialog",
-      "community": 137,
+      "community": 121,
       "norm_label": "duplicatewinedialog()"
     },
     {
@@ -3159,7 +3159,7 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "wine_journalsheetform_journalsheetform",
-      "community": 22,
+      "community": 137,
       "norm_label": "journalsheetform()"
     },
     {
@@ -3549,7 +3549,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "wine_wineform",
-      "community": 106,
+      "community": 213,
       "norm_label": "wineform.tsx"
     },
     {
@@ -3559,7 +3559,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "wine_wineform_wineformprops",
-      "community": 106,
+      "community": 213,
       "norm_label": "wineformprops"
     },
     {
@@ -3569,7 +3569,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "wine_wineform_fieldstatus",
-      "community": 106,
+      "community": 213,
       "norm_label": "fieldstatus"
     },
     {
@@ -3579,7 +3579,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "wine_wineform_derivestatus",
-      "community": 106,
+      "community": 213,
       "norm_label": "derivestatus()"
     },
     {
@@ -3589,7 +3589,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "wine_wineform_fieldstatusbadge",
-      "community": 106,
+      "community": 213,
       "norm_label": "fieldstatusbadge()"
     },
     {
@@ -3599,7 +3599,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "wine_wineform_section",
-      "community": 106,
+      "community": 213,
       "norm_label": "section()"
     },
     {
@@ -3609,7 +3609,7 @@
       "source_location": "L107",
       "_origin": "ast",
       "id": "wine_wineform_fieldrow",
-      "community": 106,
+      "community": 213,
       "norm_label": "fieldrow()"
     },
     {
@@ -3619,7 +3619,7 @@
       "source_location": "L141",
       "_origin": "ast",
       "id": "wine_wineform_fieldvaluestyle",
-      "community": 106,
+      "community": 213,
       "norm_label": "fieldvaluestyle"
     },
     {
@@ -3629,7 +3629,7 @@
       "source_location": "L155",
       "_origin": "ast",
       "id": "wine_wineform_emptyvaluestyle",
-      "community": 106,
+      "community": 213,
       "norm_label": "emptyvaluestyle"
     },
     {
@@ -3639,7 +3639,7 @@
       "source_location": "L166",
       "_origin": "ast",
       "id": "wine_wineform_autofield",
-      "community": 106,
+      "community": 213,
       "norm_label": "autofield()"
     },
     {
@@ -3649,7 +3649,7 @@
       "source_location": "L205",
       "_origin": "ast",
       "id": "wine_wineform_subdivider",
-      "community": 106,
+      "community": 213,
       "norm_label": "subdivider()"
     },
     {
@@ -3659,7 +3659,7 @@
       "source_location": "L224",
       "_origin": "ast",
       "id": "wine_wineform_confchip",
-      "community": 106,
+      "community": 213,
       "norm_label": "confchip()"
     },
     {
@@ -3669,7 +3669,7 @@
       "source_location": "L249",
       "_origin": "ast",
       "id": "wine_wineform_wineform",
-      "community": 106,
+      "community": 213,
       "norm_label": "wineform()"
     },
     {
@@ -3729,7 +3729,7 @@
       "source_location": "L495",
       "_origin": "ast",
       "id": "constants_theme_injectkeyframes",
-      "community": 213,
+      "community": 106,
       "norm_label": "injectkeyframes()"
     },
     {
@@ -3859,7 +3859,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "hooks_useglossary",
-      "community": 22,
+      "community": 137,
       "norm_label": "useglossary.ts"
     },
     {
@@ -3869,7 +3869,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "hooks_useglossary_useglossary",
-      "community": 22,
+      "community": 137,
       "norm_label": "useglossary()"
     },
     {
@@ -3889,7 +3889,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "hooks_useprofile_useprofile",
-      "community": 121,
+      "community": 129,
       "norm_label": "useprofile()"
     },
     {
@@ -4259,7 +4259,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "lib_cuadernohelpers_isincellar",
-      "community": 137,
+      "community": 121,
       "norm_label": "isincellar()"
     },
     {
@@ -4369,7 +4369,7 @@
       "source_location": "L118",
       "_origin": "ast",
       "id": "lib_cuadernohelpers_final_opciones",
-      "community": 213,
+      "community": 22,
       "norm_label": "final_opciones"
     },
     {
@@ -5589,7 +5589,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_glosario",
-      "community": 22,
+      "community": 137,
       "norm_label": "glosario.tsx"
     },
     {
@@ -5599,7 +5599,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "pages_glosario_categorias",
-      "community": 22,
+      "community": 137,
       "norm_label": "categorias"
     },
     {
@@ -5609,7 +5609,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "pages_glosario_glosario",
-      "community": 22,
+      "community": 137,
       "norm_label": "glosario()"
     },
     {
@@ -5749,7 +5749,7 @@
       "source_location": "L614",
       "_origin": "ast",
       "id": "pages_nuevacata_winebanner",
-      "community": 137,
+      "community": 121,
       "norm_label": "winebanner()"
     },
     {
@@ -5769,7 +5769,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_perfil",
-      "community": 121,
+      "community": 129,
       "norm_label": "perfil.tsx"
     },
     {
@@ -5779,7 +5779,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "pages_perfil_inputstyle",
-      "community": 121,
+      "community": 129,
       "norm_label": "inputstyle"
     },
     {
@@ -5789,7 +5789,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "pages_perfil_perfil",
-      "community": 121,
+      "community": 129,
       "norm_label": "perfil()"
     },
     {
@@ -6199,7 +6199,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_tastingdetail",
-      "community": 213,
+      "community": 22,
       "norm_label": "tastingdetail.tsx"
     },
     {
@@ -6209,7 +6209,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "pages_tastingdetail_scorebadge",
-      "community": 213,
+      "community": 22,
       "norm_label": "scorebadge()"
     },
     {
@@ -6219,7 +6219,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "pages_tastingdetail_sectioncardprops",
-      "community": 213,
+      "community": 22,
       "norm_label": "sectioncardprops"
     },
     {
@@ -6229,7 +6229,7 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "pages_tastingdetail_sectioncard",
-      "community": 213,
+      "community": 22,
       "norm_label": "sectioncard()"
     },
     {
@@ -6239,7 +6239,7 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "pages_tastingdetail_bocacard",
-      "community": 213,
+      "community": 22,
       "norm_label": "bocacard()"
     },
     {
@@ -6429,7 +6429,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "store_toaststore",
-      "community": 22,
+      "community": 137,
       "norm_label": "toaststore.ts"
     },
     {
@@ -6439,7 +6439,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "store_toaststore_toaststate",
-      "community": 22,
+      "community": 137,
       "norm_label": "toaststate"
     },
     {
@@ -6449,7 +6449,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "store_toaststore_usetoaststore",
-      "community": 22,
+      "community": 137,
       "norm_label": "usetoaststore"
     },
     {
@@ -6459,7 +6459,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "store_winestore",
-      "community": 101,
+      "community": 121,
       "norm_label": "winestore.ts"
     },
     {
@@ -6469,7 +6469,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "store_winestore_winestate",
-      "community": 101,
+      "community": 121,
       "norm_label": "winestate"
     },
     {
@@ -6499,7 +6499,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "types_index_wine",
-      "community": 101,
+      "community": 121,
       "norm_label": "wine"
     },
     {
@@ -6529,7 +6529,7 @@
       "source_location": "L72",
       "_origin": "ast",
       "id": "types_index_glossarycategoria",
-      "community": 22,
+      "community": 137,
       "norm_label": "glossarycategoria"
     },
     {
@@ -43509,9 +43509,9 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L56",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_changelog_0_6_0_2026_07_06",
-      "target": "docs_changelog_added_56",
-      "confidence_score": 1.0
+      "target": "docs_changelog_added_56"
     },
     {
       "relation": "contains",
@@ -43539,9 +43539,9 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L66",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_changelog_0_6_0_2026_07_06",
-      "target": "docs_changelog_changed_66",
-      "confidence_score": 1.0
+      "target": "docs_changelog_changed_66"
     },
     {
       "relation": "contains",
@@ -43569,9 +43569,9 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L71",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_changelog_0_6_0_2026_07_06",
-      "target": "docs_changelog_fixed_71",
-      "confidence_score": 1.0
+      "target": "docs_changelog_fixed_71"
     },
     {
       "relation": "contains",
@@ -43599,9 +43599,9 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L79",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_changelog_0_5_0_2026_07_05",
-      "target": "docs_changelog_added_79",
-      "confidence_score": 1.0
+      "target": "docs_changelog_added_79"
     },
     {
       "relation": "contains",
@@ -43629,9 +43629,9 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L86",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_changelog_0_5_0_2026_07_05",
-      "target": "docs_changelog_changed_86",
-      "confidence_score": 1.0
+      "target": "docs_changelog_changed_86"
     },
     {
       "relation": "contains",
@@ -43659,9 +43659,9 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L95",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_changelog_0_4_0_2026_07_04",
-      "target": "docs_changelog_added_95",
-      "confidence_score": 1.0
+      "target": "docs_changelog_added_95"
     },
     {
       "relation": "contains",
@@ -43669,9 +43669,9 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L102",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_changelog_0_4_0_2026_07_04",
-      "target": "docs_changelog_changed_102",
-      "confidence_score": 1.0
+      "target": "docs_changelog_changed_102"
     },
     {
       "relation": "contains",
@@ -43699,9 +43699,9 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L106",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_changelog_0_4_0_2026_07_04",
-      "target": "docs_changelog_removed_106",
-      "confidence_score": 1.0
+      "target": "docs_changelog_removed_106"
     },
     {
       "relation": "contains",
@@ -43749,9 +43749,9 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L114",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_changelog_0_3_0_2026_06_25",
-      "target": "docs_changelog_added_114",
-      "confidence_score": 1.0
+      "target": "docs_changelog_added_114"
     },
     {
       "relation": "contains",
@@ -43779,9 +43779,9 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L121",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_changelog_0_3_0_2026_06_25",
-      "target": "docs_changelog_fixed_121",
-      "confidence_score": 1.0
+      "target": "docs_changelog_fixed_121"
     },
     {
       "relation": "contains",
@@ -43809,9 +43809,9 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L129",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_changelog_0_2_0_2026_06_18",
-      "target": "docs_changelog_added_129",
-      "confidence_score": 1.0
+      "target": "docs_changelog_added_129"
     },
     {
       "relation": "contains",
@@ -43839,9 +43839,9 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L141",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_changelog_0_2_0_2026_06_18",
-      "target": "docs_changelog_changed_141",
-      "confidence_score": 1.0
+      "target": "docs_changelog_changed_141"
     },
     {
       "relation": "contains",
@@ -43869,9 +43869,9 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L149",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_changelog_0_1_0_2026_06_10",
-      "target": "docs_changelog_added_149",
-      "confidence_score": 1.0
+      "target": "docs_changelog_added_149"
     },
     {
       "relation": "contains",
@@ -49729,9 +49729,9 @@
       "source_file": "docs/supabase.md",
       "source_location": "L128",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_supabase_supabase_storage",
-      "target": "docs_supabase_girar_una_foto_ya_guardada",
-      "confidence_score": 1.0
+      "target": "docs_supabase_girar_una_foto_ya_guardada"
     },
     {
       "relation": "contains",
@@ -49739,9 +49739,9 @@
       "source_file": "docs/supabase.md",
       "source_location": "L115",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_supabase_supabase_storage",
-      "target": "docs_supabase_pol\u00edticas_de_acceso_storage_objects",
-      "confidence_score": 1.0
+      "target": "docs_supabase_pol\u00edticas_de_acceso_storage_objects"
     },
     {
       "relation": "contains",
@@ -53417,5 +53417,5 @@
       "source_file": "docs/handoff-2026-06-18.md"
     }
   ],
-  "built_at_commit": "ee7af6e0e03f2eaf159ae4712814fa321804a14a"
+  "built_at_commit": "05e4a4be5d39116d14c5ea8417c7dd5c7731f930"
 }
