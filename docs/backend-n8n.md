@@ -38,7 +38,7 @@ Los workflows usan dos credenciales de n8n: **«OpenAI Carlos»** (OpenAI direct
 | `cata-tutor` | `gpt-4o-mini` / OpenAI Carlos | Con `Combo_n8n` tardaba 20–24 s: es interactivo |
 | `Wine Enrich` | `gpt-4o-mini` / OpenAI Carlos | Usa el nodo OpenAI de n8n (API Responses, `/v1/responses`) y es extracción estricta con `null` |
 | `Scan Analizar v2` (visión `gpt-4o`) | OpenAI Carlos | Lee la etiqueta: un combo podría enrutar a un modelo sin visión |
-| `Improve Photo` (`gpt-image-1`) | OpenAI Carlos | Edición de imágenes de OpenAI |
+| `Improve Photo` (`gpt-image-2.6`, antes `gpt-image-1`) | OpenAI Carlos | Edición de imágenes de OpenAI |
 
 La latencia de `Combo_n8n` varía mucho (de 4 a 20 s en la misma consulta de stats), por eso no se usa en lo interactivo. Para volver un workflow a OpenAI directo basta cambiar la credencial y el modelo del nodo de chat.
 

@@ -226,7 +226,7 @@ export async function callStatsInsight(
 export async function callImprovePhoto(
   imagenOriginalUrl: string
 ): Promise<{ imageDataUrl: string }> {
-  // gpt-image-1 a 1024×1536 con input_fidelity high tarda a menudo más de 60 s
+  // La edición de imagen de OpenAI (1024×1536, alta fidelidad) tarda a menudo más de 60 s
   return post<{ imageDataUrl: string }>('vinoteca/wine/improve-photo', {
     imagen_original_url: imagenOriginalUrl,
   }, 180_000)
