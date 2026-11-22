@@ -10,7 +10,7 @@ Mapa de los 12 workflows de Vinoteca en `n8n.rabadanhouse.space` (todos en una m
 | 2 | Scan · Foto de Estudio | *(sub-workflow)* | Scan Analizar v2 | Microservicios locales | Activo |
 | 3 | Wine Identify | `POST /wine/identify` | `Scan.tsx`, fase 2 | Ninguna; Supabase | Activo |
 | 4 | Wine Enrich | `POST /wine/enrich` | `Scan.tsx`, fase 3 | Brave + `gpt-4o-mini` | Activo |
-| 5 | Wine Improve Photo | `POST /wine/improve-photo` | `WineDetail.tsx` | `gpt-image-2.6` (pendiente de cambiar en n8n) | Activo |
+| 5 | Wine Improve Photo | `POST /wine/improve-photo` | `WineDetail.tsx` | `gpt-image-2` | Activo |
 | 6 | sommelier-chat | `POST /sommelier/chat` | `Sommelier.tsx`, `TastingChat.tsx` | Omniroute | Activo |
 | 7 | sommelier-maridaje | `POST /sommelier/maridaje` | `Sommelier.tsx` | Omniroute | Activo |
 | 8 | sommelier-enriquecimiento | `POST /sommelier/enriquecimiento` | `Sommelier.tsx` | Wikipedia + Omniroute | Activo |
@@ -79,7 +79,7 @@ Si Wine Identify falla, la app no tiene `wine_uid` y **no llama a Wine Enrich**.
 **Cometido:** rehacer el fondo de una foto ya guardada con un fondo oscuro de estudio.
 
 - Descarga `imagen_original_url`.
-- La edita con un modelo GPT Image de OpenAI (1024×1536, alta fidelidad) con un prompt fijo: fondo oscuro, liso, sin tocar botella ni etiqueta. Usaba `gpt-image-1`, que OpenAI apagó el 23-10-2026 (desde entonces el nodo devolvía 400 «model does not exist»); hay que usar `gpt-image-2.6-*`.
+- La edita con un modelo GPT Image de OpenAI (1024×1536) con un prompt fijo: fondo oscuro, liso, sin tocar botella ni etiqueta. Usaba `gpt-image-1`, que OpenAI apagó el 23-10-2026 (desde entonces el nodo devolvía 400 «model does not exist»); desde el 2026-11-23 usa `gpt-image-2` (sin `input_fidelity`, que ese modelo rechaza con 400 `invalid_input_fidelity_model`). La credencial «OpenAI Carlos» también ofrece `gpt-image-1.5`, `gpt-image-1-mini` y las variantes `2.5-*` y `2.6-*` (`flare`, `sunburst`).
 - Devuelve `imageDataUrl` en base64.
 - Convive con el microservicio de la foto de estudio del escaneo (workflow 2); son dos maneras distintas de lograr un fondo parecido.
 
