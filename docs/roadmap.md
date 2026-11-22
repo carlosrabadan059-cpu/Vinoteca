@@ -78,6 +78,7 @@ Trabajo que no encaja en ninguna fase del roadmap, registrado sin ocupar un núm
 | 2026-08-02 | Mejoras de calidad de imagen en la captura de cámara (brillo, auto-niveles, aviso de borrosa) | [spec](superpowers/specs/2026-08-02-mejoras-camara-captura-design.md), [plan](superpowers/plans/2026-08-02-mejoras-camara-captura-plan.md) |
 | 2026-08-03 | Reemplazar/añadir la foto de un vino ya guardado desde la ficha | [spec](superpowers/specs/2026-08-03-reemplazar-foto-vino-design.md), [plan](superpowers/plans/2026-08-03-reemplazar-foto-vino-plan.md) |
 | 2026-08-03 | "Foto de estudio" — mejora de fotografías de vino con IA (OpenAI vía n8n) | [spec](superpowers/specs/2026-08-03-foto-estudio-ia-design.md), [plan](superpowers/plans/2026-08-03-foto-estudio-ia-plan.md) |
+| 2026-11-22 | Girar la foto de un vino ya guardado + política de DELETE en Storage | [supabase.md](supabase.md#girar-una-foto-ya-guardada), [CHANGELOG](CHANGELOG.md) |
 
 ---
 

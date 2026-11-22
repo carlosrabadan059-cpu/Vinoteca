@@ -112,6 +112,23 @@ uploadWineImage(dataUrl, userId, wineId, side: 'frontal' | 'trasera'): Promise<s
 3. Genera una URL firmada con validez de **10 años** (`TEN_YEARS_SECONDS = 60 * 60 * 24 * 365 * 10`).
 4. Devuelve la URL firmada, que se guarda en `wines.imagen_frontal_url` o `wines.imagen_trasera_url`.
 
+### Políticas de acceso (`storage.objects`)
+
+Cada usuario solo accede a su propia carpeta (`<user_id>/…`) del bucket `wine-labels`. Hay una política por operación, todas para el rol `authenticated` y con la misma condición `bucket_id = 'wine-labels' and (storage.foldername(name))[1] = auth.uid()::text`:
+
+| Política | Operación |
+|----------|-----------|
+| `Users can upload wine labels` | INSERT |
+| `Users can view wine labels` | SELECT |
+| `Users can update wine labels` | UPDATE |
+| `Users can delete wine labels` | DELETE — migración `20261122120000_storage_delete_wine_labels.sql` |
+
+Hasta el 2026-11-22 faltaba la de DELETE: `supabase.storage.remove()` no daba error pero tampoco borraba nada, y los archivos quedaban huérfanos. Los borrados con SQL directo sobre `storage.objects` los rechaza Supabase («Direct deletion from storage tables is not allowed»); hay que usar la Storage API.
+
+### Girar una foto ya guardada
+
+Menú ⋮ de la ficha del vino → **Girar foto 180º** (`handleRotatePhoto` en `src/pages/WineDetail.tsx`), disponible para cualquier usuario con foto. Gira en el navegador con `rotateImage180` (`src/lib/imageQuality.ts`; conserva PNG o JPEG), sube el resultado con la sesión del usuario a una ruta nueva (`rot-<timestamp>`) —así la URL firmada cambia y no se ve la imagen vieja en caché— y actualiza `imagen_frontal_url`. Si el vino tiene `imagen_original_url` (la base de «Foto de estudio»), la gira también. Después borra los archivos antiguos con `removeWineImage` (`src/lib/storage.ts`, best-effort: nunca lanza).
+
 **Estrategia Workbox para Storage:**
 
 ```
